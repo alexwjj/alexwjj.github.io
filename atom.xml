@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-05-31T12:35:36.918Z</updated>
+    <updated>2019-05-31T13:00:51.980Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -16,14 +16,12 @@
         <link href="https://alexwjj.github.io//post/foreword">
         </link>
         <updated>2019-05-31T12:27:28.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="俊劫">俊劫、</h2>
-<blockquote>
+        <summary type="html"><![CDATA[<blockquote>
 <p><strong>首先</strong> 如果你能看到这个博客，茫茫人海中，都是缘分。<strong>QQ</strong>  798595965  <strong>VX</strong>  18697737169  欢迎骚扰哈。
 <strong>2019-05-31</strong> 静态博客搭建成功。</p>
 </blockquote>
 ]]></summary>
-        <content type="html"><![CDATA[<h2 id="俊劫">俊劫、</h2>
-<blockquote>
+        <content type="html"><![CDATA[<blockquote>
 <p><strong>首先</strong> 如果你能看到这个博客，茫茫人海中，都是缘分。<strong>QQ</strong>  798595965  <strong>VX</strong>  18697737169  欢迎骚扰哈。
 <strong>2019-05-31</strong> 静态博客搭建成功。</p>
 </blockquote>
