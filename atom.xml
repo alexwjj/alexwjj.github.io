@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-05-31T12:29:13.526Z</updated>
+    <updated>2019-05-31T12:35:36.918Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -16,28 +16,29 @@
         <link href="https://alexwjj.github.io//post/foreword">
         </link>
         <updated>2019-05-31T12:27:28.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="俊劫">俊劫、</h2>
+<blockquote>
+<p><strong>首先</strong> 如果你能看到这个博客，茫茫人海中，都是缘分。<strong>QQ</strong>  798595965  <strong>VX</strong>  18697737169  欢迎骚扰哈。
+<strong>2019-05-31</strong> 静态博客搭建成功。</p>
+</blockquote>
+]]></summary>
         <content type="html"><![CDATA[<h2 id="俊劫">俊劫、</h2>
 <blockquote>
 <p><strong>首先</strong> 如果你能看到这个博客，茫茫人海中，都是缘分。<strong>QQ</strong>  798595965  <strong>VX</strong>  18697737169  欢迎骚扰哈。
 <strong>2019-05-31</strong> 静态博客搭建成功。</p>
-<!-- more -->
 </blockquote>
+<!-- more -->
 <h2 id="1说点啥">1.说点啥</h2>
 <hr>
 <p>作为一个<strong>程序员</strong> ， 文笔可能有点差，但是都没关系。第一篇文章嘛，写写搭建这个博客的背景及未来想做的事情</p>
 <h2 id="2关于博客网站">2.关于博客网站</h2>
 <hr>
-<p>从2018年6月份开始，为了找工作，开始了做博客网站的历程。<strong>第一版</strong>，找的<strong>BootStrap</strong> 的模板，然后进行修改，搞</p>
-<p>了挺长时间的，写了一个静态页面，放在阿里云学生服务器上。由于不懂性能优化，导致界面加载很卡，也在后</p>
-<p>续的面试演示中丢了面子，但还是靠着它找到了第一份实习（干了一周）。<strong>第二版</strong>，自学前端的时用<strong>BootStrap</strong>练</p>
-<p>手写了一个简洁的响应式界面，把自己学习的时候做的一些小项目都放上去了，靠着它来杭州找到了第二份实习（至</p>
-<p>今）。<strong>第三版</strong>，用的<strong>wordPress</strong>搭建动态博客，写了一些东西，但是感觉不自由，放在阿里云服务器一直也没怎么</p>
-<p>维护。<strong>第四版</strong>，之前老师定的毕业论文题目是基于 Java 的 XXX，后来和老师商量了下，说自己不太懂 Java 就换成</p>
-<p>了基于Node.js 的博客系统。刚好服务器6月份到期，当初的目的也只是练习 Node.js 和应付论文。</p>
-<p><strong>第五版</strong>，有了前面四次的经验，这一次我想到了 Github Pages。静态页面，永久保存，MarkDown，模板简洁。很</p>
-<p>符合自己的要求。之前fork 别人的仓库，每次编写都需要操作代码，不太喜欢。然后就搁置了很久没动。今天公司举</p>
-<p>办了儿童节活动，抽完奖(AD 钙奶)，没心思工作，无意间发现了Gridea 这款编辑器。以软件配置的方式帮助搭建</p>
-<p>Github Pages，发博文也可以直接写 MarkDown。</p>
+<p>从2018年6月份开始，为了找工作，开始了做博客网站的历程。</p>
+<p><strong>第一版</strong>，找的<strong>BootStrap</strong> 的模板，然后进行修改，搞了挺长时间的，写了一个静态页面，放在阿里云学生服务器上。由于不懂性能优化，导致界面加载很卡，也在后续的面试演示中丢了面子，但还是靠着它找到了第一份实习（干了一周）。</p>
+<p><strong>第二版</strong>，自学前端的时用<strong>BootStrap</strong>练手写了一个简洁的响应式界面，把自己学习的时候做的一些小项目都放上去了，靠着它来杭州找到了第二份实习（至今）。</p>
+<p><strong>第三版</strong>，用的<strong>wordPress</strong>搭建动态博客，写了一些东西，但是感觉不自由，放在阿里云服务器一直也没怎么维护。</p>
+<p><strong>第四版</strong>，之前老师定的毕业论文题目是基于 Java 的 XXX，后来和老师商量了下，说自己不太懂 Java 就换成了基于Node.js 的博客系统。刚好服务器6月份到期，当初的目的也只是练习 Node.js 和应付论文。</p>
+<p><strong>第五版</strong>，有了前面四次的经验，这一次我想到了 Github Pages。静态页面，永久保存，MarkDown，模板简洁。很符合自己的要求。之前fork 别人的仓库，每次编写都需要操作代码，不太喜欢。然后就搁置了很久没动。今天公司举办了儿童节活动，抽完奖(AD 钙奶)，没心思工作，无意间发现了Gridea 这款编辑器。以软件配置的方式帮助搭建 Github Pages，发博文也可以直接写 MarkDown。</p>
 <p><strong>很完美</strong>，所以以后就要坚持写下去了，毕竟嘛，做技术的，谁没个让人家羡慕的博客。</p>
 <h2 id="3规划">3.规划</h2>
 <p>也没想太多，简单的规划下，至少保证每周更新两篇吧，技术学习与生活分享。</p>
