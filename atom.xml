@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-01T11:13:09.321Z</updated>
+    <updated>2019-06-01T11:37:58.611Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,25 +10,6 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
-    <entry>
-        <title type="html"><![CDATA[博客文章图片测试]]></title>
-        <id>https://alexwjj.github.io//post/blog-index</id>
-        <link href="https://alexwjj.github.io//post/blog-index">
-        </link>
-        <updated>2019-06-01T10:32:41.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>面对疾风吧
-提莫队长，正在送命。</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>面对疾风吧
-提莫队长，正在送命。</p>
-</blockquote>
-<!-- more -->
-<p><img src="https://upload-images.jianshu.io/upload_images/8468194-6dcb6a995f366fba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="blog.png"></p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[前言   ——俊劫、]]></title>
         <id>https://alexwjj.github.io//post/foreword</id>
@@ -45,25 +26,23 @@
 <strong>2019-05-31</strong> 静态博客搭建成功。</p>
 </blockquote>
 <!-- more -->
-<blockquote>
-<p><strong>首先</strong> 如果你能看到这个博客，茫茫人海中，都是缘分。<strong>QQ</strong>  798595965  <strong>VX</strong>  18697737169  欢迎骚扰哈。
-<strong>2019-05-31</strong> 静态博客搭建成功。</p>
-</blockquote>
-<!-- more -->
 <h2 id="1说点啥">1.说点啥</h2>
 <hr>
 <p>作为一个<strong>程序员</strong> ， 文笔可能有点差，但是都没关系。第一篇文章嘛，写写搭建这个博客的背景及未来想做的事情</p>
 <h2 id="2关于博客网站">2.关于博客网站</h2>
 <hr>
 <p>从2018年6月份开始，为了找工作，开始了做博客网站的历程。</p>
-<p><strong>第一版</strong>，找的<strong>BootStrap</strong> 的模板，然后进行修改，搞了挺长时间的，写了一个静态页面，放在阿里云学生服务器上。由于不懂性能优化，导致界面加载很卡，也在后续的面试演示中丢了面子，但还是靠着它找到了第一份实习（干了一周）。</p>
-<p><strong>第二版</strong>，自学前端的时用<strong>BootStrap</strong>练手写了一个简洁的响应式界面，把自己学习的时候做的一些小项目都放上去了，靠着它来杭州找到了第二份实习（至今）。
+<p><strong>第一版</strong>，找的<strong>BootStrap</strong> 的模板，然后进行修改，搞了挺长时间的，写了一个静态页面，放在阿里云学生服务器上。由于不懂性能优化，导致界面加载很卡，也在后续的面试演示中丢了面子，但还是靠着它找到了第一份实习（干了一周）。（刚开始不会用 github，源码就找不到了）</p>
+<p><strong>第二版</strong>，自学前端的时用<strong>BootStrap</strong>练手写了一个简洁的响应式界面，把自己学习的时候做的一些小项目都放上去了，靠着它来杭州找到了第二份实习（至今）。(github:https://github.com/alexwjj/Alex)
 <img src="https://upload-images.jianshu.io/upload_images/8468194-128311da881f7c04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="blog-version2.0"></p>
-<p><strong>第三版</strong>，用的<strong>wordPress</strong>搭建动态博客，写了一些东西，但是感觉不自由，放在阿里云服务器一直也没怎么维护。
+<p><strong>第三版</strong>，用的<strong>wordPress</strong>搭建动态博客，写了一些东西，但是感觉不自由，放在阿里云服务器一直也没怎么维护。（github：https://github.com/alexwjj/alex-blog）
 <img src="https://upload-images.jianshu.io/upload_images/8468194-537139f953c5c525.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="blog-version3.0"></p>
 <p><strong>第四版</strong>，之前老师定的毕业论文题目是基于 Java 的 XXX，后来和老师商量了下，说自己不太懂 Java 就换成了基于Node.js 的博客系统。刚好服务器6月份到期，当初的目的也只是练习 Node.js 和应付论文。
-<img src="https://upload-images.jianshu.io/upload_images/8468194-0bb3dfeafcc7194c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="blog-version4.0"></p>
-<p><strong>第五版</strong>，有了前面四次的经验，这一次我想到了 Github Pages。静态页面，永久保存，MarkDown，模板简洁。很符合自己的要求。之前fork 别人的仓库，每次编写都需要操作代码，不太喜欢。然后就搁置了很久没动。今天公司举办了儿童节活动，抽完奖(AD 钙奶)，没心思工作，无意间发现了Gridea 这款编辑器。以软件配置的方式帮助搭建 Github Pages，发博文也可以直接写 MarkDown。</p>
+（github: https://github.com/alexwjj/dissertation）
+<img src="https://upload-images.jianshu.io/upload_images/8468194-0bb3dfeafcc7194c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="blog-version4.0">
+<img src="https://upload-images.jianshu.io/upload_images/8468194-d34f399b232af05b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="blog-version4.1"></p>
+<p><strong>第五版</strong>，有了前面四次的经验，这一次我想到了 Github Pages。静态页面，永久保存，MarkDown，模板简洁。很符合自己的要求。之前fork 别人的仓库，每次编写都需要操作代码，不太喜欢。然后就搁置了很久没动。今天公司举办了儿童节活动，抽完奖(AD 钙奶)，没心思工作，无意间发现了Gridea 这款编辑器。以软件配置的方式帮助搭建 Github Pages，发博文也可以直接写 MarkDown。(github: https://github.com/alexwjj/alexwjj.github.io)
+<img src="https://upload-images.jianshu.io/upload_images/8468194-f43e41f14a8e41e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="blog-version5.0"></p>
 <p><strong>很完美</strong>，所以以后就要坚持写下去了，毕竟嘛，做技术的，谁没个让人家羡慕的博客。</p>
 <h2 id="3规划">3.规划</h2>
 <p>也没想太多，简单的规划下，至少保证每周更新两篇吧，技术学习与生活分享。</p>
