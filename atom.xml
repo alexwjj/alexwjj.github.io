@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-05-31T13:00:51.980Z</updated>
+    <updated>2019-06-01T10:35:32.426Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,25 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[博客文章图片测试]]></title>
+        <id>https://alexwjj.github.io//post/blog-index</id>
+        <link href="https://alexwjj.github.io//post/blog-index">
+        </link>
+        <updated>2019-06-01T10:32:41.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>面对疾风吧
+提莫队长，正在送命。</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>面对疾风吧
+提莫队长，正在送命。</p>
+</blockquote>
+<!-- more -->
+<p><img src="https://github.com/alexwjj/blog-img/blob/master/blog-webgl.png" alt="博客主页"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[前言   ——俊劫、]]></title>
         <id>https://alexwjj.github.io//post/foreword</id>
