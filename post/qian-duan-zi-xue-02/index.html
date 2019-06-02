@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | 俊劫、的前端博客</title>
+<title>前端自学 02  | 俊劫、的前端博客</title>
 <meta name="description" content="讲个笑话，你可别哭。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -110,37 +110,78 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">前端自学 02 </h2>
+            <div class="post-date">2018-08-03</div>
             
-              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/about.png')">
+              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/qian-duan-zi-xue-02.jpg')">
               </div>
             
             <div class="post-content">
-              <h2 id="俊劫">俊劫、</h2>
+              <blockquote>
+<p>**JS 基础总结 **</p>
+</blockquote>
 <!-- more -->
-<p>我叫<strong>吴俊杰</strong>，来自河南<strong>信阳</strong>，有老乡的抓紧时间加好友辣，:grimacinga:。下面是我的一些个人经历。</p>
-<h2 id="小学生">小学生</h2>
-<p>很懵逼的童年，记不得啥东西</p>
-<h2 id="初中生">初中生</h2>
-<p>初中实验班，同学混的都不错，唯独我，哈哈哈😄</p>
-<h2 id="高中生">高中生</h2>
-<p>高中上的县里最好的高中，但我还是菜的一批，高考数学68分，崩了。</p>
-<h2 id="大学生">大学生</h2>
-<p>大学混了两年，大三才开始有所觉悟，2018年，大四，学校直接给我们扔出来找工作。很惨</p>
-<h2 id="社会生">社会生</h2>
-<p>2019，毕业了。微医集团，前端开发工程师</p>
+<h2 id="1-变量">1 变量</h2>
+<p>变量在内存中的存储：变量名指向的是内存中的一个地址</p>
+<p>变量命名采用驼峰法，userName</p>
+<p>变量退出作用域之后会销毁，全局变量关闭网页或浏览器才会销毁</p>
+<h2 id="2-数据类型">2 数据类型</h2>
+<p>JS数据类型： Number，Boolean，String，Undefined，Null，Symbol（es6新定义的）和 Object （注： Array是特殊的Object）</p>
+<p>xxx.valueOf() 返回一个Boolean对象的原始值（true，fasle）</p>
+<p>undefined和null的区别：undefined是声明了一个变量未定义，可以看作一个空的变量。null只是空的对象，typeof返回object。 alert(null==undefined);  // true</p>
+<p>强制类型转换：Number，parseInt，parseFloat，==  ，！=</p>
+<p>隐式转换：+-*/，</p>
+<h2 id="3-操作符">3 操作符</h2>
+<p>&amp;&amp; 与 两个操作数同时为true，结果为true，否则都是false</p>
+<p>|| 或 两个操作数有一个为true，结果为true，否则为false</p>
+<p>!  非  取反</p>
+<p>三元运算符：表达式1？表达式2：表达式3； 表达式1 true  执行表达式2.  fasle执行表达式3</p>
+<h2 id="4-函数">4 函数</h2>
+<p>形参：声明函数时有一个给予一个可变的参数，起到一个占位置的作用</p>
+<p>实参：函数声明时设置了形参，就需要传入对应的参数，传入的参数就是实参；</p>
+<p>return：函数调用的结果是一个返回值，默认为undefined。函数执行完return立即退出。</p>
+<p>arguments：所有的函数都有一个arguments对象，arguments中存储了传递的所有实参，是一个伪数组，长度不                       固定。</p>
+<p>匿名函数：将匿名函数赋值给一个变量，这样就可以通过变量进行调用。var f1=function(){};   f1();</p>
+<p>匿名函数的调用（）（）；</p>
+<p>预解析：</p>
+<p>1.把变量的声明提升到当前作用域的最前面，只会提升声明，不会提升赋值。</p>
+<p>2.把函数的声明提升到当前作用域的最前面，只会提升声明，不会提升调用。</p>
+<p>3.先提升var，在提升function</p>
+<p>4.函数中的变量只会提升到函数作用域的最上面</p>
+<p>5.注意隐式全局变量</p>
+<p>预解析案列1</p>
+<p>预解析案列2</p>
+<h2 id="5对象">5.对象</h2>
+<p>对象字面量</p>
+<p>new Object()创建对象</p>
+<p>工厂函数创建对象</p>
+<p>自定义构造函数</p>
+<p>遍历JSON对象</p>
+<h2 id="6内置对象">6.内置对象</h2>
+<p>Math</p>
+<p>Date</p>
+<p>Array</p>
+<p>String</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://alexwjj.github.io//tag//weDoctor" class="tag">
-                    微医集团
+                  <a href="https://alexwjj.github.io//tag/fe-study-31" class="tag">
+                    前端自学31天
                   </a>
                 
               </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://alexwjj.github.io//post/qian-duan-zi-xue-01">
+                  <h3 class="post-title">
+                    前端自学  01
+                  </h3>
+                </a>
+              </div>
             
 
             
