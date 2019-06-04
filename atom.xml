@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-03T09:32:35.044Z</updated>
+    <updated>2019-06-04T12:21:29.864Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -36,15 +36,15 @@
 <p>从2018年6月份开始，为了找工作，开始了做博客网站的历程。</p>
 <p><strong>第一版</strong>，找的<strong>BootStrap</strong> 的模板，然后进行修改，搞了挺长时间的，写了一个静态页面，放在阿里云学生服务器上。由于不懂性能优化，导致界面加载很卡，也在后续的面试演示中丢了面子，但还是靠着它找到了第一份实习（干了一周）。（刚开始不会用 github，源码就找不到了）</p>
 <p><strong>第二版</strong>，自学前端的时用<strong>BootStrap</strong>练手写了一个简洁的响应式界面，把自己学习的时候做的一些小项目都放上去了，靠着它来杭州找到了第二份实习（至今）。<a href="https://github.com/alexwjj/Alex">blog-version2.0</a>
-<img src="http://psi2cmeuv.bkt.clouddn.com/blog-version2.0.png" alt="blog-version2.0"></p>
+<img src="http://rmboot.com/blog-version2.0.png" alt="blog-version2.0"></p>
 <p><strong>第三版</strong>，用的<strong>wordPress</strong>搭建动态博客，写了一些东西，但是感觉不自由，放在阿里云服务器一直也没怎么维护。<a href="https://github.com/alexwjj/alex-blog">blog-version3.0</a>
-<img src="http://psi2cmeuv.bkt.clouddn.com/blog-version3.0.png" alt="blog-version3.0"></p>
+<img src="http://rmboot.com/blog-version3.0.png" alt="blog-version3.0"></p>
 <p><strong>第四版</strong>，之前老师定的毕业论文题目是基于 Java 的 XXX，后来和老师商量了下，说自己不太懂 Java 就换成了基于Node.js 的博客系统。刚好服务器6月份到期，当初的目的也只是练习 Node.js 和应付论文。
 <a href="https://github.com/alexwjj/dissertation">blog-version4.0</a>
-<img src="http://psi2cmeuv.bkt.clouddn.com/blog-version4.0.png" alt="blog-version4.0">
-<img src="http://psi2cmeuv.bkt.clouddn.com/blog-version4.1.png" alt="blog-version4.1"></p>
+<img src="http://rmboot.com/blog-version4.1.png" alt="blog-version4.0">
+<img src="http://rmboot.com/blog-version4.0.png" alt="blog-version4.1"></p>
 <p><strong>第五版</strong>，有了前面四次的经验，这一次我想到了 Github Pages。静态页面，永久保存，MarkDown，模板简洁。很符合自己的要求。之前fork 别人的仓库，每次编写都需要操作代码，不太喜欢。然后就搁置了很久没动。今天公司举办了儿童节活动，抽完奖(AD 钙奶)，没心思工作，无意间发现了Gridea 这款编辑器。以软件配置的方式帮助搭建 Github Pages，发博文也可以直接写 MarkDown。<a href="https://github.com/alexwjj/alexwjj.github.io">blog-version5.0</a>
-<img src="http://psi2cmeuv.bkt.clouddn.com/blog-version5.0.png" alt="blog-version5.0"></p>
+<img src="http://rmboot.com/blog-version5.0.png" alt="blog-version5.0"></p>
 <p><strong>很完美</strong>，所以以后就要坚持写下去了，毕竟嘛，做技术的，谁没个让人家羡慕的博客。</p>
 <h2 id="3规划">3.规划</h2>
 <p>也没想太多，简单的规划下，至少保证每周更新两篇吧，技术学习与生活分享。</p>
@@ -109,14 +109,18 @@
 <p>2.把函数的声明提升到当前作用域的最前面，只会提升声明，不会提升调用。</p>
 <p>3.先提升var，在提升function</p>
 <p>4.函数中的变量只会提升到函数作用域的最上面</p>
-<p>5.注意隐式全局变量</p>
-<p>预解析案列1</p>
-<p>预解析案列2</p>
+<p>5.注意隐式全局变量
+<img src="http://rmboot.com/2019-6-4-%E4%B8%8B%E5%8D%888:03:49.png" alt="预解析案列1"></p>
+<p><img src="http://rmboot.com/2019-6-4-%E4%B8%8B%E5%8D%888:03:49.png" alt="预解析案列2"></p>
 <h2 id="5对象">5.对象</h2>
 <p>对象字面量</p>
-<p>new Object()创建对象</p>
+<p><img src="http://rmboot.com/2019-6-4-%E4%B8%8B%E5%8D%888:03:49.png" alt="对象字面量"></p>
+<p>new Object()创建对象
+<img src="http://rmboot.com/2019-6-4-%E4%B8%8B%E5%8D%888:03:49.png" alt="new Object()创建对象"></p>
 <p>工厂函数创建对象</p>
+<p><img src="http://rmboot.com/2019-6-4-%E4%B8%8B%E5%8D%888:03:49.png" alt="工厂函数创建对象"></p>
 <p>自定义构造函数</p>
+<p><img src="http://rmboot.com/2019-6-4-%E4%B8%8B%E5%8D%888:03:49.png" alt="自定义构造函数"></p>
 <p>遍历JSON对象</p>
 <h2 id="6内置对象">6.内置对象</h2>
 <p>Math</p>
@@ -194,7 +198,7 @@ white-space:warp;</p>
 <p>description:作为网站的总体业务和主题概括，多采用“我们是…”“我们提供…”“×××网作为…”“电话：010…”之类语句。</p>
 <p>Keywords:页面关键词,Keywords应该限制在6～8个关键词左右，电商类网站可以多 少许。</p>
 <h2 id="8浏览器前缀">8.浏览器前缀</h2>
-<p><img src="https://upload-images.jianshu.io/upload_images/8468194-053ddca0edcf4f98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="浏览器前缀"></p>
+<p><img src="http://rmboot.com/2019-6-4-%E4%B8%8B%E5%8D%888:03:49.png" alt="浏览器前缀"></p>
 <h2 id="9css3新增选择器">9.CSS3新增选择器</h2>
 <p>伪类选择器：:first-child  :last-child  :nth-child(n)</p>
 <p>:target 目标伪类选择器 :选择器可用于选取当前活动的目标元素</p>
