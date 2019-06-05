@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-05T08:24:39.615Z</updated>
+    <updated>2019-06-05T08:34:47.247Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -27,8 +27,8 @@
 </blockquote>
 <!-- more -->
 <h2 id="1git环境配置">1.git环境配置</h2>
-<p>git config --global user.email &quot;798595965@qq.com&quot;
-git config --global user.name &quot;wjj&quot;</p>
+<p>git config --global user.email &quot;798595965@qq.com&quot;</p>
+<p>git config --global user.name &quot;wjj&quot;</p>
 <p>由于你的本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以我们需要配置验证信息：
 使用以下命令生成SSH Key：
 <code>ssh-keygen -t rsa -C &quot;798595965@qq.com&quot;</code></p>
@@ -37,63 +37,65 @@ git config --global user.name &quot;wjj&quot;</p>
 <h2 id="2git流程图">2.git流程图</h2>
 <p><img src="https://alexwjj.github.io//post-images/1559721513118.png" alt=""></p>
 <h2 id="3git的基本操作">3.Git的基本操作</h2>
-<p>1.进入git的安装目录，使用git init newrepo创建新的仓库  cd newrepo开始操作
-2.克隆仓库git clone newrepo/(git仓库) newrepo_clone（地址）
-3.在仓库目录下，创建文件touch a /touch b  使用git add a将a添加到暂存区中
-4.git commit -m &quot;Ininial commit&quot;将文件从暂存区提交到历史记录(&quot;&quot;说明修改的内容)
-5.git reset HEAD 命令用于取消已缓存的内容。 git checkout a 将rm删除的a还原
-6.git rm a 同时删除工作区和暂存区的文件，git rm --cache a只删除暂存区文件
-7.git mv a c (a重命名为c)
-8.git add -A将整个工作区添加到暂存区，在工作区目录下创建gitignore文件，
-通过通配符*[oa],*.pyc来忽略掉这些后缀的文件，通过!test.pyc处理需要的文件
-9.git status -s 以精简的方式显示文件状态
-A：新文件第一次被添加进版本管理
-M:红色为修改过未被添加进暂存区的，绿色为已经添加进暂存区的**</p>
+<p>1.进入git的安装目录，使用git init newrepo创建新的仓库  cd newrepo开始操作</p>
+<p>2.克隆仓库git clone newrepo/(git仓库) newrepo_clone（地址）</p>
+<p>3.在仓库目录下，创建文件touch a /touch b  使用git add a将a添加到暂存区中</p>
+<p>4.git commit -m &quot;Ininial commit&quot;将文件从暂存区提交到历史记录(&quot;&quot;说明修改的内容)</p>
+<p>5.git reset HEAD 命令用于取消已缓存的内容。 git checkout a 将rm删除的a还原</p>
+<p>6.git rm a 同时删除工作区和暂存区的文件，git rm --cache a只删除暂存区文件</p>
+<p>7.git mv a c (a重命名为c)</p>
+<p>8.git add -A将整个工作区添加到暂存区，在工作区目录下创建gitignore文件，通过通配符*[oa],*.pyc来忽略掉这些后缀的文件，通过!test.pyc处理需要的文件</p>
+<p>9.git status -s 以精简的方式显示文件状态</p>
+<p>A：新文件第一次被添加进版本管理</p>
+<p>M:红色为修改过未被添加进暂存区的，绿色为已经添加进暂存区的**</p>
 <h2 id="4git-查看提交历史log">4.Git 查看提交历史（log）</h2>
-<p>1.git log查看历史提交项目
-2.git log --online查看历史纪录的简洁版本
-3.git log --online --graph查看历史中什么时候出现了出现了分支合并
-4.git log --author=wjj 查看用户wjj提交的部分</p>
+<p>1.git log查看历史提交项目</p>
+<p>2.git log --online查看历史纪录的简洁版本</p>
+<p>3.git log --online --graph查看历史中什么时候出现了出现了分支合并</p>
+<p>4.git log --author=wjj 查看用户wjj提交的部分</p>
 <h2 id="5git-标签tag">5.Git 标签（tag）</h2>
 <ol>
-<li>git tag -a v1.0 （-a 选项意为&quot;创建一个带注解的标签&quot;）
-git tag -a v0.9 85fc7e7（忘了给某个提交打标签，又将它发布了，我们可以给它追加标签）
-2.指定标签信息命令：git tag -a <tagname> -m &quot;tag标签&quot;
-3.删除标签：git tag -d v1.1
-4.查看此版本所修改的内容：git show v1.0</li>
+<li>
+<p>git tag -a v1.0 （-a 选项意为&quot;创建一个带注解的标签&quot;）</p>
+<p>git tag -a v0.9 85fc7e7（忘了给某个提交打标签，又将它发布了，我们可以给它追加标签）</p>
+</li>
 </ol>
+<p>2.指定标签信息命令：git tag -a <tagname> -m &quot;tag标签&quot;</p>
+<p>3.删除标签：git tag -d v1.1</p>
+<p>4.查看此版本所修改的内容：git show v1.0</p>
 <h2 id="6git命令">6.Git命令</h2>
-<p>切换分支：git checkout name
-撤销修改：git checkout -- file
-删除文件：git rm file
-查看状态：git status
-添加记录：git add file 或 git add .
-添加描述：git commit -m &quot;miao shu nei rong&quot;
-同步数据：git pull
-提交数据：git push origin name
-分支操作
-查看分支：git branch
-创建分支：git branch name
-切换分支：git checkout name
-创建+切换分支：git checkout -b name
-合并某分支到当前分支：git merge name
-删除分支：git branch -d name
-删除远程分支：git push origin :name</p>
-<p>git stash经常有这样的事情发生，当你正在进行项目中某一部分的工作，里面的东西处于一个比较杂乱的状态，而你想转到其他分支上进行一些工作。问题是，你不想提交进行了一半的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是git stash命令
-git stash pop 恢复最新进度到工作区。git默认会把工作区和暂存区的改动都恢复到工作区。
-git stash apply 除了不删除恢复的进度之外，其余和git stash pop 命令一样。
-git stash drop 删除一个存储的进度。如果不指定stash_id，则默认删除最新的存储进度。
-git stash clear 删除所有存储的进度。
-git 误删文件和恢复指令
-git  fsck --lost -found :查看最近移除的文件
-git show  '误删编号'：查看删除文件内容
-git merge ‘误删编号’： 本地合并误删的文件内容</p>
+<p>切换分支：git checkout name</p>
+<p>撤销修改：git checkout -- file</p>
+<p>删除文件：git rm file</p>
+<p>查看状态：git status</p>
+<p>添加记录：git add file 或 git add .</p>
+<p>添加描述：git commit -m &quot;miao shu nei rong&quot;</p>
+<p>同步数据：git pull</p>
+<p>提交数据：git push origin name</p>
+<h3 id="分支操作">分支操作</h3>
+<p>查看分支：git branch</p>
+<p>创建分支：git branch name</p>
+<p>切换分支：git checkout name</p>
+<p>创建+切换分支：git checkout -b name</p>
+<p>合并某分支到当前分支：git merge name</p>
+<p>删除分支：git branch -d name</p>
+<p>删除远程分支：git push origin :name</p>
+<pre><code>### 存储操作
+</code></pre>
+<p>git stash经常有这样的事情发生，当你正在进行项目中某一部分的工作，里面的东西处于一个比较杂乱的状态，而你想转到其他分支上进行一些工作。问题是，你不想提交进行了一半的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是git stash命令</p>
+<p>git stash pop 恢复最新进度到工作区。git默认会把工作区和暂存区的改动都恢复到工作区。</p>
+<p>git stash apply 除了不删除恢复的进度之外，其余和git stash pop 命令一样。</p>
+<p>git stash drop 删除一个存储的进度。如果不指定stash_id，则默认删除最新的存储进度。</p>
+<p>git stash clear 删除所有存储的进度。</p>
+<p>git 误删文件和恢复指令</p>
+<p>git  fsck --lost -found :查看最近移除的文件</p>
+<p>git show  '误删编号'：查看删除文件内容</p>
+<p>git merge ‘误删编号’： 本地合并误删的文件内容</p>
 <h2 id="7git分支重命名">7.git分支重命名</h2>
-<p>在git中重命名远程分支，就是先删除远程分支，然后重命名本地分支，再重新提交一个远程分支。
-git push --delete origin 老分支
-git branch -m 老分支 新分支
-git push origin 新分支
-参考博客：<a href="https://blog.zengrong.net/post/1746.html">链接</a></p>
+<p>在git中重命名远程分支，就是先删除远程分支，然后重命名本地分支，再重新提交一个远程分支。</p>
+<p>git push --delete origin 老分支</p>
+<p>git branch -m 老分支 新分支</p>
+<p>git push origin 新分支</p>
 ]]></content>
     </entry>
     <entry>
