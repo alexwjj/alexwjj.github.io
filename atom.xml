@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-05T09:44:17.559Z</updated>
+    <updated>2019-06-05T10:08:07.388Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -180,15 +180,18 @@ GitHub:<a href="https://github.com/alexwjj/dissertation">blog-version4.0</a>
 <p>六种基本类型：string, number, boolean, undefined, null，symbol 三种引用类型: function, array, object<br>
 在js中， number没有整型，导致NaN 也属于 number 类型， NaN 不等于自身。</p>
 <h2 id="4判断一个数组的类型">4.判断一个数组的类型</h2>
-<p>1.判断是否具有数组某些方法：if(arr.sort()){}
-2.instanceof(某些IE版本不正确)：arr instanceof Array
-3.Array.isArray()
-4.Object.prototype.toString.call(arr); // '[object Array]'
-5.constructor方法</p>
+<p>1.判断是否具有数组某些方法：if(arr.sort()){}</p>
+<p>2.instanceof(某些IE版本不正确)：arr instanceof Array</p>
+<p>3.Array.isArray()</p>
+<p>4.Object.prototype.toString.call(arr); // '[object Array]'</p>
+<p>5.constructor方法</p>
 <pre><code>arr.constructor === Array
- var arr = []  arr instanceOf Array //true typeof arr //object 
-instanceof 原型链上所有特殊对象的__proto__最终都会指向Object.prototype，所以instanceof判断类型也不完全准确
+var arr = []  arr instanceOf Array //true typeof arr //object 
+instanceof 原型链上所有特殊对象的__proto__最终都会指向Object.prototype，
+所以instanceof判断类型也不完全准确
+
 Array.isArray 是 es5 的方法，并不兼容所有浏览器，ie9 以下浏览器都不支持
+
 通用办法
 var isArray = Array.isArray || function(obj) {
     return Object.prototype.toString.call(obj) === '[object Array]';
@@ -203,7 +206,7 @@ var isArray = Array.isArray || function(obj) {
 <p>事件委托：让利用事件冒泡的原理，让自己的所触发的事件，让他的父元素代替执行！</p>
 <p>事件捕获阶段(与冒泡相反)）=&gt;目标元素阶段=&gt;事件冒泡阶段</p>
 <h3 id="addeventlistener">addEventListener</h3>
-<p>该函数的第三个参数可以是布尔值，也可以是对象。对于布尔值 useCapture 参数来说，该参数默认值为 false 。useCapture 决定了注册的事件是捕获事件(false)还是冒泡事件（true）。如果一个节点中的子节点是动态生成的，那么子节点需要注册事件的话应该注册在父节点上。阻止事件冒泡event.stopPropagation()。阻止默认事件：event.preventDefault()</p>
+<p>该函数的第三个参数可以是布尔值，也可以是对象。对于布尔值 useCapture 参数来说，该参数默认值为 false 。useCapture 决定了注册的事件是捕获事件(false)还是冒泡事件(true)。如果一个节点中的子节点是动态生成的，那么子节点需要注册事件的话应该注册在父节点上。阻止事件冒泡event.stopPropagation()。阻止默认事件：event.preventDefault()</p>
 <h3 id="event-loop">Event loop</h3>
 <p>JS 是门非阻塞单线程语言,如果 JS 是门多线程的语言话，我们在多个线程中处理 DOM 就可能会发生问题（一个线程中新加节点，另一个线程中删除节点），当然可以引入读写锁解决这个问题。</p>
 <h3 id="执行环境">执行环境</h3>
@@ -221,6 +224,7 @@ var isArray = Array.isArray || function(obj) {
 * Node 的 Event loop 分为 6 个阶段，它们会按照顺序反复运行
 </code></pre>
 <h2 id="7http">7.HTTP</h2>
+<h3 id="特点">特点</h3>
 <p>简单快速：客户向服务器请求服务时，只需传送请求方法和路径</p>
 <p>灵活：HTTP允许传输任意类型的数据对象。正在传输的类型由 Content-Type 加以标记</p>
 <p>无连接：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接 (深入-持久连接、管线化)</p>
@@ -253,23 +257,23 @@ var isArray = Array.isArray || function(obj) {
 <p>在 JS 的最初版本中，使用的是 32 位系统，为了性能考虑使用低位存储了变量的类型信息，000 开头代表是对象，然而 null 表示为全零，所以将它错误的判断为 object 。</p>
 <h2 id="9浏览器渲染页面的过程">9.浏览器渲染页面的过程</h2>
 <p>从耗时的角度，浏览器请求、加载、渲染一个页面，时间花在下面五件事情上：</p>
-<pre><code>DNS 查询
-TCP 连接
-HTTP 请求即响应
-服务器响应
-客户端渲染
+<pre><code>1. DNS 查询
+2. TCP 连接
+3. HTTP 请求即响应
+4. 服务器响应
+5. 客户端渲染
 </code></pre>
 <p>第五个部分，即浏览器对内容的渲染，这一部分（渲染树构建、布局及绘制），又可以分为下面五个步骤：</p>
-<pre><code>* 处理 HTML 标记并构建 DOM 树。
-* 处理 CSS 标记并构建 CSSOM 树。
-* 将 DOM 与 CSSOM 合并成一个渲染树。
-* 根据渲染树来布局，以计算每个节点的几何信息。
-* 将各个节点绘制到屏幕上。
+<pre><code>1. * 处理 HTML 标记并构建 DOM 树。
+2. * 处理 CSS 标记并构建 CSSOM 树。
+3. * 将 DOM 与 CSSOM 合并成一个渲染树。
+4. * 根据渲染树来布局，以计算每个节点的几何信息。
+5. * 将各个节点绘制到屏幕上。
 </code></pre>
 <h2 id="10objectis-objectisfoo-foo-true">10.object.is() Object.is('foo', 'foo') true</h2>
 <h2 id="11原生sort使用的是哪些排序算法">11.原生sort使用的是哪些排序算法？</h2>
-<p>插入排序和快速排序结合的排序算法</p>
-<p>sort 的排序规则</p>
+<p>插入排序和快速排序结合的排序算法
+sort 的排序规则：</p>
 <pre><code>    var values = [0, 1, 5, 10, 15];
     values.sort();
     alert(values);     //0,1,10,15,5
@@ -303,8 +307,8 @@ numbers.forEach(function(item,index,array){
 })  // 无返回值
 </code></pre>
 <h2 id="14new操作符具体干了什么">14.new操作符具体干了什么？</h2>
-<p>构造函数相当于一个模板</p>
-<pre><code>* 创建一个空对象
+<pre><code>构造函数相当于一个模板
+* 创建一个空对象
 * 将对象的__proto指向构造函数的原型prototype
 * 执行构造函数中的代码，传递参数，并将this指向这个对象
 * 返回对象
@@ -329,11 +333,12 @@ numbers.forEach(function(item,index,array){
 <pre><code>设计私有的变量和方法
 模块模式：为单例创建私有的变量和方法
 单例：指的是只有一个实例的对象。一般以对象字面量的方式来创建一个单例对象。
-匿名函数最大的用途是创建闭包，并且还可以构建命名空间，以减少全局变量的使用。从而使用闭包模块化代码，减少全局变量的污染。
+匿名函数最大的用途是创建闭包，并且还可以构建命名空间，以减少全局变量的使用。
+从而使用闭包模块化代码，减少全局变量的污染。
 </code></pre>
 <p><img src="https://alexwjj.github.io//post-images/1559726283838.png" alt="">
 在这段代码中函数 addEvent 和 removeEvent 都是局部变量，但我们可以通过全局变量 objEvent 使用它，这就大大减少了全局变量的使用，增强了网页的安全性。</p>
-<p>经典面试题，循环中使用闭包解决 var 定义函数的问题</p>
+<p><strong>经典面试题</strong>，循环中使用闭包解决 var 定义函数的问题</p>
 <pre><code>for ( var i=1; i&lt;=5; i++) {
 	setTimeout( function timer() {
 		console.log( i );
@@ -370,18 +375,20 @@ navigator 浏览器本身信息
 screen 客户端屏幕信息
 history 浏览器访问历史信息
 window对象的方法：
-alert(),prompt(),confirm(),open(),close(),print(),focus(),blur(),moveBy(),moveTo(),resizeBy(),resizeTo(),scrollBy(),scrollTo(),setInterval(),setTimeout(),clearInterval(),clearTimeout()
+alert(),prompt(),confirm(),open(),close(),print(),focus(),blur(),
+moveBy(),moveTo(),resizeBy(),resizeTo(),scrollBy(),scrollTo(),
+setInterval(),setTimeout(),clearInterval(),clearTimeout()
 </code></pre>
 <h2 id="19拆解url的各部分">19.拆解url的各部分</h2>
-<pre><code>使用location的属性
-href 完整url地址
-protocol 协议
-host 主机名+端口号
-hostname 主机名
-port 端口号
-pathname 相对路径
-hash #锚点
-search ?查询字符串
+<pre><code>* 使用location的属性
+* href 完整url地址
+* protocol 协议
+* host 主机名+端口号
+* hostname 主机名
+* port 端口号
+* pathname 相对路径
+* hash #锚点
+* search ?查询字符串
 </code></pre>
 <h2 id="20为什么操作dom慢">20.为什么操作DOM慢？</h2>
 <p>因为DOM属于渲染引擎的东西，JS又是JS引擎的东西，当我们通过JS操作DOM的时候，涉及到两个线程间的通信，而且操作DOM可能会带来重绘回流的情况，所以就导致了性能问题。DOM对象本身也是一个js对象，操作了这个对象后，会触发一些浏览器行为，比如布局（layout）和绘制（paint）。重绘是当节点改变样式而不影响布局，回流是当布局或几何属性需要改变。回流必定会发生重绘，回流的成本比重绘高</p>
@@ -393,23 +400,35 @@ search ?查询字符串
 document.querySelectorAll  // 返回匹配的所有元素
 // 获取文档中所有 class=&quot;example&quot; 的 &lt;p&gt; 元素
 var x = document.querySelectorAll(&quot;p.example&quot;); 
+
 DOM事件
+
 DOM事件的级别
 DOM0 element.onclick=function(){}
 DOM2 element.addEventListener('click',function(){},false)
 DOM3 element.addEventListener('keyup',function(){},false)
 DOM0级事件就是将一个函数赋值给一个事件处理属性，缺点在于一个处理程序无法同时绑定多个处理函数。
-DOM2级事件运行给一个程序添加多个处理函数，定义了addEventListener和removeEventListener两个方法，分别用于绑定和解绑事件，方法包含三个参数分别是绑定的事件处理的属性名称，处理函数，是否在捕获时执行事件
+DOM2级事件运行给一个程序添加多个处理函数，定义了addEventListener和removeEventListener两个方
+
+法，分别用于绑定和解绑事件，方法包含三个参数分别是绑定的事件处理的属性名称，处理函数，是否在
+
+捕获时执行事件
+
 IE8以下使用attachEvent和detachEvent实现，不需要传入第三个参数，因为IE8以下只支持冒泡型事件
 btn.attachEvent('onclick', showFn);
 btn.detachEvent('onclick', showFn);
 复制代码
-DOM3级事件是在DOM2级事件的基础上添加很多事件类型如load,scroll,blur,focus,dbclick,mouseup,mousewheel,textInput,keydown,keypress，同时也允许使用者自定义一些事件
+
+DOM3级事件是在DOM2级事件的基础上添加很多事件类型如
+
+load,scroll,blur,focus,dbclick,mouseup,mousewheel,textInput,keydown,keypress，
+同时也允许使用者自定义一些事件
 </code></pre>
 <h2 id="23js获取盒模型宽高">23.js获取盒模型宽高</h2>
-<pre><code>* 最常用，兼容性最好 dom.offsetWidth/offsetHeight
-* offsetWidth/offsetHeight,clientWidth/clientHeight与srcollWidth/scrollHeight的区别
-* offsetWidth/offsetHeight返回包含content+padding+border 全部宽高
+<pre><code>最常用，兼容性最好 dom.offsetWidth/offsetHeight
+offsetWidth/offsetHeight,clientWidth/clientHeight与srcollWidth/scrollHeight的区别
+
+* offsetWidth/offsetHeight返回包含content+padding+**border** **全部宽高**
 * clientWidth/clientHeight返回包含content+padding，如果有滚动条，也不包含滚动条
 * scrollWidth/scrollHeight返回包含content+paddin+溢出内容的尺寸
 </code></pre>
@@ -434,10 +453,10 @@ xhr.send(null);
 <h2 id="25跨域">25.跨域</h2>
 <p>跨域指通过JS在不同的域之间进行数据传入或通信。 协议，域名，端口有一个不同就是跨域。同源策略是为了防止CSRF攻击，它是利用用户的登录态发起恶意请求。</p>
 <h3 id="解决跨域方式">解决跨域方式</h3>
-<p>JSONP使用简单，兼容性不错但仅限GET请求</p>
-<p>CORS需要前后端同时支持，服务器端设置Access-Control-Origin开启CORS，该属性表明哪些域名可以访问资源。</p>
-<p>document.domain 只适用于二级域名相同，a.test.com。在页面添加docuemtn.domain = 'test.com'表示二级域名相同即可跨域</p>
-<p>postMessage 通常用于获取嵌入页面(iframe)的第三方页面数据，一个页面发送消息，另一个页面判断来源并接收消息 eg:</p>
+<p>1.JSONP使用简单，兼容性不错但仅限GET请求</p>
+<p>2.CORS需要前后端同时支持，服务器端设置Access-Control-Origin开启CORS，该属性表明哪些域名可以访问资源。</p>
+<p>3.document.domain 只适用于二级域名相同，a.test.com。在页面添加docuemtn.domain = 'test.com'表示二级域名相同即可跨域</p>
+<p>4.postMessage 通常用于获取嵌入页面(iframe)的第三方页面数据，一个页面发送消息，另一个页面判断来源并接收消息.</p>
 <pre><code>// 发送消息
 window.parent.postMessage('message', 'http://www.test.com')
 // 接收消息
@@ -457,10 +476,10 @@ mc.addEventListener('message', event =&gt; {
 <h2 id="27indexdb">27.indexDB</h2>
 <p>Cookie 的大小不超过4KB，且每次请求都会发送回服务器；LocalStorage 在 2.5MB 到 10MB 之间（各家浏览器不同），而且不提供搜索功能，不能建立自定义的索引。indexDB都可以做到，存储无上限</p>
 <h2 id="28浅拷贝-深拷贝">28.浅拷贝 &amp;&amp; 深拷贝</h2>
-<p>栈（stack）为自动分配的内存空间，它由系统自动释放，存放基本类型（不可改变））；而堆（heap）则是动态分配的内存，大小不定也不会自动释放，存放引用类型。</p>
-<p>基本类型的比较是值的比较，只要它们的值相等就认为他们是相等的；引用类型的比较是引用的比较，比较是否指向同一块堆内存</p>
-<p>基本数据类型的赋值（=）是在内存中新开辟一段栈内存，然后再把再将值赋值到新的栈中。引用类型的赋值是传址。只是改变指针的指向</p>
-<p>深拷贝：将 B 对象拷贝到 A 对象中，包括 B 里面的子对象；浅拷贝：将 B 对象拷贝到 A 对象中，但不包括 B 里面的子对象</p>
+<p>1.栈（stack）为自动分配的内存空间，它由系统自动释放，存放基本类型（不可改变）；而堆（heap）则是动态分配的内存，大小不定也不会自动释放，存放引用类型。</p>
+<p>2.基本类型的比较是值的比较，只要它们的值相等就认为他们是相等的；引用类型的比较是引用的比较，比较是否指向同一块堆内存</p>
+<p>3.基本数据类型的赋值（=）是在内存中新开辟一段栈内存，然后再把再将值赋值到新的栈中。引用类型的赋值是传址。只是改变指针的指向</p>
+<p>4.深拷贝：将 B 对象拷贝到 A 对象中，包括 B 里面的子对象；浅拷贝：将 B 对象拷贝到 A 对象中，但不包括 B 里面的子对象</p>
 <pre><code>深拷贝： JSON.parse(JSON.stringify(Obj))对象中存在循环对象无法处理
 Object.create()
 Object.assign() 对象只有一层
@@ -497,7 +516,7 @@ object.assign()  对象有多层
 <p>vh vw是相对视口（viewport）的宽度而定的，长度等于视口宽度的1/100，当前屏幕可见高度的1%。 假如浏览器的宽度为200px，那么1vw就等于2px（200px/100）。 vh是相对视口（viewport）的高度而定的，长度等于视口高度的1/100。 假如浏览器的高度为500px，那么1vh就等于5px（500px/100
 calc(100vh - 10px)  表示整个浏览器窗口高度减去10px的大小</p>
 <h2 id="30js-结果舍入运算">30.js 结果舍入运算</h2>
-<pre><code>* x.toFixed( num)  将x保留num位小数  银行家舍入：四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一。四舍六入五取偶
+<pre><code>* x.toFixed( num)  将x保留num位小数  
 * Math.round(x)   四舍五入 round() 方法可把一个数字舍入为最接近的整数
 * parseInt() 丢弃小数部分,保留整数部分
 * Math.ceil() 向上取整,有小数就整数部分加1 
@@ -507,20 +526,18 @@ calc(100vh - 10px)  表示整个浏览器窗口高度减去10px的大小</p>
 <p>只有当加法运算时，其中一方是字符串类型，就会把另一个也转为字符串类型。其他运算只要其中一方是数字，那么另一方就转为数字。1 + '1' = '11'  2 * '2' = 4</p>
 <h2 id="32防抖-节流">32.防抖 &amp;&amp; 节流</h2>
 <p>防抖和节流的作用都是防止函数多次调用。区别在于，假设一个用户一直触发这个函数，且每次触发函数的间隔小于wait，防抖的情况下只会调用一次，而节流的 情况会每隔一定时间（参数wait）调用函数。</p>
-<p>防抖：通过定时器延迟执行某个函数，点击时，只有过了自定义的time，才能再次点击</p>
-<p>节流：防抖动和节流本质是不一样的。防抖动是将多次执行变为最后一次执行，节流是将多次执行变成每隔一段时间执行。</p>
+<p><strong>防抖</strong>：通过定时器延迟执行某个函数，点击时，只有过了自定义的time，才能再次点击</p>
+<p><strong>节流</strong>：防抖动和节流本质是不一样的。防抖动是将多次执行变为最后一次执行，节流是将多次执行变成每隔一段时间执行。</p>
 <h2 id="33-this">33. this</h2>
 <h3 id="this指向">this指向</h3>
-<pre><code>     定义：this的指向在函数定义的时候是确定不了的，只有函数执行的时候才能确定this到底指向谁，实际上this的最终指向的是那个调用它的对象
- 总结：
-</code></pre>
-<pre><code>          1.在普通函数内部，this的指向是window
-          2.在方法内部，this的指向是方法的拥有者。
-          3.在箭头函数内部，this指向是创建箭头函数时所在的环境中的this指向的值。
-          4.在对象中，this指向当前对象，这里的this指向会发生改变     
-          5.计时器中的this
-          6.回调函数中的this
-          7.事件处理函数中的this指向事件的绑定者
+<p>定义：this的指向在函数定义的时候是确定不了的，只有函数执行的时候才能确定this到底指向谁，实际上this的最终指向的是那个调用它的对象。总结：</p>
+<pre><code>1.在普通函数内部，this的指向是window
+2.在方法内部，this的指向是方法的拥有者。
+3.在箭头函数内部，this指向是创建箭头函数时所在的环境中的this指向的值。
+4.在对象中，this指向当前对象，这里的this指向会发生改变     
+5.计时器中的this
+6.回调函数中的this
+7.事件处理函数中的this指向事件的绑定者
 </code></pre>
 <h2 id="34安全">34.安全</h2>
 <h3 id="xss">XSS</h3>
@@ -549,8 +566,7 @@ CSP CSP 本质上也是建立白名单，通常可以通过 HTTP Header 中的 C
 <h2 id="38函数柯里化curry">38.函数柯里化（curry）</h2>
 <p>在数学和计算机科学中，柯里化是一种将使用多个参数的一个函数转换成一系列使用一个参数的函数的技术。curry 的这种用途可以理解为：参数复用。本质上是降低通用性，提高适用性。
 对于需要传入多个参数的函数，可以写一个公共的函数，其他地方需要时传入对应值</p>
-<pre><code>eg： 
-var prop = curry(function (key, obj) {
+<pre><code>var prop = curry(function (key, obj) {
     return obj[key]
 });
 var name = person.map(prop('name'))
@@ -560,8 +576,7 @@ var name = person.map(prop('name'))
 <p>getElement* 的实时性体现在返回集合的时候，我们知道getElementsBy*和querySelectorAll返回的都是一个节点集合，类似于数组，两种方法的区别就在于这个集合会不会自动更新。
 getEle会，queryS不会</p>
 <h1 id="2019-3-29">2019-3-29</h1>
-<pre><code>为了春招准备的，由于菜导致没有 offer。。。
-</code></pre>
+<p><strong>为了春招准备的，由于菜， 零offer。。。</strong></p>
 ]]></content>
     </entry>
     <entry>
