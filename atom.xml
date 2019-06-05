@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-05T09:40:02.741Z</updated>
+    <updated>2019-06-05T09:44:17.559Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -162,13 +162,13 @@ GitHub:<a href="https://github.com/alexwjj/dissertation">blog-version4.0</a>
         </link>
         <updated>2019-03-29T08:42:00.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
-<p>个人总结的面试技巧
-针对个人基础知识点来梳理的</p>
+<p>个人总结的面试技巧</p>
+<p>针对个人基础知识点来梳理的</p>
 </blockquote>
 ]]></summary>
         <content type="html"><![CDATA[<blockquote>
-<p>个人总结的面试技巧
-针对个人基础知识点来梳理的</p>
+<p>个人总结的面试技巧</p>
+<p>针对个人基础知识点来梳理的</p>
 </blockquote>
 <!-- more -->
 <h2 id="1注意点">1.注意点</h2>
@@ -178,13 +178,13 @@ GitHub:<a href="https://github.com/alexwjj/dissertation">blog-version4.0</a>
 <p>forEach()方法不会返回执行结果，而是undefined。也就是说，forEach()会修改原来的数组。而map()方法会得到一个新的数组并返回。</p>
 <h2 id="3数据类型">3.数据类型</h2>
 <p>六种基本类型：string, number, boolean, undefined, null，symbol 三种引用类型: function, array, object<br>
-js number没有整型，导致NaN 也属于 number 类型， NaN 不等于自身。</p>
+在js中， number没有整型，导致NaN 也属于 number 类型， NaN 不等于自身。</p>
 <h2 id="4判断一个数组的类型">4.判断一个数组的类型</h2>
-<p>1.判断是否具有数组某些方法：if(arr.sort()){}</p>
-<p>2.instanceof(某些IE版本不正确)：arr instanceof Array</p>
-<p>3.Array.isArray()</p>
-<p>4.Object.prototype.toString.call(arr); // '[object Array]'</p>
-<p>5.constructor方法</p>
+<p>1.判断是否具有数组某些方法：if(arr.sort()){}
+2.instanceof(某些IE版本不正确)：arr instanceof Array
+3.Array.isArray()
+4.Object.prototype.toString.call(arr); // '[object Array]'
+5.constructor方法</p>
 <pre><code>arr.constructor === Array
  var arr = []  arr instanceOf Array //true typeof arr //object 
 instanceof 原型链上所有特殊对象的__proto__最终都会指向Object.prototype，所以instanceof判断类型也不完全准确
