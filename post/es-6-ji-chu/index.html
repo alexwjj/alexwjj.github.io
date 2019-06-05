@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1559734971323">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1559739094931">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://alexwjj.github.io/">
-        <img src="https://alexwjj.github.io//images/avatar.png?v=1559734971323" class="site-logo">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1559739094931" class="site-logo">
         <h1 class="site-title">俊劫、的前端博客</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -169,7 +169,9 @@ arr.every((item,index,arr) =&gt; {
 
 7.find()
 [1, 4, -5, 10].find((n) =&gt; n &lt; 0)  // -5
-用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。
+用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，
+
+直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。
 
 以上均不改变原数组。 
 some、every返回true、false。 
@@ -179,8 +181,12 @@ forEach 无返回值。
 </code></pre>
 <h2 id="2-set">2. Set</h2>
 <pre><code>set 去重 两者完全相等 === 才会被清除掉
+
 Set数据格式Set(3) {1, 2, 3}
-Set 实例的方法分为两大类：操作方法（用于操作数据）和遍历方法（用于遍历成员）。下面先介绍四个操作方法。
+
+Set 实例的方法分为两大类：操作方法（用于操作数据）和遍历方法（用于遍历成员）。
+
+下面先介绍四个操作方法。
 add(value)：添加某个值，返回 Set 结构本身。
 delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
 has(value)：返回一个布尔值，表示该值是否为Set的成员。
@@ -223,8 +229,10 @@ JSON有两种格式 数组和对象    后端一般传过来的都是对象形�
 </code></pre>
 <h2 id="6解构赋值">6.解构赋值</h2>
 <p>只要某种数据结构具有 Iterator 接口，都可以采用数组形式的解构赋值。</p>
-<p>解构赋值允许指定默认值
-<code>let [x, y = 'b'] = ['a', undefined]; // x='a', y='b' let [x = 1] = [null]; //x=null只有===undefined默认值才有用</code></p>
+<p>解构赋值允许指定默认值</p>
+<pre><code>let [x, y = 'b'] = ['a', undefined]; // x='a', y='b' 
+let [x = 1] = [null]; //x=null只有===undefined默认值才有用
+</code></pre>
 <p>对象和数组解构的区别： 数组按次序来，对象则要变量与属性同名</p>
 <p>解构失败 ，变量的值就是undefined</p>
 <p>字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象。</p>
@@ -233,9 +241,12 @@ JSON有两种格式 数组和对象    后端一般传过来的都是对象形�
 ES6 的规则是，只要有可能导致解构的歧义，就不得使用圆括号。
 </code></pre>
 <h3 id="解构用途">解构用途</h3>
-<p>交换变量的值  [x, y] = [y, x];
-从函数返回多个值  function example() {return [1, 2, 3];}    let [a, b, c] = example();
-函数参数的定义function f({x, y, z}) { ... }        f({z: 3, y: 2, x: 1});
+<p>交换变量的值
+<code>[x, y] = [y, x];</code>
+从函数返回多个值<br>
+<code>function example() {return [1, 2, 3];} let [a, b, c] = example();</code>
+函数参数的定义
+<code>function f({x, y, z}) { ... } f({z: 3, y: 2, x: 1});</code>
 提取 JSON 数据                                                                                                                                                        ```
 let jsonData = {
 id: 42,
@@ -245,20 +256,24 @@ data: [867, 5309]
 let { id, status, data: number } = jsonData;
 console.log(id, status, number);
 // 42, &quot;OK&quot;, [867, 5309]</p>
-<p>遍历 Map 结构<br>
-for (let [key, value] of map) { console.log(key + &quot; is &quot; + value);}  // 获取value ：for (let [,value] of map) { // ...}
-输入模块的指定方法 const { SourceMapConsumer, SourceNode } = require(&quot;source-map&quot;);</p>
 <pre><code>
+遍历 Map 结构      
+</code></pre>
+<p>for (let [key, value] of map) { console.log(key + &quot; is &quot; + value);}<br>
+// 获取value ：for (let [,value] of map) { // ...}</p>
+<pre><code>输入模块的指定方法
+`const { SourceMapConsumer, SourceNode } = require(&quot;source-map&quot;);`
+
 ##  7.es6 字符串扩展
 </code></pre>
-<p>JavaScript 内部，字符以 UTF-16 的格式储存，每个字符固定为2个字节。
-ES6 提供了codePointAt方法，能够正确处理 4 个字节储存的字符，返回一个字符的码点。
-JavaScript 只有indexOf方法，ES6 includes()是否存在  startsWith() endsWith() 开头和结尾处是否存在
-repeat方法返回一个新字符串，表示将原字符串重复n次。    'x'.repeat(3) // &quot;xxx&quot;<br>
-ES2017 (ES8)引入了字符串补全长度的功能。如果某个字符串不够指定长度，会在头部或尾部补全。padStart()用于头部补全，padEnd()用于尾部补全。 'x'.padStart(5, 'ab') // 'ababx'
-模板字符串 <code>${ xxx }</code>   <code>foo ${fn()} bar</code> 可以调用函数，进行运算，嵌套。反引号中的空格也会被输出
-模板编译 &lt;%   javascript %&gt;
-标签模板 tag</p>
+<p>JavaScript 内部，字符以 UTF-16 的格式储存，每个字符固定为2个字节。</p>
+<p>ES6 提供了codePointAt方法，能够正确处理 4 个字节储存的字符，返回一个字符的码点。</p>
+<p>JavaScript 只有indexOf方法，ES6 includes()是否存在  startsWith() endsWith() 开头和结尾处是否存在</p>
+<p>repeat方法返回一个新字符串，表示将原字符串重复n次。    'x'.repeat(3) // &quot;xxx&quot;</p>
+<p>ES2017 (ES8)引入了字符串补全长度的功能。如果某个字符串不够指定长度，会在头部或尾部补全。</p>
+<p>padStart()用于头部补全，padEnd()用于尾部补全。 'x'.padStart(5, 'ab') // 'ababx'</p>
+<p>模板字符串 <code>${ xxx }</code>   <code>foo ${fn()} bar</code> 可以调用函数，进行运算，嵌套。反引号中的空格也会被输出</p>
+<p>模板编译 &lt;%   javascript %&gt;</p>
 <pre><code>## 8.Generator
 
 调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象，返回一个遍历器对象，必须调用遍历器对象的next方法，使得指针移向下一个状态。也就是说，每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，直到遇到下一个yield表达式（或return语句）为止。换言之，Generator 函数是分段执行的，yield表达式是暂停执行的标记，而next方法可以恢复执行。
@@ -291,40 +306,61 @@ let foo = await fooPromise;
 let bar = await barPromise;</p>
 <pre><code>
 async原理：将 Generator 函数和自动执行器，包装在一个函数里。
-</code></pre>
-<h2 id="10fetch">10.fetch</h2>
-<p>Fetch API 提供了一个获取资源的接口（包括跨域）。XMLHttpRequest的一种替代方案，类似于ajax
+
+## 10.fetch
+
+Fetch API 提供了一个获取资源的接口（包括跨域）。XMLHttpRequest的一种替代方案，类似于ajax
 fetch() 必须接受一个参数——资源的路径。无论请求成功与否，它都返回一个 promise 对象，resolve 对应请求的 Response。你也可以传一个可选的第二个参数init
-新技术，兼容性不行</p>
-<h2 id="11shtml-html">11.shtml &amp; html</h2>
-<p>shtml 与html的区别 shtml不是html 而是一种服务器API,shtml是服务器动态产生的html</p>
-<p>shtml用于SSI技术文件（服务器端包含指令/服务器端嵌入） 包含 SSI 指令的文件要求特殊处理，所以必须为所有 SSI 文件赋予 SSI 文件扩展名。默认扩展名是 .stm、.shtm 和 .shtml</p>
-<h2 id="12es6-promise">12.es6 promise</h2>
-<p>异步操作，统一API，状态不可改变resolve（已定型）</p>
-<p>ES6 规定，Promise对象是一个构造函数，用来生成Promise实例。</p>
-<p>Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。</p>
-<p>promise.resolve()  将现有的对象转换为promise对象 具有then方法,调用resolve或reject并不会终结Promise 的参数函数的执行。一般来说，为了结束直接return resolve（）；then里面返回的是一个新的promise，可以使用链式写法，catch运行时发生错误的回调函数，then里面的错误也会被捕捉到 。</p>
-<p>不使用catch的话then报错后，后面的语句依旧会执行 。 Promise 会吃掉错误
-catch方法返回的还是一个 Promise 对象，因此后面还可以接着调用then方法。promise没有错误就会跳过catch</p>
-<p>.finally (es9)不管promise最后的状态，在执行完then或catch指定的回调函数以后，都会执行finally方法指定的回调函数。 finally方法的回调函数不接受任何参数，其实本质是是then的特例</p>
-<p>事件循环 setTimeout(fn, 0)在下一轮“事件循环”开始时执行，Promise.resolve()在本轮“事件循环”结束时执行，console.log('one')则是立即执行，因此最先输出。</p>
-<p>promise 应用 图片加载</p>
-<p>同步 立即执行  ；promise中的属于异步，会在本轮事件循环的末尾执行。</p>
-<p>promise.resolve().then(f) 会将同步函数转换为异步。 可以结合async来解决这个问题</p>
-<p>详情参考文档： http://es6.ruanyifeng.com/?search=**&amp;x=0&amp;y=0#docs/promise</p>
-<h2 id="13es6-数值扩展">13.es6 数值扩展</h2>
-<pre><code>Math.trunc方法用于去除一个数的小数部分，返回整数部分。 原理ceil和floor结合
+新技术，兼容性不行
+
+## 11.shtml &amp; html
+
+shtml 与html的区别 shtml不是html 而是一种服务器API,shtml是服务器动态产生的html
+
+shtml用于SSI技术文件（服务器端包含指令/服务器端嵌入） 包含 SSI 指令的文件要求特殊处理，所以必须为所有 SSI 文件赋予 SSI 文件扩展名。默认扩展名是 .stm、.shtm 和 .shtml
+
+## 12.es6 promise
+
+异步操作，统一API，状态不可改变resolve（已定型）
+
+ES6 规定，Promise对象是一个构造函数，用来生成Promise实例。
+
+Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。
+
+promise.resolve()  将现有的对象转换为promise对象 具有then方法,调用resolve或reject并不会终结Promise 的参数函数的执行。一般来说，为了结束直接return resolve（）；then里面返回的是一个新的promise，可以使用链式写法，catch运行时发生错误的回调函数，then里面的错误也会被捕捉到 。
+
+不使用catch的话then报错后，后面的语句依旧会执行 。 Promise 会吃掉错误
+catch方法返回的还是一个 Promise 对象，因此后面还可以接着调用then方法。promise没有错误就会跳过catch
+
+.finally (es9)不管promise最后的状态，在执行完then或catch指定的回调函数以后，都会执行finally方法指定的回调函数。 finally方法的回调函数不接受任何参数，其实本质是是then的特例
+
+事件循环 setTimeout(fn, 0)在下一轮“事件循环”开始时执行，Promise.resolve()在本轮“事件循环”结束时执行，console.log('one')则是立即执行，因此最先输出。
+
+promise 应用 图片加载  
+
+同步 立即执行  ；promise中的属于异步，会在本轮事件循环的末尾执行。
+
+promise.resolve().then(f) 会将同步函数转换为异步。 可以结合async来解决这个问题
+
+详情参考文档： http://es6.ruanyifeng.com/?search=**&amp;x=0&amp;y=0#docs/promise
+
+## 13.es6 数值扩展
+
+</code></pre>
+<p>Math.trunc方法用于去除一个数的小数部分，返回整数部分。 原理ceil和floor结合
 Math.sign方法用来判断一个数到底是正数、负数、还是零
 Math.cbrt方法用于计算一个数的立方根。x³=a 求x  根号a的3次
-Math.hypot方法返回所有参数的平方和的平方根。 
+Math.hypot方法返回所有参数的平方和的平方根。
 ES2016 新增了一个指数运算符（**） x ^ y = x ** y 特点是右结合 2 ** 3 ** 2 = 2 ^ (3 ^ 2)
-**= a **=2 等于 a * a   b **=3 等于 b * b * b
-</code></pre>
-<h2 id="14es6-函数扩展">14.es6 函数扩展</h2>
-<p>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。function fn(x = '1') {}</p>
-<p>函数中使用解构 function fn( { } ) 函数调用的时候 fn( )按顺序传值</p>
-<p>函数的length属性 在设置默认值之后，后面的包括设置默认值的都不在计算length</p>
-<p>作用域  在设置了默认值以后 会形成一个单独的context. 函数初始化结束，消失。先在f（）中寻找，再去全局找
+**= a **=2 等于 a * a   b **=3 等于 b * b * b</p>
+<pre><code>##   14.es6 函数扩展
+ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。function fn(x = '1') {}
+
+函数中使用解构 function fn( { } ) 函数调用的时候 fn( )按顺序传值
+
+函数的length属性 在设置默认值之后，后面的包括设置默认值的都不在计算length
+
+作用域  在设置了默认值以后 会形成一个单独的context. 函数初始化结束，消失。先在f（）中寻找，再去全局找
 rest参数 （...变量名） function fn（...values） {}  调用传入任意数量的参数  fn( x, y, z ) 代替了argument，...变量名  搭配数组使用 values可以直接使用数组的方法，argument不行。rest 参数一般放在最后，后面继续跟参数就报错
 es6规定只要函数参数使用了默认值、解构赋值、或扩展运算符，那么函数内部就不能显式设定为严格模式，会报错。
 f.name 会返回当前函数名
@@ -344,8 +380,9 @@ Object.assign()接口可以接收多个参数，第一个参数是目标对象�
 Object.assign 方法只会拷贝源对象自身的并且可枚举的属性到目标对象。
 Object.assign进行的拷贝是浅拷贝
 作用：为对象添加属性，为对象添加方法，克隆对象，为属性指定默认值
-https://blog.csdn.net/qs8lk88/article/details/79018481</p>
-<p>枚举
+https://blog.csdn.net/qs8lk88/article/details/79018481
+
+枚举
 事先考虑到某一变量可能取的值，尽量用自然语言中含义清楚的单词来表示它的每一个值，这种方法称为枚举方法，用这种方法定义的类型称枚举类型。enum
 枚举是指对象中的属性是否可以遍历出来，再简单点说就是属性是否可以以列举出来。
 16.Object.entries()
@@ -359,9 +396,18 @@ ES7 Object.values方法返回一个数组，成员是参数对象自身的（不
 constructor 构造方法，在一个class中constructor内定义的方法和属性是实例对象自己的，而constructor外定义的方法和属性则是所有实力对象可以共享的。
 Class之间可以通过extends关键字实现继承，继承constructor外的属性及方法
 super关键字，它指代父类的实例（即父类的this对象），子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。
-ES6的继承机制，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
-<p>19 proxy
-Proxy 是 ES6 中新增的功能，可以用来自定义对象中的操作</p>
+ES6的继承机制，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。
+
+19 proxy
+Proxy 是 ES6 中新增的功能，可以用来自定义对象中的操作
+
+
+
+
+
+
+
+</code></pre>
 
             </div>
             
