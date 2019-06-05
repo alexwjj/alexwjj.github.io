@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-05T01:12:08.392Z</updated>
+    <updated>2019-06-05T06:45:32.789Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,36 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[markdown  测试]]></title>
+        <id>https://alexwjj.github.io//post/markdown-ce-shi</id>
+        <link href="https://alexwjj.github.io//post/markdown-ce-shi">
+        </link>
+        <updated>2019-06-05T06:28:00.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>加粗</strong>
+<em>是是是</em></p>
+<h4 id="我问问">我问问</h4>
+<ul>
+<li>
+<blockquote>
+<p><code>我去我去玩</code></p>
+</blockquote>
+</li>
+<li>qq</li>
+</ul>
+<ol>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+<li>亲亲</li>
+<li>111</li>
+<li>111212</li>
+</ol>
+<p><img src="https://alexwjj.github.io//post-images/1559717126723.jpg" alt=""></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[前言   ——俊劫、]]></title>
         <id>https://alexwjj.github.io//post/foreword</id>
@@ -69,171 +99,6 @@
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[前端自学 02 ]]></title>
-        <id>https://alexwjj.github.io//post/qian-duan-zi-xue-02</id>
-        <link href="https://alexwjj.github.io//post/qian-duan-zi-xue-02">
-        </link>
-        <updated>2018-08-03T04:19:20.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p><strong>JS 基础总结</strong></p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p><strong>JS 基础总结</strong></p>
-</blockquote>
-<!-- more -->
-<h2 id="1-变量">1 变量</h2>
-<p>变量在内存中的存储：变量名指向的是内存中的一个地址</p>
-<p>变量命名采用驼峰法，userName</p>
-<p>变量退出作用域之后会销毁，全局变量关闭网页或浏览器才会销毁</p>
-<h2 id="2-数据类型">2 数据类型</h2>
-<p>JS数据类型： Number，Boolean，String，Undefined，Null，Symbol（es6新定义的）和 Object （注： Array是特殊的Object）</p>
-<p>xxx.valueOf() 返回一个Boolean对象的原始值（true，fasle）</p>
-<p>undefined和null的区别：undefined是声明了一个变量未定义，可以看作一个空的变量。null只是空的对象，typeof返回object。 alert(null==undefined);  // true</p>
-<p>强制类型转换：Number，parseInt，parseFloat，==  ，！=</p>
-<p>隐式转换：+-*/，</p>
-<h2 id="3-操作符">3 操作符</h2>
-<p>&amp;&amp; 与 两个操作数同时为true，结果为true，否则都是false</p>
-<p>|| 或 两个操作数有一个为true，结果为true，否则为false</p>
-<p>!  非  取反</p>
-<p>三元运算符：表达式1？表达式2：表达式3； 表达式1 true  执行表达式2.  fasle执行表达式3</p>
-<h2 id="4-函数">4 函数</h2>
-<p>形参：声明函数时有一个给予一个可变的参数，起到一个占位置的作用</p>
-<p>实参：函数声明时设置了形参，就需要传入对应的参数，传入的参数就是实参；</p>
-<p>return：函数调用的结果是一个返回值，默认为undefined。函数执行完return立即退出。</p>
-<p>arguments：所有的函数都有一个arguments对象，arguments中存储了传递的所有实参，是一个伪数组，长度不                       固定。</p>
-<p>匿名函数：将匿名函数赋值给一个变量，这样就可以通过变量进行调用。var f1=function(){};   f1();</p>
-<p>匿名函数的调用（）（）；</p>
-<p>预解析：</p>
-<p>1.把变量的声明提升到当前作用域的最前面，只会提升声明，不会提升赋值。</p>
-<p>2.把函数的声明提升到当前作用域的最前面，只会提升声明，不会提升调用。</p>
-<p>3.先提升var，在提升function</p>
-<p>4.函数中的变量只会提升到函数作用域的最上面</p>
-<p>5.注意隐式全局变量
-<img src="http://rmboot.com/2019-6-5-%E4%B8%8A%E5%8D%889:09:15.png?imgBlog" alt=""></p>
-<p><img src="http://rmboot.com/2019-6-5-%E4%B8%8A%E5%8D%889:08:48.png?imgBlog" alt=""></p>
-<h2 id="5对象">5.对象</h2>
-<p>对象字面量</p>
-<p><img src="http://rmboot.com/2019-6-5-%E4%B8%8A%E5%8D%889:09:43.png?imgBlog" alt=""></p>
-<p>new Object()创建对象
-<img src="http://rmboot.com/2019-6-5-%E4%B8%8A%E5%8D%889:10:02.png?imgBlog" alt=""></p>
-<p>工厂函数创建对象</p>
-<p><img src="http://rmboot.com/2019-6-5-%E4%B8%8A%E5%8D%889:10:18.png?imgBlog" alt=""></p>
-<p>自定义构造函数</p>
-<p><img src="http://rmboot.com/2019-6-5-%E4%B8%8A%E5%8D%889:10:46.png?imgBlog" alt=""></p>
-<h2 id="6内置对象">6.内置对象</h2>
-<p><img src="http://rmboot.com/2019-6-5-%E4%B8%8A%E5%8D%889:11:12.png?imgBlog" alt="">
-<img src="http://rmboot.com/2019-6-5-%E4%B8%8A%E5%8D%889:11:33.png?imgBlog" alt="">
-<img src="http://rmboot.com/2019-6-5-%E4%B8%8A%E5%8D%889:11:52.png?imgBlog" alt=""></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[前端自学  01]]></title>
-        <id>https://alexwjj.github.io//post/qian-duan-zi-xue-01</id>
-        <link href="https://alexwjj.github.io//post/qian-duan-zi-xue-01">
-        </link>
-        <updated>2018-08-02T03:36:36.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p><strong>Css 总结</strong></p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p><strong>Css 总结</strong></p>
-</blockquote>
- <!-- more --> 
-<h3 id="1注意点">1.注意点</h3>
-<p>css中类的命名采用长名称 和   —</p>
-<p>font-size默认为14px 尽量使用偶数px，奇数在ie中有BUG</p>
-<p>font-weight设置字体粗细，常设置为normal，数值为400</p>
-<p><strong>text-indent：首行缩进1em等于一个汉字的宽度</strong></p>
-<p>行内元素不可以直接设置宽高，<strong>padding和margin可以设置</strong></p>
-<p>行内块元素：可以设置宽高，不会直接换行</p>
-<p>css继承：text-，font-，line-这些元素开头的都可以继承，以及color属性</p>
-<p>背景透明：background: rgba(0,0,0,0.3);最后一个参数是<strong>alpha透明度</strong>，取值0-1</p>
-<p>圆形：border-radius：50%</p>
-<p>box-shadow:水平阴影 垂直阴影 模糊距离 阴影尺寸 阴影颜色 内/外阴影；</p>
-<p>normallize.css 初始化样式，解决跨浏览器问题</p>
-<link rel="shortcut icon"  href="favicon.ico" type="image/x-icon">
-<p>icon图标转换 http://www.bitbug.net/</p>
-<h2 id="2浮动">2.浮动</h2>
-<p>浮动脱离标准流，不占位置，会影响标准流。浮动只有左右浮动。</p>
-<p>清除浮动：主要为了解决父级元素因为子级浮动引起内部高度为0 的问题。</p>
-<p>1.W3C推荐的做法是通过在浮动元素末尾添加一个空的标签例如<div style="class:both"></div></p>
-<p>2.父级元素添加overflow：hidden   通过触发BFC的方式，清除浮动</p>
-<ol start="3">
-<li>:after 伪元素</li>
-</ol>
-<p>.clearfix:after { content: &quot;.&quot;; display: block; height: 0; clear: both; visibility: hidden; }</p>
-<p>.clearfix {<em>zoom: 1;}  /</em> IE6、7 专有 */</p>
-<h2 id="3版心和布局">3.版心和布局</h2>
-<p>“版心”(可视区) 是指网页中主体内容所在的区域。一般在浏览器窗口中水平居中显示，常见的宽度值为960px、980px、1000px、1200px等。</p>
-<h2 id="4photoshop的基本使用">4.Photoshop的基本使用</h2>
-<p>1.Alt+鼠标左键点击目标图层 右下角工具栏选中图层</p>
-<p>2.切片：左侧工具栏选择，选中之后文件—&gt;存储为web应用格式，注意选着  所选切片</p>
-<p>切图插件;cutterman http://www.cutterman.cn/zh/cutterman(注意PS版本)</p>
-<h2 id="5定位">5.定位</h2>
-<p>1.盒子水平垂直居中:left:50%,margin-left:自己盒子一半的距离(-)</p>
-<p>2.z-index取值越大越居上，参数不能加单位，只有relative，absolute，fixed有这个属性</p>
-<p>3.设置图片上的鼠标经过效果：a：hover .mask{ display:block }</p>
-<p>（设置毛玻璃效果：background：rgba(0, 0, 0, .4)）</p>
-<pre><code>  img和mask都应该在a标签中
-</code></pre>
-<p>4.vertical-align 不影响块级元素中的内容对齐，它只针对于 行内元素或者行内块元素，特别是行内块元素， 通常用来控制图片/表单与文字的对齐。</p>
-<p>5.溢出文字显示省略号
-white-space:warp;</p>
-<p>overflow:hidden;</p>
-<p>text-overflow:ellipsis;</p>
-<h2 id="6字体图标">6.字体图标</h2>
-<p>1.最早的自定义图标字体生成器：http://www.iconfont.cn/</p>
-<p>2.font-awesome</p>
-<p>3.定义@font-face{</p>
-<p>font-family:&quot;first-font&quot;</p>
-<p>src:url(&quot;&quot;);}</p>
-<p>使用：span { font-family: &quot;icomoon&quot;; }</p>
-<p>盒子里面添加结构：span::before { content: &quot;\e900&quot;;}或者<span></span></p>
-<h2 id="7网站优化titledescriptionkeywords">7.网站优化：title,description,keywords</h2>
-<p>title:首页标题：网站名（产品名）- 网站的介绍</p>
-<p>description:作为网站的总体业务和主题概括，多采用“我们是…”“我们提供…”“×××网作为…”“电话：010…”之类语句。</p>
-<p>Keywords:页面关键词,Keywords应该限制在6～8个关键词左右，电商类网站可以多 少许。</p>
-<h2 id="8浏览器前缀">8.浏览器前缀</h2>
-<p><img src="http://rmboot.com/2019-6-4-%E4%B8%8B%E5%8D%888:03:49.png" alt="浏览器前缀"></p>
-<h2 id="9css3新增选择器">9.CSS3新增选择器</h2>
-<p>伪类选择器：:first-child  :last-child  :nth-child(n)</p>
-<p>:target 目标伪类选择器 :选择器可用于选取当前活动的目标元素</p>
-<p>E::first-letter文本的第一个单词或字（如中文、日文、韩文等）E::first-line 文本第一行；</p>
-<p>E::before和E::after，在E元素内部的开始位置和结束位创建一个元素，该元素为行内元素，且必须要结合content属性使用。</p>
-<h2 id="10背景">10.背景</h2>
-<p>background-size</p>
-<p>设置为cover时，会自动调整缩放比例，保证图片始终填充满背景区域，如有溢出部分则会被隐藏。设置为contain会自动调整缩放比例，保证图片始终完整显示在背景区域。</p>
-<h2 id="11css3盒模型">11.CSS3盒模型</h2>
-<p>1、box-sizing: content-box 盒子大小为 width + padding + border content-box:此值为其默认值，其让元素维持W3C的标准Box Mode（标准盒子模型）</p>
-<p>2、box-sizing: border-box  盒子大小为 width    就是说  padding 和 border 是包含到width里面的（IE盒子模型）</p>
-<h2 id="12过渡动画">12.过渡&amp;动画</h2>
-<p>transition: 要过渡的属性 花费时间 运动曲线 何时开始;</p>
-<p>transition: width 0.6s ease 0s, height 0.3s ease-in 1s;</p>
-<p>谁做动画给谁加transition属性，动画内容写在class：hover{}</p>
-<p>定位的盒子居中： position: absolute;  left:50%;  top:50%; transform:translate(-50%,-50%);  走的自己的一半</p>
-<p>transform：rotate旋转，通过transform-origin来控制旋转原点；</p>
-<p>CSS3中的3D坐标系和一般不同Y轴是反的</p>
-<p>perspective：视距；给父元素设置，值越大3D转换效果越不明显。</p>
-<p>backface-visibility 属性定义当元素不面向屏幕时是否可见。</p>
-<p>animation:动画名称 动画时间 运动曲线 何时开始 播放次数 是否反方向;</p>
-<p>@keyframes 动画名称 {</p>
-<p>from{ 开始位置 }  0%</p>
-<p>to{  结束  }  100%</p>
-<p>}</p>
-<p>播放次数：infinite; 无限循环播放</p>
-<p>flex子项目在主轴的缩放比例，不指定flex属性，则不参与伸缩分配</p>
-<p>min-width  最小值      min-width: 280px  最小宽度  不能小于 280</p>
-<p>max-width: 1280px  最大宽度  不能大于 1280</p>
-<p>justify-content调整主轴对齐（水平对齐）</p>
-<p>flex-flow是flex-direction、flex-wrap的简写形式， flex-flow: 排列方向 换不换行;</p>
-<p>text-shadow:水平位置 垂直位置 模糊距离 阴影颜色;</p>
-<h2 id="13displayflex">13.display：flex</h2>
-<p>CSDN博客--Flex布局详解,<a href="https://blog.csdn.net/linda_417/article/details/51507176">博客链接</a></p>
-]]></content>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[前端自学31天]]></title>
         <id>https://alexwjj.github.io//post/fe-study</id>
         <link href="https://alexwjj.github.io//post/fe-study">
@@ -253,6 +118,8 @@ white-space:warp;</p>
 <p>之前写在简书的笔记，现在搬运过来。</p>
 </blockquote>
 <!-- more -->
+<h1 id="简书笔记链接">简书笔记链接</h1>
+<p><a href="https://www.jianshu.com/u/81a990ed5eff">前端自学日记</a></p>
 <h2 id="说说之前的故事吧">说说之前的故事吧</h2>
 <p><strong>6月中旬</strong>，就开始准备面试相关的事情，心里一边想着期末考试该怎么办，一边想着暑假该去哪里实习。后来决定去附近的郑州学习学习面试经验，顺便去看看我姐那所谓的国际学院。</p>
 <p>在Boss直聘上约好了几家面试之后，硬拉着另外一个人不考研的室友就去了。结果，第一家郑州代码云科技有限公司就是培训机构，打着实习的名义来招学生。第二家河南金汇鑫，公司环境不错。但是，面试过程中，问了几个基础的问题我都没答出来，场面一度很尴尬。</p>
