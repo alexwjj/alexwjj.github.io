@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-05T10:30:20.170Z</updated>
+    <updated>2019-06-05T11:36:48.991Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,830 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Node 入门]]></title>
+        <id>https://alexwjj.github.io//post/node-ru-men</id>
+        <link href="https://alexwjj.github.io//post/node-ru-men">
+        </link>
+        <updated>2019-06-05T11:32:58.000Z</updated>
+        <content type="html"><![CDATA[<p>Node
+1.基础概念
+创建node应用：1.require（） 2.创建服务器  3.接受请求和响应请求
+REPL 交互式解释器 ： 读取，执行，打印，循环 Read–eval–print loop 可以直接运行各种JavaScript命令  _ + 1   下划线表示上一个命令的结果
+node事件驱动模型：当web server接收到请求，就把它关闭然后进行处理，然后去服务下一个web请求。高并发
+node内置事件：events
+Buffer 缓冲区   node类  该类用来创建一个专门存放二进制数据的缓存区。
+如果想要拷贝一份Buffer，得首先创建一个新的Buffer，并通过.copy方法把原Buffer中的数据复制过去。
+Buffer与字符串有一个重要区别。字符串是只读的，并且对字符串的任何修改得到的都是一个新字符串，原字符串保持不变。至于Buffer,可以用[index]方式直接修改某个位置的字节
+Node约定，如果某个函数需要回调函数作为参数，则回调函数是最后一个参数。另外，回调函数本身的第一个参数，约定为上一步传入的错误对象。callback = function （error，value） {}
+require命令用于指定加载模块，加载时可以省略脚本文件的后缀名
+PM2是Node.js应用程序的进程管理器
+NodeJS允许通过NODE_PATH环境变量来指定额外的模块搜索路径。
+stream 当内存中无法一次装下需要处理的数据时，或者一边读取一边处理更加高效时，我们就需要用到数据流。
+3.Node全局对象 &amp;&amp; 全局函数 &amp;&amp; 全局变量
+global：表示Node所在的全局环境，类似于浏览器的window对象
+process：该对象表示Node所处的当前进程，允许开发者与该进程互动。
+console：指向Node内置的console模块，提供命令行环境中的标准输入、标准输出功能。
+setTimeout()：用于在指定毫秒之后，运行回调函数。
+clearTimeout()：用于终止一个setTimeout方法新建的定时器。
+setInterval()：用于每隔一定毫秒调用回调函数。
+clearInterval()：终止一个用setInterval方法新建的定时器。
+require()：用于加载模块。
+Buffer()：用于操作二进制数据。
+__filename：指向当前运行的脚本文件名。
+__dirname：指向当前运行的脚本所在的目录。
+4.Node核心模块
+核心模块总是最优先加载的
+http：提供HTTP服务器功能。
+url：解析URL。
+fs：与文件系统交互。
+querystring：解析URL的查询字符串。
+child_process：新建子进程。
+util：提供一系列实用小工具。
+path：处理文件路径。
+crypto：提供加密和解密功能，基本上是对OpenSSL的包装。</p>
+<p>5.模块使用的简单例子
+foo.js module.exports = function( x ) { console.log( x) }
+index.js  var m = require( './foo.js' )   m('面对疾风吧')
+node index.js   面对疾风吧!
+6.Node 异常处理
+Node是单线程运行环境，一旦抛出的异常没有被捕获，就会引起整个进程的崩溃。一般处理错误有下面三种方法：
+使用throw语句抛出一个错误对象，即抛出异常。
+将错误对象传递给回调函数，由回调函数负责发出错误。
+通过EventEmitter接口，发出一个error事件。
+eg：fs.readFile('/foo.txt', function(err, data) {
+if (err !== null) throw err;
+console.log(data);
+});
+当一个异常未被捕获，就会触发uncaughtException事件，可以对这个事件注册回调函数，从而捕获异常。
+iojs有一个unhandledRejection事件，用来监听没有捕获的Promise对象的rejected状态。
+7.版本号
+语义版本号分为X.Y.Z三位，分别代表主版本号、次版本号和补丁版本号。当代码变更时，版本号按以下原则更新。</p>
+<ul>
+<li>如果只是修复bug，需要更新Z位。</li>
+<li>如果是新增了功能，但是向下兼容，需要更新Y位。</li>
+<li>如果有大变动，向下不兼容，需要更新X位。
+8.文件操作
+fs文件系统
+文件属性读写。fs.stat、fs.chmod、fs.chown等等
+文件内容读写。fs.readFile、fs.readdir、fs.writeFile、fs.mkdir等等
+底层文件操作。fs.open、fs.read、fs.write、fs.close等等
+小文件拷贝：fs.readFileSync     fs.writeFileSync
+大文件拷贝：fs.createReadStream     fs.createWriteStream
+ipe方法把两个数据流连接了起来。
+path
+path.normalize 将传入的路径转换为标准路径，具体讲的话，除了解析路径中的.与..外，还能去掉多余的斜杠。
+坑出没注意： 标准化之后的路径里的斜杠在Windows系统下是\，而在Linux系统下是/。如果想保证任何系统下都使用/作为路径分隔符的话，需要用.replace(/\/g, '/')再替换一下标准路径。
+path.join 将传入的多个路径拼接为标准路径。
+path.extname 当我们需要根据不同文件扩展名做不同操作时
+遍历
+遍历算法： 深度优先 + 先序遍历
+同步遍历
+异步遍历
+文本编码
+我们常用的文本编码有UTF8和GBK两种，并且UTF8文件还可能带有BOM。在读取不同编码的文本文件时，需要将文件内容转换为JS使用的UTF8编码字符串后才能正常处理。
+BOM移除：通过文本文件的头几个字符判断是否存在BOM，存在则移除
+GBK转UTF8 ：node不支持GBK，可以通过npm包iconv-lite来转换
+单字节编码：当我们需要处理的字符在ASCII 0-128时，使用单字节编码。不需要考虑GBK或者UTF8
+6.网络操作
+创建一个HTTP的web服务器
+var http = require('http');
+http.createServer(function (request, response) {
+response.writeHead(200, { 'Content-Type': 'text-plain' });
+response.end('Hello World\n');
+}).listen(8124);
+创建一个HTTPS的web服务器
+var options = {
+key: fs.readFileSync('./ssl/default.key'),
+cert: fs.readFileSync('./ssl/default.cer')
+};
+var server = https.createServer(options, function (request, response) {
+// ...
+});
+HTTP &amp; HTTPS
+HTTP请求本质上是一个数据流，由请求头（headers）和请求体（body）组成。
+HTTP请求在发送给服务器时，可以认为是按照从头到尾的顺序一个字节一个字节地以数据流方式发送的。而http模块创建的HTTP服务器在接收到完整的请求头后，就会调用回调函数。
+https模块与http模块极为类似，区别在于https模块需要额外处理SSL证书。
+目标服务器使用的SSL证书是自制的，https模块会拒绝连接，在options里加入rejectUnauthorized: false字段可以禁用对证书有效性的检查
+URL
+一个url的基本组成
+http: // user:pass @ host.com : 8080 /p/a/t/h ?query=string #hash</li>
+</ul>
+<hr>
+<p>protocol     auth        hostname   port   pathname search       hash
+我们可以使用.parse方法来将一个URL字符串转换为URL对象 键值对形式
+.parse方法还支持第二个和第三个布尔类型可选参数。第二个参数等于true时，该方法返回的URL对象中，query字段不再是一个字符串，而是一个经过querystring模块转换后的参数对象。第三个参数等于true时，该方法可以正确解析不带协议头的URL
+format方法允许将一个URL对象转换为URL字符串
+.resolve方法可以用于拼接URL，url.resolve('http://www.example.com/foo/bar', '../baz');
+querystring模块用于实现URL参数字符串与参数对象的互相转换
+querystring.parse         querystring.stringify
+Zlib
+zlib模块提供了数据压缩和解压的功能。当我们处理HTTP请求和响应时，可能需要用到这个模块。
+Net
+net模块可用于创建Socket服务器或Socket客户端。</p>
+<p>9.进程管理
+1.process
+process一个全局对象，在任何地方都可以直接使用。
+2.child process
+使用child_process模块可以创建和控制子进程。该模块提供的API中最核心的是.spawn，其余API都是针对特定使用场景对它的进一步封装，算是一种语法糖。
+3.cluter
+cluster模块是对child_process模块的进一步封装，专用于解决单进程NodeJS Web服务器无法充分利用多核CPU的问题
+4.应用场景
+process.argv 获取命令行参数 ，第一个命令行参数从argv[2] 开始。可以自己处理
+process.exit(1) 退出程序
+NodeJS程序的标准输入流（stdin）、一个标准输出流（stdout）、一个标准错误流（stderr）分别对应process.stdin、process.stdout和process.stderr
+降权: Linux 使用root权限才能监听1024以下端口，完成端口监听安全考虑要把权限降下来，process.setgid(gid)   process.setuid(uid) 降权时必须先降GID再降UID
+5.创建子进程
+var child = child_process.spawn('node', [ 'xxx.js' ]);
+.spawn(exec, args, options)方法，第一个参数是执行文件路径，第二个参数中，数组中的每个成员都按顺序对应一个命令行参数。第三个参数可选，用于配置子进程的执行环境与行为。
+6.进程之间的通讯
+父进程通过.kill方法向子进程发送SIGTERM信号，子进程监听process对象的SIGTERM事件响应信号
+如果父子进程都是NodeJS进程，就可以通过IPC（进程间通讯）双向传递数据。
+7.守护子进程
+守护进程一般用于监控工作进程的运行状态，在工作进程不正常退出时重启工作进程，保障工作进程不间断运行。
+worker.on('exit', function (code) {
+if (code !== 0) {
+spawn(mainModule);
+}
+});
+工作进程非正常退出时，守护进程立即重启工作进程。</p>
+<p>10.异步编程</p>
+<p>1.回调
+JS本身是单线程的，无法异步执行</p>
+<p>setTimeout这类JS规范之外的由运行环境提供的特殊函数做的事情是创建一个平行线程后立即返回，让JS主进程可以接着执行后续代码，并在收到平行进程的通知后再执行回调函数。除了setTimeout、setInterval这些常见的，这类函数还包括NodeJS提供的诸如fs.readFile之类的异步API。</p>
+<p>JS自身提供的异常捕获和处理机制——try..catch..，只能用于同步执行的代码。</p>
+<p>2.域（Domain）
+NodeJS提供了domain模块，可以简化异步代码的异常处理。简单的讲，一个域就是一个JS运行环境，在一个运行环境中，如果一个异常没有被捕获，将作为一个全局异常被抛出。NodeJS通过process对象提供了捕获全局异常的方法
+var d = domain.create();
+d.on
+d.run
+无论是通过process对象的uncaughtException事件捕获到全局异常，还是通过子域对象的error事件捕获到了子域异常，在NodeJS官方文档里都强烈建议处理完异常后立即重启程序，发生异常后的程序处于一个不确定的运行状态，如果不立即退出的话，程序可能会发生严重内存泄漏，也可能表现得很奇怪。</p>
+<p>11.Socket
+1.TCP / IP
+TCP/IP（Transmission Control Protocol/Internet Protocol）即传输控制协议/网间协议
+TCP/IP协议参考模型把所有的TCP/IP系列协议归类到四个抽象层中
+应用层：TFTP，HTTP，SNMP，FTP，SMTP，DNS，Telnet 等等
+传输层：TCP，UDP
+网络层：IP，ICMP，OSPF，EIGRP，IGMP
+数据链路层：SLIP，CSLIP，PPP，MTU</p>
+<p>2.socket
+socket是在应用层和传输层之间的一个抽象层，它把TCP/IP层复杂的操作抽象为几个简单的接口供应用层调用以实现进程在网络中通信。
+网络上的两个程序通过一个双向的通信连接实现数据的交换，这个连接的一端称为一个socket。
+在本地进程通讯中我们可以使用PID来唯一标示一个进程，但PID只在本地唯一，网络中的两个进程PID冲突几率很大，
+ip地址＋协议＋端口号唯一标示网络中的一个进程。   三端
+socket是一种&quot;打开—读/写—关闭&quot;模式的实现
+服务器socket与客户端socket建立连接的部分其实就是大名鼎鼎的三次握手
+Scoket api ： scoket ， bind  ， listen， connect， accept， read ，write，close
+3.websocket
+WebSocket是一种在单个TCP连接上进行全双工通信的协议。
+HTTP 协议做不到服务器主动向客户端推送信息。
+默认端口80 和 443
+没有同源限制，客户端可以与任意服务器通信
+协议标识符：ws ， wss（加密的）
+创建：var ws = new WebSocket('ws://localhost:8080');
+webSocket.readyState()
+readyState属性返回实例对象的当前状态，共有四种：
+CONNECTING：值为0，表示正在连接。
+OPEN：值为1，表示连接成功，可以通信了。
+CLOSING：值为2，表示连接正在关闭。
+CLOSED：值为3，表示连接已经关闭，或者打开连接失败
+webSocket.onopen()
+实例对象的onopen属性，用于指定连接成功后的回调函数。
+如果要指定多个回调函数，可以使用addEventListener方法。
+webSocket.onclose()
+实例对象的onclose属性，用于指定连接关闭后的回调函数。
+webSocket.onmessage()
+实例对象的onmessage属性，用于指定收到服务器数据后的回调函数。
+webSocket.send()
+实例对象的send()方法用于向服务器发送数据。
+webSocket.bufferedAmount()
+实例对象的bufferedAmount属性，表示还有多少字节的二进制数据没有发送出去。它可以用来判断发送是否结束。
+webSocket.onerror()
+实例对象的onerror属性，用于指定报错时的回调函数
+webscoket数据传递
+数据分片传输，根据FIN的值来判断，FIN=1表示当前数据帧为最后一个数据帧，FIN=0，还需要继续监听其他数据帧</p>
+<p><img src="https://alexwjj.github.io//post-images/1559734484836.jpeg" alt=""></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Redux]]></title>
+        <id>https://alexwjj.github.io//post/redux</id>
+        <link href="https://alexwjj.github.io//post/redux">
+        </link>
+        <updated>2019-06-05T11:31:18.000Z</updated>
+        <content type="html"><![CDATA[<p>1.方式
+应用中所有的 state 都以一个对象树的形式储存在一个单一的 store 中。 惟一改变 state 的办法是触发 action，一个描述发生什么的对象。 为了描述 action 如何改变 state 树，你需要编写 reducers。</p>
+<p>2.三大原则
+1.单一数据源
+整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。</p>
+<p>2.State 是只读的
+唯一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。</p>
+<p>3.使用纯函数来执行修改
+为了描述 action 如何改变 state tree ，你需要编写 reducers
+Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。</p>
+<p>3.基础</p>
+<p>Action
+Action 是把数据从应用传到 store 的有效载荷。它是 store 数据的唯一来源。一般来说你会通过 store.dispatch() 将 action 传到 store。</p>
+<p>action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。多数情况下，type 会被定义成字符串常量。当应用规模越来越大时，建议使用单独的模块或文件来存放 action。
+import { ADD_TODO, REMOVE_TODO } from '../actionTypes'</p>
+<p>最后，再添加一个 action type 来表示当前的任务展示选项。
+{
+type: SET_VISIBILITY_FILTER,
+filter: SHOW_COMPLETED
+}</p>
+<p>store 里能直接通过 store.dispatch() 调用 dispatch() 方法，但是多数情况下你会使用 react-redux提供的 connect() 帮助器来调用。bindActionCreators() 可以自动把多个 action 创建函数 绑定到 dispatch() 方法上。</p>
+<p>Reducer
+定义
+Reducers 指定了应用状态的变化如何响应 actions 并发送到 store 的，记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state。</p>
+<p>之所以将这样的函数称之为reducer，是因为这种函数与被传入 Array.prototype.reduce(reducer, ?initialValue) 里的回调函数属于相同的类型。</p>
+<p>注意：
+1.不要修改 state。 使用 Object.assign() 新建了一个副本。不能这样使用 Object.assign(state, { visibilityFilter: action.filter })，因为它会改变第一个参数的值。你必须把第一个参数设置为空对象。这样写return Object.assign({}, state,{visibilityFilter: action.filter})
+2.在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state。</p>
+<p>Reducer分类
+每个 reducer 只负责管理全局 state 中它负责的一部分。每个 reducer 的 state 参数都不同，分别对应它管理的那部分 state 数据。
+function todoApp(state = {}, action) {
+return {
+visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+todos: todos(state.todos, action)
+}
+}</p>
+<p>Redux 提供了 combineReducers() 工具类来做上面 todoApp 做的事情，这样就能消灭一些样板代码了。有了它，可以这样重构 todoApp
+const todoApp = combineReducers({
+visibilityFilter,
+todos
+})</p>
+<p>Store
+Store 就是把它们联系到一起的对象。Store 有以下职责：
+维持应用的 state；
+提供 getState() 方法获取 state；
+提供 dispatch(action) 方法更新 state；
+通过 subscribe(listener) 注册监听器;
+通过 subscribe(listener) 返回的函数注销监听器。
+createStore() 的第二个参数是可选的, 用于设置 state 初始状态。</p>
+<p>单向数据流</p>
+<p>Redux 应用中数据的生命周期遵循下面 4 个步骤：</p>
+<p>1.调用 store.dispatch(action)。</p>
+<p>2.Redux store 调用传入的 reducer 函数。
+Store 会把两个参数传入 reducer： 当前的 state 树和 action。</p>
+<p>3.根 reducer 应该把多个子 reducer 输出合并成一个单一的 state 树。
+Redux 原生提供combineReducers()辅助函数，来把根 reducer 拆分成多个函数，用于分别处理 state 树的一个分支。</p>
+<p>4.Redux store 保存了根 reducer 返回的完整 state 树。</p>
+<p>React + Redux</p>
+<p>容器组件
+容器组件就是使用 store.subscribe() 从 Redux state 树中读取部分数据，并通过 props 来把这些数据提供给要渲染的组件
+建议使用 React Redux 库的 connect() 方法来生成，这个方法做了性能优化来避免很多不必要的重复渲染。
+使用 connect() 前，需要先定义 mapStateToProps 这个函数来指定如何把当前 Redux store state 映射到展示组件的 props 中</p>
+<p>传入store
+所有容器组件都可以访问 Redux store，所以可以手动监听它。一种方式是把它以 props 的形式传入到所有容器组件中。
+建议的方式是使用指定的 React Redux 组件 <Provider> 来 魔法般的 让所有容器组件都可以访问 store，而不必显示地传递它。只需要在渲染根组件时使用即可。
+render(
+<Provider store={store}>
+<App />
+</Provider>,
+document.getElementById('root')
+)</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[React router]]></title>
+        <id>https://alexwjj.github.io//post/react-router</id>
+        <link href="https://alexwjj.github.io//post/react-router">
+        </link>
+        <updated>2019-06-05T11:29:13.000Z</updated>
+        <content type="html"><![CDATA[<p>1.使用时，路由器Router就是React的一个组件。
+React.render((
+<Router>
+<Route path="/" component={App}>
+<Route path="about" component={About} />
+<Route path="inbox" component={Inbox}>
+<Route path="messages/:id" component={Message} />
+</Route>
+</Route>
+</Router>
+), document.body)</p>
+<p>IndexRoute解决App组件中this.porps.children为undefined时的问题，显式指定Home是根路由的子组件，即指定默认情况下加载的子组件。你可以把IndexRoute想象成某个路径的index.html。
+<Router>
+<Route path="/" component={App}>
+<IndexRoute component={Home}/>
+<Route path="accounts" component={Accounts}/>
+<Route path="statements" component={Statements}/>
+</Route>
+</Router>
+渲染：访问 /
+<App>
+<Home/>
+</App>
+如果我们可以将 /inbox 从 /inbox/messages/:id 中去除，并且还能够让 Message 嵌套在 App -&gt;Inbox 中渲染
+绝对路径{/* 使用 /messages/:id 替换 messages/:id <em>/}
+<Route path="/messages/:id" component={Message} />
+路由跳转{/</em> 跳转 /inbox/messages/:id 到 /messages/:id */}
+<Redirect from="messages/:id" to="/messages/:id" /></p>
+<p>2.Route 可以定义 onEnter 和 onLeave 两个 hook ，这些hook会在页面跳转确认时触发一次
+onLeave （内到外）从最下层的子路由开始直到最外层父路由结束。然后onEnter（外到内）会从最外层的父路由开始直到最下层子路由结束。</p>
+<p>3.路由路径是匹配一个（或一部分）URL 的 一个字符串模式。大部分的路由路径都可以直接按照字面量理解，除了以下几个特殊的符号：
+:paramName – 匹配一段位于 /、? 或 # 之后的 URL。 命中的部分将被作为一个参数
+() – 在它内部的内容被认为是可选的</p>
+<ul>
+<li>– 匹配任意字符（非贪婪的）直到命中下一个字符或者整个 URL 的末尾，并创建一个 splat 参数
+<Route path="/hello/:name">         // 匹配 /hello/michael 和 /hello/ryan
+<Route path="/hello(/:name)">       // 匹配 /hello, /hello/michael 和 /hello/ryan
+<Route path="/files/*.*">           // 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg</li>
+</ul>
+<p>使用绝对路径可以使路由匹配行为忽略嵌套关系</p>
+<p>路由匹配规则是从上到下执行，一旦发现匹配，就不再其余的规则了。（同名路由只执行第一个）带参数的路径一般要写在路由规则的底部。</p>
+<p>4.History
+React Router 是建立在 history 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。</p>
+<p>常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。
+browserHistory使用浏览器中的 History API 用于处理 URL，创建一个像example.com/some/path这样真实的 URL 。
+hashHistory
+createMemoryHistory</p>
+<p>5.重定向
+<Redirect>组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由。
+＜Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;
+现在访问/inbox/messages/5，会自动跳转到/messages/5。
+IndexRedirect （2.x）IndexRoute（4.x）
+组件用于访问根路由的时候，将用户重定向到某个子组件。</p>
+<p>Link组件用于取代<a>元素，生成一个链接，允许用户点击后跳转到另一个路由。它基本上就是<a>元素的React 版本，可以接收Router的状态。</p>
+<p>如果链接到根路由/，不要使用Link组件，而要使用IndexLink组件。
+<IndexLink to="/" activeClassName="active">
+Home
+</IndexLink></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[React 入门]]></title>
+        <id>https://alexwjj.github.io//post/react-ru-men</id>
+        <link href="https://alexwjj.github.io//post/react-ru-men">
+        </link>
+        <updated>2019-06-05T11:23:22.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>react 入门知识点</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>react 入门知识点</p>
+</blockquote>
+<!-- more -->
+<h2 id="入门">入门</h2>
+<p>使用jsx语法， script的属性 type = 'text / babel'
+组件类的第一个字母必须大写，否则会报错，比如HelloMessage不能写成helloMessage。另外，组件类只能包含一个顶层标签，否则也会报错。
+添加组件属性，有一个地方需要注意，就是 class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。
+this.props.children 的值有三种可能：如果当前组件没有子节点，它就是 undefined ;如果有一个子节点，数据类型是 object ；如果有多个子节点，数据类型就是 array 。所以，处理 this.props.children 的时候要小心。
+React 提供一个工具方法 React.Children 来处理 this.props.children 。我们可以用 React.Children.map 来遍历子节点，而不用担心 this.props.children 的数据类型是 undefined 还是 object。
+组件类的PropTypes属性，就是用来验证组件实例的属性是否符合要求，getDefaultProps 方法可以用来设置组件属性的默认值。
+由于 this.props 和 this.state 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。
+文本输入框的值，不能用 this.props.value 读取，而要定义一个 onChange 事件的回调函数，通过 event.target.value 读取用户输入的值。textarea 元素、select元素、radio元素都属于这种情况
+组件生命周期三种状态：Mounting，Updating（正在重新被渲染），Unmounting。React 为每个状态都提供了两种处理函数，will 函数在进入状态之前调用，did 函数在进入状态之后调用，三种状态共计五种处理函数。componentWillMount() componentDidMount()
+组件样式：style={{opacity: this.state.opacity}}，因为 React 组件样式是一个对象，所以第一重大括号表示这是 JavaScript 语法，第二重大括号表示样</p>
+<h2 id="注意点">注意点</h2>
+<p>getInitialState  初始化数据
+bind(this) 防止this指向错误 ，不写的话可以使用属性初始化和箭头函数（组件会重新渲染，不建议使用）。官方建议使用bind和属性初始化
+&quot; 字符串 &quot;     { 表达式 }
+onClick={activateLasers} 事件。在 React 中你不能使用返回 false 的方式阻止默认行为。你必须明确的使用 preventDefault
+在 JavaScript 中，true &amp;&amp; expression 总是返回 expression，而 false &amp;&amp; expression 总是返回 false。如下条件判断
+{unreadMessages.length &gt; 0 &amp;&amp;
+<h2>
+You have {unreadMessages.length} unread messages.
+</h2>
+}
+防止组件渲染 return null
+如果你选择不指定显式的键值，那么React将默认使用索引用（index）作为列表项目的键值。元素位于map()方法内时需要设置键属性
+在HTML当中，像<input>,<textarea>, 和 <select>这类表单元素会维持自身状态，并根据用户输入进行更新。他们都通过传入一个value属性来实现对组件的控制。
+组件嵌套{ props.children }          {props.left}  left = { <assembly/>}<br>
+如果你不初始化状态，也不绑定方法，那么你就不需要为React组件实现构造函数。不需要constructor
+如果子类加入了 constructor 构造函数，则一定要手动调用父类的构造函数 super</p>
+<h2 id="react生命周期">React生命周期</h2>
+<p>https://mp.weixin.qq.com/s/6MKPF3a8MXb_lRM6o4rggA</p>
+<p>mount
+1.constructor
+初始化state和绑定事件处理程序
+2.static getDerivedStateFromProps()
+可以更新state的状态，派生状态。小心使用
+3.render
+不渲染任何内容，返回布尔值或者null
+4.componentDidMount()
+render之后，挂载完成，调用该方法。一般写发送请求的</p>
+<p>update
+1.static getDerivedStateFromProps()
+2.shouldComponentUpdate()  性能优化点
+在调用 static getDerivedStateFromProps 方法之后，接下来会调用 nextComponentUpdate 方法。通过调用shouldComponentUpdate来控制是否要重新渲染组件
+3.reder()
+4.getSnapshotBeforeUpdate()
+5.componentDidUpdate()</p>
+<p>unMount
+1.componentWillUnmount()
+资源清理</p>
+<p>error
+1.static getDerivedStateFromError()
+2.componentDidCatch()</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[vue 零碎知识点]]></title>
+        <id>https://alexwjj.github.io//post/vue-ling-sui-zhi-shi-dian</id>
+        <link href="https://alexwjj.github.io//post/vue-ling-sui-zhi-shi-dian">
+        </link>
+        <updated>2019-06-05T11:20:35.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>vue 的一些零碎知识点整理</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>vue 的一些零碎知识点整理</p>
+</blockquote>
+<!-- more -->
+<p>1.vue3.0
+重写虚拟dom   编译运行时间更短
+优化插槽生成 ： 3之前父组件重新渲染，子组件也会渲染。  vue3可以单独渲染某个组件
+静态树提升：将静态组件提升，降低渲染成本
+静态属性提升：跳过不会改变节点的补丁过程
+基于proxy的观察者机制：Vue 的反应系统是使用 Object.defineProperty 的 getter 和 setter，Vue 3 将使用 ES2015 Proxy 作为其观察者机制。 这消除了以前存在的警告，使速度加倍，并节省了一半的内存开销。
+更小：20kb&gt;10kb
+更具维护性： typescript
+多平台使用，更易于开发
+发布至少要到2019下半年了。
+2.vue mixins
+用来更高效的实现组件内容的复用
+可以在mixin对象里定义组件的任何属性，在组件使用mixin时，mixin中的属性会添加到组件属性中mixins: [myMixin],
+Vue混合策略 （可自定义）</p>
+<ol>
+<li>vue 是安装 全局mixin——组件内mixin——组件options的顺序来合并组件实例的options。优先调用mixins和extends继承的父类，extends触发的优先级更高</li>
+<li>对于钩子函数（created() {} 和mounted() {}），会添加到一个函数数组里，执行顺序从前到后</li>
+<li>对于组件的对象属性（methods等）, 后面的会覆盖前面的
+mixins接收对象数组（可理解为多继承），extends接收的是对象或函数（可理解为单继承）
+数据对象在内部会进行浅合并 (一层属性深度)，在和组件的数据发生冲突时以组件数据优先。
+全局混入mixin  Vue.use( )
+extends触发的优先级更高 ,最先被调用
+关于mixins和extend你可以理解为mvc的c(controller)，这一层。可见通用的成员变量（包括属性和方法）抽象成为一个父类，提供给子类继承，这样可以让子类拥有一些通用成员变量，然而子类也可以重写父类的成员变量。这样的整个编程思想就很面向对象，也就是继承性。
+3.Google搜索
+&quot; keywords &quot;，通过给关键字加双引号的方法，得到的搜索结果就是完全按照关键字的顺序来搜。
+keywords -GPS ， 搜索后的结果都没GPS关键字。
+使用*进行模糊匹配
+关键字 site:网址  指定网站中搜索
+关键字 filetype:文件类型  搜索指定文件类型
+4.vue.directive 自定义指令
+中后台中有使用， his没有
+Vue.directive('xxx', function(el, bind, vNode){})
+钩子函数： bind， inserted ，update ， componentUpdated ，unbind
+钩子函数的参数 (包括 el，binding，vnode，oldVnode) 。
+文档： http://doc.vue-js.com/v2/guide/custom-directive.html#search-query-sidebar
+v-pre   vue会跳过这个元素和它的子元素的编译过程。
+5.vue 风格指南
+组件名为多个单词   export组件时  TodoItem   注册时 todo-item
+组件中的porp定义尽量详细，  eg： form: { type: Array  , required: true, default }<br>
+porp命名  props: {  greetingText: String}  <WelcomeMessage greeting-text="hi"/>
+v-for 指定键值，v-for = ' (item, index) in todos'  :key = 'index'
+避免v-for 和 v-if 一起使用 （v-for的优先级比v-if高，如果需要这种场景可以再computed中写filter）
+组件样式设置作用域： 推荐使用BEM（c-Button--close  块-元素--功能），不推荐scoped
+私有属性名： $_命名空间_类名
+单文件组件文件大小写  MyComponent  my-component
+组件名单词顺序：一般描述开头  描述修饰词结尾  SearchButtonClear.vue
+组件名尽量都用完整的单词，表明功能性
+JS遵循  camelCase 驼峰法  HTML 遵循 kebab-case 短横线
+组件中多个特性分行书写，便于维护
+简单的计算放在{{ }}  复杂的放在计算属性中
+scoped原理vue为元素选择器添加一个独一无二的特性data-v-xxx，缺点是大量使用这种比较慢，没有使用类好</li>
+</ol>
+<p>6.vue指令
+v-pre   跳过这个元素和它的子元素的编译过程。可以用来显示原始 {{ }}标签。跳过大量没有指令的节点会加快编译。
+v-cloak 用法：这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕，否则在渲染页面时，有可能用户会先看到Mustache标签，然后看到编译后的数据
+v-once 只渲染元素和组件一次。随后的重新渲染,元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
+7.vue provide / inject
+provide/inject：简单的来说就是在父组件中通过provide来提供变量，然后在子组件中通过inject来注入变量。主要为高阶插件/组件库提供用例
+provide 选项是一个对象或返回一个对象的函数。该对象包含可注入其子孙的属性
+inject 选项一个字符串数组，或一个对象
+provide 和 inject 绑定并不是可响应的  inject可以用解构来接受
+场景：替代嵌套过深的props，以及祖先和后代的元素的通信中的vuex-bus的一个东西。
+可以理解为一个bus，但只做祖先通知后代的单向传递的一个属性
+watch
+watch是一个对象，键是需要观察的表达式，值是对应回调函数
+默认加载的时候先computed再watch，不执行methods；等触发某一事件后，则是：先methods再watch。
+watch可以直接监听computed里面的数据
+8.$nextTick
+nextTick 下一刻 （太可）
+nextTick 可以让我们在下次 DOM 更新循环结束之后执行延迟回调，用于获得更新后的 DOM。
+Vue.nextTick用于延迟执行一段代码，它接受2个参数（回调函数和执行回调函数的上下文环境），如果没有提供回调函数，那么将返回promise对象。
+官方：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+vue是异步执行DOM更新的：简单说：Vue 在修改数据后，视图不会立刻更新，而是等同一事件循环中的所有数据变化完成之后，再统一进行视图更新。
+通过 Vue.nextTick 获取到改变后的 DOM 。 setTimeout(fn, 0) 也可以获取到。
+应用场景：需要在视图更新之后，基于新的视图进行操作。
+<img src="https://alexwjj.github.io//post-images/1559733742027.jpeg" alt=""></p>
+<p>9.数据劫持
+Vue （2.x）内部使用了 Object.defineProperty() 来实现双向绑定，通过这个函数可以监听到 set和 get 的事件。
+Proxy 与 Object.defineProperty 对比
+Object.defineProperty 虽然已经能够实现双向绑定了，但是他还是有缺陷的。
+只能对属性进行数据劫持，所以需要深度遍历整个对象
+对于数组不能监听到数据的变化</p>
+<p>10.MVVM 由以下三个内容组成</p>
+<ul>
+<li>View：界面</li>
+<li>Model：数据模型</li>
+<li>ViewModel：作为桥梁负责沟通 View 和 Model
+在MVVM架构下，View 和 Model 之间并没有直接的联系，而是通过ViewModel进行交互，Model 和 ViewModel 之间的交互是双向的， 因此View 数据的变化会同步到Model中，而Model 数据的变化也会立即反应到View 上。在 MVVM 中，最核心的也就是数据双向绑定，例如 Angluar 的脏数据检测，Vue 中的数据劫持。</li>
+</ul>
+<p>11.vue-router
+history模式：history采用HTML5的新特性；且提供了两个新方法：pushState（），replaceState（）可以对浏览器历史记录栈进行修改，以及popState事件的监听到状态变更。</p>
+<p>beforeEach主要有3个参数to，from，next：
+to：route即将进入的目标路由对象，
+from：route当前导航正要离开的路由
+next：function一定要调用该方法resolve这个钩子。执行效果依赖next方法的调用参数。可以控制网页的跳转。</p>
+<p>12.vuex
+actions主要是来同时提交多个mutations
+mutation处理函数中所做的事情是改变state，而action处理函数中所做的事情则是commit mutation。
+在触发方法上：
+action的触发是dispatch
+mutation的触发是commit；
+vue component—-dispatch—-&gt;actions—-commit—-&gt;mutations—-mutate—-&gt;state—-render—-&gt;vue component。</p>
+<p>在命名空间模块内访问全局内容（Global Assets）
+如果你希望使用全局 state 和 getter，rootState 和 rootGetter 会作为第三和第四参数传入 getter，也会通过 context 对象的属性传入 action。
+someGetter (state, getters, rootState, rootGetters) {
+getters.someOtherGetter // -&gt; 'foo/someOtherGetter'
+rootGetters.someOtherGetter // -&gt; 'someOtherGetter'
+},</p>
+<p>若需要在全局命名空间内分发 action 或提交 mutation，将 { root: true } 作为第三参数传给dispatch 或 commit即可
+dispatch('layout/setModuleName', 'organizationModule', { root: true });</p>
+<p>vue如何监听键盘事件中的按键 @keyup.enter</p>
+<p>13.vue组件中的data必须是函数
+类比引用数据类型
+Object是引用数据类型,如果不用function 返回,每个组件的data 都是内存的同一个地址,一个数据改变了其他也改变了;
+javascipt只有函数构成作用域(注意理解作用域,只有函数的{}构成作用域,对象的{}以及 if(){}都不构成作用域)，data是一个函数时，每个组件实例都有自己的作用域，每个实例相互独立,不会相互影响</p>
+<p>14.vue mixin</p>
+<p>15.axios
+// 添加请求拦截器
+axios.interceptors.request.use(function (config) {
+// 在发送请求之前做些什么
+return config;
+}, function (error) {
+// 对请求错误做些什么
+return Promise.reject(error);
+});
+// 添加响应拦截器
+axios.interceptors.response.use(function (response) {
+// 对响应数据做点什么
+return response;
+}, function (error) {
+// 对响应错误做点什么
+return Promise.reject(error);
+});</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ES 6 基础]]></title>
+        <id>https://alexwjj.github.io//post/es-6-ji-chu</id>
+        <link href="https://alexwjj.github.io//post/es-6-ji-chu">
+        </link>
+        <updated>2019-06-05T10:50:32.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>自己对 ES6做的部分总结</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>自己对 ES6做的部分总结</p>
+</blockquote>
+<!-- more -->
+<h2 id="1数组中迭代方法的使用">1.数组中迭代方法的使用</h2>
+<pre><code>1、forEach()
+var arr = [1,2,3,4];
+arr.forEach((item,index,arr) =&gt; {
+    console.log(item) //结果为1,2,3,4
+})
+//forEach遍历数组，无返回值，不改变原数组，仅仅只是遍历、常用于注册组件、指令等等。
+
+2、map()
+var arr = [1,2,3,4];
+arr.map((item,index,arr) =&gt; {
+    return item*10 //新数组为10,20,30,40
+})
+//map遍历数组，返回一个新数组，不改变原数组的值。
+
+3、filter()
+var arr = [1,2,3,4];
+arr.filter((item,index,arr) =&gt; {
+    return item &gt; 2 //新数组为[3,4]
+})
+//filter过滤掉数组中不满足条件的值，返回一个新数组，不改变原数组的值。
+
+4、reduce()
+var arr = [1,2,3,4];
+arr.reduce((result,item,index,arr) =&gt; {
+    console.log(result) // 1  3  6  result为上次一计算的结果
+    console.log(item)  // 2  3  4
+    console.log(index) // 1  2  3
+    return result+item //最终结果为10
+})
+//reduce 让数组的前后两项进行某种计算。然后返回其值，并继续计算。不改变原数组，返回计算的最终结果，从数组的第二项开始遍历。
+
+5、some()
+var arr = [1,2,3,4];
+arr.some((item,index,arr) =&gt; {
+    return item &gt; 3 //结果为true
+})
+//遍历数组每一项，有一项返回true,则停止遍历，结果返回true。不改变原数组
+
+6、every()
+var arr = [1,2,3,4];
+arr.every((item,index,arr) =&gt; {
+    return item &gt; 1 //结果为false
+})
+//遍历数组每一项，每一项返回true,则最终结果为true。当任何一项返回false时，停止遍历，返回false。不改变原数组
+
+7.find()
+[1, 4, -5, 10].find((n) =&gt; n &lt; 0)  // -5
+用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。
+
+以上均不改变原数组。 
+some、every返回true、false。 
+map、filter返回一个新数组。 
+reduce让数组的前后两项进行某种计算，返回最终操作的结果。 
+forEach 无返回值。
+</code></pre>
+<h2 id="2-set">2. Set</h2>
+<pre><code>set 去重 两者完全相等 === 才会被清除掉
+Set数据格式Set(3) {1, 2, 3}
+Set 实例的方法分为两大类：操作方法（用于操作数据）和遍历方法（用于遍历成员）。下面先介绍四个操作方法。
+add(value)：添加某个值，返回 Set 结构本身。
+delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+has(value)：返回一个布尔值，表示该值是否为Set的成员。
+clear()：清除所有成员，没有返回值。
+Array.from方法可以将 Set 结构转为数组。
+</code></pre>
+<h2 id="3map">3.Map</h2>
+<p>Map 数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object 结构提供了“字符串—值”的对应，Map 结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，Map 比 Object 更合适。</p>
+<pre><code>Map数据格式：  Map(3) {1 =&gt; &quot;one&quot;, 2 =&gt; &quot;two&quot;, 3 =&gt; &quot;three&quot;}
+Map转化为数组结构
+const map = new Map([
+  [1, 'one'],
+  [2, 'two'],
+  [3, 'three'],
+]);
+
+[...map.keys()]
+// [1, 2, 3]
+
+[...map.values()]
+// ['one', 'two', 'three']
+
+[...map.entries()]
+// [[1,'one'], [2, 'two'], [3, 'three']]
+
+[...map]
+// [[1,'one'], [2, 'two'], [3, 'three']]
+</code></pre>
+<h2 id="4for-in-for-of">4.for in &amp; for of</h2>
+<p>for in循环设计之初，是给普通以字符串的值为key的对象使用的。而非数组。</p>
+<p>for of循环不仅仅支持数组的遍历。同样适用于很多类似数组的对象,字符串得遍历也行</p>
+<p>in key   of value 尽量使用of，避免其他问题带来得麻烦</p>
+<h2 id="5json">5.JSON</h2>
+<pre><code>JSON.stringify( {} , [ ] , &quot;&quot;)  // 转化为json字符串
+//参数一 ：要序列化的数据（object）
+//参数二 ：控制对象的键值，只想输出指定的属性，传入一个数组
+//参数三 ：序列化后，打印输出的格式（一个Tab ，可以更直观查看json）
+JSON.parse( json.DATA ) //传入json字符串 转化为json对象
+JSON有两种格式 数组和对象    后端一般传过来的都是对象形式
+</code></pre>
+<h2 id="6解构赋值">6.解构赋值</h2>
+<p>只要某种数据结构具有 Iterator 接口，都可以采用数组形式的解构赋值。</p>
+<p>解构赋值允许指定默认值
+<code>let [x, y = 'b'] = ['a', undefined]; // x='a', y='b' let [x = 1] = [null]; //x=null只有===undefined默认值才有用</code></p>
+<p>对象和数组解构的区别： 数组按次序来，对象则要变量与属性同名</p>
+<p>解构失败 ，变量的值就是undefined</p>
+<p>字符串也可以解构赋值。这是因为此时，字符串被转换成了一个类似数组的对象。</p>
+<pre><code>const [a, b, c, d, e] = 'hello';
+函数参数解构     [[1, 2], [3, 4]].map(([a, b]) =&gt; a + b);// [ 3, 7 ]
+ES6 的规则是，只要有可能导致解构的歧义，就不得使用圆括号。
+</code></pre>
+<h3 id="解构用途">解构用途</h3>
+<p>交换变量的值  [x, y] = [y, x];
+从函数返回多个值  function example() {return [1, 2, 3];}    let [a, b, c] = example();
+函数参数的定义function f({x, y, z}) { ... }        f({z: 3, y: 2, x: 1});
+提取 JSON 数据                                                                                                                                                        ```
+let jsonData = {
+id: 42,
+status: &quot;OK&quot;,
+data: [867, 5309]
+};
+let { id, status, data: number } = jsonData;
+console.log(id, status, number);
+// 42, &quot;OK&quot;, [867, 5309]</p>
+<p>遍历 Map 结构<br>
+for (let [key, value] of map) { console.log(key + &quot; is &quot; + value);}  // 获取value ：for (let [,value] of map) { // ...}
+输入模块的指定方法 const { SourceMapConsumer, SourceNode } = require(&quot;source-map&quot;);</p>
+<pre><code>
+##  7.es6 字符串扩展
+</code></pre>
+<p>JavaScript 内部，字符以 UTF-16 的格式储存，每个字符固定为2个字节。
+ES6 提供了codePointAt方法，能够正确处理 4 个字节储存的字符，返回一个字符的码点。
+JavaScript 只有indexOf方法，ES6 includes()是否存在  startsWith() endsWith() 开头和结尾处是否存在
+repeat方法返回一个新字符串，表示将原字符串重复n次。    'x'.repeat(3) // &quot;xxx&quot;<br>
+ES2017 (ES8)引入了字符串补全长度的功能。如果某个字符串不够指定长度，会在头部或尾部补全。padStart()用于头部补全，padEnd()用于尾部补全。 'x'.padStart(5, 'ab') // 'ababx'
+模板字符串 <code>${ xxx }</code>   <code>foo ${fn()} bar</code> 可以调用函数，进行运算，嵌套。反引号中的空格也会被输出
+模板编译 &lt;%   javascript %&gt;
+标签模板 tag</p>
+<pre><code>## 8.Generator
+
+调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，而是一个指向内部状态的指针对象，返回一个遍历器对象，必须调用遍历器对象的next方法，使得指针移向下一个状态。也就是说，每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，直到遇到下一个yield表达式（或return语句）为止。换言之，Generator 函数是分段执行的，yield表达式是暂停执行的标记，而next方法可以恢复执行。
+
+function* foo(x, y) { ··· }    写法带个 *
+每次遇到yield，函数暂停执行，下一次再从该位置继续向后执行，而return语句不具备位置记忆的功能
+
+## 9.async
+
+async函数就是将 Generator 函数的星号（*）替换成async，将yield替换成await，仅此而已。
+
+async函数返回一个 Promise 对象，可以使用then方法添加回调函数。当函数执行的时候，一旦遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。
+
+使用方式：
+</code></pre>
+<p>// 函数声明 async function foo() {}
+// 函数表达式 const foo = async function () {};
+// 对象的方法 let obj = { async foo() {} };obj.foo().then(...)
+// 箭头函数  const foo = async () =&gt; {};</p>
+<pre><code>await命令后面是一个 Promise 对象。如果不是，就返回对应的值  await 123 等同于 123只要一个await语句后面的 Promise 变为reject，那么整个async函数都会中断执行。
+await的第一个异步操作失败，Promise变为reject  。如果想不影响后面的操作：1.将第一个await卸载try{ await  }catch（）{} 中  2.await后面的Promise后面接上一个catch方法
+同时触发多个await 
+</code></pre>
+<p>// 写法一<br>
+let [foo, bar] = await Promise.all([getFoo(), getBar()]);
+// 写法二
+let fooPromise = getFoo();
+let barPromise = getBar();
+let foo = await fooPromise;
+let bar = await barPromise;</p>
+<pre><code>
+async原理：将 Generator 函数和自动执行器，包装在一个函数里。
+</code></pre>
+<h2 id="10fetch">10.fetch</h2>
+<p>Fetch API 提供了一个获取资源的接口（包括跨域）。XMLHttpRequest的一种替代方案，类似于ajax
+fetch() 必须接受一个参数——资源的路径。无论请求成功与否，它都返回一个 promise 对象，resolve 对应请求的 Response。你也可以传一个可选的第二个参数init
+新技术，兼容性不行</p>
+<h2 id="11shtml-html">11.shtml &amp; html</h2>
+<p>shtml 与html的区别 shtml不是html 而是一种服务器API,shtml是服务器动态产生的html</p>
+<p>shtml用于SSI技术文件（服务器端包含指令/服务器端嵌入） 包含 SSI 指令的文件要求特殊处理，所以必须为所有 SSI 文件赋予 SSI 文件扩展名。默认扩展名是 .stm、.shtm 和 .shtml</p>
+<h2 id="12es6-promise">12.es6 promise</h2>
+<p>异步操作，统一API，状态不可改变resolve（已定型）</p>
+<p>ES6 规定，Promise对象是一个构造函数，用来生成Promise实例。</p>
+<p>Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数。</p>
+<p>promise.resolve()  将现有的对象转换为promise对象 具有then方法,调用resolve或reject并不会终结Promise 的参数函数的执行。一般来说，为了结束直接return resolve（）；then里面返回的是一个新的promise，可以使用链式写法，catch运行时发生错误的回调函数，then里面的错误也会被捕捉到 。</p>
+<p>不使用catch的话then报错后，后面的语句依旧会执行 。 Promise 会吃掉错误
+catch方法返回的还是一个 Promise 对象，因此后面还可以接着调用then方法。promise没有错误就会跳过catch</p>
+<p>.finally (es9)不管promise最后的状态，在执行完then或catch指定的回调函数以后，都会执行finally方法指定的回调函数。 finally方法的回调函数不接受任何参数，其实本质是是then的特例</p>
+<p>事件循环 setTimeout(fn, 0)在下一轮“事件循环”开始时执行，Promise.resolve()在本轮“事件循环”结束时执行，console.log('one')则是立即执行，因此最先输出。</p>
+<p>promise 应用 图片加载</p>
+<p>同步 立即执行  ；promise中的属于异步，会在本轮事件循环的末尾执行。</p>
+<p>promise.resolve().then(f) 会将同步函数转换为异步。 可以结合async来解决这个问题</p>
+<p>详情参考文档： http://es6.ruanyifeng.com/?search=**&amp;x=0&amp;y=0#docs/promise</p>
+<h2 id="13es6-数值扩展">13.es6 数值扩展</h2>
+<pre><code>Math.trunc方法用于去除一个数的小数部分，返回整数部分。 原理ceil和floor结合
+Math.sign方法用来判断一个数到底是正数、负数、还是零
+Math.cbrt方法用于计算一个数的立方根。x³=a 求x  根号a的3次
+Math.hypot方法返回所有参数的平方和的平方根。 
+ES2016 新增了一个指数运算符（**） x ^ y = x ** y 特点是右结合 2 ** 3 ** 2 = 2 ^ (3 ^ 2)
+**= a **=2 等于 a * a   b **=3 等于 b * b * b
+</code></pre>
+<h2 id="14es6-函数扩展">14.es6 函数扩展</h2>
+<p>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。function fn(x = '1') {}</p>
+<p>函数中使用解构 function fn( { } ) 函数调用的时候 fn( )按顺序传值</p>
+<p>函数的length属性 在设置默认值之后，后面的包括设置默认值的都不在计算length</p>
+<p>作用域  在设置了默认值以后 会形成一个单独的context. 函数初始化结束，消失。先在f（）中寻找，再去全局找
+rest参数 （...变量名） function fn（...values） {}  调用传入任意数量的参数  fn( x, y, z ) 代替了argument，...变量名  搭配数组使用 values可以直接使用数组的方法，argument不行。rest 参数一般放在最后，后面继续跟参数就报错
+es6规定只要函数参数使用了默认值、解构赋值、或扩展运算符，那么函数内部就不能显式设定为严格模式，会报错。
+f.name 会返回当前函数名
+箭头函数 f =&gt; (x) =&gt; y ；  f函数名 x 参数  y返回值  只有一个参数时可以省略（），只有一个表达式时可以省略{}
+如果箭头函数的代码块部分多于一条语句，就要使用大括号将它们括起来，并且使用return语句返回。
+函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。在箭头函数中，它是固定的。箭头函数导致this总是指向函数定义生效时所在的对象or作用域
+this指向的固定化，原因是箭头函数根本没有自己的this，导致内部的this就是外层代码块的this。正是因为它没有this，所以也就不能用作构造函数。
+由于箭头函数没有自己的this，所以当然也就不能用call()、apply()、bind()这些方法去改变this的指向。
+需要动态this的时候，不应使用箭头函数。比如想让this指向按钮中的某一个元素
+函数绑定运算符是并排的两个冒号（::），双冒号左边是一个对象，右边是一个函数。该运算符会自动将左边的对象，作为上下文环境（即this对象），绑定到右边的函数上面。
+尾调用（Tail Call）是函数式编程的一个重要概念，本身非常简单，一句话就能说清楚，就是指某个函数的最后一步是调用另一个函数，尾调用不一定出现在函数尾部，只要是最后一步操作即可
+尾递归
+15.Object.assign()
+Object.assign是ES6新添加的接口，主要的用途是用来合并多个JavaScript的对象。
+Object.assign()接口可以接收多个参数，第一个参数是目标对象，后面的都是源对象，assign方法将多个原对象的属性和方法都合并到了目标对象上面，如果在这个过程中出现同名的属性（方法），后合并的属性（方法）会覆盖之前的同名属性（方法）。
+第一个参数target决定了你的对象被拷贝到哪个目标对象上面，如果你不想对原始对象产生影响，就定义一个空对象{}作为target，
+Object.assign 方法只会拷贝源对象自身的并且可枚举的属性到目标对象。
+Object.assign进行的拷贝是浅拷贝
+作用：为对象添加属性，为对象添加方法，克隆对象，为属性指定默认值
+https://blog.csdn.net/qs8lk88/article/details/79018481</p>
+<p>枚举
+事先考虑到某一变量可能取的值，尽量用自然语言中含义清楚的单词来表示它的每一个值，这种方法称为枚举方法，用这种方法定义的类型称枚举类型。enum
+枚举是指对象中的属性是否可以遍历出来，再简单点说就是属性是否可以以列举出来。
+16.Object.entries()
+Object.entries()方法返回一个给定对象自身可枚举属性的键值对 数组，其排列与使用 for...in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环也枚举原型链中的属性）。
+Object.entries方法对于原型链上继承的非自有属性无能为力。
+17.Object.keys()
+ES5 引入了Object.keys方法，返回一个数组，成员是参数对象自身的（不含继承的）所有可遍历（ enumerable ）属性的键名。
+ES7 Object.values方法返回一个数组，成员是参数对象自身的（不含继承的）所有可遍历（ enumerable ）属性的键值。
+18.class，extents，super
+为了解决es5中原型，构造函数，继承写法复杂，理解困难的问题
+constructor 构造方法，在一个class中constructor内定义的方法和属性是实例对象自己的，而constructor外定义的方法和属性则是所有实力对象可以共享的。
+Class之间可以通过extends关键字实现继承，继承constructor外的属性及方法
+super关键字，它指代父类的实例（即父类的this对象），子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。
+ES6的继承机制，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
+<p>19 proxy
+Proxy 是 ES6 中新增的功能，可以用来自定义对象中的操作</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Webpack  入门配置]]></title>
         <id>https://alexwjj.github.io//post/webpack-ru-men-pei-zhi</id>
@@ -633,46 +1457,6 @@ getEle会，queryS不会</p>
 <p>可以通过 requestAnimationFrame 来每 16 ms 刷新一次。</p>
 <h1 id="2019-3-29">2019-3-29</h1>
 <p><strong>为了春招准备的，由于菜， 零offer。。。</strong></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[前端自学31天]]></title>
-        <id>https://alexwjj.github.io//post/fe-study</id>
-        <link href="https://alexwjj.github.io//post/fe-study">
-        </link>
-        <updated>2018-08-01T12:00:58.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>时间 <strong>2018.08.01</strong></p>
-</blockquote>
-<blockquote>
-<p>之前写在简书的笔记，现在搬运过来。</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>时间 <strong>2018.08.01</strong></p>
-</blockquote>
-<blockquote>
-<p>之前写在简书的笔记，现在搬运过来。</p>
-</blockquote>
-<!-- more -->
-<h1 id="简书笔记链接">简书笔记链接</h1>
-<p><a href="https://www.jianshu.com/u/81a990ed5eff">前端自学日记</a></p>
-<h2 id="说说之前的故事吧">说说之前的故事吧</h2>
-<p><strong>6月中旬</strong>，就开始准备面试相关的事情，心里一边想着期末考试该怎么办，一边想着暑假该去哪里实习。后来决定去附近的郑州学习学习面试经验，顺便去看看我姐那所谓的国际学院。</p>
-<p>在Boss直聘上约好了几家面试之后，硬拉着另外一个人不考研的室友就去了。结果，第一家郑州代码云科技有限公司就是培训机构，打着实习的名义来招学生。第二家河南金汇鑫，公司环境不错。但是，面试过程中，问了几个基础的问题我都没答出来，场面一度很尴尬。</p>
-<p>JS向数组中添加元素，我答：add。</p>
-<p>v-model是干嘛得，我答：不常用，不了解。</p>
-<p>写过JS正则表达式吗，我答：会简单的，用的话基本靠找。</p>
-<p>面试大哥也跟我说了，公司偏后台Java，JS要求比较高，其实我也只是去试试水，稍微背了几道面试题。当时给我打击的出来就想去培训班，下午的面试也不想去了。那种感觉是在学校体会不到的。看了看车票都是下午的，然后想着也没事就去下一家（郑州乐鸟）试试看。结果峰回路转，问的问题我大部分都有背过，面试就过了，但是第一个月试用期只有2k，转正4-6k。还想跑下一家的时候想提前打电话问一下，结果我到了给我说不要没工作经验的，郑州金帮手，这家坑啊。当大家都很无聊吗？</p>
-<p>24号考试，我20号晚上到的学校，然后21休息了半天才开始复习，心里面又慌又想打会联盟。</p>
-<p><strong>7月份</strong>考完，把寝室的东西都打包快递回家，花了75块钱。也在考虑到底要不要去郑州乐鸟，无意间在朋友圈看到有同学在广州然后就决定来广州试试，而且我爸妈在桂林，中间也就两个小时动车的路程。在家呆了10天左右，好好准备了下面试，看了看vue.js的基础。</p>
-<p><strong>7.10号</strong>来桂林，7.14到广州，面试7家，过了3家，两家因为微信小程序没过，两家大公司因为基础太差，面试题写的很一般，没过。其实有家紫鲸互联的，题写的还想，技术面聊的还不错，中间展示了几个项目（个人博客因为服务器太垃圾，没加载出来），结果没给通知。</p>
-<p>面试三天，真的是超级累，就吃一顿晚饭，一直在转公交，做地铁。后来决定先一家公司做着，博士玩伴佛山分公司。环境超级差，在中国陶瓷城里面，上班时间8-12，2-6。期间一个女的一直在放歌，很容易分散注意力。UI给的图什么也没标。给我的工资3.5k+房补什么的，两天写了个主页，对我来说已经很努力了。结果那个不懂技术的人事第三天喊我谈话，说我做的慢，还要压工资。当时脑子里面就一万个草泥马，你想做的快，你就去找有工作经验的啊。当时我也没说什么，把东西删了就走了。外包公司，也没想干下去。刚好昨天下午，另外一家公司（广东嘉泰）电话让去上班，我拒绝了。</p>
-<p>面试加工作几天学到不少东西，准备回桂林学习学习再来的，下午在网吧查资料的时候，一个人事给我发了条信息，心里想下午也没事就约了面试，去了直接就过了。当时没敢提工资，说了4k，结果技术总监直接给了4k，周一来上班。回去查了查公司（广东云立方互动科技有限公司），做大数据广告营销的，感觉还不错。周一来上班有个老哥专门给我交接工作，给我讲业务逻辑和代码。</p>
-<p>过了三天发现事情并不简单，vue+element-ui ，界面应该是没问题的，主要是各种数据交互，之前没有接触过。很多东西看的很吃力，给人家问的直接把电脑搬我旁边来了。问题点还是出在自己这里，JS基础太差。跟总监和带我那老哥沟通过以后，决定坚持一下。后来实在感觉心有余而力不足，就辞职了。总监给了一个培养的想法，但是自己问题很大就拒绝了。。。。。虽然在公司学到的东西自学学不到，但是公司里学习的时间太少了。</p>
-<p><strong>7.28</strong>离职以后回桂林，准备从头到尾过一遍，传智播客&amp;黑马程序员的培训视频。昨天包夜下载的，磁盘都快满了
-<img src="https://upload-images.jianshu.io/upload_images/8468194-1fb4a5e5771dc3c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="磁盘空间"></p>
-<p>学了三天，把html+css+js基础过了一遍，1.5倍速，确实发现好多不会的。培训班的视频是15天，感觉学的东西还是要整理，所以决定来简书写一写。今天坐的太累了，明天早上起来梳理一下知识点，今天就先到这，加油！</p>
 ]]></content>
     </entry>
 </feed>

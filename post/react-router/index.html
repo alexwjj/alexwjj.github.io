@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Webpack  入门配置 | 俊劫、的前端博客</title>
+<title>React router | 俊劫、的前端博客</title>
 <meta name="description" content="讲个笑话，你可别哭。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -110,47 +110,78 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Webpack  入门配置</h2>
+            <h2 class="post-title">React router</h2>
             <div class="post-date">2019-06-05</div>
             
-              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/webpack-ru-men-pei-zhi.png')">
+              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/react-router.png')">
               </div>
             
             <div class="post-content">
-              <blockquote>
-<p>简单的介绍下 webpack 基本知识</p>
-</blockquote>
-<!-- more -->
-<h2 id="入口entry">入口(entry)</h2>
-<p>webpack 应该使用哪个模块，来作为构建其内部依赖图的开始</p>
-<h2 id="输出output">输出(output)</h2>
-<p>告诉 webpack 在哪里输出它所创建的 bundles，以及如何命名这些文件，默认值为 ./dist。</p>
-<h2 id="loader">loader</h2>
-<p>loader 让 webpack 能够去处理那些非 JavaScript 文件（webpack 自身只理解 JavaScript）
-对一个单独的 module 对象定义了 rules 属性，里面包含两个必须属性：test 和 use。告诉webpack碰到test定义的文件时使用use的loader处理一下</p>
-<h2 id="plugins">plugins</h2>
-<p>插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。想要使用一个插件，你只需要require() 它，然后把它添加到 plugins 数组中</p>
-<p>loaders是在打包构建过程中用来处理源文件的（JSX，Scss，Less..），一次处理一个，插件并不直接操作单个文件，它直接对整个构建过程其作用。</p>
-<p>uglify是用来压缩js代码的</p>
-<p>html-webpack-plugin能够创建index.html.open-browser-webpack-plugin 能在webpack加载的时候打开一个浏览器标签页</p>
-<p>使用require.ensure 来定义一个拆分点,用来告诉webpack 这个./a.js应该从bundle.js 中拆分，并且生成一个单独的文件</p>
-<p>使用externals来暴露全局变量</p>
-<p>Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。</p>
-<p>Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。</p>
-<p>“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。</p>
-<p>处理浏览器缓存：webpack可以把一个哈希值添加到打包的文件名中，使用方法如下,添加特殊的字符串混合体（[name], [id] and [hash]）到输出文件名前，添加了hash之后，会导致改变文件内容后重新打包时，文件名不同而内容越来越多，因此这里介绍另外一个很好用的插件clean-webpack-plugin</p>
-<h2 id="webpack-dev-server">webpack-dev-server</h2>
-<p>webpack-dev-server启动了一个使用express的Http服务器，这个服务器与客户端采用websocket通信协议，当原始文件发生改变，webpack-dev-server会实时编译。</p>
-<p>这里注意两点:</p>
-<p>1.webpack-dev-server伺服的是资源文件，不会对index.html的修改做出反应</p>
-<p>2.webpack-dev-server生成的文件在内存中，因此不会呈现于目录中，生成路径由content-base指定，不会输出到output目录中。</p>
+              <p>1.使用时，路由器Router就是React的一个组件。
+React.render((
+<Router>
+<Route path="/" component={App}>
+<Route path="about" component={About} />
+<Route path="inbox" component={Inbox}>
+<Route path="messages/:id" component={Message} />
+</Route>
+</Route>
+</Router>
+), document.body)</p>
+<p>IndexRoute解决App组件中this.porps.children为undefined时的问题，显式指定Home是根路由的子组件，即指定默认情况下加载的子组件。你可以把IndexRoute想象成某个路径的index.html。
+<Router>
+<Route path="/" component={App}>
+<IndexRoute component={Home}/>
+<Route path="accounts" component={Accounts}/>
+<Route path="statements" component={Statements}/>
+</Route>
+</Router>
+渲染：访问 /
+<App>
+<Home/>
+</App>
+如果我们可以将 /inbox 从 /inbox/messages/:id 中去除，并且还能够让 Message 嵌套在 App -&gt;Inbox 中渲染
+绝对路径{/* 使用 /messages/:id 替换 messages/:id <em>/}
+<Route path="/messages/:id" component={Message} />
+路由跳转{/</em> 跳转 /inbox/messages/:id 到 /messages/:id */}
+<Redirect from="messages/:id" to="/messages/:id" /></p>
+<p>2.Route 可以定义 onEnter 和 onLeave 两个 hook ，这些hook会在页面跳转确认时触发一次
+onLeave （内到外）从最下层的子路由开始直到最外层父路由结束。然后onEnter（外到内）会从最外层的父路由开始直到最下层子路由结束。</p>
+<p>3.路由路径是匹配一个（或一部分）URL 的 一个字符串模式。大部分的路由路径都可以直接按照字面量理解，除了以下几个特殊的符号：
+:paramName – 匹配一段位于 /、? 或 # 之后的 URL。 命中的部分将被作为一个参数
+() – 在它内部的内容被认为是可选的</p>
+<ul>
+<li>– 匹配任意字符（非贪婪的）直到命中下一个字符或者整个 URL 的末尾，并创建一个 splat 参数
+<Route path="/hello/:name">         // 匹配 /hello/michael 和 /hello/ryan
+<Route path="/hello(/:name)">       // 匹配 /hello, /hello/michael 和 /hello/ryan
+<Route path="/files/*.*">           // 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg</li>
+</ul>
+<p>使用绝对路径可以使路由匹配行为忽略嵌套关系</p>
+<p>路由匹配规则是从上到下执行，一旦发现匹配，就不再其余的规则了。（同名路由只执行第一个）带参数的路径一般要写在路由规则的底部。</p>
+<p>4.History
+React Router 是建立在 history 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。</p>
+<p>常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。
+browserHistory使用浏览器中的 History API 用于处理 URL，创建一个像example.com/some/path这样真实的 URL 。
+hashHistory
+createMemoryHistory</p>
+<p>5.重定向
+<Redirect>组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由。
+＜Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;
+现在访问/inbox/messages/5，会自动跳转到/messages/5。
+IndexRedirect （2.x）IndexRoute（4.x）
+组件用于访问根路由的时候，将用户重定向到某个子组件。</p>
+<p>Link组件用于取代<a>元素，生成一个链接，允许用户点击后跳转到另一个路由。它基本上就是<a>元素的React 版本，可以接收Router的状态。</p>
+<p>如果链接到根路由/，不要使用Link组件，而要使用IndexLink组件。
+<IndexLink to="/" activeClassName="active">
+Home
+</IndexLink></p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://alexwjj.github.io//tag/Tools" class="tag">
-                    前端工具
+                  <a href="https://alexwjj.github.io//tag/React" class="tag">
+                    React
                   </a>
                 
               </div>
@@ -158,9 +189,9 @@
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://alexwjj.github.io//post/markdown-ce-shi">
+                <a href="https://alexwjj.github.io//post/react-ru-men">
                   <h3 class="post-title">
-                    Git 常用操作
+                    React 入门
                   </h3>
                 </a>
               </div>
