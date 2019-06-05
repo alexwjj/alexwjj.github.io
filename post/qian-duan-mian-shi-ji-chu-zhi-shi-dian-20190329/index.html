@@ -1,172 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://alexwjj.github.io/</id>
-    <title>俊劫、的前端博客</title>
-    <updated>2019-06-05T09:40:02.741Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://alexwjj.github.io/"/>
-    <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
-    <subtitle>讲个笑话，你可别哭。</subtitle>
-    <logo>https://alexwjj.github.io//images/avatar.png</logo>
-    <icon>https://alexwjj.github.io//favicon.ico</icon>
-    <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
-    <entry>
-        <title type="html"><![CDATA[Git 常用操作]]></title>
-        <id>https://alexwjj.github.io//post/markdown-ce-shi</id>
-        <link href="https://alexwjj.github.io//post/markdown-ce-shi">
-        </link>
-        <updated>2019-06-05T06:28:00.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p><strong>实际工作中 Git 的使用方法</strong></p>
-<p><strong>持续更新</strong></p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p><strong>实际工作中 Git 的使用方法</strong></p>
-<p><strong>持续更新</strong></p>
-</blockquote>
-<!-- more -->
-<h2 id="1git环境配置">1.git环境配置</h2>
-<p>git config --global user.email &quot;798595965@qq.com&quot;</p>
-<p>git config --global user.name &quot;wjj&quot;</p>
-<p>由于你的本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以我们需要配置验证信息：
-使用以下命令生成SSH Key：
-<code>ssh-keygen -t rsa -C &quot;798595965@qq.com&quot;</code></p>
-<p>使用默认的一路回车就行。成功的话会在~/下生成.ssh文件夹，进去，打开 id_rsa.pub，复制里面的 key。
-在github上的选择 SSH and GPG keys，然后点击 New SSH key 按钮,title 设置标题，可以随便填，粘贴在你电脑上生成的 key</p>
-<h2 id="2git流程图">2.git流程图</h2>
-<p><img src="https://alexwjj.github.io//post-images/1559721513118.png" alt=""></p>
-<h2 id="3git的基本操作">3.Git的基本操作</h2>
-<p>1.进入git的安装目录，使用git init newrepo创建新的仓库  cd newrepo开始操作</p>
-<p>2.克隆仓库git clone newrepo/(git仓库) newrepo_clone（地址）</p>
-<p>3.在仓库目录下，创建文件touch a /touch b  使用git add a将a添加到暂存区中</p>
-<p>4.git commit -m &quot;Ininial commit&quot;将文件从暂存区提交到历史记录(&quot;&quot;说明修改的内容)</p>
-<p>5.git reset HEAD 命令用于取消已缓存的内容。 git checkout a 将rm删除的a还原</p>
-<p>6.git rm a 同时删除工作区和暂存区的文件，git rm --cache a只删除暂存区文件</p>
-<p>7.git mv a c (a重命名为c)</p>
-<p>8.git add -A将整个工作区添加到暂存区，在工作区目录下创建gitignore文件，通过通配符*[oa],*.pyc来忽略掉这些后缀的文件，通过!test.pyc处理需要的文件</p>
-<p>9.git status -s 以精简的方式显示文件状态</p>
-<p>A：新文件第一次被添加进版本管理</p>
-<p>M:红色为修改过未被添加进暂存区的，绿色为已经添加进暂存区的**</p>
-<h2 id="4git-查看提交历史log">4.Git 查看提交历史（log）</h2>
-<p>1.git log查看历史提交项目</p>
-<p>2.git log --online查看历史纪录的简洁版本</p>
-<p>3.git log --online --graph查看历史中什么时候出现了出现了分支合并</p>
-<p>4.git log --author=wjj 查看用户wjj提交的部分</p>
-<h2 id="5git-标签tag">5.Git 标签（tag）</h2>
-<ol>
-<li>
-<p>git tag -a v1.0 （-a 选项意为&quot;创建一个带注解的标签&quot;）</p>
-<p>git tag -a v0.9 85fc7e7（忘了给某个提交打标签，又将它发布了，我们可以给它追加标签）</p>
-</li>
-</ol>
-<p>2.指定标签信息命令：git tag -a <tagname> -m &quot;tag标签&quot;</p>
-<p>3.删除标签：git tag -d v1.1</p>
-<p>4.查看此版本所修改的内容：git show v1.0</p>
-<h2 id="6git命令">6.Git命令</h2>
-<p>切换分支：git checkout name</p>
-<p>撤销修改：git checkout -- file</p>
-<p>删除文件：git rm file</p>
-<p>查看状态：git status</p>
-<p>添加记录：git add file 或 git add .</p>
-<p>添加描述：git commit -m &quot;miao shu nei rong&quot;</p>
-<p>同步数据：git pull</p>
-<p>提交数据：git push origin name</p>
-<h3 id="分支操作">分支操作</h3>
-<p>查看分支：git branch</p>
-<p>创建分支：git branch name</p>
-<p>切换分支：git checkout name</p>
-<p>创建+切换分支：git checkout -b name</p>
-<p>合并某分支到当前分支：git merge name</p>
-<p>删除分支：git branch -d name</p>
-<p>删除远程分支：git push origin :name</p>
-<h3 id="存储操作">存储操作</h3>
-<p>git stash经常有这样的事情发生，当你正在进行项目中某一部分的工作，里面的东西处于一个比较杂乱的状态，而你想转到其他分支上进行一些工作。问题是，你不想提交进行了一半的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是git stash命令</p>
-<p>git stash pop 恢复最新进度到工作区。git默认会把工作区和暂存区的改动都恢复到工作区。</p>
-<p>git stash apply 除了不删除恢复的进度之外，其余和git stash pop 命令一样。</p>
-<p>git stash drop 删除一个存储的进度。如果不指定stash_id，则默认删除最新的存储进度。</p>
-<p>git stash clear 删除所有存储的进度。</p>
-<p>git 误删文件和恢复指令</p>
-<p>git  fsck --lost -found :查看最近移除的文件</p>
-<p>git show  '误删编号'：查看删除文件内容</p>
-<p>git merge ‘误删编号’： 本地合并误删的文件内容</p>
-<h2 id="7git分支重命名">7.git分支重命名</h2>
-<p>在git中重命名远程分支，就是先删除远程分支，然后重命名本地分支，再重新提交一个远程分支。</p>
-<p>git push --delete origin 老分支</p>
-<p>git branch -m 老分支 新分支</p>
-<p>git push origin 新分支</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[前言   ——俊劫、]]></title>
-        <id>https://alexwjj.github.io//post/foreword</id>
-        <link href="https://alexwjj.github.io//post/foreword">
-        </link>
-        <updated>2019-05-31T12:27:28.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p><strong>首先</strong> 如果你能看到这个博客，茫茫人海中，都是缘分。</p>
-<p><strong>QQ</strong>  798595965  <strong>VX</strong>  18697737169  欢迎骚扰哈。</p>
-<p><strong>2019-05-31</strong>  blog-version5.0 上线。</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p><strong>首先</strong> 如果你能看到这个博客，茫茫人海中，都是缘分。</p>
-<p><strong>QQ</strong>  798595965  <strong>VX</strong>  18697737169  欢迎骚扰哈。</p>
-<p><strong>2019-05-31</strong>  blog-version5.0 上线。</p>
-</blockquote>
-<!-- more -->
-<h2 id="1说点啥">1.说点啥</h2>
-<hr>
-<p>作为一个<strong>程序员</strong> ， 文笔可能有点差，但是都没关系。第一篇文章嘛，写写搭建这个博客的背景及未来想做的事情</p>
-<h2 id="2关于博客网站">2.关于博客网站</h2>
-<hr>
-<p>从2018年6月份开始，为了找工作，开始了做博客网站的历程。</p>
-<p><strong>第一版</strong>，找的<strong>BootStrap</strong> 的模板，然后进行修改，搞了挺长时间的，写了一个静态页面，放在阿里云学生服务器上。由于不懂性能优化，导致界面加载很卡，也在后续的面试演示中丢了面子，但还是靠着它找到了第一份实习（干了一周）。（刚开始不会用 github，源码就找不到了）</p>
-<p><strong>第二版</strong>，自学前端的时用<strong>BootStrap</strong>练手写了一个简洁的响应式界面，把自己学习的时候做的一些小项目都放上去了，靠着它来杭州找到了第二份实习（至今）。GitHub:<a href="https://github.com/alexwjj/Alex">blog-version2.0</a>
-<img src="https://alexwjj.github.io//post-images/1559720968955.png" alt=""></p>
-<p><strong>第三版</strong>，用的<strong>wordPress</strong>搭建动态博客，写了一些东西，但是感觉不自由，放在阿里云服务器一直也没怎么维护。GitHub:<a href="https://github.com/alexwjj/alex-blog">blog-version3.0</a>
-<img src="https://alexwjj.github.io//post-images/1559721023136.png" alt=""></p>
-<p><strong>第四版</strong>，之前老师定的毕业论文题目是基于 Java 的 XXX，后来和老师商量了下，说自己不太懂 Java 就换成了基于Node.js 的博客系统。刚好服务器6月份到期，当初的目的也只是练习 Node.js 和应付论文。
-GitHub:<a href="https://github.com/alexwjj/dissertation">blog-version4.0</a>
-<img src="https://alexwjj.github.io//post-images/1559721086585.png" alt="">
-<img src="https://alexwjj.github.io//post-images/1559721070575.png" alt=""></p>
-<p><strong>第五版</strong>，有了前面四次的经验，这一次我想到了 Github Pages。静态页面，永久保存，MarkDown，模板简洁。很符合自己的要求。之前fork 别人的仓库，每次编写都需要操作代码，不太喜欢。然后就搁置了很久没动。今天公司举办了儿童节活动，抽完奖(AD 钙奶)，没心思工作，无意间发现了Gridea 这款编辑器。以软件配置的方式帮助搭建 Github Pages，发博文也可以直接写 MarkDown。GitHub:<a href="https://github.com/alexwjj/alexwjj.github.io">blog-version5.0</a>
-<img src="https://alexwjj.github.io//post-images/1559721118477.png" alt=""></p>
-<p><strong>很完美</strong>，所以以后就要坚持写下去了，毕竟嘛，做技术的，谁没个让人家羡慕的博客。</p>
-<h2 id="3规划">3.规划</h2>
-<p>也没想太多，简单的规划下，至少保证每周更新两篇吧，技术学习与生活分享。</p>
-<table>
-<thead>
-<tr>
-<th>前端</th>
-<th>技术学习、技术分享</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>生活</td>
-<td>心态变化、趣事分享、人生哲理(吹牛皮)</td>
-</tr>
-<tr>
-<td>规划</td>
-<td>周规划、月规划、季规划</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[前端面试基础知识点  20190329]]></title>
-        <id>https://alexwjj.github.io//post/qian-duan-mian-shi-ji-chu-zhi-shi-dian-20190329</id>
-        <link href="https://alexwjj.github.io//post/qian-duan-mian-shi-ji-chu-zhi-shi-dian-20190329">
-        </link>
-        <updated>2019-03-29T08:42:00.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>个人总结的面试技巧
-针对个人基础知识点来梳理的</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>前端面试基础知识点  20190329 | 俊劫、的前端博客</title>
+<meta name="description" content="讲个笑话，你可别哭。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1559727596390">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://alexwjj.github.io/">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1559727596390" class="site-logo">
+        <h1 class="site-title">俊劫、的前端博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/alexwjj" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/u/3027423487/home" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+          <a class="social-link" href="https://www.zhihu.com/people/biuzhu-biubiu/activities" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      讲个笑话，你可别哭。
+    </div>
+    <div class="site-footer">
+      来自一个炒鸡牛批的前端工程师！ | <a class="rss" href="https://alexwjj.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">前端面试基础知识点  20190329</h2>
+            <div class="post-date">2019-03-29</div>
+            
+              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/qian-duan-mian-shi-ji-chu-zhi-shi-dian-20190329.png')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
 <p>个人总结的面试技巧
 针对个人基础知识点来梳理的</p>
 </blockquote>
@@ -562,46 +513,84 @@ getEle会，queryS不会</p>
 <h1 id="2019-3-29">2019-3-29</h1>
 <pre><code>为了春招准备的，由于菜导致没有 offer。。。
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[前端自学31天]]></title>
-        <id>https://alexwjj.github.io//post/fe-study</id>
-        <link href="https://alexwjj.github.io//post/fe-study">
-        </link>
-        <updated>2018-08-01T12:00:58.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>时间 <strong>2018.08.01</strong></p>
-</blockquote>
-<blockquote>
-<p>之前写在简书的笔记，现在搬运过来。</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>时间 <strong>2018.08.01</strong></p>
-</blockquote>
-<blockquote>
-<p>之前写在简书的笔记，现在搬运过来。</p>
-</blockquote>
-<!-- more -->
-<h1 id="简书笔记链接">简书笔记链接</h1>
-<p><a href="https://www.jianshu.com/u/81a990ed5eff">前端自学日记</a></p>
-<h2 id="说说之前的故事吧">说说之前的故事吧</h2>
-<p><strong>6月中旬</strong>，就开始准备面试相关的事情，心里一边想着期末考试该怎么办，一边想着暑假该去哪里实习。后来决定去附近的郑州学习学习面试经验，顺便去看看我姐那所谓的国际学院。</p>
-<p>在Boss直聘上约好了几家面试之后，硬拉着另外一个人不考研的室友就去了。结果，第一家郑州代码云科技有限公司就是培训机构，打着实习的名义来招学生。第二家河南金汇鑫，公司环境不错。但是，面试过程中，问了几个基础的问题我都没答出来，场面一度很尴尬。</p>
-<p>JS向数组中添加元素，我答：add。</p>
-<p>v-model是干嘛得，我答：不常用，不了解。</p>
-<p>写过JS正则表达式吗，我答：会简单的，用的话基本靠找。</p>
-<p>面试大哥也跟我说了，公司偏后台Java，JS要求比较高，其实我也只是去试试水，稍微背了几道面试题。当时给我打击的出来就想去培训班，下午的面试也不想去了。那种感觉是在学校体会不到的。看了看车票都是下午的，然后想着也没事就去下一家（郑州乐鸟）试试看。结果峰回路转，问的问题我大部分都有背过，面试就过了，但是第一个月试用期只有2k，转正4-6k。还想跑下一家的时候想提前打电话问一下，结果我到了给我说不要没工作经验的，郑州金帮手，这家坑啊。当大家都很无聊吗？</p>
-<p>24号考试，我20号晚上到的学校，然后21休息了半天才开始复习，心里面又慌又想打会联盟。</p>
-<p><strong>7月份</strong>考完，把寝室的东西都打包快递回家，花了75块钱。也在考虑到底要不要去郑州乐鸟，无意间在朋友圈看到有同学在广州然后就决定来广州试试，而且我爸妈在桂林，中间也就两个小时动车的路程。在家呆了10天左右，好好准备了下面试，看了看vue.js的基础。</p>
-<p><strong>7.10号</strong>来桂林，7.14到广州，面试7家，过了3家，两家因为微信小程序没过，两家大公司因为基础太差，面试题写的很一般，没过。其实有家紫鲸互联的，题写的还想，技术面聊的还不错，中间展示了几个项目（个人博客因为服务器太垃圾，没加载出来），结果没给通知。</p>
-<p>面试三天，真的是超级累，就吃一顿晚饭，一直在转公交，做地铁。后来决定先一家公司做着，博士玩伴佛山分公司。环境超级差，在中国陶瓷城里面，上班时间8-12，2-6。期间一个女的一直在放歌，很容易分散注意力。UI给的图什么也没标。给我的工资3.5k+房补什么的，两天写了个主页，对我来说已经很努力了。结果那个不懂技术的人事第三天喊我谈话，说我做的慢，还要压工资。当时脑子里面就一万个草泥马，你想做的快，你就去找有工作经验的啊。当时我也没说什么，把东西删了就走了。外包公司，也没想干下去。刚好昨天下午，另外一家公司（广东嘉泰）电话让去上班，我拒绝了。</p>
-<p>面试加工作几天学到不少东西，准备回桂林学习学习再来的，下午在网吧查资料的时候，一个人事给我发了条信息，心里想下午也没事就约了面试，去了直接就过了。当时没敢提工资，说了4k，结果技术总监直接给了4k，周一来上班。回去查了查公司（广东云立方互动科技有限公司），做大数据广告营销的，感觉还不错。周一来上班有个老哥专门给我交接工作，给我讲业务逻辑和代码。</p>
-<p>过了三天发现事情并不简单，vue+element-ui ，界面应该是没问题的，主要是各种数据交互，之前没有接触过。很多东西看的很吃力，给人家问的直接把电脑搬我旁边来了。问题点还是出在自己这里，JS基础太差。跟总监和带我那老哥沟通过以后，决定坚持一下。后来实在感觉心有余而力不足，就辞职了。总监给了一个培养的想法，但是自己问题很大就拒绝了。。。。。虽然在公司学到的东西自学学不到，但是公司里学习的时间太少了。</p>
-<p><strong>7.28</strong>离职以后回桂林，准备从头到尾过一遍，传智播客&amp;黑马程序员的培训视频。昨天包夜下载的，磁盘都快满了
-<img src="https://upload-images.jianshu.io/upload_images/8468194-1fb4a5e5771dc3c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="磁盘空间"></p>
-<p>学了三天，把html+css+js基础过了一遍，1.5倍速，确实发现好多不会的。培训班的视频是15天，感觉学的东西还是要整理，所以决定来简书写一写。今天坐的太累了，明天早上起来梳理一下知识点，今天就先到这，加油！</p>
-]]></content>
-    </entry>
-</feed>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://alexwjj.github.io//tag/interView" class="tag">
+                    面试技巧
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://alexwjj.github.io//post/fe-study">
+                  <h3 class="post-title">
+                    前端自学31天
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '3a75e9876da102702b06',
+        clientSecret: '9b9c930a40f564a860f43ce401d79bebd588137f',
+        repo: 'alexwjj.github.io',
+        owner: 'alexwjj',
+        admin: ['alexwjj'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
