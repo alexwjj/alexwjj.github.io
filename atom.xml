@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-05T13:23:31.899Z</updated>
+    <updated>2019-06-06T03:43:22.940Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -221,77 +221,87 @@ webscoket数据传递
         <link href="https://alexwjj.github.io//post/redux">
         </link>
         <updated>2019-06-05T11:31:18.000Z</updated>
-        <content type="html"><![CDATA[<p>1.方式
-应用中所有的 state 都以一个对象树的形式储存在一个单一的 store 中。 惟一改变 state 的办法是触发 action，一个描述发生什么的对象。 为了描述 action 如何改变 state 树，你需要编写 reducers。</p>
-<p>2.三大原则
-1.单一数据源
-整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。</p>
-<p>2.State 是只读的
-唯一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。</p>
-<p>3.使用纯函数来执行修改
-为了描述 action 如何改变 state tree ，你需要编写 reducers
-Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。</p>
-<p>3.基础</p>
-<p>Action
-Action 是把数据从应用传到 store 的有效载荷。它是 store 数据的唯一来源。一般来说你会通过 store.dispatch() 将 action 传到 store。</p>
-<p>action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。多数情况下，type 会被定义成字符串常量。当应用规模越来越大时，建议使用单独的模块或文件来存放 action。
-import { ADD_TODO, REMOVE_TODO } from '../actionTypes'</p>
-<p>最后，再添加一个 action type 来表示当前的任务展示选项。
-{
-type: SET_VISIBILITY_FILTER,
-filter: SHOW_COMPLETED
-}</p>
-<p>store 里能直接通过 store.dispatch() 调用 dispatch() 方法，但是多数情况下你会使用 react-redux提供的 connect() 帮助器来调用。bindActionCreators() 可以自动把多个 action 创建函数 绑定到 dispatch() 方法上。</p>
-<p>Reducer
-定义
-Reducers 指定了应用状态的变化如何响应 actions 并发送到 store 的，记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state。</p>
-<p>之所以将这样的函数称之为reducer，是因为这种函数与被传入 Array.prototype.reduce(reducer, ?initialValue) 里的回调函数属于相同的类型。</p>
-<p>注意：
-1.不要修改 state。 使用 Object.assign() 新建了一个副本。不能这样使用 Object.assign(state, { visibilityFilter: action.filter })，因为它会改变第一个参数的值。你必须把第一个参数设置为空对象。这样写return Object.assign({}, state,{visibilityFilter: action.filter})
-2.在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state。</p>
-<p>Reducer分类
-每个 reducer 只负责管理全局 state 中它负责的一部分。每个 reducer 的 state 参数都不同，分别对应它管理的那部分 state 数据。
-function todoApp(state = {}, action) {
-return {
-visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-todos: todos(state.todos, action)
+        <summary type="html"><![CDATA[<blockquote>
+<p>对比 VueX 总结 Redux 的简单使用方法</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>对比 VueX 总结 Redux 的简单使用方法</p>
+</blockquote>
+<!-- more -->
+<h2 id="1方式">1.方式</h2>
+<p>应用中所有的 state 都以一个对象树的形式储存在一个单一的 store 中。 惟一改变 state 的办法是触发 action，一个描述发生什么的对象。 为了描述 action 如何改变 state 树，你需要编写 reducers。</p>
+<h2 id="2三大原则">2.三大原则</h2>
+<p>1.单一数据源</p>
+<p>整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。</p>
+<p>2.State 是只读的</p>
+<p>唯一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。</p>
+<p>3.使用纯函数来执行修改</p>
+<p>为了描述 action 如何改变 state tree ，你需要编写 reducers；Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。</p>
+<h2 id="3基础">3.基础</h2>
+<h3 id="action">Action</h3>
+<p>Action 是把数据从应用传到 store 的有效载荷。它是 store 数据的唯一来源。一般来说你会通过 store.dispatch() 将 action 传到 store。</p>
+<p>action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。多数情况下，type 会被定义成字符串常量。当应用规模越来越大时，建议使用单独的模块或文件来存放 action。</p>
+<p><code>import { ADD_TODO, REMOVE_TODO } from '../actionTypes'</code></p>
+<p>最后，再添加一个 action type 来表示当前的任务展示选项。</p>
+<pre><code>{
+  type: SET_VISIBILITY_FILTER,
+  filter: SHOW_COMPLETED
 }
-}</p>
-<p>Redux 提供了 combineReducers() 工具类来做上面 todoApp 做的事情，这样就能消灭一些样板代码了。有了它，可以这样重构 todoApp
-const todoApp = combineReducers({
-visibilityFilter,
-todos
-})</p>
-<p>Store
-Store 就是把它们联系到一起的对象。Store 有以下职责：
-维持应用的 state；
-提供 getState() 方法获取 state；
-提供 dispatch(action) 方法更新 state；
-通过 subscribe(listener) 注册监听器;
-通过 subscribe(listener) 返回的函数注销监听器。
-createStore() 的第二个参数是可选的, 用于设置 state 初始状态。</p>
-<p>单向数据流</p>
+</code></pre>
+<p>store 里能直接通过 store.dispatch() 调用 dispatch() 方法，但是多数情况下你会使用 react-redux提供的 connect() 帮助器来调用。bindActionCreators() 可以自动把多个 action 创建函数 绑定到 dispatch() 方法上。</p>
+<h3 id="reducer">Reducer</h3>
+<h3 id="定义">定义</h3>
+<p>Reducers 指定了应用状态的变化如何响应 actions 并发送到 store 的，记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state。</p>
+<p>之所以将这样的函数称之为reducer，是因为这种函数与被传入 Array.prototype.reduce(reducer, ?initialValue) 里的回调函数属于相同的类型。</p>
+<h3 id="注意">注意</h3>
+<p>1.不要修改 state。 使用 Object.assign() 新建了一个副本。不能这样使用 Object.assign(state, { visibilityFilter: action.filter })，因为它会改变第一个参数的值。你必须把第一个参数设置为空对象。这样写return Object.assign({}, state,{visibilityFilter: action.filter})</p>
+<p>2.在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state。</p>
+<h3 id="reducer分类">Reducer分类</h3>
+<p>每个 reducer 只负责管理全局 state 中它负责的一部分。每个 reducer 的 state 参数都不同，分别对应它管理的那部分 state 数据。</p>
+<pre><code>function todoApp(state = {}, action) {
+  return {
+    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+    todos: todos(state.todos, action)
+  }
+}
+</code></pre>
+<p>Redux 提供了 combineReducers() 工具类来做上面 todoApp 做的事情，这样就能消灭一些样板代码了。有了它，可以这样重构 todoApp</p>
+<pre><code>const todoApp = combineReducers({
+  visibilityFilter,
+  todos
+})
+</code></pre>
+<h3 id="store">Store</h3>
+<p>Store 就是把它们联系到一起的对象。Store 有以下职责：</p>
+<pre><code>* 维持应用的 state；
+* 提供 getState() 方法获取 state；
+* 提供 dispatch(action) 方法更新 state；
+* 通过 subscribe(listener) 注册监听器;
+* 通过 subscribe(listener) 返回的函数注销监听器。
+* createStore() 的第二个参数是可选的, 用于设置 state 初始状态。
+</code></pre>
+<h3 id="单向数据流">单向数据流</h3>
 <p>Redux 应用中数据的生命周期遵循下面 4 个步骤：</p>
 <p>1.调用 store.dispatch(action)。</p>
-<p>2.Redux store 调用传入的 reducer 函数。
-Store 会把两个参数传入 reducer： 当前的 state 树和 action。</p>
-<p>3.根 reducer 应该把多个子 reducer 输出合并成一个单一的 state 树。
-Redux 原生提供combineReducers()辅助函数，来把根 reducer 拆分成多个函数，用于分别处理 state 树的一个分支。</p>
+<p>2.Redux store 调用传入的 reducer 函数。Store 会把两个参数传入 reducer： 当前的 state 树和 action。</p>
+<p>3.根 reducer 应该把多个子 reducer 输出合并成一个单一的 state 树。Redux 原生提供combineReducers()辅助函数，来把根 reducer 拆分成多个函数，用于分别处理 state 树的一个分支。</p>
 <p>4.Redux store 保存了根 reducer 返回的完整 state 树。</p>
-<p>React + Redux</p>
-<p>容器组件
-容器组件就是使用 store.subscribe() 从 Redux state 树中读取部分数据，并通过 props 来把这些数据提供给要渲染的组件
-建议使用 React Redux 库的 connect() 方法来生成，这个方法做了性能优化来避免很多不必要的重复渲染。
-使用 connect() 前，需要先定义 mapStateToProps 这个函数来指定如何把当前 Redux store state 映射到展示组件的 props 中</p>
-<p>传入store
-所有容器组件都可以访问 Redux store，所以可以手动监听它。一种方式是把它以 props 的形式传入到所有容器组件中。
-建议的方式是使用指定的 React Redux 组件 <Provider> 来 魔法般的 让所有容器组件都可以访问 store，而不必显示地传递它。只需要在渲染根组件时使用即可。
-render(
-<Provider store={store}>
-<App />
-</Provider>,
-document.getElementById('root')
-)</p>
+<h3 id="react-redux">React + Redux</h3>
+<h3 id="容器组件">容器组件</h3>
+<p>容器组件就是使用 store.subscribe() 从 Redux state 树中读取部分数据，并通过 props 来把这些数据提供给要渲染的组件</p>
+<p>建议使用 React Redux 库的 connect() 方法来生成，这个方法做了性能优化来避免很多不必要的重复渲染。</p>
+<p>使用 connect() 前，需要先定义 mapStateToProps 这个函数来指定如何把当前 Redux store state 映射到展示组件的 props 中</p>
+<h3 id="传入store">传入store</h3>
+<p>所有容器组件都可以访问 Redux store，所以可以手动监听它。一种方式是把它以 props 的形式传入到所有容器组件中。</p>
+<p>建议的方式是使用指定的 React Redux 组件 <Provider> 来 魔法般的 让所有容器组件都可以访问 store，而不必显示地传递它。只需要在渲染根组件时使用即可。</p>
+<pre><code>render(
+  &lt;Provider store={store}&gt;
+    &lt;App /&gt;
+  &lt;/Provider&gt;,
+  document.getElementById('root')
+)
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -300,64 +310,90 @@ document.getElementById('root')
         <link href="https://alexwjj.github.io//post/react-router">
         </link>
         <updated>2019-06-05T11:29:13.000Z</updated>
-        <content type="html"><![CDATA[<p>1.使用时，路由器Router就是React的一个组件。
-React.render((
-<Router>
-<Route path="/" component={App}>
-<Route path="about" component={About} />
-<Route path="inbox" component={Inbox}>
-<Route path="messages/:id" component={Message} />
-</Route>
-</Route>
-</Router>
-), document.body)</p>
-<p>IndexRoute解决App组件中this.porps.children为undefined时的问题，显式指定Home是根路由的子组件，即指定默认情况下加载的子组件。你可以把IndexRoute想象成某个路径的index.html。
-<Router>
-<Route path="/" component={App}>
-<IndexRoute component={Home}/>
-<Route path="accounts" component={Accounts}/>
-<Route path="statements" component={Statements}/>
-</Route>
-</Router>
-渲染：访问 /
-<App>
-<Home/>
-</App>
-如果我们可以将 /inbox 从 /inbox/messages/:id 中去除，并且还能够让 Message 嵌套在 App -&gt;Inbox 中渲染
-绝对路径{/* 使用 /messages/:id 替换 messages/:id <em>/}
-<Route path="/messages/:id" component={Message} />
-路由跳转{/</em> 跳转 /inbox/messages/:id 到 /messages/:id */}
-<Redirect from="messages/:id" to="/messages/:id" /></p>
-<p>2.Route 可以定义 onEnter 和 onLeave 两个 hook ，这些hook会在页面跳转确认时触发一次
-onLeave （内到外）从最下层的子路由开始直到最外层父路由结束。然后onEnter（外到内）会从最外层的父路由开始直到最下层子路由结束。</p>
-<p>3.路由路径是匹配一个（或一部分）URL 的 一个字符串模式。大部分的路由路径都可以直接按照字面量理解，除了以下几个特殊的符号：
-:paramName – 匹配一段位于 /、? 或 # 之后的 URL。 命中的部分将被作为一个参数
+        <summary type="html"><![CDATA[<blockquote>
+<p>对比 vue router 看react router官方文档总结</p>
+</blockquote>
+<blockquote>
+<p>比较基础</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>对比 vue router 看react router官方文档总结</p>
+</blockquote>
+<blockquote>
+<p>比较基础</p>
+</blockquote>
+<!-- more -->
+<h2 id="1使用时路由器router就是react的一个组件">1.使用时，路由器Router就是React的一个组件。</h2>
+<pre><code>React.render((
+  &lt;Router&gt;
+    &lt;Route path=&quot;/&quot; component={App}&gt;
+      &lt;Route path=&quot;about&quot; component={About} /&gt;
+      &lt;Route path=&quot;inbox&quot; component={Inbox}&gt;
+        &lt;Route path=&quot;messages/:id&quot; component={Message} /&gt;
+      &lt;/Route&gt;
+    &lt;/Route&gt;
+  &lt;/Router&gt;
+), document.body)
+</code></pre>
+<p>IndexRoute解决App组件中this.porps.children为undefined时的问题，显式指定Home是根路由的子组件，即指定默认情况下加载的子组件。你可以把IndexRoute想象成某个路径的index.html。</p>
+<pre><code>&lt;Router&gt;
+  &lt;Route path=&quot;/&quot; component={App}&gt;
+    &lt;IndexRoute component={Home}/&gt;
+    &lt;Route path=&quot;accounts&quot; component={Accounts}/&gt;
+    &lt;Route path=&quot;statements&quot; component={Statements}/&gt;
+  &lt;/Route&gt;
+&lt;/Router&gt;
+</code></pre>
+<p>渲染：访问 /</p>
+<pre><code>&lt;App&gt;
+  &lt;Home/&gt;
+&lt;/App&gt;
+</code></pre>
+<p>如果我们可以将 /inbox 从 /inbox/messages/:id 中去除，并且还能够让 Message 嵌套在 App -&gt;Inbox 中渲染</p>
+<pre><code>* 绝对路径{/* 使用 /messages/:id 替换 messages/:id */}
+* &lt;Route path=&quot;/messages/:id&quot; component={Message} /&gt;
+* 路由跳转{/* 跳转 /inbox/messages/:id 到 /messages/:id */}
+* &lt;Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;
+</code></pre>
+<p>2.Route 可以定义 onEnter 和 onLeave 两个 hook ，这些hook会在页面跳转确认时触发一次</p>
+<p>onLeave （内到外）从最下层的子路由开始直到最外层父路由结束。然后onEnter（外到内）会从最外层的父路由开始直到最下层子路由结束。</p>
+<p>3.路由路径是匹配一个（或一部分）URL 的 一个字符串模式。大部分的路由路径都可以直接按照字面量理解，除了以下几个特殊的符号：</p>
+<p>:paramName – 匹配一段位于 /、? 或 # 之后的 URL。 命中的部分将被作为一个参数
 () – 在它内部的内容被认为是可选的</p>
 <ul>
-<li>– 匹配任意字符（非贪婪的）直到命中下一个字符或者整个 URL 的末尾，并创建一个 splat 参数
-<Route path="/hello/:name">         // 匹配 /hello/michael 和 /hello/ryan
-<Route path="/hello(/:name)">       // 匹配 /hello, /hello/michael 和 /hello/ryan
-<Route path="/files/*.*">           // 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg</li>
+<li>– 匹配任意字符（非贪婪的）直到命中下一个字符或者整个 URL 的末尾，并创建一个 splat 参数</li>
 </ul>
+<pre><code>&lt;Route path=&quot;/hello/:name&quot;&gt;         
+// 匹配 /hello/michael 和 /hello/ryan
+&lt;Route path=&quot;/hello(/:name)&quot;&gt;     
+// 匹配 /hello, /hello/michael 和 /hello/ryan
+&lt;Route path=&quot;/files/*.*&quot;&gt;          
+// 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg
+</code></pre>
 <p>使用绝对路径可以使路由匹配行为忽略嵌套关系</p>
 <p>路由匹配规则是从上到下执行，一旦发现匹配，就不再其余的规则了。（同名路由只执行第一个）带参数的路径一般要写在路由规则的底部。</p>
-<p>4.History
-React Router 是建立在 history 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。</p>
-<p>常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。
-browserHistory使用浏览器中的 History API 用于处理 URL，创建一个像example.com/some/path这样真实的 URL 。
-hashHistory
-createMemoryHistory</p>
-<p>5.重定向
-<Redirect>组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由。
+<h2 id="4history">4.History</h2>
+<p>React Router 是建立在 history 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。</p>
+<p>常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。</p>
+<ol>
+<li>browserHistory使用浏览器中的 History API 用于处理 URL，创建一个像example.com/some/path这样真实的 URL 。</li>
+<li>hashHistory</li>
+<li>createMemoryHistory</li>
+</ol>
+<h2 id="5重定向">5.重定向</h2>
+<pre><code>&lt;Redirect&gt;组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由。
 ＜Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;
 现在访问/inbox/messages/5，会自动跳转到/messages/5。
 IndexRedirect （2.x）IndexRoute（4.x）
-组件用于访问根路由的时候，将用户重定向到某个子组件。</p>
+组件用于访问根路由的时候，将用户重定向到某个子组件。
+</code></pre>
 <p>Link组件用于取代<a>元素，生成一个链接，允许用户点击后跳转到另一个路由。它基本上就是<a>元素的React 版本，可以接收Router的状态。</p>
-<p>如果链接到根路由/，不要使用Link组件，而要使用IndexLink组件。
-<IndexLink to="/" activeClassName="active">
-Home
-</IndexLink></p>
+<p>如果链接到根路由/，不要使用Link组件，而要使用IndexLink组件。</p>
+<pre><code>&lt;IndexLink to=&quot;/&quot; activeClassName=&quot;active&quot;&gt;
+  Home
+&lt;/IndexLink&gt;
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -369,42 +405,50 @@ Home
         <summary type="html"><![CDATA[<blockquote>
 <p>react 入门知识点</p>
 </blockquote>
+<blockquote>
+<p>对比着 Vue来看的</p>
+</blockquote>
 ]]></summary>
         <content type="html"><![CDATA[<blockquote>
 <p>react 入门知识点</p>
 </blockquote>
+<blockquote>
+<p>对比着 Vue来看的</p>
+</blockquote>
 <!-- more -->
 <h2 id="入门">入门</h2>
-<p>使用jsx语法， script的属性 type = 'text / babel'
-组件类的第一个字母必须大写，否则会报错，比如HelloMessage不能写成helloMessage。另外，组件类只能包含一个顶层标签，否则也会报错。
-添加组件属性，有一个地方需要注意，就是 class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。
-this.props.children 的值有三种可能：如果当前组件没有子节点，它就是 undefined ;如果有一个子节点，数据类型是 object ；如果有多个子节点，数据类型就是 array 。所以，处理 this.props.children 的时候要小心。
-React 提供一个工具方法 React.Children 来处理 this.props.children 。我们可以用 React.Children.map 来遍历子节点，而不用担心 this.props.children 的数据类型是 undefined 还是 object。
-组件类的PropTypes属性，就是用来验证组件实例的属性是否符合要求，getDefaultProps 方法可以用来设置组件属性的默认值。
-由于 this.props 和 this.state 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。
-文本输入框的值，不能用 this.props.value 读取，而要定义一个 onChange 事件的回调函数，通过 event.target.value 读取用户输入的值。textarea 元素、select元素、radio元素都属于这种情况
-组件生命周期三种状态：Mounting，Updating（正在重新被渲染），Unmounting。React 为每个状态都提供了两种处理函数，will 函数在进入状态之前调用，did 函数在进入状态之后调用，三种状态共计五种处理函数。componentWillMount() componentDidMount()
-组件样式：style={{opacity: this.state.opacity}}，因为 React 组件样式是一个对象，所以第一重大括号表示这是 JavaScript 语法，第二重大括号表示样</p>
+<pre><code>* 使用jsx语法， script的属性 type = 'text / babel'
+* 组件类的第一个字母必须大写，否则会报错，比如HelloMessage不能写成helloMessage。另外，组件类只能包含一个顶层标签，否则也会报错。
+* 添加组件属性，有一个地方需要注意，就是 class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。
+* this.props.children 的值有三种可能：如果当前组件没有子节点，它就是 undefined ;如果有一个子节点，数据类型是 object ；如果有多个子节点，数据类型就是 array 。所以，处理 this.props.children 的时候要小心。
+* React 提供一个工具方法 React.Children 来处理 this.props.children 。我们可以用 React.Children.map 来遍历子节点，而不用担心 this.props.children 的数据类型是 undefined 还是 object。
+* 组件类的PropTypes属性，就是用来验证组件实例的属性是否符合要求，getDefaultProps 方法可以用来设置组件属性的默认值。
+* 由于 this.props 和 this.state 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。
+* 文本输入框的值，不能用 this.props.value 读取，而要定义一个 onChange 事件的回调函数，通过 event.target.value 读取用户输入的值。textarea 元素、select元素、radio元素都属于这种情况
+* 组件生命周期三种状态：Mounting，Updating（正在重新被渲染），Unmounting。React 为每个状态都提供了两种处理函数，will 函数在进入状态之前调用，did 函数在进入状态之后调用，三种状态共计五种处理函数。componentWillMount() componentDidMount()
+* 组件样式：style={{opacity: this.state.opacity}}，因为 React 组件样式是一个对象，所以第一重大括号表示这是 JavaScript 语法，第二重大括号表示样
+</code></pre>
 <h2 id="注意点">注意点</h2>
-<p>getInitialState  初始化数据
-bind(this) 防止this指向错误 ，不写的话可以使用属性初始化和箭头函数（组件会重新渲染，不建议使用）。官方建议使用bind和属性初始化
-&quot; 字符串 &quot;     { 表达式 }
-onClick={activateLasers} 事件。在 React 中你不能使用返回 false 的方式阻止默认行为。你必须明确的使用 preventDefault
-在 JavaScript 中，true &amp;&amp; expression 总是返回 expression，而 false &amp;&amp; expression 总是返回 false。如下条件判断
-{unreadMessages.length &gt; 0 &amp;&amp;
-<h2>
-You have {unreadMessages.length} unread messages.
-</h2>
-}
-防止组件渲染 return null
-如果你选择不指定显式的键值，那么React将默认使用索引用（index）作为列表项目的键值。元素位于map()方法内时需要设置键属性
-在HTML当中，像<input>,<textarea>, 和 <select>这类表单元素会维持自身状态，并根据用户输入进行更新。他们都通过传入一个value属性来实现对组件的控制。
-组件嵌套{ props.children }          {props.left}  left = { <assembly/>}<br>
-如果你不初始化状态，也不绑定方法，那么你就不需要为React组件实现构造函数。不需要constructor
-如果子类加入了 constructor 构造函数，则一定要手动调用父类的构造函数 super</p>
+<pre><code>* getInitialState  初始化数据
+* bind(this) 防止this指向错误 ，不写的话可以使用属性初始化和箭头函数（组件会重新渲染，不建议使用）。官方建议使用bind和属性初始化
+* &quot; 字符串 &quot;     { 表达式 }
+* onClick={activateLasers} 事件。在 React 中你不能使用返回 false 的方式阻止默认行为。你必须明确的使用 preventDefault
+* 在 JavaScript 中，true &amp;&amp; expression 总是返回 expression，而 false &amp;&amp; expression 总是返回 false。如下条件判断
+* {unreadMessages.length &gt; 0 &amp;&amp;
+*         &lt;h2&gt;
+*           You have {unreadMessages.length} unread messages.
+*         &lt;/h2&gt;
+*       }
+* 防止组件渲染 return null
+* 如果你选择不指定显式的键值，那么React将默认使用索引用（index）作为列表项目的键值。元素位于map()方法内时需要设置键属性
+* 在HTML当中，像&lt;input&gt;,&lt;textarea&gt;, 和 &lt;select&gt;这类表单元素会维持自身状态，并根据用户输入进行更新。他们都通过传入一个value属性来实现对组件的控制。
+*   组件嵌套{ props.children }          {props.left}  left = { &lt;assembly/&gt;}   
+* 如果你不初始化状态，也不绑定方法，那么你就不需要为React组件实现构造函数。不需要constructor 
+* 如果子类加入了 constructor 构造函数，则一定要手动调用父类的构造函数 super
+</code></pre>
 <h2 id="react生命周期">React生命周期</h2>
 <p>https://mp.weixin.qq.com/s/6MKPF3a8MXb_lRM6o4rggA</p>
-<p>mount
+<pre><code>### mount
 1.constructor
 初始化state和绑定事件处理程序
 2.static getDerivedStateFromProps()
@@ -412,20 +456,24 @@ You have {unreadMessages.length} unread messages.
 3.render
 不渲染任何内容，返回布尔值或者null
 4.componentDidMount()
-render之后，挂载完成，调用该方法。一般写发送请求的</p>
-<p>update
+render之后，挂载完成，调用该方法。一般写发送请求的
+
+### update
 1.static getDerivedStateFromProps()
 2.shouldComponentUpdate()  性能优化点
 在调用 static getDerivedStateFromProps 方法之后，接下来会调用 nextComponentUpdate 方法。通过调用shouldComponentUpdate来控制是否要重新渲染组件
 3.reder()
 4.getSnapshotBeforeUpdate()
-5.componentDidUpdate()</p>
-<p>unMount
+5.componentDidUpdate()
+
+### unMount
 1.componentWillUnmount()
-资源清理</p>
-<p>error
+资源清理
+
+error
 1.static getDerivedStateFromError()
-2.componentDidCatch()</p>
+2.componentDidCatch()
+</code></pre>
 ]]></content>
     </entry>
     <entry>

@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1559741001862">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1559792598046">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://alexwjj.github.io/">
-        <img src="https://alexwjj.github.io//images/avatar.png?v=1559741001862" class="site-logo">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1559792598046" class="site-logo">
         <h1 class="site-title">俊劫、的前端博客</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -117,64 +117,83 @@
               </div>
             
             <div class="post-content">
-              <p>1.使用时，路由器Router就是React的一个组件。
-React.render((
-<Router>
-<Route path="/" component={App}>
-<Route path="about" component={About} />
-<Route path="inbox" component={Inbox}>
-<Route path="messages/:id" component={Message} />
-</Route>
-</Route>
-</Router>
-), document.body)</p>
-<p>IndexRoute解决App组件中this.porps.children为undefined时的问题，显式指定Home是根路由的子组件，即指定默认情况下加载的子组件。你可以把IndexRoute想象成某个路径的index.html。
-<Router>
-<Route path="/" component={App}>
-<IndexRoute component={Home}/>
-<Route path="accounts" component={Accounts}/>
-<Route path="statements" component={Statements}/>
-</Route>
-</Router>
-渲染：访问 /
-<App>
-<Home/>
-</App>
-如果我们可以将 /inbox 从 /inbox/messages/:id 中去除，并且还能够让 Message 嵌套在 App -&gt;Inbox 中渲染
-绝对路径{/* 使用 /messages/:id 替换 messages/:id <em>/}
-<Route path="/messages/:id" component={Message} />
-路由跳转{/</em> 跳转 /inbox/messages/:id 到 /messages/:id */}
-<Redirect from="messages/:id" to="/messages/:id" /></p>
-<p>2.Route 可以定义 onEnter 和 onLeave 两个 hook ，这些hook会在页面跳转确认时触发一次
-onLeave （内到外）从最下层的子路由开始直到最外层父路由结束。然后onEnter（外到内）会从最外层的父路由开始直到最下层子路由结束。</p>
-<p>3.路由路径是匹配一个（或一部分）URL 的 一个字符串模式。大部分的路由路径都可以直接按照字面量理解，除了以下几个特殊的符号：
-:paramName – 匹配一段位于 /、? 或 # 之后的 URL。 命中的部分将被作为一个参数
+              <blockquote>
+<p>对比 vue router 看react router官方文档总结</p>
+</blockquote>
+<blockquote>
+<p>比较基础</p>
+</blockquote>
+<!-- more -->
+<h2 id="1使用时路由器router就是react的一个组件">1.使用时，路由器Router就是React的一个组件。</h2>
+<pre><code>React.render((
+  &lt;Router&gt;
+    &lt;Route path=&quot;/&quot; component={App}&gt;
+      &lt;Route path=&quot;about&quot; component={About} /&gt;
+      &lt;Route path=&quot;inbox&quot; component={Inbox}&gt;
+        &lt;Route path=&quot;messages/:id&quot; component={Message} /&gt;
+      &lt;/Route&gt;
+    &lt;/Route&gt;
+  &lt;/Router&gt;
+), document.body)
+</code></pre>
+<p>IndexRoute解决App组件中this.porps.children为undefined时的问题，显式指定Home是根路由的子组件，即指定默认情况下加载的子组件。你可以把IndexRoute想象成某个路径的index.html。</p>
+<pre><code>&lt;Router&gt;
+  &lt;Route path=&quot;/&quot; component={App}&gt;
+    &lt;IndexRoute component={Home}/&gt;
+    &lt;Route path=&quot;accounts&quot; component={Accounts}/&gt;
+    &lt;Route path=&quot;statements&quot; component={Statements}/&gt;
+  &lt;/Route&gt;
+&lt;/Router&gt;
+</code></pre>
+<p>渲染：访问 /</p>
+<pre><code>&lt;App&gt;
+  &lt;Home/&gt;
+&lt;/App&gt;
+</code></pre>
+<p>如果我们可以将 /inbox 从 /inbox/messages/:id 中去除，并且还能够让 Message 嵌套在 App -&gt;Inbox 中渲染</p>
+<pre><code>* 绝对路径{/* 使用 /messages/:id 替换 messages/:id */}
+* &lt;Route path=&quot;/messages/:id&quot; component={Message} /&gt;
+* 路由跳转{/* 跳转 /inbox/messages/:id 到 /messages/:id */}
+* &lt;Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;
+</code></pre>
+<p>2.Route 可以定义 onEnter 和 onLeave 两个 hook ，这些hook会在页面跳转确认时触发一次</p>
+<p>onLeave （内到外）从最下层的子路由开始直到最外层父路由结束。然后onEnter（外到内）会从最外层的父路由开始直到最下层子路由结束。</p>
+<p>3.路由路径是匹配一个（或一部分）URL 的 一个字符串模式。大部分的路由路径都可以直接按照字面量理解，除了以下几个特殊的符号：</p>
+<p>:paramName – 匹配一段位于 /、? 或 # 之后的 URL。 命中的部分将被作为一个参数
 () – 在它内部的内容被认为是可选的</p>
 <ul>
-<li>– 匹配任意字符（非贪婪的）直到命中下一个字符或者整个 URL 的末尾，并创建一个 splat 参数
-<Route path="/hello/:name">         // 匹配 /hello/michael 和 /hello/ryan
-<Route path="/hello(/:name)">       // 匹配 /hello, /hello/michael 和 /hello/ryan
-<Route path="/files/*.*">           // 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg</li>
+<li>– 匹配任意字符（非贪婪的）直到命中下一个字符或者整个 URL 的末尾，并创建一个 splat 参数</li>
 </ul>
+<pre><code>&lt;Route path=&quot;/hello/:name&quot;&gt;         
+// 匹配 /hello/michael 和 /hello/ryan
+&lt;Route path=&quot;/hello(/:name)&quot;&gt;     
+// 匹配 /hello, /hello/michael 和 /hello/ryan
+&lt;Route path=&quot;/files/*.*&quot;&gt;          
+// 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg
+</code></pre>
 <p>使用绝对路径可以使路由匹配行为忽略嵌套关系</p>
 <p>路由匹配规则是从上到下执行，一旦发现匹配，就不再其余的规则了。（同名路由只执行第一个）带参数的路径一般要写在路由规则的底部。</p>
-<p>4.History
-React Router 是建立在 history 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。</p>
-<p>常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。
-browserHistory使用浏览器中的 History API 用于处理 URL，创建一个像example.com/some/path这样真实的 URL 。
-hashHistory
-createMemoryHistory</p>
-<p>5.重定向
-<Redirect>组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由。
+<h2 id="4history">4.History</h2>
+<p>React Router 是建立在 history 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。</p>
+<p>常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。</p>
+<ol>
+<li>browserHistory使用浏览器中的 History API 用于处理 URL，创建一个像example.com/some/path这样真实的 URL 。</li>
+<li>hashHistory</li>
+<li>createMemoryHistory</li>
+</ol>
+<h2 id="5重定向">5.重定向</h2>
+<pre><code>&lt;Redirect&gt;组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由。
 ＜Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;
 现在访问/inbox/messages/5，会自动跳转到/messages/5。
 IndexRedirect （2.x）IndexRoute（4.x）
-组件用于访问根路由的时候，将用户重定向到某个子组件。</p>
+组件用于访问根路由的时候，将用户重定向到某个子组件。
+</code></pre>
 <p>Link组件用于取代<a>元素，生成一个链接，允许用户点击后跳转到另一个路由。它基本上就是<a>元素的React 版本，可以接收Router的状态。</p>
-<p>如果链接到根路由/，不要使用Link组件，而要使用IndexLink组件。
-<IndexLink to="/" activeClassName="active">
-Home
-</IndexLink></p>
+<p>如果链接到根路由/，不要使用Link组件，而要使用IndexLink组件。</p>
+<pre><code>&lt;IndexLink to=&quot;/&quot; activeClassName=&quot;active&quot;&gt;
+  Home
+&lt;/IndexLink&gt;
+</code></pre>
 
             </div>
             
