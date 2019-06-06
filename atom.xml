@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-06T05:44:14.499Z</updated>
+    <updated>2019-06-06T05:46:00.675Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -418,8 +418,8 @@ IndexRedirect （2.x）IndexRoute（4.x）
     </entry>
     <entry>
         <title type="html"><![CDATA[React 入门]]></title>
-        <id>https://alexwjj.github.io//post/react-ru-men</id>
-        <link href="https://alexwjj.github.io//post/react-ru-men">
+        <id>https://alexwjj.github.io//post/react-simple</id>
+        <link href="https://alexwjj.github.io//post/react-simple">
         </link>
         <updated>2019-06-05T11:23:22.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
