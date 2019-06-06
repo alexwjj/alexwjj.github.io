@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-06T08:35:38.148Z</updated>
+    <updated>2019-06-06T08:37:05.442Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -11,12 +11,12 @@
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
     <entry>
-        <title type="html"><![CDATA[React 入门]]></title>
-        <id>https://alexwjj.github.io//post/react-ru-men</id>
-        <link href="https://alexwjj.github.io//post/react-ru-men">
+        <title type="html"><![CDATA[react]]></title>
+        <id>https://alexwjj.github.io//post/react</id>
+        <link href="https://alexwjj.github.io//post/react">
         </link>
-        <updated>2019-06-06T05:46:58.000Z</updated>
-        <content type="html"><![CDATA[<p>1111</p>
+        <updated>2019-06-06T08:36:37.000Z</updated>
+        <content type="html"><![CDATA[<p>11111</p>
 ]]></content>
     </entry>
     <entry>
