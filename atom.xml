@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-06T05:50:43.442Z</updated>
+    <updated>2019-06-06T08:33:47.663Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -59,33 +59,6 @@
 *   组件嵌套{ props.children }          {props.left}  left = { &lt;assembly/&gt;}   
 * 如果你不初始化状态，也不绑定方法，那么你就不需要为React组件实现构造函数。不需要constructor 
 * 如果子类加入了 constructor 构造函数，则一定要手动调用父类的构造函数 super
-</code></pre>
-<h2 id="react生命周期">React生命周期</h2>
-<pre><code>mount
-1.constructor
-初始化state和绑定事件处理程序
-2.static getDerivedStateFromProps()
-可以更新state的状态，派生状态。小心使用
-3.render
-不渲染任何内容，返回布尔值或者null
-4.componentDidMount()
-render之后，挂载完成，调用该方法。一般写发送请求的
-
-update
-1.static getDerivedStateFromProps()
-2.shouldComponentUpdate()  性能优化点
-在调用 static getDerivedStateFromProps 方法之后，接下来会调用 nextComponentUpdate 方法。通过调用shouldComponentUpdate来控制是否要重新渲染组件
-3.reder()
-4.getSnapshotBeforeUpdate()
-5.componentDidUpdate()
-
-unMount
-1.componentWillUnmount()
-资源清理
-
-error
-1.static getDerivedStateFromError()
-2.componentDidCatch()
 </code></pre>
 ]]></content>
     </entry>
