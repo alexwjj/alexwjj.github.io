@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-12T05:50:48.208Z</updated>
+    <updated>2019-06-12T08:01:22.671Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,90 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[webpack性能优化 -dll]]></title>
+        <id>https://alexwjj.github.io//post/webpack-xing-neng-you-hua-dll</id>
+        <link href="https://alexwjj.github.io//post/webpack-xing-neng-you-hua-dll">
+        </link>
+        <updated>2019-06-12T07:34:23.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>公司项目中大佬做的优化</p>
+<p>大大提高了打包速度</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>公司项目中大佬做的优化</p>
+<p>大大提高了打包速度</p>
+</blockquote>
+<!-- more -->
+<h2 id="背景">背景</h2>
+<p>作为国内互联网医疗的扛把子，我们医院平台的 HIS 系统经过几年的 <strong>‘积累’</strong>，开发环境，测试环境的
+打包速度慢的令人发指。热更新要30 ~ 40S，这谁顶得住啊。公司大佬就对整个项目进行了重构，使用
+Vue Cli3 ，升级 webpack4等等。现在热更新也只需要3s，打包由6min降到1min，体验还是相当好的，
+所以自己要学习大佬们的优化方法。</p>
+<h2 id="两种方案">两种方案</h2>
+<p>在用 Webpack 打包的时候，对于一些不经常更新的第三方库，比如 vuex，lodash，charts，axios我们希
+望能和自己的代码分离开，Webpack 社区有两种方案</p>
+<ul>
+<li>CommonsChunkPlugin</li>
+<li>DLLPlugin</li>
+</ul>
+<p>对于 <strong>CommonsChunkPlugin</strong>（之前的方式），webpack 每次打包实际还是需要去处理这些第三方
+库，只是打包完之后，能把第三方库和我们自己的代码分开。</p>
+<p>而<strong>DLLPlugin</strong>（现在的方式）则是能把第三方代码完全分离开，即每次只打包项目自身的代码。</p>
+<h2 id="用法">用法</h2>
+<p>要使用 DLLPlugin，需要额外新建一个配置文件。所以对于用这种方式打包的项目，一般会有下面两个配置文件</p>
+<pre><code>webpack.config.js
+webpack.dll.config.js
+</code></pre>
+<p>先来看下 webpack.dll.config.js</p>
+<pre><code>const webpack = require('webpack')
+const library = '[name]_lib'
+const path = require('path')
+
+module.exports = {
+  entry: {
+    vendors: ['vue', 'lodash']
+  },
+
+  output: {
+    filename: '[name].dll.js',
+    path: 'dist/',
+    library
+  },
+
+  plugins: [
+    new webpack.DllPlugin({
+      path: path.join(__dirname, 'dist/[name]-manifest.json'),
+      // This must match the output.library option above
+      name: library
+    }),
+  ],
+}
+</code></pre>
+<p>再改下 webpack.config.js 文件</p>
+<pre><code>const webpack = require('webpack')
+
+module.exports = {
+  entry: {
+    app: './src/index'
+  },
+  output: {
+    filename: 'app.bundle.js',
+    path: 'dist/',
+  },
+  plugins: [
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./dist/vendors-manifest.json')
+    })
+  ]
+}
+manifest: require('./dist/vendors-manifest.json') 这里的路径
+要和 webpack.dll.config.js 里面的对应。
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[文本溢出显示省略号]]></title>
         <id>https://alexwjj.github.io//post/wen-ben-yi-chu-xian-shi-sheng-lue-hao</id>
@@ -1019,93 +1103,6 @@ ES2016 新增了一个指数运算符（**） x ^ y = x ** y 特点是右结合 
 <p>这里注意两点:</p>
 <p>1.webpack-dev-server伺服的是资源文件，不会对index.html的修改做出反应</p>
 <p>2.webpack-dev-server生成的文件在内存中，因此不会呈现于目录中，生成路径由content-base指定，不会输出到output目录中。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Git 常用操作]]></title>
-        <id>https://alexwjj.github.io//post/markdown-ce-shi</id>
-        <link href="https://alexwjj.github.io//post/markdown-ce-shi">
-        </link>
-        <updated>2019-06-05T06:28:00.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p><strong>实际工作中 Git 的使用方法</strong></p>
-<p><strong>持续更新</strong></p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p><strong>实际工作中 Git 的使用方法</strong></p>
-<p><strong>持续更新</strong></p>
-</blockquote>
-<!-- more -->
-<h2 id="1git环境配置">1.git环境配置</h2>
-<p>git config --global user.email &quot;798595965@qq.com&quot;</p>
-<p>git config --global user.name &quot;wjj&quot;</p>
-<p>由于你的本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以我们需要配置验证信息：
-使用以下命令生成SSH Key：
-<code>ssh-keygen -t rsa -C &quot;798595965@qq.com&quot;</code></p>
-<p>使用默认的一路回车就行。成功的话会在~/下生成.ssh文件夹，进去，打开 id_rsa.pub，复制里面的 key。
-在github上的选择 SSH and GPG keys，然后点击 New SSH key 按钮,title 设置标题，可以随便填，粘贴在你电脑上生成的 key</p>
-<h2 id="2git流程图">2.git流程图</h2>
-<p><img src="https://alexwjj.github.io//post-images/1559721513118.png" alt=""></p>
-<h2 id="3git的基本操作">3.Git的基本操作</h2>
-<p>1.进入git的安装目录，使用git init newrepo创建新的仓库  cd newrepo开始操作</p>
-<p>2.克隆仓库git clone newrepo/(git仓库) newrepo_clone（地址）</p>
-<p>3.在仓库目录下，创建文件touch a /touch b  使用git add a将a添加到暂存区中</p>
-<p>4.git commit -m &quot;Ininial commit&quot;将文件从暂存区提交到历史记录(&quot;&quot;说明修改的内容)</p>
-<p>5.git reset HEAD 命令用于取消已缓存的内容。 git checkout a 将rm删除的a还原</p>
-<p>6.git rm a 同时删除工作区和暂存区的文件，git rm --cache a只删除暂存区文件</p>
-<p>7.git mv a c (a重命名为c)</p>
-<p>8.git add -A将整个工作区添加到暂存区，在工作区目录下创建gitignore文件，通过通配符*[oa],*.pyc来忽略掉这些后缀的文件，通过!test.pyc处理需要的文件</p>
-<p>9.git status -s 以精简的方式显示文件状态</p>
-<p>A：新文件第一次被添加进版本管理</p>
-<p>M:红色为修改过未被添加进暂存区的，绿色为已经添加进暂存区的**</p>
-<h2 id="4git-查看提交历史log">4.Git 查看提交历史（log）</h2>
-<p>1.git log查看历史提交项目</p>
-<p>2.git log --online查看历史纪录的简洁版本</p>
-<p>3.git log --online --graph查看历史中什么时候出现了出现了分支合并</p>
-<p>4.git log --author=wjj 查看用户wjj提交的部分</p>
-<h2 id="5git-标签tag">5.Git 标签（tag）</h2>
-<ol>
-<li>
-<p>git tag -a v1.0 （-a 选项意为&quot;创建一个带注解的标签&quot;）</p>
-<p>git tag -a v0.9 85fc7e7（忘了给某个提交打标签，又将它发布了，我们可以给它追加标签）</p>
-</li>
-</ol>
-<p>2.指定标签信息命令：git tag -a <tagname> -m &quot;tag标签&quot;</p>
-<p>3.删除标签：git tag -d v1.1</p>
-<p>4.查看此版本所修改的内容：git show v1.0</p>
-<h2 id="6git命令">6.Git命令</h2>
-<p>切换分支：git checkout name</p>
-<p>撤销修改：git checkout -- file</p>
-<p>删除文件：git rm file</p>
-<p>查看状态：git status</p>
-<p>添加记录：git add file 或 git add .</p>
-<p>添加描述：git commit -m &quot;miao shu nei rong&quot;</p>
-<p>同步数据：git pull</p>
-<p>提交数据：git push origin name</p>
-<h3 id="分支操作">分支操作</h3>
-<p>查看分支：git branch</p>
-<p>创建分支：git branch name</p>
-<p>切换分支：git checkout name</p>
-<p>创建+切换分支：git checkout -b name</p>
-<p>合并某分支到当前分支：git merge name</p>
-<p>删除分支：git branch -d name</p>
-<p>删除远程分支：git push origin :name</p>
-<h3 id="存储操作">存储操作</h3>
-<p>git stash经常有这样的事情发生，当你正在进行项目中某一部分的工作，里面的东西处于一个比较杂乱的状态，而你想转到其他分支上进行一些工作。问题是，你不想提交进行了一半的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是git stash命令</p>
-<p>git stash pop 恢复最新进度到工作区。git默认会把工作区和暂存区的改动都恢复到工作区。</p>
-<p>git stash apply 除了不删除恢复的进度之外，其余和git stash pop 命令一样。</p>
-<p>git stash drop 删除一个存储的进度。如果不指定stash_id，则默认删除最新的存储进度。</p>
-<p>git stash clear 删除所有存储的进度。</p>
-<p>git 误删文件和恢复指令</p>
-<p>git  fsck --lost -found :查看最近移除的文件</p>
-<p>git show  '误删编号'：查看删除文件内容</p>
-<p>git merge ‘误删编号’： 本地合并误删的文件内容</p>
-<h2 id="7git分支重命名">7.git分支重命名</h2>
-<p>在git中重命名远程分支，就是先删除远程分支，然后重命名本地分支，再重新提交一个远程分支。</p>
-<p>git push --delete origin 老分支</p>
-<p>git branch -m 老分支 新分支</p>
-<p>git push origin 新分支</p>
 ]]></content>
     </entry>
 </feed>
