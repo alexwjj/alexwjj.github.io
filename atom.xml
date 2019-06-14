@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-12T08:01:22.671Z</updated>
+    <updated>2019-06-14T03:34:46.960Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -11,7 +11,59 @@
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
     <entry>
-        <title type="html"><![CDATA[webpack性能优化 -dll]]></title>
+        <title type="html"><![CDATA[Object.defineProperty   对比  Proxy]]></title>
+        <id>https://alexwjj.github.io//post/objectdefineproperty-dui-bi-proxy</id>
+        <link href="https://alexwjj.github.io//post/objectdefineproperty-dui-bi-proxy">
+        </link>
+        <updated>2019-06-14T02:40:29.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>使用 vue2.x的版本项目,双向绑定原理还是Object.defineProperty</p>
+<p>导致在实际的开发过程中，有些属性的修改，双向绑定不会生效</p>
+<p>所以，来好好探究下Object.defineProperty   和 vue3.0中的 Proxy</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>使用 vue2.x的版本项目,双向绑定原理还是Object.defineProperty</p>
+<p>导致在实际的开发过程中，有些属性的修改，双向绑定不会生效</p>
+<p>所以，来好好探究下Object.defineProperty   和 vue3.0中的 Proxy</p>
+</blockquote>
+<!-- more -->
+<h2 id="objectdefineproperty">Object.defineProperty()</h2>
+<p>Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。</p>
+<p>Object.defineProperty(obj, prop, descriptor)</p>
+<pre><code>* obj
+* 要在其上定义属性的对象。
+* prop
+* 要定义或修改的属性的名称。
+* descriptor
+* 将被定义或修改的属性描述符。
+</code></pre>
+<p>具体形象生动的解释可参考这篇文章<a href="https://www.jianshu.com/p/6519575e055f">Object.defineProperty() 不详解</a></p>
+<h2 id="注意-get-set">注意 get 、set</h2>
+<p>在项目中遇到的问题就是，使用 vue 的双向数据绑定，在表单新增页面没问题，但是在修改的时候，v-model 绑定的属性没法被 set 赋值过来，很奇怪。想了大概两三天，没想明白，后来大佬来看了一下我v-mode 的数据类型，多层数组嵌套，通过下标的形式进行访问修改。vue2.x 使用Object.defineProperty 的存在很多限制：<strong>无法监听 属性的添加和删除、数组索引和长度的变更</strong>，直接通过数组的下标给数组设置值，不能实时响应，是因为Object.defineProperty()无法监控到数组下标的变化，后来使用了 JSON.parse(JSON.stringify())进行了一次深拷贝才解决，也可以使用 lodash 的 cloneDeep。</p>
+<h2 id="使用-objectdefineproperty手动实现一个双向绑定">使用 object.defineProperty手动实现一个双向绑定</h2>
+<p>主要是监听input change 事件或者键盘 keyup 事件，通过 object.defineProperty 设置 set 属性进行对象属性的 修改。</p>
+<p>参考博客（这老哥的博客很生动）：<a href="https://www.jianshu.com/p/251235dd04c8">用Object.defineProperty手写一个简单的双向绑定</a></p>
+<h2 id="proxy">Proxy</h2>
+<p>Proxy可以理解成，在目标对象之前架设一层 &quot;拦截&quot;，当外界对该对象访问的时候，都必须经过这层拦截，而Proxy就充当了这种机制，类似于代理的含义，它可以对外界访问对象之前进行过滤和改写该对象。</p>
+<p>Proxy基本语法 :const obj = new Proxy(target, handler);</p>
+<p>参数说明如下：</p>
+<pre><code>* target: 被代理对象。
+* handler: 是一个对象，声明了代理target的一些操作。
+* obj: 是被代理完成之后返回的对象。
+</code></pre>
+<p>但是当外界每次对obj进行操作时，就会执行handler对象上的一些方法。handler中常用的对象方法如下：</p>
+<pre><code>1. get(target, propKey, receiver)
+2. set(target, propKey, value, receiver)
+3. has(target, propKey)
+4. construct(target, args):
+5. apply(target, object, args)
+</code></pre>
+<p><a href="https://segmentfault.com/a/1190000018574665">proxy 和 object.defineProperty实现双向绑定对比</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[webpack性能优化 --- dll]]></title>
         <id>https://alexwjj.github.io//post/webpack-xing-neng-you-hua-dll</id>
         <link href="https://alexwjj.github.io//post/webpack-xing-neng-you-hua-dll">
         </link>
@@ -1064,45 +1116,6 @@ ES2016 新增了一个指数运算符（**） x ^ y = x ** y 特点是右结合 
 * super关键字，它指代父类的实例（即父类的this对象），子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。
 * ES6的继承机制，实质是先创造父类的实例对象this（所以必须先调用super方法），然后再用子类的构造函数修改this。
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Webpack  入门配置]]></title>
-        <id>https://alexwjj.github.io//post/webpack-ru-men-pei-zhi</id>
-        <link href="https://alexwjj.github.io//post/webpack-ru-men-pei-zhi">
-        </link>
-        <updated>2019-06-05T10:24:24.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>简单的介绍下 webpack 基本知识</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>简单的介绍下 webpack 基本知识</p>
-</blockquote>
-<!-- more -->
-<h2 id="入口entry">入口(entry)</h2>
-<p>webpack 应该使用哪个模块，来作为构建其内部依赖图的开始</p>
-<h2 id="输出output">输出(output)</h2>
-<p>告诉 webpack 在哪里输出它所创建的 bundles，以及如何命名这些文件，默认值为 ./dist。</p>
-<h2 id="loader">loader</h2>
-<p>loader 让 webpack 能够去处理那些非 JavaScript 文件（webpack 自身只理解 JavaScript）
-对一个单独的 module 对象定义了 rules 属性，里面包含两个必须属性：test 和 use。告诉webpack碰到test定义的文件时使用use的loader处理一下</p>
-<h2 id="plugins">plugins</h2>
-<p>插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量。想要使用一个插件，你只需要require() 它，然后把它添加到 plugins 数组中</p>
-<p>loaders是在打包构建过程中用来处理源文件的（JSX，Scss，Less..），一次处理一个，插件并不直接操作单个文件，它直接对整个构建过程其作用。</p>
-<p>uglify是用来压缩js代码的</p>
-<p>html-webpack-plugin能够创建index.html.open-browser-webpack-plugin 能在webpack加载的时候打开一个浏览器标签页</p>
-<p>使用require.ensure 来定义一个拆分点,用来告诉webpack 这个./a.js应该从bundle.js 中拆分，并且生成一个单独的文件</p>
-<p>使用externals来暴露全局变量</p>
-<p>Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。</p>
-<p>Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。</p>
-<p>“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。</p>
-<p>处理浏览器缓存：webpack可以把一个哈希值添加到打包的文件名中，使用方法如下,添加特殊的字符串混合体（[name], [id] and [hash]）到输出文件名前，添加了hash之后，会导致改变文件内容后重新打包时，文件名不同而内容越来越多，因此这里介绍另外一个很好用的插件clean-webpack-plugin</p>
-<h2 id="webpack-dev-server">webpack-dev-server</h2>
-<p>webpack-dev-server启动了一个使用express的Http服务器，这个服务器与客户端采用websocket通信协议，当原始文件发生改变，webpack-dev-server会实时编译。</p>
-<p>这里注意两点:</p>
-<p>1.webpack-dev-server伺服的是资源文件，不会对index.html的修改做出反应</p>
-<p>2.webpack-dev-server生成的文件在内存中，因此不会呈现于目录中，生成路径由content-base指定，不会输出到output目录中。</p>
 ]]></content>
     </entry>
 </feed>
