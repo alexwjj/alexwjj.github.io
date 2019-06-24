@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-21T05:43:09.135Z</updated>
+    <updated>2019-06-24T09:31:09.247Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,39 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[var _this = this  的含义]]></title>
+        <id>https://alexwjj.github.io//post/wei-sha-yao-var-_this-this</id>
+        <link href="https://alexwjj.github.io//post/wei-sha-yao-var-_this-this">
+        </link>
+        <updated>2019-06-24T09:19:42.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>开发过程中，看到项目中会在顶层写一个这样的表达式</p>
+<p>const  _this=this</p>
+<p>下面来解释一下</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>开发过程中，看到项目中会在顶层写一个这样的表达式</p>
+<p>const  _this=this</p>
+<p>下面来解释一下</p>
+</blockquote>
+<!-- more -->
+<h3 id="jquery-一个典型的列子">jquery 一个典型的列子</h3>
+<pre><code>$(&quot;#btn&quot;).click(function(){
+    var _this = this;//这里this和_this都代表了&quot;#btn&quot;这个对象
+    $(&quot;.tr&quot;).each(function(){
+          this;//在这里this代表的是每个遍历到的&quot;.tr&quot;对象
+          _this;//仍代表&quot;#btn&quot;对象
+    })
+})
+</code></pre>
+<p>在一个代码片段里this有可能代表不同的对象,而编码者希望_this代表<strong>最初的对象</strong></p>
+<p>JS可以嵌套多层代码，可能下面还可以再嵌一个方法，引用this就会变成<strong>子方法控制的对象</strong></p>
+<p>如果需要<strong>上级的对象</strong>，在没有参数的情况下，前提做了一个临时变量_this，可以保存<strong>上级对象</strong>，子方</p>
+<p>法中就可以用_this来调用了，这才是目的。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[v-for :key 的使用]]></title>
         <id>https://alexwjj.github.io//post/v-for-key-de-shi-yong</id>
@@ -726,167 +759,6 @@ IndexRedirect （2.x）IndexRoute（4.x）
 <pre><code>&lt;IndexLink to=&quot;/&quot; activeClassName=&quot;active&quot;&gt;
   Home
 &lt;/IndexLink&gt;
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[vue 零碎知识点]]></title>
-        <id>https://alexwjj.github.io//post/vue-ling-sui-zhi-shi-dian</id>
-        <link href="https://alexwjj.github.io//post/vue-ling-sui-zhi-shi-dian">
-        </link>
-        <updated>2019-06-05T11:20:35.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>vue 的一些零碎知识点整理</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>vue 的一些零碎知识点整理</p>
-</blockquote>
-<!-- more -->
-<h2 id="1vue30">1.vue3.0</h2>
-<pre><code>* 重写虚拟dom   编译运行时间更短
-* 优化插槽生成 ： 3之前父组件重新渲染，子组件也会渲染。  vue3可以单独渲染某个组件
-* 静态树提升：将静态组件提升，降低渲染成本
-* 静态属性提升：跳过不会改变节点的补丁过程
-* 基于proxy的观察者机制：Vue 的反应系统是使用 Object.defineProperty 的 getter 和 setter，Vue 3 将使用 ES2015 Proxy 作为其观察者机制。 这消除了以前存在的警告，使速度加倍，并节省了一半的内存开销。
-* 更小：20kb&gt;10kb 
-* 更具维护性： typescript
-* 多平台使用，更易于开发
-* 发布至少要到2019下半年了。
-</code></pre>
-<h2 id="2vue-mixins">2.vue mixins</h2>
-<pre><code>* 用来更高效的实现组件内容的复用
-* 可以在mixin对象里定义组件的任何属性，在组件使用mixin时，mixin中的属性会添加到组件属性中mixins: [myMixin],
-* Vue混合策略 （可自定义）
-* 1. vue 是安装 全局mixin——组件内mixin——组件options的顺序来合并组件实例的options。优先调用mixins和extends继承的父类，extends触发的优先级更高
-* 2. 对于钩子函数（created() {} 和mounted() {}），会添加到一个函数数组里，执行顺序从前到后
-* 3. 对于组件的对象属性（methods等）, 后面的会覆盖前面的
-* mixins接收对象数组（可理解为多继承），extends接收的是对象或函数（可理解为单继承）
-* 数据对象在内部会进行浅合并 (一层属性深度)，在和组件的数据发生冲突时以组件数据优先。
-* 全局混入mixin  Vue.use( )
-* extends触发的优先级更高 ,最先被调用
-* 关于mixins和extend你可以理解为mvc的c(controller)，这一层。可见通用的成员变量（包括属性和方法）抽象成为一个父类，提供给子类继承，这样可以让子类拥有一些通用成员变量，然而子类也可以重写父类的成员变量。这样的整个编程思想就很面向对象，也就是继承性。
-</code></pre>
-<h2 id="3google搜索">3.Google搜索</h2>
-<pre><code>* &quot; keywords &quot;，通过给关键字加双引号的方法，得到的搜索结果就是完全按照关键字的顺序来搜。
-* keywords -GPS ， 搜索后的结果都没GPS关键字。
-* 使用*进行模糊匹配
-* 关键字 site:网址  指定网站中搜索
-* 关键字 filetype:文件类型  搜索指定文件类型
-</code></pre>
-<h2 id="4vuedirective自定义指令">4.vue.directive自定义指令</h2>
-<pre><code>* Vue.directive('xxx', function(el, bind, vNode){})
-* 钩子函数： bind， inserted ，update ， componentUpdated ，unbind
-* 钩子函数的参数 (包括 el，binding，vnode，oldVnode) 。
-* 文档： http://doc.vue-js.com/v2/guide/custom-directive.html#search-query-sidebar
-* v-pre   vue会跳过这个元素和它的子元素的编译过程。
-</code></pre>
-<h2 id="5vue-风格指南">5.vue 风格指南</h2>
-<pre><code>* 组件名为多个单词   export组件时  TodoItem   注册时 todo-item
-* 组件中的porp定义尽量详细，  eg： form: { type: Array  , required: true, default }  
-* porp命名  props: {  greetingText: String}  &lt;WelcomeMessage greeting-text=&quot;hi&quot;/&gt;
-* v-for 指定键值，v-for = ' (item, index) in todos'  :key = 'index'
-* 避免v-for 和 v-if 一起使用 （v-for的优先级比v-if高，如果需要这种场景可以再computed中写filter）
-* 组件样式设置作用域： 推荐使用BEM（c-Button--close  块-元素--功能），不推荐scoped
-* 私有属性名： $_命名空间_类名
-* 单文件组件文件大小写  MyComponent  my-component
-* 组件名单词顺序：一般描述开头  描述修饰词结尾  SearchButtonClear.vue
-* 组件名尽量都用完整的单词，表明功能性
-* JS遵循  camelCase 驼峰法  HTML 遵循 kebab-case 短横线
-* 组件中多个特性分行书写，便于维护
-* 简单的计算放在{{ }}  复杂的放在计算属性中
-* scoped原理vue为元素选择器添加一个独一无二的特性data-v-xxx，缺点是大量使用这种比较慢，没有使用类好
-</code></pre>
-<h2 id="6vue指令">6.vue指令</h2>
-<pre><code>* v-pre   跳过这个元素和它的子元素的编译过程。可以用来显示原始 {{ }}标签。跳过大量没有指令的节点会加快编译。
-* v-cloak 用法：这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕，否则在渲染页面时，有可能用户会先看到Mustache标签，然后看到编译后的数据
-* v-once 只渲染元素和组件一次。随后的重新渲染,元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
-</code></pre>
-<h2 id="7vue-provide-inject">7.vue provide / inject</h2>
-<pre><code>* provide/inject：简单的来说就是在父组件中通过provide来提供变量，然后在子组件中通过inject来注入变量。主要为高阶插件/组件库提供用例
-* provide 选项是一个对象或返回一个对象的函数。该对象包含可注入其子孙的属性
-* inject 选项一个字符串数组，或一个对象
-* provide 和 inject 绑定并不是可响应的  inject可以用解构来接受
-* 场景：替代嵌套过深的props，以及祖先和后代的元素的通信中的vuex-bus的一个东西。
-* 可以理解为一个bus，但只做祖先通知后代的单向传递的一个属性
-* watch
-* watch是一个对象，键是需要观察的表达式，值是对应回调函数
-* 默认加载的时候先computed再watch，不执行methods；等触发某一事件后，则是：先methods再watch。
-* watch可以直接监听computed里面的数据
-</code></pre>
-<h2 id="8nexttick">8.$nextTick</h2>
-<pre><code>* nextTick 下一刻 
-* nextTick 可以让我们在下次 DOM 更新循环结束之后执行延迟回调，用于获得更新后的 DOM。
-* Vue.nextTick用于延迟执行一段代码，它接受2个参数（回调函数和执行回调函数的上下文环境），如果没有提供回调函数，那么将返回promise对象。
-* 官方：在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
-* vue是异步执行DOM更新的：简单说：Vue 在修改数据后，视图不会立刻更新，而是等同一事件循环中的所有数据变化完成之后，再统一进行视图更新。
-* 通过 Vue.nextTick 获取到改变后的 DOM 。 setTimeout(fn, 0) 也可以获取到。
-* 应用场景：需要在视图更新之后，基于新的视图进行操作。
-</code></pre>
-<p><img src="https://alexwjj.github.io//post-images/1559733742027.jpeg" alt=""></p>
-<h2 id="9数据劫持">9.数据劫持</h2>
-<pre><code>* Vue （2.x）内部使用了 Object.defineProperty() 来实现双向绑定，通过这个函数可以监听到 set和 get 的事件。
-* Proxy 与 Object.defineProperty 对比
-* Object.defineProperty 虽然已经能够实现双向绑定了，但是他还是有缺陷的。
-* 只能对属性进行数据劫持，所以需要深度遍历整个对象
-* 对于数组不能监听到数据的变化
-</code></pre>
-<h2 id="10mvvm-由以下三个内容组成">10.MVVM 由以下三个内容组成</h2>
-<pre><code>* View：界面
-* Model：数据模型
-* ViewModel：作为桥梁负责沟通 View 和 Model
-在MVVM架构下，View 和 Model 之间并没有直接的联系，而是通过ViewModel进行交互，Model 和 ViewModel 之间的交互是双向的， 因此View 数据的变化会同步到Model中，而Model 数据的变化也会立即反应到View 上。在 MVVM 中，最核心的也就是数据双向绑定，例如 Angluar 的脏数据检测，Vue 中的数据劫持。
-</code></pre>
-<h2 id="11vue-router">11.vue-router</h2>
-<pre><code>* history模式：history采用HTML5的新特性；且提供了两个新方法：pushState（），replaceState（）可以对浏览器历史记录栈进行修改，以及popState事件的监听到状态变更。
-* 
-* beforeEach主要有3个参数to，from，next：
-* to：route即将进入的目标路由对象，
-* from：route当前导航正要离开的路由
-* next：function一定要调用该方法resolve这个钩子。执行效果依赖next方法的调用参数。可以控制网页的跳转。
-</code></pre>
-<h2 id="12vuex">12.vuex</h2>
-<pre><code>* actions主要是来同时提交多个mutations
-* mutation处理函数中所做的事情是改变state，而action处理函数中所做的事情则是commit mutation。
-* 在触发方法上：
-* action的触发是dispatch
-* mutation的触发是commit；
-* vue component—-dispatch—-&gt;actions—-commit—-&gt;mutations—-mutate—-&gt;state—-render—-&gt;vue component。
-* 
-* 在命名空间模块内访问全局内容（Global Assets）
-* 如果你希望使用全局 state 和 getter，rootState 和 rootGetter 会作为第三和第四参数传入 getter，也会通过 context 对象的属性传入 action。
-* someGetter (state, getters, rootState, rootGetters) {
-*         getters.someOtherGetter // -&gt; 'foo/someOtherGetter'
-*         rootGetters.someOtherGetter // -&gt; 'someOtherGetter'
-*       },
-* 
-* 若需要在全局命名空间内分发 action 或提交 mutation，将 { root: true } 作为第三参数传给dispatch 或 commit即可
-* dispatch('layout/setModuleName', 'organizationModule', { root: true });
-* 
-* vue如何监听键盘事件中的按键 @keyup.enter
-</code></pre>
-<h2 id="13vue组件中的data必须是函数">13.vue组件中的data必须是函数</h2>
-<p>类比引用数据类型
-Object是引用数据类型,如果不用function 返回,每个组件的data 都是内存的同一个地址,一个数据改变了其他也改变了;</p>
-<p>javascipt只有函数构成作用域(注意理解作用域,只有函数的{}构成作用域,对象的{}以及 if(){}都不构成作用域)，data是一个函数时，每个组件实例都有自己的作用域，每个实例相互独立,不会相互影响</p>
-<h2 id="14vue-mixin">14.vue mixin</h2>
-<h2 id="15axios">15.axios</h2>
-<pre><code>// 添加请求拦截器
-axios.interceptors.request.use(function (config) {
-    // 在发送请求之前做些什么
-    return config;
-  }, function (error) {
-    // 对请求错误做些什么
-    return Promise.reject(error);
-  });
-// 添加响应拦截器
-axios.interceptors.response.use(function (response) {
-    // 对响应数据做点什么
-    return response;
-  }, function (error) {
-    // 对响应错误做点什么
-    return Promise.reject(error);
-  });
 </code></pre>
 ]]></content>
     </entry>
