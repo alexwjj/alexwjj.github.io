@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-27T01:05:14.686Z</updated>
+    <updated>2019-06-28T02:56:03.043Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,124 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[ Vue  computed和watch详解]]></title>
+        <id>https://alexwjj.github.io//post/tan-jiu-vue-ji-suan-shu-xing-computed-he-zhen-ting-shu-xing-watch</id>
+        <link href="https://alexwjj.github.io//post/tan-jiu-vue-ji-suan-shu-xing-computed-he-zhen-ting-shu-xing-watch">
+        </link>
+        <updated>2019-06-28T01:46:26.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>初学 vue 的时候就分不清computed和 watch 的区别</p>
+<p>在写了一段时间的业务逻辑后，对两者有了一些认识。</p>
+<p>结合各位大佬的分析，自己总结了一下。</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>初学 vue 的时候就分不清computed和 watch 的区别</p>
+<p>在写了一段时间的业务逻辑后，对两者有了一些认识。</p>
+<p>结合各位大佬的分析，自己总结了一下。</p>
+</blockquote>
+<!-- more -->
+<h1 id="计算属性-computed">计算属性 computed</h1>
+<h2 id="1computed">1.computed</h2>
+<p>计算属性是自动监听<strong>依赖值</strong>的变化，从而动态返回内容，监听是一个过程，在监听的值变化时，可以触发一个回调，并做一些事情。它有以下几个特点：</p>
+<ul>
+<li>数据可以进行逻辑处理，<strong>减少模板中计算逻辑</strong>。</li>
+<li>对计算属性中的数据进行监视</li>
+<li>依赖固定的数据类型（响应式数据）</li>
+</ul>
+<p>计算属性由两部分组成：get和set，分别用来获取计算属性和设置计算属性。<strong>默认只有get</strong>，如果需要set，要自己添加。另外set设置属性，并不是直接修改计算属性，而是修改它的依赖。</p>
+<pre><code>computed: {
+  fullName: {
+    // getter
+    get: function () {
+      return this.nickName + '-' + this.trueName
+    },
+    // setter
+    set: function (newValue) {
+      //this.fullName = newValue 这种写法会报错
+      var names = newValue.split('-')
+      this.nickName = names[0]//对它的依赖进行赋值
+      this.trueName = names[names.length - 1]
+    }
+  }
+}
+</code></pre>
+<p>现在再运行 vm.fullName = 'alex wjj' 时，setter 会被调用，vm.nickName 和 vm.trueName 也会相应地被更新。</p>
+<h2 id="2computed-vs-methods">2.computed   vs  methods</h2>
+<p>两者最主要的区别：computed 是可以<strong>缓存的</strong>，methods 不能缓存；</p>
+<p>只要<strong>相关依赖</strong>没有改变，多次访问计算属性得到的值是之前缓存的计算结果，不会多次执行。</p>
+<p>网上有种说法就是方法可以传参，而计算属性不能，其实并不准确，<strong>计算属性可以通过闭包来实现传参</strong>：</p>
+<pre><code>:data=&quot;closure(item, itemName, blablaParams)&quot;
+computed: {
+ closure () {
+   return function (a, b, c) {
+        /** do something */
+        return data
+    }
+ }
+}
+
+</code></pre>
+<h1 id="侦听属性-watch">侦听属性 watch</h1>
+<h2 id="1watch">1.watch</h2>
+<p>Vue 提供了一种更通用的方式来观察和响应 Vue 实例上的数据变动：侦听属性watch</p>
+<h2 id="2使用-watch-的深度遍历deep和立即调用功能immediate">2.使用 watch 的深度遍历deep和立即调用功能immediate</h2>
+<p>使用 watch 来监听数据变化的时候除了常用到 <strong>handler 回调</strong>，其实其还有两个参数，便是：</p>
+<ul>
+<li>deep 设置为 true 用于监听对象内部值的变化</li>
+<li>immediate 设置为 true 将立即以表达式的当前值触发回调</li>
+</ul>
+<pre><code>&lt;template&gt;
+    &lt;button @click=&quot;obj.a = 2&quot;&gt;修改&lt;/button&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+    data() {
+        return {
+            obj: {
+                a: 1,
+            }
+        }
+    },
+    watch: {
+        obj: {
+            handler: function(newVal, oldVal) {
+                console.log(newVal); 
+            },
+            deep: true,
+            immediate: true 
+        }
+    }
+}
+&lt;/script&gt;
+
+</code></pre>
+<p>以上代码修改了 obj 对象中 a 属性的值，可以触发其 watch 中的 handler 回调输出新的对象，而如果不加 deep: true，我们只能监听 obj 的改变，并不会触发回调。同时我们也添加了 immediate: true 配置，其会立即以 obj 的当前值触发回调。</p>
+<pre><code>watch: {
+    searchInputValue:{
+        handler: 'fetchPostList',
+        immediate: true
+    }
+}
+// 声明immediate:true表示创建组件时立马执行一次。
+</code></pre>
+<h1 id="computed-vs-watch">computed vs watch</h1>
+<p><img src="https://alexwjj.github.io//post-images/1561690381163.png" alt=""></p>
+<p>流程图中，我们可以看出它们之间的区别：</p>
+<ul>
+<li>watch：监测的是<strong>属性值</strong>， 只要属性值发生变化，其都会触发执行回调函数来执行一系列操作。</li>
+<li>computed：监测的是<strong>依赖值</strong>，依赖值不变的情况下其会直接读取缓存进行复用，变化的情况下才会重新计算。</li>
+</ul>
+<p>除此之外，有点很重要的区别是：计算属性不能执行异步任务，计算属性必须同步执行。也就是说计算属性不能向服务器请求或者执行异步任务。如果遇到异步任务，就交给侦听属性。watch也可以检测computed属性。</p>
+<h1 id="小结">小结</h1>
+<p>计算属性适合用在模板渲染中，某个值是依赖了其它的响应式对象甚至是计算属性计算而来；而侦听属性适用于观测某个值的变化去完成一段复杂的业务逻辑。</p>
+<ul>
+<li>computed能做的，watch都能做，反之则不行</li>
+<li>能用computed的尽量用computed</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[var _this = this  的含义]]></title>
         <id>https://alexwjj.github.io//post/wei-sha-yao-var-_this-this</id>
@@ -665,98 +783,6 @@ webscoket数据传递
   &lt;/Provider&gt;,
   document.getElementById('root')
 )
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[React router]]></title>
-        <id>https://alexwjj.github.io//post/react-router</id>
-        <link href="https://alexwjj.github.io//post/react-router">
-        </link>
-        <updated>2019-06-05T11:29:13.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>对比 vue router 看react router官方文档总结</p>
-</blockquote>
-<blockquote>
-<p>比较基础</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>对比 vue router 看react router官方文档总结</p>
-</blockquote>
-<blockquote>
-<p>比较基础</p>
-</blockquote>
-<!-- more -->
-<h2 id="1使用时路由器router就是react的一个组件">1.使用时，路由器Router就是React的一个组件。</h2>
-<pre><code>React.render((
-  &lt;Router&gt;
-    &lt;Route path=&quot;/&quot; component={App}&gt;
-      &lt;Route path=&quot;about&quot; component={About} /&gt;
-      &lt;Route path=&quot;inbox&quot; component={Inbox}&gt;
-        &lt;Route path=&quot;messages/:id&quot; component={Message} /&gt;
-      &lt;/Route&gt;
-    &lt;/Route&gt;
-  &lt;/Router&gt;
-), document.body)
-</code></pre>
-<p>IndexRoute解决App组件中this.porps.children为undefined时的问题，显式指定Home是根路由的子组件，即指定默认情况下加载的子组件。你可以把IndexRoute想象成某个路径的index.html。</p>
-<pre><code>&lt;Router&gt;
-  &lt;Route path=&quot;/&quot; component={App}&gt;
-    &lt;IndexRoute component={Home}/&gt;
-    &lt;Route path=&quot;accounts&quot; component={Accounts}/&gt;
-    &lt;Route path=&quot;statements&quot; component={Statements}/&gt;
-  &lt;/Route&gt;
-&lt;/Router&gt;
-</code></pre>
-<p>渲染：访问 /</p>
-<pre><code>&lt;App&gt;
-  &lt;Home/&gt;
-&lt;/App&gt;
-</code></pre>
-<p>如果我们可以将 /inbox 从 /inbox/messages/:id 中去除，并且还能够让 Message 嵌套在 App -&gt;Inbox 中渲染</p>
-<pre><code>* 绝对路径{/* 使用 /messages/:id 替换 messages/:id */}
-* &lt;Route path=&quot;/messages/:id&quot; component={Message} /&gt;
-* 路由跳转{/* 跳转 /inbox/messages/:id 到 /messages/:id */}
-* &lt;Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;
-</code></pre>
-<p>2.Route 可以定义 onEnter 和 onLeave 两个 hook ，这些hook会在页面跳转确认时触发一次</p>
-<p>onLeave （内到外）从最下层的子路由开始直到最外层父路由结束。然后onEnter（外到内）会从最外层的父路由开始直到最下层子路由结束。</p>
-<p>3.路由路径是匹配一个（或一部分）URL 的 一个字符串模式。大部分的路由路径都可以直接按照字面量理解，除了以下几个特殊的符号：</p>
-<p>:paramName – 匹配一段位于 /、? 或 # 之后的 URL。 命中的部分将被作为一个参数
-() – 在它内部的内容被认为是可选的</p>
-<ul>
-<li>– 匹配任意字符（非贪婪的）直到命中下一个字符或者整个 URL 的末尾，并创建一个 splat 参数</li>
-</ul>
-<pre><code>&lt;Route path=&quot;/hello/:name&quot;&gt;         
-// 匹配 /hello/michael 和 /hello/ryan
-&lt;Route path=&quot;/hello(/:name)&quot;&gt;     
-// 匹配 /hello, /hello/michael 和 /hello/ryan
-&lt;Route path=&quot;/files/*.*&quot;&gt;          
-// 匹配 /files/hello.jpg 和 /files/path/to/hello.jpg
-</code></pre>
-<p>使用绝对路径可以使路由匹配行为忽略嵌套关系</p>
-<p>路由匹配规则是从上到下执行，一旦发现匹配，就不再其余的规则了。（同名路由只执行第一个）带参数的路径一般要写在路由规则的底部。</p>
-<h2 id="4history">4.History</h2>
-<p>React Router 是建立在 history 之上的。 简而言之，一个 history 知道如何去监听浏览器地址栏的变化， 并解析这个 URL 转化为 location 对象， 然后 router 使用它匹配到路由，最后正确地渲染对应的组件。</p>
-<p>常用的 history 有三种形式， 但是你也可以使用 React Router 实现自定义的 history。</p>
-<ol>
-<li>browserHistory使用浏览器中的 History API 用于处理 URL，创建一个像example.com/some/path这样真实的 URL 。</li>
-<li>hashHistory</li>
-<li>createMemoryHistory</li>
-</ol>
-<h2 id="5重定向">5.重定向</h2>
-<pre><code>&lt;Redirect&gt;组件用于路由的跳转，即用户访问一个路由，会自动跳转到另一个路由。
-＜Redirect from=&quot;messages/:id&quot; to=&quot;/messages/:id&quot; /&gt;
-现在访问/inbox/messages/5，会自动跳转到/messages/5。
-IndexRedirect （2.x）IndexRoute（4.x）
-组件用于访问根路由的时候，将用户重定向到某个子组件。
-</code></pre>
-<p>Link组件用于取代<a>元素，生成一个链接，允许用户点击后跳转到另一个路由。它基本上就是<a>元素的React 版本，可以接收Router的状态。</p>
-<p>如果链接到根路由/，不要使用Link组件，而要使用IndexLink组件。</p>
-<pre><code>&lt;IndexLink to=&quot;/&quot; activeClassName=&quot;active&quot;&gt;
-  Home
-&lt;/IndexLink&gt;
 </code></pre>
 ]]></content>
     </entry>
