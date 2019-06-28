@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-28T10:01:47.440Z</updated>
+    <updated>2019-06-28T10:03:14.435Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -17,15 +17,15 @@
         </link>
         <updated>2019-06-28T09:17:12.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
-<p>Virtual Dom是什么，这个问题在面试中会经常问到
-但是实际开发中并不会直接去接触到Virtual Dom
-之前对于Virtual Dom的理解都是背的，这次来深层探究下。</p>
+<p>Virtual Dom是什么，这个问题在面试中会经常问到</p>
+<p>但是实际开发中并不会直接去接触到Virtual Dom</p>
+<p>之前对于Virtual Dom的理解都是背的，这次来深层探究下。</p>
 </blockquote>
 ]]></summary>
         <content type="html"><![CDATA[<blockquote>
-<p>Virtual Dom是什么，这个问题在面试中会经常问到
-但是实际开发中并不会直接去接触到Virtual Dom
-之前对于Virtual Dom的理解都是背的，这次来深层探究下。</p>
+<p>Virtual Dom是什么，这个问题在面试中会经常问到</p>
+<p>但是实际开发中并不会直接去接触到Virtual Dom</p>
+<p>之前对于Virtual Dom的理解都是背的，这次来深层探究下。</p>
 </blockquote>
 <!-- more -->
 <h2 id="vue模板转换成视图的过程">vue模板转换成视图的过程</h2>
