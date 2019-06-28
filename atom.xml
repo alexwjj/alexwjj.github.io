@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-28T06:18:19.789Z</updated>
+    <updated>2019-06-28T10:01:47.440Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -11,7 +11,67 @@
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
     <entry>
-        <title type="html"><![CDATA[ Vue  computed和watch详解]]></title>
+        <title type="html"><![CDATA[Vue --- Virtual Dom]]></title>
+        <id>https://alexwjj.github.io//post/vue-virtual-dom</id>
+        <link href="https://alexwjj.github.io//post/vue-virtual-dom">
+        </link>
+        <updated>2019-06-28T09:17:12.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>Virtual Dom是什么，这个问题在面试中会经常问到
+但是实际开发中并不会直接去接触到Virtual Dom
+之前对于Virtual Dom的理解都是背的，这次来深层探究下。</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>Virtual Dom是什么，这个问题在面试中会经常问到
+但是实际开发中并不会直接去接触到Virtual Dom
+之前对于Virtual Dom的理解都是背的，这次来深层探究下。</p>
+</blockquote>
+<!-- more -->
+<h2 id="vue模板转换成视图的过程">vue模板转换成视图的过程</h2>
+<ul>
+<li>Vue.js通过编译将<strong>template 模板</strong>转换成渲染函数(render ) ，执行渲染函数就可以得到一个虚拟节点树</li>
+<li>在对 Model 进行操作的时候，会触发对应 Dep 中的 Watcher 对象。Watcher 对象会调用对应的 update 来修改视图。这个过程主要是将<strong>新旧虚拟节点</strong>进行<strong>差异对比</strong>，然后根据对比结果进行DOM操作来更新视图。
+<img src="https://alexwjj.github.io//post-images/1561713907738.png" alt="">
+<img src="https://alexwjj.github.io//post-images/1561715602464.png" alt=""></li>
+</ul>
+<h2 id="virtual-dom">Virtual DOM</h2>
+<h3 id="1定义">1.定义</h3>
+<p>Virtual DOM 其实就是一棵以 JavaScript 对象( VNode 节点)作为基础的树，用<strong>对象属性来描述节点</strong>，实际上它只是一层对真实 DOM 的抽象。最终可以通过一系列操作使这棵树映射到真实环境上。</p>
+<p>简单来说，可以把Virtual DOM 理解为一个<strong>简单的JS对象</strong>，并且最少包含标签名( tag)、属性(attrs)和子元素对象( children)三个属性。</p>
+<h3 id="模板-渲染函数-虚拟dom树-真实dom">模板 → 渲染函数 → 虚拟DOM树 → 真实DOM</h3>
+<p><img src="https://alexwjj.github.io//post-images/1561714145195.png" alt=""></p>
+<h3 id="2作用">2.作用</h3>
+<p>虚拟DOM的最终目标是将<strong>虚拟节点渲染到视图上</strong>。但是如果直接使用虚拟节点覆盖旧节点的话，会有很多不必要的DOM操作。例如，一个ul标签下很多个li标签，其中只有一个li有变化，这种情况下如果使用新的ul去替代旧的ul,因为这些不必要的DOM操作而造成了性能上的浪费。</p>
+<p>为了避免不必要的DOM操作，虚拟DOM在虚拟节点映射到视图的过程中，将虚拟节点与上一次渲染视图所使用的旧虚拟节点（oldVnode）做对比，找出<strong>真正需要更新的节点</strong>来进行DOM操作，从而避免操作其他无需改动的DOM。</p>
+<ul>
+<li>提供与真实DOM节点所对应的<strong>虚拟节点vnode</strong></li>
+<li>将虚拟节点vnode和旧虚拟节点<strong>oldVnode</strong>进行对比，然后更新视图</li>
+<li>运用<strong>patching算法</strong>来计算出真正需要更新的节点</li>
+<li>类比 CPU、硬盘中加入内存条</li>
+</ul>
+<h3 id="3diff算法">3.diff算法</h3>
+<p>Vue的diff算法是基于snabbdom改造过来的，仅在<strong>同级的vnode间做diff</strong>，<strong>递归</strong>地进行同级vnode的diff，最终实现整个DOM树的更新。因为跨层级的操作是非常少的，忽略不计，这样时间复杂度就从<strong>O(n3)变成O(n)</strong>。</p>
+<h4 id="diff-算法包括几个步骤">diff 算法包括几个步骤：</h4>
+<ul>
+<li>用 JavaScript 对象结构表示 DOM 树的结构；然后用这个树构建一个真正的 DOM 树，插到文档当中</li>
+<li>当状态变更的时候，重新构造一棵新的对象树。然后用新的树和旧的树进行比较，记录两棵树差异</li>
+<li>把<strong>所记录的差异</strong>应用到所构建的真正的DOM树上，视图就更新了
+<img src="https://alexwjj.github.io//post-images/1561715188395.png" alt=""></li>
+</ul>
+<p>diff的过程就是调用名为patch的函数，比较新旧节点，一边比较一边给真实的DOM打补丁：</p>
+<ul>
+<li>patch(container,vnode)  :初次渲染的时候，将Virtual Dom渲染成真正的DOM然后插入到容器里面。</li>
+<li>patch(vnode,newVnode):再次渲染的时候，将新的vnode和旧的vnode相对比，然后之间差异应用到所构建的真正的DOM树上。</li>
+<li>如果两个节点都是一样的，那么就深入检查他们的子节点。如果两个节点不一样那就说明Vnode完全被改变了，就可以直接替换oldVnode。两个children的比较是使用双向链表，<strong>边patch边操作dom</strong>。
+<img src="https://alexwjj.github.io//post-images/1561715535206.png" alt=""></li>
+</ul>
+<h4 id="diff-缺点">diff 缺点</h4>
+<p>虽然这两个节点不一样但是他们的<strong>子节点一样怎么办</strong>？别忘了，diff可是逐层比较的，如果第一层不一样那么就不会继续深入比较第二层了。（我在想这算是一个缺点吗？<strong>相同子节点不能重复利用了</strong>...）</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ Vue ---  computed vs watch]]></title>
         <id>https://alexwjj.github.io//post/tan-jiu-vue-ji-suan-shu-xing-computed-he-zhen-ting-shu-xing-watch</id>
         <link href="https://alexwjj.github.io//post/tan-jiu-vue-ji-suan-shu-xing-computed-he-zhen-ting-shu-xing-watch">
         </link>
@@ -695,95 +755,6 @@ webscoket数据传递
 数据分片传输，根据FIN的值来判断，FIN=1表示当前数据帧为最后一个数据帧，FIN=0，还需要继续监听其他数据帧
 </code></pre>
 <p><img src="https://alexwjj.github.io//post-images/1559734484836.jpeg" alt=""></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Redux]]></title>
-        <id>https://alexwjj.github.io//post/redux</id>
-        <link href="https://alexwjj.github.io//post/redux">
-        </link>
-        <updated>2019-06-05T11:31:18.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>对比 VueX 总结 Redux 的简单使用方法</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>对比 VueX 总结 Redux 的简单使用方法</p>
-</blockquote>
-<!-- more -->
-<h2 id="1方式">1.方式</h2>
-<p>应用中所有的 state 都以一个对象树的形式储存在一个单一的 store 中。 惟一改变 state 的办法是触发 action，一个描述发生什么的对象。 为了描述 action 如何改变 state 树，你需要编写 reducers。</p>
-<h2 id="2三大原则">2.三大原则</h2>
-<p>1.单一数据源</p>
-<p>整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。</p>
-<p>2.State 是只读的</p>
-<p>唯一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。</p>
-<p>3.使用纯函数来执行修改</p>
-<p>为了描述 action 如何改变 state tree ，你需要编写 reducers；Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。</p>
-<h2 id="3基础">3.基础</h2>
-<h3 id="action">Action</h3>
-<p>Action 是把数据从应用传到 store 的有效载荷。它是 store 数据的唯一来源。一般来说你会通过 store.dispatch() 将 action 传到 store。</p>
-<p>action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。多数情况下，type 会被定义成字符串常量。当应用规模越来越大时，建议使用单独的模块或文件来存放 action。</p>
-<p><code>import { ADD_TODO, REMOVE_TODO } from '../actionTypes'</code></p>
-<p>最后，再添加一个 action type 来表示当前的任务展示选项。</p>
-<pre><code>{
-  type: SET_VISIBILITY_FILTER,
-  filter: SHOW_COMPLETED
-}
-</code></pre>
-<p>store 里能直接通过 store.dispatch() 调用 dispatch() 方法，但是多数情况下你会使用 react-redux提供的 connect() 帮助器来调用。bindActionCreators() 可以自动把多个 action 创建函数 绑定到 dispatch() 方法上。</p>
-<h3 id="reducer">Reducer</h3>
-<h3 id="定义">定义</h3>
-<p>Reducers 指定了应用状态的变化如何响应 actions 并发送到 store 的，记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state。</p>
-<p>之所以将这样的函数称之为reducer，是因为这种函数与被传入 Array.prototype.reduce(reducer, ?initialValue) 里的回调函数属于相同的类型。</p>
-<h3 id="注意">注意</h3>
-<p>1.不要修改 state。 使用 Object.assign() 新建了一个副本。不能这样使用 Object.assign(state, { visibilityFilter: action.filter })，因为它会改变第一个参数的值。你必须把第一个参数设置为空对象。这样写return Object.assign({}, state,{visibilityFilter: action.filter})</p>
-<p>2.在 default 情况下返回旧的 state。遇到未知的 action 时，一定要返回旧的 state。</p>
-<h3 id="reducer分类">Reducer分类</h3>
-<p>每个 reducer 只负责管理全局 state 中它负责的一部分。每个 reducer 的 state 参数都不同，分别对应它管理的那部分 state 数据。</p>
-<pre><code>function todoApp(state = {}, action) {
-  return {
-    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-    todos: todos(state.todos, action)
-  }
-}
-</code></pre>
-<p>Redux 提供了 combineReducers() 工具类来做上面 todoApp 做的事情，这样就能消灭一些样板代码了。有了它，可以这样重构 todoApp</p>
-<pre><code>const todoApp = combineReducers({
-  visibilityFilter,
-  todos
-})
-</code></pre>
-<h3 id="store">Store</h3>
-<p>Store 就是把它们联系到一起的对象。Store 有以下职责：</p>
-<pre><code>* 维持应用的 state；
-* 提供 getState() 方法获取 state；
-* 提供 dispatch(action) 方法更新 state；
-* 通过 subscribe(listener) 注册监听器;
-* 通过 subscribe(listener) 返回的函数注销监听器。
-* createStore() 的第二个参数是可选的, 用于设置 state 初始状态。
-</code></pre>
-<h3 id="单向数据流">单向数据流</h3>
-<p>Redux 应用中数据的生命周期遵循下面 4 个步骤：</p>
-<p>1.调用 store.dispatch(action)。</p>
-<p>2.Redux store 调用传入的 reducer 函数。Store 会把两个参数传入 reducer： 当前的 state 树和 action。</p>
-<p>3.根 reducer 应该把多个子 reducer 输出合并成一个单一的 state 树。Redux 原生提供combineReducers()辅助函数，来把根 reducer 拆分成多个函数，用于分别处理 state 树的一个分支。</p>
-<p>4.Redux store 保存了根 reducer 返回的完整 state 树。</p>
-<h3 id="react-redux">React + Redux</h3>
-<h3 id="容器组件">容器组件</h3>
-<p>容器组件就是使用 store.subscribe() 从 Redux state 树中读取部分数据，并通过 props 来把这些数据提供给要渲染的组件</p>
-<p>建议使用 React Redux 库的 connect() 方法来生成，这个方法做了性能优化来避免很多不必要的重复渲染。</p>
-<p>使用 connect() 前，需要先定义 mapStateToProps 这个函数来指定如何把当前 Redux store state 映射到展示组件的 props 中</p>
-<h3 id="传入store">传入store</h3>
-<p>所有容器组件都可以访问 Redux store，所以可以手动监听它。一种方式是把它以 props 的形式传入到所有容器组件中。</p>
-<p>建议的方式是使用指定的 React Redux 组件 <Provider> 来 魔法般的 让所有容器组件都可以访问 store，而不必显示地传递它。只需要在渲染根组件时使用即可。</p>
-<pre><code>render(
-  &lt;Provider store={store}&gt;
-    &lt;App /&gt;
-  &lt;/Provider&gt;,
-  document.getElementById('root')
-)
-</code></pre>
 ]]></content>
     </entry>
 </feed>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>Vue --- Virtual Dom | 俊劫、的前端博客</title>
+<meta name="description" content="讲个笑话，你可别哭。">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1561716096663">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://alexwjj.github.io/">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1561716096663" class="site-logo">
+        <h1 class="site-title">俊劫、的前端博客</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+        
+          <a href="https://alexwjj.github.io//post/about/" class="site-nav">
+            微医
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/alexwjj" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/u/3027423487/home" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+          <a class="social-link" href="https://www.zhihu.com/people/biuzhu-biubiu/activities" target="_blank">
+            <i class="fab fa-zhihu"></i>
+          </a>
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      讲个笑话，你可别哭。
+    </div>
+    <div class="site-footer">
+      来自一个炒鸡牛批的前端工程师！ | <a class="rss" href="https://alexwjj.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">Vue --- Virtual Dom</h2>
+            <div class="post-date">2019-06-28</div>
+            
+              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/vue-virtual-dom.png')">
+              </div>
+            
+            <div class="post-content">
+              <blockquote>
+<p>Virtual Dom是什么，这个问题在面试中会经常问到
+但是实际开发中并不会直接去接触到Virtual Dom
+之前对于Virtual Dom的理解都是背的，这次来深层探究下。</p>
+</blockquote>
+<!-- more -->
+<h2 id="vue模板转换成视图的过程">vue模板转换成视图的过程</h2>
+<ul>
+<li>Vue.js通过编译将<strong>template 模板</strong>转换成渲染函数(render ) ，执行渲染函数就可以得到一个虚拟节点树</li>
+<li>在对 Model 进行操作的时候，会触发对应 Dep 中的 Watcher 对象。Watcher 对象会调用对应的 update 来修改视图。这个过程主要是将<strong>新旧虚拟节点</strong>进行<strong>差异对比</strong>，然后根据对比结果进行DOM操作来更新视图。
+<img src="https://alexwjj.github.io//post-images/1561713907738.png" alt="">
+<img src="https://alexwjj.github.io//post-images/1561715602464.png" alt=""></li>
+</ul>
+<h2 id="virtual-dom">Virtual DOM</h2>
+<h3 id="1定义">1.定义</h3>
+<p>Virtual DOM 其实就是一棵以 JavaScript 对象( VNode 节点)作为基础的树，用<strong>对象属性来描述节点</strong>，实际上它只是一层对真实 DOM 的抽象。最终可以通过一系列操作使这棵树映射到真实环境上。</p>
+<p>简单来说，可以把Virtual DOM 理解为一个<strong>简单的JS对象</strong>，并且最少包含标签名( tag)、属性(attrs)和子元素对象( children)三个属性。</p>
+<h3 id="模板-渲染函数-虚拟dom树-真实dom">模板 → 渲染函数 → 虚拟DOM树 → 真实DOM</h3>
+<p><img src="https://alexwjj.github.io//post-images/1561714145195.png" alt=""></p>
+<h3 id="2作用">2.作用</h3>
+<p>虚拟DOM的最终目标是将<strong>虚拟节点渲染到视图上</strong>。但是如果直接使用虚拟节点覆盖旧节点的话，会有很多不必要的DOM操作。例如，一个ul标签下很多个li标签，其中只有一个li有变化，这种情况下如果使用新的ul去替代旧的ul,因为这些不必要的DOM操作而造成了性能上的浪费。</p>
+<p>为了避免不必要的DOM操作，虚拟DOM在虚拟节点映射到视图的过程中，将虚拟节点与上一次渲染视图所使用的旧虚拟节点（oldVnode）做对比，找出<strong>真正需要更新的节点</strong>来进行DOM操作，从而避免操作其他无需改动的DOM。</p>
+<ul>
+<li>提供与真实DOM节点所对应的<strong>虚拟节点vnode</strong></li>
+<li>将虚拟节点vnode和旧虚拟节点<strong>oldVnode</strong>进行对比，然后更新视图</li>
+<li>运用<strong>patching算法</strong>来计算出真正需要更新的节点</li>
+<li>类比 CPU、硬盘中加入内存条</li>
+</ul>
+<h3 id="3diff算法">3.diff算法</h3>
+<p>Vue的diff算法是基于snabbdom改造过来的，仅在<strong>同级的vnode间做diff</strong>，<strong>递归</strong>地进行同级vnode的diff，最终实现整个DOM树的更新。因为跨层级的操作是非常少的，忽略不计，这样时间复杂度就从<strong>O(n3)变成O(n)</strong>。</p>
+<h4 id="diff-算法包括几个步骤">diff 算法包括几个步骤：</h4>
+<ul>
+<li>用 JavaScript 对象结构表示 DOM 树的结构；然后用这个树构建一个真正的 DOM 树，插到文档当中</li>
+<li>当状态变更的时候，重新构造一棵新的对象树。然后用新的树和旧的树进行比较，记录两棵树差异</li>
+<li>把<strong>所记录的差异</strong>应用到所构建的真正的DOM树上，视图就更新了
+<img src="https://alexwjj.github.io//post-images/1561715188395.png" alt=""></li>
+</ul>
+<p>diff的过程就是调用名为patch的函数，比较新旧节点，一边比较一边给真实的DOM打补丁：</p>
+<ul>
+<li>patch(container,vnode)  :初次渲染的时候，将Virtual Dom渲染成真正的DOM然后插入到容器里面。</li>
+<li>patch(vnode,newVnode):再次渲染的时候，将新的vnode和旧的vnode相对比，然后之间差异应用到所构建的真正的DOM树上。</li>
+<li>如果两个节点都是一样的，那么就深入检查他们的子节点。如果两个节点不一样那就说明Vnode完全被改变了，就可以直接替换oldVnode。两个children的比较是使用双向链表，<strong>边patch边操作dom</strong>。
+<img src="https://alexwjj.github.io//post-images/1561715535206.png" alt=""></li>
+</ul>
+<h4 id="diff-缺点">diff 缺点</h4>
+<p>虽然这两个节点不一样但是他们的<strong>子节点一样怎么办</strong>？别忘了，diff可是逐层比较的，如果第一层不一样那么就不会继续深入比较第二层了。（我在想这算是一个缺点吗？<strong>相同子节点不能重复利用了</strong>...）</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://alexwjj.github.io//tag/Vue" class="tag">
+                    Vue
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://alexwjj.github.io//post/tan-jiu-vue-ji-suan-shu-xing-computed-he-zhen-ting-shu-xing-watch">
+                  <h3 class="post-title">
+                     Vue ---  computed vs watch
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '3a75e9876da102702b06',
+        clientSecret: '9b9c930a40f564a860f43ce401d79bebd588137f',
+        repo: 'alexwjj.github.io',
+        owner: 'alexwjj',
+        admin: ['alexwjj'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
