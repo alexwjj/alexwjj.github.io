@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Vue --- provide/inject | 俊劫、的前端博客</title>
+<title>去除dispaly：inline-block造成的间距 | 俊劫、的前端博客</title>
 <meta name="description" content="讲个笑话，你可别哭。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -116,49 +116,87 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Vue --- provide/inject</h2>
-            <div class="post-date">2019-06-28</div>
+            <h2 class="post-title">去除dispaly：inline-block造成的间距</h2>
+            <div class="post-date">2019-07-03</div>
             
-              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/vue-provideinject.jpg')">
+              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/qu-chu-dispalyinline-block-zao-cheng-de-jian-ju.png')">
               </div>
             
             <div class="post-content">
               <blockquote>
-<p>vue2.2新增api，用于跨组件通信</p>
-<p>目前还没写过，但是看项目里面几个大佬在用。学习学习</p>
+<p>做管理系统，样式很多都是组件统一的</p>
+<p>最近写组件的时候，遇到莫名其妙的间距问题</p>
+<p>不懂就问，一问就会，哈哈哈。下面总结几种去除 inline-block 的几种方法</p>
 </blockquote>
 <!-- more -->
-<h2 id="1定义">1.定义</h2>
-<p>Vue2.2.0新增API,provide和inject需要一起使用，以允许一个<strong>祖先组件</strong>向其所有<strong>子孙后代</strong>注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里<strong>始终生效</strong>。一言而蔽之：祖先组件中通过<strong>provider来提供变量</strong>，然后在<strong>子孙组件中通过inject来注入变量</strong>。</p>
-<p>provide / inject API 主要解决了<strong>跨级组件间的通信问题</strong>，不过它的使用场景，主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。</p>
-<h2 id="2demo">2.demo</h2>
-<p>A.vue 和 B.vue，B 是 A 的子组件</p>
-<pre><code>// A.vue
-export default {
-  provide: {
-    name: '俊劫'
+<h2 id="问题源泉">问题源泉</h2>
+<p><img src="https://alexwjj.github.io//post-images/1562154263184.png" alt=""></p>
+<p>一个小小的间距，用 chrome 检查元素发现不了问题，困扰了几天( 遇到的问题，不是很紧急的，我不会立刻去问大佬，先带着问题做其他的事情，没事多思考，想到解决方案就试试，没办法的时候找机会问大佬。这样可能会浪费点时间，但是我觉得可以提升自己思考问题及提出解决方案的能力，自己通过这种方式也确实解决了很多问题，逐渐成为一个 dalao，尽量少的依赖别人去解决问题。）</p>
+<h2 id="间距现象">间距现象</h2>
+<pre><code>&lt;style&gt;
+  p {
+    display: inline-block;
   }
-}
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;p&gt;间距测试前&lt;/p&gt;
+        &lt;p&gt;间距测试后&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
 </code></pre>
-<pre><code>// B.vue
-export default {
-  inject: ['name'],
-  mounted () {
-    console.log(this.name);  // 俊劫
+<p><img src="https://alexwjj.github.io//post-images/1562154772107.png" alt=""></p>
+<h2 id="1最简单的解决方案">1.最简单的解决方案</h2>
+<p>这种现象，实际上是因为有一个换行符导致</p>
+<pre><code>    &lt;div&gt;
+        &lt;p&gt;间距测试前&lt;/p&gt;&lt;p&gt;间距测试后&lt;/p&gt;
+    &lt;/div&gt;
+</code></pre>
+<p><img src="https://alexwjj.github.io//post-images/1562154864755.png" alt=""></p>
+<h2 id="2去除闭合标签">2.去除闭合标签</h2>
+<pre><code>    &lt;div&gt;
+        &lt;p&gt;间距测试前
+        &lt;p&gt;间距测试后
+    &lt;/div&gt;
+</code></pre>
+<h2 id="3font-size0">3.font-size:0</h2>
+<pre><code>&lt;style&gt;
+  p {
+    display: inline-block;
+    font-size: 16px;
   }
-}
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div style=&quot;font-size: 0&quot;&gt;
+        &lt;p&gt;间距测试前&lt;/p&gt;
+        &lt;p&gt;间距测试后&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
 </code></pre>
-<p>provide 和 inject 绑定<strong>并不是可响应的</strong>。这是刻意为之的。但是，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。所以，上面 A.vue 的 name 如果改变了，B.vue 的 this.name 是不会改变的。</p>
-<h2 id="ref-组件通信">ref 组件通信</h2>
-<p>ref：如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例</p>
-<p>$parent / $children：访问父 / 子实例</p>
+<h2 id="4letter-spacing-0-word-spacing0">4.letter-spacing: 0 ，word-spacing：0</h2>
+<p>不准确，不推荐使用</p>
+<pre><code>&lt;style&gt;
+  p {
+    display: inline-block;
+    letter-spacing: 0;
+  }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div style=&quot;letter-spacing: -5px&quot;&gt;
+        &lt;p&gt;间距测试前&lt;/p&gt;
+        &lt;p&gt;间距测试后&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<h2 id="小结">小结</h2>
+<p>调整代码不换行是<strong>最简单的方式</strong>，其次是设置 **font-size：0  **</p>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://alexwjj.github.io//tag/Vue" class="tag">
-                    Vue
+                  <a href="https://alexwjj.github.io//tag/Css" class="tag">
+                    Css
                   </a>
                 
               </div>
@@ -166,9 +204,9 @@ export default {
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://alexwjj.github.io//post/vue-virtual-dom">
+                <a href="https://alexwjj.github.io//post/vue-provideinject">
                   <h3 class="post-title">
-                    Vue --- Virtual Dom
+                    Vue --- provide/inject
                   </h3>
                 </a>
               </div>

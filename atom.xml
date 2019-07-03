@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-06-28T10:42:23.045Z</updated>
+    <updated>2019-07-03T12:06:52.507Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,87 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[去除dispaly：inline-block造成的间距]]></title>
+        <id>https://alexwjj.github.io//post/qu-chu-dispalyinline-block-zao-cheng-de-jian-ju</id>
+        <link href="https://alexwjj.github.io//post/qu-chu-dispalyinline-block-zao-cheng-de-jian-ju">
+        </link>
+        <updated>2019-07-03T11:28:50.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>做管理系统，样式很多都是组件统一的</p>
+<p>最近写组件的时候，遇到莫名其妙的间距问题</p>
+<p>不懂就问，一问就会，哈哈哈。下面总结几种去除 inline-block 的几种方法</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>做管理系统，样式很多都是组件统一的</p>
+<p>最近写组件的时候，遇到莫名其妙的间距问题</p>
+<p>不懂就问，一问就会，哈哈哈。下面总结几种去除 inline-block 的几种方法</p>
+</blockquote>
+<!-- more -->
+<h2 id="问题源泉">问题源泉</h2>
+<p><img src="https://alexwjj.github.io//post-images/1562154263184.png" alt=""></p>
+<p>一个小小的间距，用 chrome 检查元素发现不了问题，困扰了几天( 遇到的问题，不是很紧急的，我不会立刻去问大佬，先带着问题做其他的事情，没事多思考，想到解决方案就试试，没办法的时候找机会问大佬。这样可能会浪费点时间，但是我觉得可以提升自己思考问题及提出解决方案的能力，自己通过这种方式也确实解决了很多问题，逐渐成为一个 dalao，尽量少的依赖别人去解决问题。）</p>
+<h2 id="间距现象">间距现象</h2>
+<pre><code>&lt;style&gt;
+  p {
+    display: inline-block;
+  }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div&gt;
+        &lt;p&gt;间距测试前&lt;/p&gt;
+        &lt;p&gt;间距测试后&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p><img src="https://alexwjj.github.io//post-images/1562154772107.png" alt=""></p>
+<h2 id="1最简单的解决方案">1.最简单的解决方案</h2>
+<p>这种现象，实际上是因为有一个换行符导致</p>
+<pre><code>    &lt;div&gt;
+        &lt;p&gt;间距测试前&lt;/p&gt;&lt;p&gt;间距测试后&lt;/p&gt;
+    &lt;/div&gt;
+</code></pre>
+<p><img src="https://alexwjj.github.io//post-images/1562154864755.png" alt=""></p>
+<h2 id="2去除闭合标签">2.去除闭合标签</h2>
+<pre><code>    &lt;div&gt;
+        &lt;p&gt;间距测试前
+        &lt;p&gt;间距测试后
+    &lt;/div&gt;
+</code></pre>
+<h2 id="3font-size0">3.font-size:0</h2>
+<pre><code>&lt;style&gt;
+  p {
+    display: inline-block;
+    font-size: 16px;
+  }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div style=&quot;font-size: 0&quot;&gt;
+        &lt;p&gt;间距测试前&lt;/p&gt;
+        &lt;p&gt;间距测试后&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<h2 id="4letter-spacing-0-word-spacing0">4.letter-spacing: 0 ，word-spacing：0</h2>
+<p>不准确，不推荐使用</p>
+<pre><code>&lt;style&gt;
+  p {
+    display: inline-block;
+    letter-spacing: 0;
+  }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div style=&quot;letter-spacing: -5px&quot;&gt;
+        &lt;p&gt;间距测试前&lt;/p&gt;
+        &lt;p&gt;间距测试后&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<h2 id="小结">小结</h2>
+<p>调整代码不换行是<strong>最简单的方式</strong>，其次是设置 **font-size：0  **</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Vue --- provide/inject]]></title>
         <id>https://alexwjj.github.io//post/vue-provideinject</id>
@@ -491,87 +572,6 @@ overflow: hidden;
 </blockquote>
 <!-- more -->
 <p><a href="https://www.jianshu.com/p/f21d99ab5da4">https://www.jianshu.com/p/f21d99ab5da4</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[React 入门]]></title>
-        <id>https://alexwjj.github.io//post/react</id>
-        <link href="https://alexwjj.github.io//post/react">
-        </link>
-        <updated>2019-06-06T08:36:37.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>react 入门知识点</p>
-</blockquote>
-<blockquote>
-<p>对比着 Vue来看的</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>react 入门知识点</p>
-</blockquote>
-<blockquote>
-<p>对比着 Vue来看的</p>
-</blockquote>
-<!-- more -->
-<h2 id="入门">入门</h2>
-<pre><code>* 使用jsx语法， script的属性 type = 'text / babel'
-* 组件类的第一个字母必须大写，否则会报错，比如HelloMessage不能写成helloMessage。另外，组件类只能包含一个顶层标签，否则也会报错。
-* 添加组件属性，有一个地方需要注意，就是 class 属性需要写成 className ，for 属性需要写成 htmlFor ，这是因为 class 和 for 是 JavaScript 的保留字。
-* this.props.children 的值有三种可能：如果当前组件没有子节点，它就是 undefined ;如果有一个子节点，数据类型是 object ；如果有多个子节点，数据类型就是 array 。所以，处理 this.props.children 的时候要小心。
-* React 提供一个工具方法 React.Children 来处理 this.props.children 。我们可以用 React.Children.map 来遍历子节点，而不用担心 this.props.children 的数据类型是 undefined 还是 object。
-* 组件类的PropTypes属性，就是用来验证组件实例的属性是否符合要求，getDefaultProps 方法可以用来设置组件属性的默认值。
-* 由于 this.props 和 this.state 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。
-* 文本输入框的值，不能用 this.props.value 读取，而要定义一个 onChange 事件的回调函数，通过 event.target.value 读取用户输入的值。textarea 元素、select元素、radio元素都属于这种情况
-* 组件生命周期三种状态：Mounting，Updating（正在重新被渲染），Unmounting。React 为每个状态都提供了两种处理函数，will 函数在进入状态之前调用，did 函数在进入状态之后调用，三种状态共计五种处理函数。componentWillMount() componentDidMount()
-* 组件样式：style={、、{opacity: this.state.opacity}、、}，因为 React 组件样式是一个对象，所以第一重大括号表示这是 JavaScript 语法，第二重大括号表示样
-</code></pre>
-<h2 id="注意点">注意点</h2>
-<pre><code>* getInitialState  初始化数据
-* bind(this) 防止this指向错误 ，不写的话可以使用属性初始化和箭头函数（组件会重新渲染，不建议使用）。官方建议使用bind和属性初始化
-* &quot; 字符串 &quot;     { 表达式 }
-* onClick={activateLasers} 事件。在 React 中你不能使用返回 false 的方式阻止默认行为。你必须明确的使用 preventDefault
-* 在 JavaScript 中，true &amp;&amp; expression 总是返回 expression，而 false &amp;&amp; expression 总是返回 false。如下条件判断
-* {unreadMessages.length &gt; 0 &amp;&amp;
-*         &lt;h2&gt;
-*           You have {unreadMessages.length} unread messages.
-*         &lt;/h2&gt;
-*       }
-* 防止组件渲染 return null
-* 如果你选择不指定显式的键值，那么React将默认使用索引用（index）作为列表项目的键值。元素位于map()方法内时需要设置键属性
-* 在HTML当中，像&lt;input&gt;,&lt;textarea&gt;, 和 &lt;select&gt;这类表单元素会维持自身状态，并根据用户输入进行更新。他们都通过传入一个value属性来实现对组件的控制。
-*   组件嵌套{ props.children }          {props.left}  left = { &lt;assembly/&gt;}   
-* 如果你不初始化状态，也不绑定方法，那么你就不需要为React组件实现构造函数。不需要constructor 
-* 如果子类加入了 constructor 构造函数，则一定要手动调用父类的构造函数 super
-</code></pre>
-<h2 id="react生命周期">React生命周期</h2>
-<pre><code>mount
-1.constructor
-初始化state和绑定事件处理程序
-2.static getDerivedStateFromProps()
-可以更新state的状态，派生状态。小心使用
-3.render
-不渲染任何内容，返回布尔值或者null
-4.componentDidMount()
-render之后，挂载完成，调用该方法。一般写发送请求的
-
-update
-1.static getDerivedStateFromProps()
-2.shouldComponentUpdate()  性能优化点
-在调用 static getDerivedStateFromProps 方法之后，接下来会调用 nextComponentUpdate 方法。
-
-通过调用shouldComponentUpdate来控制是否要重新渲染组件
-3.reder()
-4.getSnapshotBeforeUpdate()
-5.componentDidUpdate()
-
-unMount
-1.componentWillUnmount()
-资源清理
-
-error
-1.static getDerivedStateFromError()
-2.componentDidCatch()
-</code></pre>
 ]]></content>
     </entry>
 </feed>
