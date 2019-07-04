@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-07-03T12:13:44.959Z</updated>
+    <updated>2019-07-04T02:35:20.896Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,63 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Vue Cli 2.0/3.0 环境变量配置]]></title>
+        <id>https://alexwjj.github.io//post/vue-cli-2030-huan-jing-bian-liang-pei-zhi</id>
+        <link href="https://alexwjj.github.io//post/vue-cli-2030-huan-jing-bian-liang-pei-zhi">
+        </link>
+        <updated>2019-07-04T02:15:17.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>在公司负责维护两个系统，一个使用的2.0，一个是3.0</p>
+<p>在需要根据运行环境判断时，需要对项目做不同的配置</p>
+<p>hashaki~ 面对疾风吧！</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>在公司负责维护两个系统，一个使用的2.0，一个是3.0</p>
+<p>在需要根据运行环境判断时，需要对项目做不同的配置</p>
+<p>hashaki~ 面对疾风吧！</p>
+</blockquote>
+<!-- more -->
+<h1 id="vue-cli-20">Vue Cli 2.0</h1>
+<h2 id="配置">配置</h2>
+<p><strong>config</strong>目录下的*.env.js可以配置环境变量，编译过程中会自动载入对应模式下的环境变量。
+dev.env.js  test.env.js  prod.env.js</p>
+<pre><code>// 开发环境,其他类比
+var merge = require('webpack-merge');
+var prodEnv = require('./prod.env');
+
+module.exports = merge(prodEnv, {
+  NODE_ENV: '&quot;development&quot;',
+  API_LOCATION: '&quot;/api&quot;',
+});
+</code></pre>
+<h2 id="使用">使用</h2>
+<ul>
+<li>在js文件或者在vue文件中<strong>process.env.{环境变量名}</strong>，比如上文定义的API_LOCATION，使用process.env.API_LOCATION即可获取环境变量的值。</li>
+<li>在html文件中使用环境变量，采用模板引用指令&lt;%= .process.env.{环境变量名} %&gt;，比如</li>
+</ul>
+<pre><code>&lt;script src=&quot;&lt;%= process.env.API_LOCATION %&gt;&quot;/&gt;
+</code></pre>
+<h1 id="vue-cli-30">Vue Cli 3.0</h1>
+<h2 id="配置与使用">配置与使用</h2>
+<p>参考官方文档：<a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F">3.0环境配置</a></p>
+<h2 id="目录">目录</h2>
+<p><img src="https://alexwjj.github.io//post-images/1562207612677.png" alt=""></p>
+<h2 id="配置-2">配置</h2>
+<pre><code>NODE_ENV = development
+VUE_APP_CURRENTMODE = development
+VUE_APP_API_LOCATION = /api
+</code></pre>
+<h2 id="使用-2">使用</h2>
+<pre><code>// 模板文件
+process.env.VUE_APP_API_LOCATION
+
+// index.html
+&lt;script src=&quot;&lt;%= VUE_APP_API_LOCATION %&gt;&quot;&gt;&lt;/script&gt;
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[去除dispaly：inline-block造成的间距]]></title>
         <id>https://alexwjj.github.io//post/qu-chu-dispalyinline-block-zao-cheng-de-jian-ju</id>
@@ -551,27 +608,6 @@ overflow:hidden;
 // 用来限制在一个块元素显示的文本的行数,2表示最多显示2行。 为了实现该效果，它需要组合其他的WebKit属性
 overflow: hidden;
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[微信小程序技术选型]]></title>
-        <id>https://alexwjj.github.io//post/wei-xin-xiao-cheng-xu-ji-zhu-xuan-xing</id>
-        <link href="https://alexwjj.github.io//post/wei-xin-xiao-cheng-xu-ji-zhu-xuan-xing">
-        </link>
-        <updated>2019-06-06T09:17:55.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>微信小程序开发方案 框架选型：Wepy、Mpvue、Taro
-由于博客采用了 vue 的构建方式，部分代码会导致 github.io构建失败
-所以文章在简书上。</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>微信小程序开发方案 框架选型：Wepy、Mpvue、Taro
-由于博客采用了 vue 的构建方式，部分代码会导致 github.io构建失败
-所以文章在简书上。</p>
-</blockquote>
-<!-- more -->
-<p><a href="https://www.jianshu.com/p/f21d99ab5da4">https://www.jianshu.com/p/f21d99ab5da4</a></p>
 ]]></content>
     </entry>
 </feed>

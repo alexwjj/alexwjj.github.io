@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | 俊劫、的前端博客</title>
+<title>Vue Cli 2.0/3.0 环境变量配置 | 俊劫、的前端博客</title>
 <meta name="description" content="讲个笑话，你可别哭。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -116,37 +116,76 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">Vue Cli 2.0/3.0 环境变量配置</h2>
+            <div class="post-date">2019-07-04</div>
             
-              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/about.png')">
+              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/vue-cli-2030-huan-jing-bian-liang-pei-zhi.png')">
               </div>
             
             <div class="post-content">
-              <h2 id="俊劫">俊劫、</h2>
-<!-- more -->
-<blockquote>
-<p>我叫<strong>吴俊杰</strong>，来自河南<strong>信阳</strong>，抓紧时间加好友辣（QQ：798595965）。</p>
+              <blockquote>
+<p>在公司负责维护两个系统，一个使用的2.0，一个是3.0</p>
+<p>在需要根据运行环境判断时，需要对项目做不同的配置</p>
+<p>hashaki~ 面对疾风吧！</p>
 </blockquote>
-<h2 id="关于我的前端路">关于我的前端路</h2>
-<p>大一上了一门 《精通 HTML 和 CSS》 的课，上完啥也不会，记得那时候只知道 div 和 p 标签，考试都靠提前背。</p>
-<p>大二暑假，学校老师办了一个前端培训班，两个月收费3000块。。。室友都报名了，我是跟风报名的，结果就我一个人走上了前端这条不归路。（还有个在路上）</p>
-<p>大三在校和老师用 bootstrap 和 jquery（Ctrl CV，哈哈哈） 做了个公司网站，暑假就出去混了。</p>
-<p>大四学校没课，先在广州混，混了半个月，没混下去。淘宝五块钱的视频，早上6点到晚上十点看了一个月，2018.09.03来杭州两周面试12家8家offers。</p>
-<p>2018.09.17  微医集团 ~~~ 至今</p>
-<h2 id="英雄联盟">英雄联盟</h2>
-<p>大一开始打，铂金水平，托儿所，儿童劫，第一男刀！</p>
+<!-- more -->
+<h1 id="vue-cli-20">Vue Cli 2.0</h1>
+<h2 id="配置">配置</h2>
+<p><strong>config</strong>目录下的*.env.js可以配置环境变量，编译过程中会自动载入对应模式下的环境变量。
+dev.env.js  test.env.js  prod.env.js</p>
+<pre><code>// 开发环境,其他类比
+var merge = require('webpack-merge');
+var prodEnv = require('./prod.env');
+
+module.exports = merge(prodEnv, {
+  NODE_ENV: '&quot;development&quot;',
+  API_LOCATION: '&quot;/api&quot;',
+});
+</code></pre>
+<h2 id="使用">使用</h2>
+<ul>
+<li>在js文件或者在vue文件中<strong>process.env.{环境变量名}</strong>，比如上文定义的API_LOCATION，使用process.env.API_LOCATION即可获取环境变量的值。</li>
+<li>在html文件中使用环境变量，采用模板引用指令&lt;%= .process.env.{环境变量名} %&gt;，比如</li>
+</ul>
+<pre><code>&lt;script src=&quot;&lt;%= process.env.API_LOCATION %&gt;&quot;/&gt;
+</code></pre>
+<h1 id="vue-cli-30">Vue Cli 3.0</h1>
+<h2 id="配置与使用">配置与使用</h2>
+<p>参考官方文档：<a href="https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F">3.0环境配置</a></p>
+<h2 id="目录">目录</h2>
+<p><img src="https://alexwjj.github.io//post-images/1562207612677.png" alt=""></p>
+<h2 id="配置-2">配置</h2>
+<pre><code>NODE_ENV = development
+VUE_APP_CURRENTMODE = development
+VUE_APP_API_LOCATION = /api
+</code></pre>
+<h2 id="使用-2">使用</h2>
+<pre><code>// 模板文件
+process.env.VUE_APP_API_LOCATION
+
+// index.html
+&lt;script src=&quot;&lt;%= VUE_APP_API_LOCATION %&gt;&quot;&gt;&lt;/script&gt;
+</code></pre>
 
             </div>
             
               <div class="tag-container">
                 
-                  <a href="https://alexwjj.github.io//tag//weDoctor" class="tag">
-                    微医集团
+                  <a href="https://alexwjj.github.io//tag/Vue" class="tag">
+                    Vue
                   </a>
                 
               </div>
             
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://alexwjj.github.io//post/qu-chu-dispalyinline-block-zao-cheng-de-jian-ju">
+                  <h3 class="post-title">
+                    去除dispaly：inline-block造成的间距
+                  </h3>
+                </a>
+              </div>
             
 
             
