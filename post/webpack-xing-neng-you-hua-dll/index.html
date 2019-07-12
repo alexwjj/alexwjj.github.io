@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1562207717619">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1562921245704">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://alexwjj.github.io/">
-        <img src="https://alexwjj.github.io//images/avatar.png?v=1562207717619" class="site-logo">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1562921245704" class="site-logo">
         <h1 class="site-title">俊劫、的前端博客</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -129,18 +129,18 @@
 </blockquote>
 <!-- more -->
 <h2 id="背景">背景</h2>
-<p>作为国内互联网医疗的扛把子，我们医院平台的 HIS 系统经过几年的 <strong>‘积累’</strong>，开发环境，测试环境的
-打包速度慢的令人发指。热更新要30 ~ 40S，这谁顶得住啊。公司大佬就对整个项目进行了重构，使用
-Vue Cli3 ，升级 webpack4等等。现在热更新也只需要3s，打包由6min降到1min，体验还是相当好的，
+<p>作为国内互联网医疗的扛把子，我们医院平台的 HIS 系统经过几年的 <strong>‘积累’</strong>，开发环境，测试环境的<br>
+打包速度慢的令人发指。热更新要30 ~ 40S，这谁顶得住啊。公司大佬就对整个项目进行了重构，使用<br>
+Vue Cli3 ，升级 webpack4等等。现在热更新也只需要3s，打包由6min降到1min，体验还是相当好的，<br>
 所以自己要学习大佬们的优化方法。</p>
 <h2 id="两种方案">两种方案</h2>
-<p>在用 Webpack 打包的时候，对于一些不经常更新的第三方库，比如 vuex，lodash，charts，axios我们希
+<p>在用 Webpack 打包的时候，对于一些不经常更新的第三方库，比如 vuex，lodash，charts，axios我们希<br>
 望能和自己的代码分离开，Webpack 社区有两种方案</p>
 <ul>
 <li>CommonsChunkPlugin</li>
 <li>DLLPlugin</li>
 </ul>
-<p>对于 <strong>CommonsChunkPlugin</strong>（之前的方式），webpack 每次打包实际还是需要去处理这些第三方
+<p>对于 <strong>CommonsChunkPlugin</strong>（之前的方式），webpack 每次打包实际还是需要去处理这些第三方<br>
 库，只是打包完之后，能把第三方库和我们自己的代码分开。</p>
 <p>而<strong>DLLPlugin</strong>（现在的方式）则是能把第三方代码完全分离开，即每次只打包项目自身的代码。</p>
 <h2 id="用法">用法</h2>

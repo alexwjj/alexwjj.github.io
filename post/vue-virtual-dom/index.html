@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1562207717619">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1562921245704">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://alexwjj.github.io/">
-        <img src="https://alexwjj.github.io//images/avatar.png?v=1562207717619" class="site-logo">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1562921245704" class="site-logo">
         <h1 class="site-title">俊劫、的前端博客</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -132,8 +132,8 @@
 <h2 id="vue模板转换成视图的过程">vue模板转换成视图的过程</h2>
 <ul>
 <li>Vue.js通过编译将<strong>template 模板</strong>转换成渲染函数(render ) ，执行渲染函数就可以得到一个虚拟节点树</li>
-<li>在对 Model 进行操作的时候，会触发对应 Dep 中的 Watcher 对象。Watcher 对象会调用对应的 update 来修改视图。这个过程主要是将<strong>新旧虚拟节点</strong>进行<strong>差异对比</strong>，然后根据对比结果进行DOM操作来更新视图。
-<img src="https://alexwjj.github.io//post-images/1561713907738.png" alt="">
+<li>在对 Model 进行操作的时候，会触发对应 Dep 中的 Watcher 对象。Watcher 对象会调用对应的 update 来修改视图。这个过程主要是将<strong>新旧虚拟节点</strong>进行<strong>差异对比</strong>，然后根据对比结果进行DOM操作来更新视图。<br>
+<img src="https://alexwjj.github.io//post-images/1561713907738.png" alt=""><br>
 <img src="https://alexwjj.github.io//post-images/1561715602464.png" alt=""></li>
 </ul>
 <h2 id="virtual-dom">Virtual DOM</h2>
@@ -157,14 +157,14 @@
 <ul>
 <li>用 JavaScript 对象结构表示 DOM 树的结构；然后用这个树构建一个真正的 DOM 树，插到文档当中</li>
 <li>当状态变更的时候，重新构造一棵新的对象树。然后用新的树和旧的树进行比较，记录两棵树差异</li>
-<li>把<strong>所记录的差异</strong>应用到所构建的真正的DOM树上，视图就更新了
+<li>把<strong>所记录的差异</strong>应用到所构建的真正的DOM树上，视图就更新了<br>
 <img src="https://alexwjj.github.io//post-images/1561715188395.png" alt=""></li>
 </ul>
 <p>diff的过程就是调用名为patch的函数，比较新旧节点，一边比较一边给真实的DOM打补丁：</p>
 <ul>
 <li>patch(container,vnode)  :初次渲染的时候，将Virtual Dom渲染成真正的DOM然后插入到容器里面。</li>
 <li>patch(vnode,newVnode):再次渲染的时候，将新的vnode和旧的vnode相对比，然后之间差异应用到所构建的真正的DOM树上。</li>
-<li>如果两个节点都是一样的，那么就深入检查他们的子节点。如果两个节点不一样那就说明Vnode完全被改变了，就可以直接替换oldVnode。两个children的比较是使用双向链表，<strong>边patch边操作dom</strong>。
+<li>如果两个节点都是一样的，那么就深入检查他们的子节点。如果两个节点不一样那就说明Vnode完全被改变了，就可以直接替换oldVnode。两个children的比较是使用双向链表，<strong>边patch边操作dom</strong>。<br>
 <img src="https://alexwjj.github.io//post-images/1561715535206.png" alt=""></li>
 </ul>
 <h4 id="diff-缺点">diff 缺点</h4>

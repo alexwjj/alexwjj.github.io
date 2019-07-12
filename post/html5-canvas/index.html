@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>面试技巧 | 俊劫、的前端博客</title>
+<title>HTML5    Canvas   | 俊劫、的前端博客</title>
 <meta name="description" content="讲个笑话，你可别哭。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,6 +13,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
 
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -109,37 +115,42 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="current-tag">标签: 面试技巧</h2>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://alexwjj.github.io//post/qian-duan-mian-shi-ji-chu-zhi-shi-dian-20190329">
-                  <h2 class="post-title">前端面试基础知识点  20190329</h2>
-                </a>
-                <div class="post-date">
-                  2019-03-29
-                </div>
-                <div class="post-abstract">
-                  <blockquote>
-<p>个人总结的面试技巧</p>
-<p>针对个人基础知识点来梳理的</p>
-</blockquote>
+          <div class="post-detail">
+            <h2 class="post-title">HTML5    Canvas  </h2>
+            <div class="post-date">2019-07-08</div>
+            
+            <div class="post-content">
+              <blockquote></blockquote>
+<!-- more -->
+<h2 id="1canvas-简介">1.canvas 简介</h2>
+<p>Canvas是由HTML代码配合高度和宽度属性而定义出的可绘制区域。JavaScript代码可以访问该区域，类似于其他通用的二维API，通过一套完整的绘图函数来动态生成图形。</p>
+<h2 id="2canvas基本使用">2.canvas基本使用</h2>
+<pre><code>&lt;canvas id=&quot;tutorial&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+<p><img src="https://alexwjj.github.io//post-images/1562921243763.gif" alt=""></p>
 
-                </div>
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://alexwjj.github.io//post/vue-cli-2030-huan-jing-bian-liang-pei-zhi">
+                  <h3 class="post-title">
+                    Vue Cli 2.0/3.0 环境变量配置
+                  </h3>
+                </a>
               </div>
-              
-                <a class="right" href="https://alexwjj.github.io//post/qian-duan-mian-shi-ji-chu-zhi-shi-dian-20190329">
-                  <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/qian-duan-mian-shi-ji-chu-zhi-shi-dian-20190329.png')">
-                  </div>
-                </a>
-              
-            </article>
-          
+            
 
-          <div class="pagination-container">
-  
-  
-</div>
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
 
         </div>
       </div>
@@ -161,6 +172,29 @@ var app = new Vue({
 })
 
 </script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '3a75e9876da102702b06',
+        clientSecret: '9b9c930a40f564a860f43ce401d79bebd588137f',
+        repo: 'alexwjj.github.io',
+        owner: 'alexwjj',
+        admin: ['alexwjj'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
 
 
 

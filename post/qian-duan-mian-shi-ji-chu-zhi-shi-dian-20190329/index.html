@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1562207717619">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1562921245704">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://alexwjj.github.io/">
-        <img src="https://alexwjj.github.io//images/avatar.png?v=1562207717619" class="site-logo">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1562921245704" class="site-logo">
         <h1 class="site-title">俊劫、的前端博客</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -169,8 +169,8 @@ var isArray = Array.isArray || function(obj) {
 <h3 id="执行环境">执行环境</h3>
 <p>JS 在执行的过程中会产生执行环境，这些执行环境会被顺序的加入到执行栈中。如果遇到异步的代码，会被挂起并加入到 任务（有多种任务） 队列中。一旦执行栈为空，Event Loop 就会从 任务 队列中拿出需要执行的代码并放入执行栈中执行，所以本质上来说 JS 中的异步还是同步行为。</p>
 <h3 id="任务队列">任务队列</h3>
-<p>不同的任务源会被分配到不同的 Task 队列中，任务源可以分为 微任务（microtask） 和 宏任务（macrotask）
-微任务包括 process.nextTick ，promise ，Object.observe ，MutationObserver
+<p>不同的任务源会被分配到不同的 Task 队列中，任务源可以分为 微任务（microtask） 和 宏任务（macrotask）<br>
+微任务包括 process.nextTick ，promise ，Object.observe ，MutationObserver<br>
 宏任务包括 script ， setTimeout ，setInterval ，setImmediate ，I/O ，UI rendering</p>
 <p><strong>Event loop</strong> 顺序是这样的</p>
 <pre><code>* 执行同步代码，这属于宏任务
@@ -229,7 +229,7 @@ var isArray = Array.isArray || function(obj) {
 </code></pre>
 <h2 id="10objectis-objectisfoo-foo-true">10.object.is() Object.is('foo', 'foo') true</h2>
 <h2 id="11原生sort使用的是哪些排序算法">11.原生sort使用的是哪些排序算法？</h2>
-<p>插入排序和快速排序结合的排序算法
+<p>插入排序和快速排序结合的排序算法<br>
 sort 的排序规则：</p>
 <pre><code>    var values = [0, 1, 5, 10, 15];
     values.sort();
@@ -284,7 +284,7 @@ numbers.forEach(function(item,index,array){
 <p>在创建了一个闭包以后，这个函数的作用域就会一直保存到闭包不存在为止。销毁闭包：res = null。闭包的this默认指向window</p>
 <h3 id="内存泄露">内存泄露</h3>
 <p>闭包会引用包含函数的整个变量对象，如果闭包的作用域链中保存着一个HTML元素，那么就意味着该元素无法被销毁。所以我们有必要在对这个元素操作完之后主动销毁。 = null</p>
-<p>函数内部定时器
+<p>函数内部定时器<br>
 当函数内部的定时器引用了外部函数的变量对象时，该变量对象不会被销毁。</p>
 <h3 id="应用场景">应用场景</h3>
 <pre><code>设计私有的变量和方法
@@ -293,7 +293,7 @@ numbers.forEach(function(item,index,array){
 匿名函数最大的用途是创建闭包，并且还可以构建命名空间，以减少全局变量的使用。
 从而使用闭包模块化代码，减少全局变量的污染。
 </code></pre>
-<p><img src="https://alexwjj.github.io//post-images/1559726283838.png" alt="">
+<p><img src="https://alexwjj.github.io//post-images/1559726283838.png" alt=""><br>
 在这段代码中函数 addEvent 和 removeEvent 都是局部变量，但我们可以通过全局变量 objEvent 使用它，这就大大减少了全局变量的使用，增强了网页的安全性。</p>
 <p><strong>经典面试题</strong>，循环中使用闭包解决 var 定义函数的问题</p>
 <pre><code>for ( var i=1; i&lt;=5; i++) {
@@ -470,7 +470,7 @@ object.assign()  对象有多层
 <h3 id="rem">rem</h3>
 <p>计算方式： 设计稿px  /  根节点px  =  真实rem；flexible实际上就是能过JS来动态改写meta标签，动态改写<meta>标签，给<html>元素添加data-dpr属性，并且动态改写data-dpr的值，给<html>元素添加font-size属性，并且动态改写font-size的值</p>
 <h3 id="vh-vw">vh vw</h3>
-<p>vh vw是相对视口（viewport）的宽度而定的，长度等于视口宽度的1/100，当前屏幕可见高度的1%。 假如浏览器的宽度为200px，那么1vw就等于2px（200px/100）。 vh是相对视口（viewport）的高度而定的，长度等于视口高度的1/100。 假如浏览器的高度为500px，那么1vh就等于5px（500px/100
+<p>vh vw是相对视口（viewport）的宽度而定的，长度等于视口宽度的1/100，当前屏幕可见高度的1%。 假如浏览器的宽度为200px，那么1vw就等于2px（200px/100）。 vh是相对视口（viewport）的高度而定的，长度等于视口高度的1/100。 假如浏览器的高度为500px，那么1vh就等于5px（500px/100<br>
 calc(100vh - 10px)  表示整个浏览器窗口高度减去10px的大小</p>
 <h2 id="30js-结果舍入运算">30.js 结果舍入运算</h2>
 <pre><code>* x.toFixed( num)  将x保留num位小数  
@@ -498,11 +498,11 @@ calc(100vh - 10px)  表示整个浏览器窗口高度减去10px的大小</p>
 </code></pre>
 <h2 id="34安全">34.安全</h2>
 <h3 id="xss">XSS</h3>
-<p>XSS 通过修改 HTML 节点或者执行 JS 代码来攻击网站。
-最普遍的做法是转义（replace）输入输出的内容，对于引号，尖括号，斜杠进行转义。显示富文本的采用白名单过滤的方式
+<p>XSS 通过修改 HTML 节点或者执行 JS 代码来攻击网站。<br>
+最普遍的做法是转义（replace）输入输出的内容，对于引号，尖括号，斜杠进行转义。显示富文本的采用白名单过滤的方式<br>
 CSP CSP 本质上也是建立白名单，通常可以通过 HTTP Header 中的 Content-Security-Policy 来开启 CSP</p>
 <h3 id="csrf">CSRF</h3>
-<p>CSRF 就是利用用户的登录态发起恶意请求。
+<p>CSRF 就是利用用户的登录态发起恶意请求。<br>
 防御：</p>
 <pre><code>1.请求时附带验证信息，比如验证码或者 token
 2.验证 Referer:对于需要防范 CSRF 的请求，我们可以通过验证 Referer 来判断该请求是否为第三方网站发起的。
@@ -516,12 +516,12 @@ CSP CSP 本质上也是建立白名单，通常可以通过 HTTP Header 中的 C
 <p>js 的执行原理：js引擎是单线程的，主要分为主线程和事件队列，同步操作是在主线程上执行，而异步操作的函数会先放在事件队列当中，等到js主线程空闲了，才会去事件队列取出放到主线程执行。定时器是属于异步事件，参数里面设置的时间，并不是延迟多少秒去执行回调函数，这个时间代表的是延迟多少秒，把回调函数放到异步队列，等待主线程空闲再被执行。</p>
 <p>如果当事件队列当中，已经存在了定时器的回调函数，即使已经到了规定的间隔时间，也不会再把这个时间点的定时器回调函数放到事件队列当中，定时器依旧运行。当下一个约定时间又到了，如果事件队列当中依然存在定时器的回调函数，这个时间点的定时器回调函数也不会放进事件队列…</p>
 <h2 id="36中文版chrome浏览器不支持12px以下字体的解决方案">36.中文版Chrome浏览器不支持12px以下字体的解决方案</h2>
-<p>一般解决方案是禁止webkit浏览器配置调整网页的字体大小。如下CSS定义方式：
+<p>一般解决方案是禁止webkit浏览器配置调整网页的字体大小。如下CSS定义方式：<br>
 .classstyle{ -webkit-text-size-adjust:none; font-size:9px; }</p>
 <h2 id="37const定义的对象属性是否可以改变">37.const定义的对象属性是否可以改变</h2>
 <p>const仅保证指针不发生改变，修改对象的属性不会改变对象的指针，所以是被允许的。也就是说const定义的引用类型只要指针不发生改变，其他的不论如何改变都是允许的</p>
 <h2 id="38函数柯里化curry">38.函数柯里化（curry）</h2>
-<p>在数学和计算机科学中，柯里化是一种将使用多个参数的一个函数转换成一系列使用一个参数的函数的技术。curry 的这种用途可以理解为：参数复用。本质上是降低通用性，提高适用性。
+<p>在数学和计算机科学中，柯里化是一种将使用多个参数的一个函数转换成一系列使用一个参数的函数的技术。curry 的这种用途可以理解为：参数复用。本质上是降低通用性，提高适用性。<br>
 对于需要传入多个参数的函数，可以写一个公共的函数，其他地方需要时传入对应值</p>
 <pre><code>var prop = curry(function (key, obj) {
     return obj[key]
@@ -530,7 +530,7 @@ var name = person.map(prop('name'))
 </code></pre>
 <h2 id="39getelementby-和-queryselector-区别">39.getElementBy*  和 querySelector 区别</h2>
 <p>getElementById / querySelector 这两个获取到的都是dom节点，结果没有区别。</p>
-<p>getElement* 的实时性体现在返回集合的时候，我们知道getElementsBy*和querySelectorAll返回的都是一个节点集合，类似于数组，两种方法的区别就在于这个集合会不会自动更新。
+<p>getElement* 的实时性体现在返回集合的时候，我们知道getElementsBy*和querySelectorAll返回的都是一个节点集合，类似于数组，两种方法的区别就在于这个集合会不会自动更新。<br>
 getEle会，queryS不会</p>
 <h2 id="39性能">39.性能</h2>
 <h3 id="1缓存强缓存-协商缓存">1.缓存（强缓存 &amp; 协商缓存）</h3>

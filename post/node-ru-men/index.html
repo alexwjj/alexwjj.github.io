@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1562207717619">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1562921245704">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://alexwjj.github.io/">
-        <img src="https://alexwjj.github.io//images/avatar.png?v=1562207717619" class="site-logo">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1562921245704" class="site-logo">
         <h1 class="site-title">俊劫、的前端博客</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -266,10 +266,10 @@ querystring.parse         querystring.stringify
 * 降权: Linux 使用root权限才能监听1024以下端口，完成端口监听安全考虑要把权限降下来，process.setgid(gid)   process.setuid(uid) 降权时必须先降GID再降UID
 </code></pre>
 <h3 id="5创建子进程">5.创建子进程</h3>
-<p><code>var child = child_process.spawn('node', [ 'xxx.js' ]);</code>
+<p><code>var child = child_process.spawn('node', [ 'xxx.js' ]);</code><br>
 <code>.spawn(exec, args, options)</code>方法，第一个参数是执行文件路径，第二个参数中，数组中的每个成员都按顺序对应一个命令行参数。第三个参数可选，用于配置子进程的执行环境与行为。</p>
 <h3 id="6进程之间的通讯">6.进程之间的通讯</h3>
-<p>父进程通过.kill方法向子进程发送SIGTERM信号，子进程监听process对象的SIGTERM事件响应信号
+<p>父进程通过.kill方法向子进程发送SIGTERM信号，子进程监听process对象的SIGTERM事件响应信号<br>
 如果父子进程都是NodeJS进程，就可以通过IPC（进程间通讯）双向传递数据。</p>
 <h3 id="7守护子进程">7.守护子进程</h3>
 <p>守护进程一般用于监控工作进程的运行状态，在工作进程不正常退出时重启工作进程，保障工作进程不间断运行。</p>
@@ -283,7 +283,7 @@ querystring.parse         querystring.stringify
 <h2 id="10异步编程">10.异步编程</h2>
 <h3 id="1回调">1.回调</h3>
 <p>JS本身是单线程的，无法异步执行</p>
-<p>setTimeout这类JS规范之外的由运行环境提供的特殊函数做的事情是创建一个平行线程后立即返回，让JS主进程可以接着执行后续代码，并在收到平行进程的通知后再执行回调函数。除了setTimeout、
+<p>setTimeout这类JS规范之外的由运行环境提供的特殊函数做的事情是创建一个平行线程后立即返回，让JS主进程可以接着执行后续代码，并在收到平行进程的通知后再执行回调函数。除了setTimeout、<br>
 setInterval这些常见的，这类函数还包括NodeJS提供的诸如fs.readFile之类的异步API。</p>
 <p>JS自身提供的异常捕获和处理机制——try..catch..，只能用于同步执行的代码。</p>
 <h3 id="2域domain">2.域（Domain）</h3>
@@ -304,7 +304,7 @@ d.run
 </code></pre>
 <h3 id="2socket">2.socket</h3>
 <p>socket是在应用层和传输层之间的一个抽象层，它把TCP/IP层复杂的操作抽象为几个简单的接口供应用层调用以实现进程在网络中通信。</p>
-<p>网络上的两个程序通过一个双向的通信连接实现数据的交换，这个连接的一端称为一个socket。在本地进程通讯中我们可以使用PID来唯一标示一个进程，但PID只在本地唯一，网络中的两个进程PID冲突几率很大，ip地址＋协议＋端口号唯一标示网络中的一个进程。   三端socket是一种&quot;打开—读/写—关闭&quot;模式的实现。服务器socket与客户端socket建立连接的部分其实就是大名鼎鼎的三次握手
+<p>网络上的两个程序通过一个双向的通信连接实现数据的交换，这个连接的一端称为一个socket。在本地进程通讯中我们可以使用PID来唯一标示一个进程，但PID只在本地唯一，网络中的两个进程PID冲突几率很大，ip地址＋协议＋端口号唯一标示网络中的一个进程。   三端socket是一种&quot;打开—读/写—关闭&quot;模式的实现。服务器socket与客户端socket建立连接的部分其实就是大名鼎鼎的三次握手<br>
 <code>Scoket api ： scoket ， bind ， listen， connect， accept， read ，write，close</code></p>
 <h3 id="3websocket">3.websocket</h3>
 <pre><code>WebSocket是一种在单个TCP连接上进行全双工通信的协议。

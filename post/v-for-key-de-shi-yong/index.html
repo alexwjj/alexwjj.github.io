@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1562207717619">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1562921245704">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://alexwjj.github.io/">
-        <img src="https://alexwjj.github.io//images/avatar.png?v=1562207717619" class="site-logo">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1562921245704" class="site-logo">
         <h1 class="site-title">俊劫、的前端博客</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -130,7 +130,7 @@
 </blockquote>
 <!-- more -->
 <h2 id="v-for">v-for</h2>
-<p>使用<strong>v-for</strong>更新已渲染的元素列表时,默认用<strong>就地复用</strong>策略;列表数据修改的时候,vue会根据key值去
+<p>使用<strong>v-for</strong>更新已渲染的元素列表时,默认用<strong>就地复用</strong>策略;列表数据修改的时候,vue会根据key值去<br>
 判断某个值是否修改,如果修改,则重新渲染这一项,否则复用之前的元素;我们在使用的使用经常会使用index(即数组的下标)来作为key,但是我们要谨慎在项目中使用 index 来作为 key。</p>
 <h2 id="key">:key</h2>
 <p>最好的办法是使用数组中互不相同的一个属性作为key值,对应到项目中,即每条数据都有一个<strong>唯一的id</strong>,来标识这条数据的唯一性;使用id作为key值,旧值就不会重新渲染。同理在react中使用map渲染列表时,也是必须加key,且推荐做法也是使用id。</p>
@@ -139,7 +139,7 @@
 <ul>
 <li>两个相同的组件产生类似的DOM结构，不同的组件产生不同的DOM结构。</li>
 <li></li>
-<li>同一层级的一组节点，他们可以通过唯一的id进行区分。基于以上这两点假设，使得虚拟DOM的Diff算法
+<li>同一层级的一组节点，他们可以通过唯一的id进行区分。基于以上这两点假设，使得虚拟DOM的Diff算法<br>
 的复杂度从O(n^3)降到了O(n)。</li>
 </ul>
 <p><strong>key的作用主要是为了高效的更新虚拟DOM</strong></p>

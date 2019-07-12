@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-07-04T02:35:20.896Z</updated>
+    <updated>2019-07-12T08:48:04.576Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,24 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[HTML5    Canvas  ]]></title>
+        <id>https://alexwjj.github.io//post/html5-canvas</id>
+        <link href="https://alexwjj.github.io//post/html5-canvas">
+        </link>
+        <updated>2019-07-08T02:00:10.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote></blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote></blockquote>
+<!-- more -->
+<h2 id="1canvas-简介">1.canvas 简介</h2>
+<p>Canvas是由HTML代码配合高度和宽度属性而定义出的可绘制区域。JavaScript代码可以访问该区域，类似于其他通用的二维API，通过一套完整的绘图函数来动态生成图形。</p>
+<h2 id="2canvas基本使用">2.canvas基本使用</h2>
+<pre><code>&lt;canvas id=&quot;tutorial&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+<p><img src="https://alexwjj.github.io//post-images/1562921243763.gif" alt=""></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Vue Cli 2.0/3.0 环境变量配置]]></title>
         <id>https://alexwjj.github.io//post/vue-cli-2030-huan-jing-bian-liang-pei-zhi</id>
@@ -30,7 +48,7 @@
 <!-- more -->
 <h1 id="vue-cli-20">Vue Cli 2.0</h1>
 <h2 id="配置">配置</h2>
-<p><strong>config</strong>目录下的*.env.js可以配置环境变量，编译过程中会自动载入对应模式下的环境变量。
+<p><strong>config</strong>目录下的*.env.js可以配置环境变量，编译过程中会自动载入对应模式下的环境变量。<br>
 dev.env.js  test.env.js  prod.env.js</p>
 <pre><code>// 开发环境,其他类比
 var merge = require('webpack-merge');
@@ -211,8 +229,8 @@ export default {
 <h2 id="vue模板转换成视图的过程">vue模板转换成视图的过程</h2>
 <ul>
 <li>Vue.js通过编译将<strong>template 模板</strong>转换成渲染函数(render ) ，执行渲染函数就可以得到一个虚拟节点树</li>
-<li>在对 Model 进行操作的时候，会触发对应 Dep 中的 Watcher 对象。Watcher 对象会调用对应的 update 来修改视图。这个过程主要是将<strong>新旧虚拟节点</strong>进行<strong>差异对比</strong>，然后根据对比结果进行DOM操作来更新视图。
-<img src="https://alexwjj.github.io//post-images/1561713907738.png" alt="">
+<li>在对 Model 进行操作的时候，会触发对应 Dep 中的 Watcher 对象。Watcher 对象会调用对应的 update 来修改视图。这个过程主要是将<strong>新旧虚拟节点</strong>进行<strong>差异对比</strong>，然后根据对比结果进行DOM操作来更新视图。<br>
+<img src="https://alexwjj.github.io//post-images/1561713907738.png" alt=""><br>
 <img src="https://alexwjj.github.io//post-images/1561715602464.png" alt=""></li>
 </ul>
 <h2 id="virtual-dom">Virtual DOM</h2>
@@ -236,14 +254,14 @@ export default {
 <ul>
 <li>用 JavaScript 对象结构表示 DOM 树的结构；然后用这个树构建一个真正的 DOM 树，插到文档当中</li>
 <li>当状态变更的时候，重新构造一棵新的对象树。然后用新的树和旧的树进行比较，记录两棵树差异</li>
-<li>把<strong>所记录的差异</strong>应用到所构建的真正的DOM树上，视图就更新了
+<li>把<strong>所记录的差异</strong>应用到所构建的真正的DOM树上，视图就更新了<br>
 <img src="https://alexwjj.github.io//post-images/1561715188395.png" alt=""></li>
 </ul>
 <p>diff的过程就是调用名为patch的函数，比较新旧节点，一边比较一边给真实的DOM打补丁：</p>
 <ul>
 <li>patch(container,vnode)  :初次渲染的时候，将Virtual Dom渲染成真正的DOM然后插入到容器里面。</li>
 <li>patch(vnode,newVnode):再次渲染的时候，将新的vnode和旧的vnode相对比，然后之间差异应用到所构建的真正的DOM树上。</li>
-<li>如果两个节点都是一样的，那么就深入检查他们的子节点。如果两个节点不一样那就说明Vnode完全被改变了，就可以直接替换oldVnode。两个children的比较是使用双向链表，<strong>边patch边操作dom</strong>。
+<li>如果两个节点都是一样的，那么就深入检查他们的子节点。如果两个节点不一样那就说明Vnode完全被改变了，就可以直接替换oldVnode。两个children的比较是使用双向链表，<strong>边patch边操作dom</strong>。<br>
 <img src="https://alexwjj.github.io//post-images/1561715535206.png" alt=""></li>
 </ul>
 <h4 id="diff-缺点">diff 缺点</h4>
@@ -395,7 +413,7 @@ export default {
     })
 })
 </code></pre>
-<p>在一个代码片段里this有可能代表不同的对象,而编码者希望_this代表<strong>最初的对象</strong>。JS可以嵌套多层代码，可能下面还可以再嵌一个方法，引用this就会变成<strong>子方法控制的对象</strong>。如果需要<strong>上级的对象</strong>，在没有参数的情况下，前提做了一个临时变量_this，可以保存<strong>上级对象</strong>，子方
+<p>在一个代码片段里this有可能代表不同的对象,而编码者希望_this代表<strong>最初的对象</strong>。JS可以嵌套多层代码，可能下面还可以再嵌一个方法，引用this就会变成<strong>子方法控制的对象</strong>。如果需要<strong>上级的对象</strong>，在没有参数的情况下，前提做了一个临时变量_this，可以保存<strong>上级对象</strong>，子方<br>
 法中就可以用_this来调用了，这才是目的。</p>
 ]]></content>
     </entry>
@@ -418,7 +436,7 @@ export default {
 </blockquote>
 <!-- more -->
 <h2 id="v-for">v-for</h2>
-<p>使用<strong>v-for</strong>更新已渲染的元素列表时,默认用<strong>就地复用</strong>策略;列表数据修改的时候,vue会根据key值去
+<p>使用<strong>v-for</strong>更新已渲染的元素列表时,默认用<strong>就地复用</strong>策略;列表数据修改的时候,vue会根据key值去<br>
 判断某个值是否修改,如果修改,则重新渲染这一项,否则复用之前的元素;我们在使用的使用经常会使用index(即数组的下标)来作为key,但是我们要谨慎在项目中使用 index 来作为 key。</p>
 <h2 id="key">:key</h2>
 <p>最好的办法是使用数组中互不相同的一个属性作为key值,对应到项目中,即每条数据都有一个<strong>唯一的id</strong>,来标识这条数据的唯一性;使用id作为key值,旧值就不会重新渲染。同理在react中使用map渲染列表时,也是必须加key,且推荐做法也是使用id。</p>
@@ -427,7 +445,7 @@ export default {
 <ul>
 <li>两个相同的组件产生类似的DOM结构，不同的组件产生不同的DOM结构。</li>
 <li></li>
-<li>同一层级的一组节点，他们可以通过唯一的id进行区分。基于以上这两点假设，使得虚拟DOM的Diff算法
+<li>同一层级的一组节点，他们可以通过唯一的id进行区分。基于以上这两点假设，使得虚拟DOM的Diff算法<br>
 的复杂度从O(n^3)降到了O(n)。</li>
 </ul>
 <p><strong>key的作用主要是为了高效的更新虚拟DOM</strong></p>
@@ -513,18 +531,18 @@ export default {
 </blockquote>
 <!-- more -->
 <h2 id="背景">背景</h2>
-<p>作为国内互联网医疗的扛把子，我们医院平台的 HIS 系统经过几年的 <strong>‘积累’</strong>，开发环境，测试环境的
-打包速度慢的令人发指。热更新要30 ~ 40S，这谁顶得住啊。公司大佬就对整个项目进行了重构，使用
-Vue Cli3 ，升级 webpack4等等。现在热更新也只需要3s，打包由6min降到1min，体验还是相当好的，
+<p>作为国内互联网医疗的扛把子，我们医院平台的 HIS 系统经过几年的 <strong>‘积累’</strong>，开发环境，测试环境的<br>
+打包速度慢的令人发指。热更新要30 ~ 40S，这谁顶得住啊。公司大佬就对整个项目进行了重构，使用<br>
+Vue Cli3 ，升级 webpack4等等。现在热更新也只需要3s，打包由6min降到1min，体验还是相当好的，<br>
 所以自己要学习大佬们的优化方法。</p>
 <h2 id="两种方案">两种方案</h2>
-<p>在用 Webpack 打包的时候，对于一些不经常更新的第三方库，比如 vuex，lodash，charts，axios我们希
+<p>在用 Webpack 打包的时候，对于一些不经常更新的第三方库，比如 vuex，lodash，charts，axios我们希<br>
 望能和自己的代码分离开，Webpack 社区有两种方案</p>
 <ul>
 <li>CommonsChunkPlugin</li>
 <li>DLLPlugin</li>
 </ul>
-<p>对于 <strong>CommonsChunkPlugin</strong>（之前的方式），webpack 每次打包实际还是需要去处理这些第三方
+<p>对于 <strong>CommonsChunkPlugin</strong>（之前的方式），webpack 每次打包实际还是需要去处理这些第三方<br>
 库，只是打包完之后，能把第三方库和我们自己的代码分开。</p>
 <p>而<strong>DLLPlugin</strong>（现在的方式）则是能把第三方代码完全分离开，即每次只打包项目自身的代码。</p>
 <h2 id="用法">用法</h2>
@@ -577,36 +595,6 @@ module.exports = {
 }
 manifest: require('./dist/vendors-manifest.json') 这里的路径
 要和 webpack.dll.config.js 里面的对应。
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[文本溢出显示省略号]]></title>
-        <id>https://alexwjj.github.io//post/wen-ben-yi-chu-xian-shi-sheng-lue-hao</id>
-        <link href="https://alexwjj.github.io//post/wen-ben-yi-chu-xian-shi-sheng-lue-hao">
-        </link>
-        <updated>2019-06-11T07:03:07.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>单行比较好实现
-多行文本显示省略号注意下</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>单行比较好实现
-多行文本显示省略号注意下</p>
-</blockquote>
-<!-- more -->
-<h2 id="1单行文本">1.单行文本</h2>
-<pre><code>text-overflow: ellipsis;
-white-space: nowrap;
-overflow:hidden;
-</code></pre>
-<h2 id="2多行文本">2.多行文本</h2>
-<pre><code>display: -webkit-box;
--webkit-box-orient: vertical;
--webkit-line-clamp: 2;
-// 用来限制在一个块元素显示的文本的行数,2表示最多显示2行。 为了实现该效果，它需要组合其他的WebKit属性
-overflow: hidden;
 </code></pre>
 ]]></content>
     </entry>
