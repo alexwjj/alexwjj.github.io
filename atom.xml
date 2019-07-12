@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-07-12T08:48:04.576Z</updated>
+    <updated>2019-07-12T10:14:27.525Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -25,7 +25,6 @@
 <h2 id="2canvas基本使用">2.canvas基本使用</h2>
 <pre><code>&lt;canvas id=&quot;tutorial&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;
 </code></pre>
-<p><img src="https://alexwjj.github.io//post-images/1562921243763.gif" alt=""></p>
 ]]></content>
     </entry>
     <entry>
