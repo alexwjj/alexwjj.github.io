@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-07-12T10:14:27.525Z</updated>
+    <updated>2019-07-16T01:53:14.093Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,23 +10,6 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
-    <entry>
-        <title type="html"><![CDATA[HTML5    Canvas  ]]></title>
-        <id>https://alexwjj.github.io//post/html5-canvas</id>
-        <link href="https://alexwjj.github.io//post/html5-canvas">
-        </link>
-        <updated>2019-07-08T02:00:10.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote></blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote></blockquote>
-<!-- more -->
-<h2 id="1canvas-简介">1.canvas 简介</h2>
-<p>Canvas是由HTML代码配合高度和宽度属性而定义出的可绘制区域。JavaScript代码可以访问该区域，类似于其他通用的二维API，通过一套完整的绘图函数来动态生成图形。</p>
-<h2 id="2canvas基本使用">2.canvas基本使用</h2>
-<pre><code>&lt;canvas id=&quot;tutorial&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;&lt;/canvas&gt;
-</code></pre>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[Vue Cli 2.0/3.0 环境变量配置]]></title>
         <id>https://alexwjj.github.io//post/vue-cli-2030-huan-jing-bian-liang-pei-zhi</id>
@@ -594,6 +577,36 @@ module.exports = {
 }
 manifest: require('./dist/vendors-manifest.json') 这里的路径
 要和 webpack.dll.config.js 里面的对应。
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[文本溢出显示省略号]]></title>
+        <id>https://alexwjj.github.io//post/wen-ben-yi-chu-xian-shi-sheng-lue-hao</id>
+        <link href="https://alexwjj.github.io//post/wen-ben-yi-chu-xian-shi-sheng-lue-hao">
+        </link>
+        <updated>2019-06-11T07:03:07.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>单行比较好实现<br>
+多行文本显示省略号注意下</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>单行比较好实现<br>
+多行文本显示省略号注意下</p>
+</blockquote>
+<!-- more -->
+<h2 id="1单行文本">1.单行文本</h2>
+<pre><code>text-overflow: ellipsis;
+white-space: nowrap;
+overflow:hidden;
+</code></pre>
+<h2 id="2多行文本">2.多行文本</h2>
+<pre><code>display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+// 用来限制在一个块元素显示的文本的行数,2表示最多显示2行。 为了实现该效果，它需要组合其他的WebKit属性
+overflow: hidden;
 </code></pre>
 ]]></content>
     </entry>
