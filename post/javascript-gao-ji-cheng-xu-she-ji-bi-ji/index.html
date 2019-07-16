@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>微信小程序技术选型 | 俊劫、的前端博客</title>
+<title>JavaScript 高级程序设计 笔记 | 俊劫、的前端博客</title>
 <meta name="description" content="讲个笑话，你可别哭。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -116,37 +116,40 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">微信小程序技术选型</h2>
-            <div class="post-date">2019-06-06</div>
-            
-              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/wei-xin-xiao-cheng-xu-ji-zhu-xuan-xing.jpeg')">
-              </div>
+            <h2 class="post-title">JavaScript 高级程序设计 笔记</h2>
+            <div class="post-date">2019-07-05</div>
             
             <div class="post-content">
               <blockquote>
-<p>微信小程序开发方案 框架选型：Wepy、Mpvue、Taro<br>
-由于博客采用了 vue 的构建方式，部分代码会导致 github.io构建失败<br>
-所以文章在简书上。</p>
+<p>利用工作空闲之余，阅读 这本红宝书</p>
+<p>收获很多，前端必读</p>
+<p>记录一下自己觉得比较重要的点</p>
 </blockquote>
 <!-- more -->
-<p><a href="https://www.jianshu.com/p/f21d99ab5da4">https://www.jianshu.com/p/f21d99ab5da4</a></p>
+<h2 id="1注意点">1.注意点</h2>
+<ol>
+<li>创造一个<code>&lt;noscript&gt;</code>元素，用以在浏览器不支持 JavaScript 的浏览器显示替代的内容。比如：浏览器不支持，脚本功能被禁用。</li>
+<li>省略 var 操作符，相当于声明了一个全局变量。  a = [1,2]</li>
+<li>null 表示一个空对象指针。null === undefined // false  == // true 双等号会进行类型转换，所以为 true。</li>
+<li>0.1 + 0.2 === 0.3 // false IEEE754数值浮点计算通病</li>
+</ol>
+<h2 id="2基本知识点">2.基本知识点</h2>
+<ol>
+<li>保存浮点数需要的内存空间是整数的两倍</li>
+<li>e 表示法：数值等于 e 前面的数值乘以10的指数次幂，eg：3.125e7 = 31250000。 负值：0.003 = 3e - 3</li>
+<li>任何数值乘以 0 会返回 NaN.  NaN == NaN // false   isNaN() 函数</li>
+<li><code>Number()</code>接受任何参数，转换规则：0false1true ,null &gt; 0, undefined &gt; NaN, '011' &gt; 11, 0xf &gt; 15 , '' &gt; 0</li>
+<li></li>
+</ol>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://alexwjj.github.io//tag/JavaScript" class="tag">
-                    JavaScript
-                  </a>
-                
-              </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://alexwjj.github.io//post/react">
+                <a href="https://alexwjj.github.io//post/vue-cli-2030-huan-jing-bian-liang-pei-zhi">
                   <h3 class="post-title">
-                    React 入门
+                    Vue Cli 2.0/3.0 环境变量配置
                   </h3>
                 </a>
               </div>

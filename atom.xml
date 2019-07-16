@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-07-16T02:29:30.333Z</updated>
+    <updated>2019-07-16T07:53:50.933Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,41 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[JavaScript 高级程序设计 笔记]]></title>
+        <id>https://alexwjj.github.io//post/javascript-gao-ji-cheng-xu-she-ji-bi-ji</id>
+        <link href="https://alexwjj.github.io//post/javascript-gao-ji-cheng-xu-she-ji-bi-ji">
+        </link>
+        <updated>2019-07-05T08:33:48.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>利用工作空闲之余，阅读 这本红宝书</p>
+<p>收获很多，前端必读</p>
+<p>记录一下自己觉得比较重要的点</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>利用工作空闲之余，阅读 这本红宝书</p>
+<p>收获很多，前端必读</p>
+<p>记录一下自己觉得比较重要的点</p>
+</blockquote>
+<!-- more -->
+<h2 id="1注意点">1.注意点</h2>
+<ol>
+<li>创造一个<code>&lt;noscript&gt;</code>元素，用以在浏览器不支持 JavaScript 的浏览器显示替代的内容。比如：浏览器不支持，脚本功能被禁用。</li>
+<li>省略 var 操作符，相当于声明了一个全局变量。  a = [1,2]</li>
+<li>null 表示一个空对象指针。null === undefined // false  == // true 双等号会进行类型转换，所以为 true。</li>
+<li>0.1 + 0.2 === 0.3 // false IEEE754数值浮点计算通病</li>
+</ol>
+<h2 id="2基本知识点">2.基本知识点</h2>
+<ol>
+<li>保存浮点数需要的内存空间是整数的两倍</li>
+<li>e 表示法：数值等于 e 前面的数值乘以10的指数次幂，eg：3.125e7 = 31250000。 负值：0.003 = 3e - 3</li>
+<li>任何数值乘以 0 会返回 NaN.  NaN == NaN // false   isNaN() 函数</li>
+<li><code>Number()</code>接受任何参数，转换规则：0false1true ,null &gt; 0, undefined &gt; NaN, '011' &gt; 11, 0xf &gt; 15 , '' &gt; 0</li>
+<li></li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Vue Cli 2.0/3.0 环境变量配置]]></title>
         <id>https://alexwjj.github.io//post/vue-cli-2030-huan-jing-bian-liang-pei-zhi</id>
@@ -577,36 +612,6 @@ module.exports = {
 }
 manifest: require('./dist/vendors-manifest.json') 这里的路径
 要和 webpack.dll.config.js 里面的对应。
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[文本溢出显示省略号]]></title>
-        <id>https://alexwjj.github.io//post/wen-ben-yi-chu-xian-shi-sheng-lue-hao</id>
-        <link href="https://alexwjj.github.io//post/wen-ben-yi-chu-xian-shi-sheng-lue-hao">
-        </link>
-        <updated>2019-06-11T07:03:07.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>单行比较好实现<br>
-多行文本显示省略号注意下</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>单行比较好实现<br>
-多行文本显示省略号注意下</p>
-</blockquote>
-<!-- more -->
-<h2 id="1单行文本">1.单行文本</h2>
-<pre><code>text-overflow: ellipsis;
-white-space: nowrap;
-overflow:hidden;
-</code></pre>
-<h2 id="2多行文本">2.多行文本</h2>
-<pre><code>display: -webkit-box;
--webkit-box-orient: vertical;
--webkit-line-clamp: 2;
-// 用来限制在一个块元素显示的文本的行数,2表示最多显示2行。 为了实现该效果，它需要组合其他的WebKit属性
-overflow: hidden;
 </code></pre>
 ]]></content>
     </entry>
