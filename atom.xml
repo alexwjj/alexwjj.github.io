@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-07-17T00:54:27.448Z</updated>
+    <updated>2019-07-23T10:09:21.544Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,280 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[TypeScript 入门]]></title>
+        <id>https://alexwjj.github.io//post/typescript-ru-men</id>
+        <link href="https://alexwjj.github.io//post/typescript-ru-men">
+        </link>
+        <updated>2019-07-23T09:48:47.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>想到怎么牛皮的 vsCode 是 TS 写的。<br>
+立马就跑去了解了一下<br>
+死亡如风~~~ eeeeeeee</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>想到怎么牛皮的 vsCode 是 TS 写的。<br>
+立马就跑去了解了一下<br>
+死亡如风~~~ eeeeeeee</p>
+</blockquote>
+<!-- more -->
+<h1 id="1注意点">1.注意点</h1>
+<ul>
+<li>约定使用 TypeScript 编写的文件以 .ts 为后缀，用 TypeScript 编写 React 时，以 .tsx 为后缀。</li>
+<li>TypeScript 编译的时候即使报错了，还是会生成编译结果。如果要在报错的时候终止 js 文件的生成，可以在 tsconfig.json 中配置 noEmitOnError 即可</li>
+<li>注意，使用构造函数 Boolean 创造的对象不是布尔值，返回的是一个 Boolean 对象</li>
+<li>可以使用 null 和 undefined 来定义这两个原始数据类型。let n: null = null;</li>
+</ul>
+<h1 id="2基础">2.基础</h1>
+<h2 id="any-类型">any 类型</h2>
+<p>则允许被赋值为任意类型。let myFavoriteNumber: any = 'seven';  myFavoriteNumber = 7。 不报错</p>
+<h2 id="类型推论">类型推论</h2>
+<pre><code>let myFavoriteNumber = 'seven';  myFavoriteNumber = 7;  报错
+// 如果定义的时候没有赋值，不管之后有没有赋值，都会被推断成 any 类型而完全不被类型检查
+let myFavoriteNumber;
+myFavoriteNumber = 'seven';
+myFavoriteNumber = 7; // 不报错
+</code></pre>
+<h2 id="联合类型">联合类型</h2>
+<pre><code>// let myFavoriteNumber: string | number;
+// 当 TypeScript 不确定一个联合类型的变量到底是哪个类型的时候，我们只能访问此联合类型的所有类型里共有的属性或方法：
+function getLength(something: string | number): number {
+    return something.length; // 报错
+    return something.toString(); // 不报错
+}
+</code></pre>
+<h2 id="interface">interface</h2>
+<p>使用接口（Interface）来定义对象的类型，需要注意的是，</p>
+<pre><code>interface Person {
+    name: string;
+    age: number;// 变量与 interface 定义的要相同，多或者少都会报错
+    sex?: string;// 加？的变量可以不存在，但是仍然不可以添加未声明的变量
+    [propName: string]: any; // 接口允许有任意的属性，确定属性和可选属性的类型都必须是它的类型的子集
+    readonly id: number;  // 创建时只读，不可修改
+}
+</code></pre>
+<h2 id="数组类型">数组类型</h2>
+<pre><code>let fibonacci: number[] = [1, 1, 2, 3, 5];
+let fibonacci: number[] = [1, '1', 2, 3, 5]; // 报错，数组中不允许出现其他类型
+fibonacci.push('8');  // 数组的一些方法的参数也会根据数组在定义时约定的类型进行限制,只能 push number 类型的参数
+// 数组泛型
+let fibonacci: Array&lt;number&gt; = [1, 1, 2, 3, 5];  
+// interface 表示数组
+interface NumberArray {
+    [index: number]: number;
+}
+let fibonacci: NumberArray = [1, 1, 2, 3, 5];
+
+let list: any[] = ['Xcat Liu', 25, { website: 'http://xcatliu.com' }]; // any 表示数组中允许出现任意类型
+</code></pre>
+<h2 id="函数">函数</h2>
+<pre><code>// 函数声明，必选参数个数不对就报错，定义可选参数 z?: string, 注：可选参数必须在必选参数后面定义
+// 默认参数：lastName: string = 'Cat' 。TypeScript 会将添加了默认值的参数识别为可选参数：
+function sum(x: number, y: number): number {
+    return x + y;
+}
+// 函数表达式
+// ts 类型推论出来的
+let mySum = function (x: number, y: number): number {
+    return x + y;
+};
+// 标准定义
+let mySum: (x: number, y: number) =&gt; number = function (x: number, y: number): number {
+    return x + y;
+};
+// 注意不要混淆了 TypeScript 中的 =&gt; 和 ES6 中的 =&gt;。
+// 在 TypeScript 的类型定义中，=&gt; 用来表示函数的定义，左边是输入类型，需要用括号括起来，右边是输出类型。
+// 接口定义函数
+interface SearchFunc {
+(source: string, subString: string): boolean;
+}
+// 函数重载, eg:reverse 函数，定义多个 reverse 函数
+function reverse(x: number): number; // 函数定义
+function reverse(x: string): string; // 函数定义
+// 函数实现
+function reverse(x: number | string): number | string {
+    if (typeof x === 'number') {
+        return Number(x.toString().split('').reverse().join(''));
+    } else if (typeof x === 'string') {
+        return x.split('').reverse().join('');
+    }
+}
+</code></pre>
+<h2 id="类型断言">类型断言</h2>
+<pre><code>// 有时候，我们确实需要在还不确定类型的时候就访问其中一个类型的属性或方法
+// 类型断言的用法如下，在需要断言的变量前加上 &lt;Type&gt; 即可
+function getLength(something: string | number): number {
+    if ((&lt;string&gt;something).length) {
+        return (&lt;string&gt;something).length;
+    } else {
+        return something.toString().length;
+    }
+}
+</code></pre>
+<h1 id="3-声明">3. 声明</h1>
+<h2 id="注意点">注意点</h2>
+<ul>
+<li>声明文件必需以 .d.ts 为后缀</li>
+<li>一般来说，全局变量都是禁止修改的常量，所以大部分情况都应该使用declare const</li>
+<li>声明语句中只能定义类型，切勿在声明语句中定义具体的实现</li>
+<li>declare namespace 还是比较常用的，它用来表示全局变量是一个对象，包含很多子属性。</li>
+<li>与普通的 npm 模块不同，@types 是统一由 DefinitelyTyped 管理的。要将声明文件发布到 @types 下，就需要给 DefinitelyTyped 创建一个 pull-request，其中包含了类型声明文件，测试代码，以及 tsconfig.json 等。</li>
+</ul>
+<pre><code>* declare var 声明全局变量
+* declare function 声明全局方法
+* declare class 声明全局类
+* declare enum 声明全局枚举类型
+* declare namespace 声明（含有子属性的）全局对象
+* interface 和 type 声明全局类型
+* export 导出变量
+* export namespace 导出（含有子属性的）对象
+* export default ES6 默认导出
+* export = commonjs 导出模块
+* export as namespace UMD 库声明全局变量
+* declare global 扩展全局变量
+* declare module 扩展模块
+* /// &lt;reference /&gt; 三斜线指令
+</code></pre>
+<h1 id="4内置对象">4.内置对象</h1>
+<pre><code>let b: Boolean = new Boolean(1);
+let e: Error = new Error('Error occurred');
+let d: Date = new Date();
+let r: RegExp = /[a-z]/;
+let body: HTMLElement = document.body;
+let allDiv: NodeList = document.querySelectorAll('div');
+document.addEventListener('click', function(e: MouseEvent) {
+  // Do something
+});
+// Node.js 不是内置对象的一部分，如果想用 TypeScript 写 Node.js，则需要引入第三方声明文件：
+npm install @types/node --save-dev
+</code></pre>
+<h1 id="5类">5.类</h1>
+<ul>
+<li>使用 class 定义类，使用 constructor 定义构造函数。</li>
+<li>通过 new 生成新实例的时候，会自动调用构造函数。</li>
+<li>使用 extends 关键字实现继承，子类中使用 super 关键字来调用父类的构造函数和方法。</li>
+</ul>
+<pre><code>class Cat extends Animal {
+    constructor(name) {
+        super(name); // 调用父类的 constructor(name)
+        console.log(this.name);
+    }
+    sayHi() {
+        return 'Meow, ' + super.sayHi(); // 调用父类的 sayHi()
+    }
+}
+
+let c = new Cat('Tom'); // Tom
+console.log(c.sayHi()); // Meow, My name is Tom
+</code></pre>
+<p>TypeScript 可以使用三种访问修饰符（Access Modifiers），分别是 public、private 和 protected。</p>
+<ul>
+<li>public 修饰的属性或方法是公有的，可以在任何地方被访问到，默认所有的属性和方法都是 public 的</li>
+<li>private 修饰的属性或方法是私有的，不能在声明它的类的外部访问，它在子类中不允许被访问的</li>
+<li>protected 修饰的属性或方法是受保护的，它和 private 类似，区别是它在子类中也是允许被访问的</li>
+</ul>
+<h2 id="抽象类abstract">抽象类abstract</h2>
+<pre><code>// 抽象类中的抽象方法必须被子类实现
+abstract class Animal {
+    public name;
+    public constructor(name) {
+        this.name = name;
+    }
+    public abstract sayHi();
+}
+
+class Cat extends Animal {
+    public sayHi() {
+        console.log(`Meow, My name is ${this.name}`);
+    }
+}
+
+let cat = new Cat('Tom');
+</code></pre>
+<h1 id="6类与接口">6.类与接口</h1>
+<p>实现（implements）是面向对象中的一个重要概念。一般来讲，一个类只能继承自另一个类，有时候不同类之间可以有一些共有的特性，这时候就可以把特性提取成接口（interfaces），用 implements 关键字来实现。这个特性大大提高了面向对象的灵活性。</p>
+<p>接口可以继承接口，也可以继承类</p>
+<p>举例来说，门是一个类，防盗门是门的子类。如果防盗门有一个报警器的功能，我们可以简单的给防盗门添加一个报警方法。这时候如果有另一个类，车，也有报警器的功能，就可以考虑把报警器提取出来，作为一个接口，防盗门和车都去实现它：</p>
+<pre><code>interface Alarm {
+    alert();
+}
+
+class Door {
+}
+
+class SecurityDoor extends Door implements Alarm {
+    alert() {
+        console.log('SecurityDoor alert');
+    }
+}
+
+class Car implements Alarm {
+    alert() {
+        console.log('Car alert');
+    }
+}
+
+一个类可以实现多个接口：Car 实现了 Alarm 和 Light 接口，既能报警，也能开关车灯。
+interface Alarm {
+    alert();
+}
+
+interface Light {
+    lightOn();
+    lightOff();
+}
+
+class Car implements Alarm, Light {
+    alert() {
+        console.log('Car alert');
+    }
+    lightOn() {
+        console.log('Car light on');
+    }
+    lightOff() {
+        console.log('Car light off');
+    }
+}
+</code></pre>
+<h1 id="7泛型">7.泛型</h1>
+<p>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性。</p>
+<pre><code>function createArray(length: number, value: any): Array&lt;any&gt; {
+    let result = [];
+    for (let i = 0; i &lt; length; i++) {
+        result[i] = value;
+    }
+    return result;
+}
+
+createArray(3, 'x'); // ['x', 'x', 'x']
+// 不会报错，但有缺陷，没有指名函数返回类型。
+function createArray&lt;T&gt;(length: number, value: T): Array&lt;T&gt; {
+    let result: T[] = [];
+    for (let i = 0; i &lt; length; i++) {
+        result[i] = value;
+    }
+    return result;
+}
+
+createArray&lt;string&gt;(3, 'x'); // ['x', 'x', 'x']
+// 其中 T 用来指代任意输入的类型，在后面的输入 value: T 和输出 Array&lt;T&gt; 中即可使用了。
+</code></pre>
+<h2 id="泛型约束">泛型约束</h2>
+<p>函数内部使用泛型变量的时候，由于事先不知道它是哪种类型，所以不能随意的操作它的属性或方法<br>
+这时，我们可以对泛型进行约束，只允许这个函数传入那些包含 length 属性的变量。这就是泛型约束</p>
+<pre><code>interface Lengthwise {
+    length: number;
+}
+
+function loggingIdentity&lt;T extends Lengthwise&gt;(arg: T): T {
+    console.log(arg.length);
+    return arg;
+}
+// 传入的参数如果没有 length 属性，就会报错
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[JavaScript 高级程序设计 笔记]]></title>
         <id>https://alexwjj.github.io//post/javascript-gao-ji-cheng-xu-she-ji-bi-ji</id>
@@ -570,90 +844,6 @@ export default {
 5. apply(target, object, args)
 </code></pre>
 <p><a href="https://segmentfault.com/a/1190000018574665">proxy 和 object.defineProperty实现双向绑定对比</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[webpack性能优化 --- dll]]></title>
-        <id>https://alexwjj.github.io//post/webpack-xing-neng-you-hua-dll</id>
-        <link href="https://alexwjj.github.io//post/webpack-xing-neng-you-hua-dll">
-        </link>
-        <updated>2019-06-12T07:34:23.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>公司项目中大佬做的优化</p>
-<p>大大提高了打包速度</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>公司项目中大佬做的优化</p>
-<p>大大提高了打包速度</p>
-</blockquote>
-<!-- more -->
-<h2 id="背景">背景</h2>
-<p>作为国内互联网医疗的扛把子，我们医院平台的 HIS 系统经过几年的 <strong>‘积累’</strong>，开发环境，测试环境的<br>
-打包速度慢的令人发指。热更新要30 ~ 40S，这谁顶得住啊。公司大佬就对整个项目进行了重构，使用<br>
-Vue Cli3 ，升级 webpack4等等。现在热更新也只需要3s，打包由6min降到1min，体验还是相当好的，<br>
-所以自己要学习大佬们的优化方法。</p>
-<h2 id="两种方案">两种方案</h2>
-<p>在用 Webpack 打包的时候，对于一些不经常更新的第三方库，比如 vuex，lodash，charts，axios我们希<br>
-望能和自己的代码分离开，Webpack 社区有两种方案</p>
-<ul>
-<li>CommonsChunkPlugin</li>
-<li>DLLPlugin</li>
-</ul>
-<p>对于 <strong>CommonsChunkPlugin</strong>（之前的方式），webpack 每次打包实际还是需要去处理这些第三方<br>
-库，只是打包完之后，能把第三方库和我们自己的代码分开。</p>
-<p>而<strong>DLLPlugin</strong>（现在的方式）则是能把第三方代码完全分离开，即每次只打包项目自身的代码。</p>
-<h2 id="用法">用法</h2>
-<p>要使用 DLLPlugin，需要额外新建一个配置文件。所以对于用这种方式打包的项目，一般会有下面两个配置文件</p>
-<pre><code>webpack.config.js
-webpack.dll.config.js
-</code></pre>
-<p>先来看下 webpack.dll.config.js</p>
-<pre><code>const webpack = require('webpack')
-const library = '[name]_lib'
-const path = require('path')
-
-module.exports = {
-  entry: {
-    vendors: ['vue', 'lodash']
-  },
-
-  output: {
-    filename: '[name].dll.js',
-    path: 'dist/',
-    library
-  },
-
-  plugins: [
-    new webpack.DllPlugin({
-      path: path.join(__dirname, 'dist/[name]-manifest.json'),
-      // This must match the output.library option above
-      name: library
-    }),
-  ],
-}
-</code></pre>
-<p>再改下 webpack.config.js 文件</p>
-<pre><code>const webpack = require('webpack')
-
-module.exports = {
-  entry: {
-    app: './src/index'
-  },
-  output: {
-    filename: 'app.bundle.js',
-    path: 'dist/',
-  },
-  plugins: [
-    new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require('./dist/vendors-manifest.json')
-    })
-  ]
-}
-manifest: require('./dist/vendors-manifest.json') 这里的路径
-要和 webpack.dll.config.js 里面的对应。
-</code></pre>
 ]]></content>
     </entry>
 </feed>

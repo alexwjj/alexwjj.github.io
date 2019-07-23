@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Vue --- provide/inject | 俊劫、的前端博客</title>
+<title>深入浅出 Node.js 笔记 | 俊劫、的前端博客</title>
 <meta name="description" content="讲个笑话，你可别哭。">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -116,62 +116,26 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">Vue --- provide/inject</h2>
-            <div class="post-date">2019-06-28</div>
+            <h2 class="post-title">深入浅出 Node.js 笔记</h2>
+            <div class="post-date">2019-07-18</div>
             
-              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/vue-provideinject.jpg')">
+              <div class="feature-container" style="background-image: url('https://alexwjj.github.io//post-images/shen-ru-qian-chu-nodejs-bi-ji.png')">
               </div>
             
             <div class="post-content">
               <blockquote>
-<p>vue2.2新增api，用于跨组件通信</p>
-<p>目前还没写过，但是看项目里面几个大佬在用。学习学习</p>
+<p>笔记</p>
 </blockquote>
 <!-- more -->
-<h2 id="1定义">1.定义</h2>
-<p>Vue2.2.0新增API,provide和inject需要一起使用，以允许一个<strong>祖先组件</strong>向其所有<strong>子孙后代</strong>注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里<strong>始终生效</strong>。一言而蔽之：祖先组件中通过<strong>provider来提供变量</strong>，然后在<strong>子孙组件中通过inject来注入变量</strong>。</p>
-<p>provide / inject API 主要解决了<strong>跨级组件间的通信问题</strong>，不过它的使用场景，主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。</p>
-<h2 id="2demo">2.demo</h2>
-<p>A.vue 和 B.vue，B 是 A 的子组件</p>
-<pre><code>// A.vue
-export default {
-  provide: {
-    name: '俊劫'
-  }
-}
-</code></pre>
-<pre><code>// B.vue
-export default {
-  inject: ['name'],
-  mounted () {
-    console.log(this.name);  // 俊劫
-  }
-}
-</code></pre>
-<p>provide 和 inject 绑定<strong>并不是可响应的</strong>。这是刻意为之的。但是，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。所以，上面 A.vue 的 name 如果改变了，B.vue 的 this.name 是不会改变的。</p>
-<h2 id="ref-组件通信">ref 组件通信</h2>
-<p>ref：如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例</p>
-<p>$parent / $children：访问父 / 子实例</p>
+<h2 id="1注意点">1.注意点</h2>
+<ol>
+<li>1</li>
+</ol>
+<h2 id="2单线程">2.单线程</h2>
+<p><img src="https://alexwjj.github.io//post-images/1563436038355.png" alt=""></p>
 
             </div>
             
-              <div class="tag-container">
-                
-                  <a href="https://alexwjj.github.io//tag/Vue" class="tag">
-                    Vue
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://alexwjj.github.io//post/vue-virtual-dom">
-                  <h3 class="post-title">
-                    Vue --- Virtual Dom
-                  </h3>
-                </a>
-              </div>
             
 
             
