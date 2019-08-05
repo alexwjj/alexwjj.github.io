@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1564993556683">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1564994780166">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://alexwjj.github.io/">
-        <img src="https://alexwjj.github.io//images/avatar.png?v=1564993556683" class="site-logo">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1564994780166" class="site-logo">
         <h1 class="site-title">俊劫、的前端博客</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -138,6 +138,31 @@
 * 要定义或修改的属性的名称。
 * descriptor
 * 将被定义或修改的属性描述符。
+</code></pre>
+<p>Object.defineProperty(obj,prop,descriptor)中的descriptor有如下几种参数：</p>
+<ul>
+<li>configurable 当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，同时该属性也能从对应的对象上被删除。默认为 false</li>
+<li>enumerable 当且仅当该属性的enumerable为true时，该属性才能够出现在对象的枚举属性中。默认为 false</li>
+<li>value 该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。默认为 undefined。</li>
+<li>writable 当且仅当该属性的writable为true时，value才能被赋值运算符改变。默认为 false。</li>
+<li>get 一个给属性提供 getter 的方法，如果没有 getter 则为 undefined。当访问该属性时，该方法会被执行，方法执行时没有参数传入，但是会传入this对象（由于继承关系，这里的this并不一定是定义该属性的对象）。默认为 undefined。</li>
+<li>set 一个给属性提供 setter 的方法，如果没有 setter 则为 undefined。当属性值修改时，触发执行该方法。该方法将接受唯一参数，即该属性新的参数值。默认为 undefined</li>
+</ul>
+<blockquote>
+<p>注意：在 descriptor 中不能同时设置访问器 (get 和 set) 和 value。</p>
+</blockquote>
+<pre><code>  Object.defineProperty(obj,prop,
+    configurable: true,
+    enumerable: true,
+    writable: true,
+    value: '',
+    get: function() {
+
+    },
+    set: function() {
+      
+    }
+  )
 </code></pre>
 <p>具体形象生动的解释可参考这篇文章<a href="https://www.jianshu.com/p/6519575e055f">Object.defineProperty() 不详解</a></p>
 <h2 id="注意-get-set">注意 get 、set</h2>
