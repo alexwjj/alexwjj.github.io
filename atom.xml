@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-07-24T01:02:29.398Z</updated>
+    <updated>2019-08-05T08:07:10.929Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,74 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Lodash 开发指南]]></title>
+        <id>https://alexwjj.github.io//post/lodash-kai-fa-zhi-nan</id>
+        <link href="https://alexwjj.github.io//post/lodash-kai-fa-zhi-nan">
+        </link>
+        <updated>2019-08-05T08:01:23.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>看同事都在用的工具库，使用方式很简单。<br>
+能帮忙处理一些业务逻辑<br>
+根据文档写了一份常用的api</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>看同事都在用的工具库，使用方式很简单。<br>
+能帮忙处理一些业务逻辑<br>
+根据文档写了一份常用的api</p>
+</blockquote>
+<!-- more -->
+<h1 id="array">Array</h1>
+<pre><code>* chunk 拆分数组
+* compact 去除数组中的假值false, null, 0, &quot;&quot;, undefined, 和 NaN 
+* concat （arr, value）合并数组和值，合并的数组可以扁平一层
+* difference （arr1, arr2） 对比数组，返回arr1中，arr2没有的部分
+* drop(arr , n) 去除数组的前n项 默认1
+* dropRight (arr, n) 去除数组尾部n项 默认1
+* find（arr， function | object | 属性） 查找符合条件的某一项
+* flatten(array) 减少一级嵌套
+* flattenDeep(array,depth)将array递归为一维数组。可指定减少的层级
+* fromPairs(pairs) 数组转换为对象键值对
+* head(array) 返回数组第一项
+* intersection([arrays]) 获取多个数组的交集
+* nth(array, [n=0])获取array数组的第n个元素。如果n为负数，则返回从数组结尾开始的第n个元素。 n  - 下标
+* pull(array, [values]) 删除数组中给定的值，改变原数组
+* take(array, [n=1]) 从头开始提取n个元素
+* uniq 数组去重
+* without(array, [values]) 剔除所有给定值的新数组，
+* xor([arrays])创建一个给定数组唯一值的数组 合并数组，取唯一值
+* zip([arrays])将多个数组index相同的项合并成数组
+* zipObject([props=[]], [values=[]]) 合并成键值对形式的对象
+</code></pre>
+<h1 id="collection">Collection</h1>
+<pre><code>* flatMap(collection, [iteratee=_.identity])扁平化（同阶数组）数组
+* reject(collection, [predicate=_.identity])_.filter的反向方法
+* size(collection)返回collection（集合）的长度，如果集合是类数组或字符串，返回其 length ；如果集合是对象，返回其可枚举属性的个数。
+* sortBy(collection, [iteratees=[_.identity]])升序排序。 这个方法执行稳定排序
+</code></pre>
+<h1 id="lang">Lang</h1>
+<pre><code>* castArray(value)如果 value 不是数组, 那么强制转为数组。
+* clone(value)浅拷贝。 
+* cloneDeep(value)深拷贝。
+* isArguments(value)检查 value 是否是一个类 arguments 对象。
+* isNil(value)检查 value 是否是 null 或者 undefined。
+* max(array)min(array)计算 array 中的最大值/最小值。 如果 array 是 空的或者假值将会返回 undefined。
+* mean(array)计算 array 的平均值。
+* get(object, path, [defaultValue])根据 object对象的path路径获取值。 如果解析 value 是 undefined 会以 defaultValue 取代。
+* invert(object)创建一个object键值倒置后的对象。如果 object 有重复的值，后面的值会覆盖前面的值。
+* invoke(object, path, [args])调用object对象path上的方法。
+* pick(object, [props])创建一个从 object 中选中的属性的对象。
+* omit(object, [props])反向pick
+* set(object, path, value)设置 object对象中对应 path 属性路径上的值，
+* String
+* camelCase([string=''])转换字符串string为 驼峰写法。
+* capitalize([string=''])转换字符串string首字母为大写，剩下为小写。
+* repeat([string=''], [n=1])重复 N 次给定字符串。
+* replace([string=''], pattern, replacement)替换string字符串中匹配的pattern为给定的replacement 。
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[TypeScript 入门]]></title>
         <id>https://alexwjj.github.io//post/typescript-ru-men</id>
@@ -792,58 +860,6 @@ export default {
 <li>谨慎使用 index 作为 key 值</li>
 <li>去研究 vue api的实现原理，关注其优缺点。</li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Object.defineProperty   对比  Proxy]]></title>
-        <id>https://alexwjj.github.io//post/objectdefineproperty-dui-bi-proxy</id>
-        <link href="https://alexwjj.github.io//post/objectdefineproperty-dui-bi-proxy">
-        </link>
-        <updated>2019-06-14T02:40:29.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>使用 vue2.x的版本项目,双向绑定原理还是Object.defineProperty</p>
-<p>导致在实际的开发过程中，有些属性的修改，双向绑定不会生效</p>
-<p>所以，来好好探究下Object.defineProperty   和 vue3.0中的 Proxy</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>使用 vue2.x的版本项目,双向绑定原理还是Object.defineProperty</p>
-<p>导致在实际的开发过程中，有些属性的修改，双向绑定不会生效</p>
-<p>所以，来好好探究下Object.defineProperty   和 vue3.0中的 Proxy</p>
-</blockquote>
-<!-- more -->
-<h2 id="objectdefineproperty">Object.defineProperty()</h2>
-<p>Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。</p>
-<p>Object.defineProperty(obj, prop, descriptor)</p>
-<pre><code>* obj
-* 要在其上定义属性的对象。
-* prop
-* 要定义或修改的属性的名称。
-* descriptor
-* 将被定义或修改的属性描述符。
-</code></pre>
-<p>具体形象生动的解释可参考这篇文章<a href="https://www.jianshu.com/p/6519575e055f">Object.defineProperty() 不详解</a></p>
-<h2 id="注意-get-set">注意 get 、set</h2>
-<p>在项目中遇到的问题就是，使用 vue 的双向数据绑定，在表单新增页面没问题，但是在修改的时候，v-model 绑定的属性没法被 set 赋值过来，很奇怪。想了大概两三天，没想明白，后来大佬来看了一下我v-mode 的数据类型，多层数组嵌套，通过下标的形式进行访问修改。vue2.x 使用Object.defineProperty 的存在很多限制：<strong>无法监听 属性的添加和删除、数组索引和长度的变更</strong>，直接通过数组的下标给数组设置值，不能实时响应，是因为Object.defineProperty()无法监控到数组下标的变化，后来使用了 JSON.parse(JSON.stringify())进行了一次深拷贝才解决，也可以使用 lodash 的 cloneDeep。</p>
-<h2 id="使用-objectdefineproperty手动实现一个双向绑定">使用 object.defineProperty手动实现一个双向绑定</h2>
-<p>主要是监听input change 事件或者键盘 keyup 事件，通过 object.defineProperty 设置 set 属性进行对象属性的 修改。</p>
-<p>参考博客（这老哥的博客很生动）：<a href="https://www.jianshu.com/p/251235dd04c8">用Object.defineProperty手写一个简单的双向绑定</a></p>
-<h2 id="proxy">Proxy</h2>
-<p>Proxy可以理解成，在目标对象之前架设一层 &quot;拦截&quot;，当外界对该对象访问的时候，都必须经过这层拦截，而Proxy就充当了这种机制，类似于代理的含义，它可以对外界访问对象之前进行过滤和改写该对象。</p>
-<p>Proxy基本语法 :const obj = new Proxy(target, handler);</p>
-<p>参数说明如下：</p>
-<pre><code>* target: 被代理对象。
-* handler: 是一个对象，声明了代理target的一些操作。
-* obj: 是被代理完成之后返回的对象。
-</code></pre>
-<p>但是当外界每次对obj进行操作时，就会执行handler对象上的一些方法。handler中常用的对象方法如下：</p>
-<pre><code>1. get(target, propKey, receiver)
-2. set(target, propKey, value, receiver)
-3. has(target, propKey)
-4. construct(target, args):
-5. apply(target, object, args)
-</code></pre>
-<p><a href="https://segmentfault.com/a/1190000018574665">proxy 和 object.defineProperty实现双向绑定对比</a></p>
 ]]></content>
     </entry>
 </feed>
