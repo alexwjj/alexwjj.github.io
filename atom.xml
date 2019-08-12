@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-08-12T02:29:40.630Z</updated>
+    <updated>2019-08-12T06:37:16.848Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
     <entry>
-        <title type="html"><![CDATA[vue 源码分析]]></title>
+        <title type="html"><![CDATA[vue 源码分析 - 数据驱动]]></title>
         <id>https://alexwjj.github.io//post/vue-yuan-ma-fen-xi</id>
         <link href="https://alexwjj.github.io//post/vue-yuan-ma-fen-xi">
         </link>
@@ -25,17 +25,17 @@
 </blockquote>
 <!-- more -->
 <h1 id="1-源码目录">1. 源码目录</h1>
-<pre><code>    |—  build  打包相关的配置文件，其中最重要的是config.js。主要是根据不同的入口，打包为不同的文件。
+<pre><code>    |—  build  主要为config.js。主要是根据不同的入口，打包为不同的文件。
 
     |—  dist 打包之后文件所在位置
 
     |—  examples 部分示例
 
-    |—  flow 因为Vue使用了[Flow](https://flow.org/)来进行静态类型检查，这里定义了声明了一些静态类型
+    |—  flow 静态类型检查，这里定义了声明了一些静态类型
 
-    |—  packages vue还可以分别生成其它的npm包
+    |—  packages 生成其他平台的npm包
 
-    |—  src 主要源码所在位置
+    |—  src 主要源码
 
         |— compiler 模板解析的相关文件
 
@@ -47,9 +47,9 @@
 
         |—  core 核心代码
 
-            |— components 全局的组件，这里只有keep-alive
+            |— components 全局的组件，目前只有keep-alive
 
-            |— global-api 全局方法，也就是添加在Vue对象上的方法，比如Vue.use,Vue.extend,,Vue.mixin等
+            |— global-api 全局方法，比如Vue.use,Vue.extend,,Vue.mixin等
 
             |— instance 实例相关内容，包括实例方法，生命周期，事件等
 
@@ -59,7 +59,7 @@
 
             |— vdom 虚拟dom相关
 
-        |— entries 入口文件，也就是build文件夹下config.js中配置的入口文件。看源码可以从这里看起
+        |— entries 入口文件，也就是build文件夹下config.js中配置的入口文件。源码起点
 
         |— platforms 平台相关的内容
 
@@ -79,16 +79,252 @@
 
         |— sfc
 
-            |— parser.js 包含了单文件 Vue 组件 (*.vue) 的解析逻辑。在 vue-template-compiler 包中被使用。
+            |— parser.js 解析单文件 Vue 组件 (*.vue) 
 
         |—  shared 共享的工具方法
 
     |—  test 测试用例
 
 </code></pre>
-<ol start="2">
+<h1 id="2阅读源码学到的小知识点">2.阅读源码学到的小知识点</h1>
+<h2 id="tips">tips</h2>
+<ol>
+<li>?:  flow中可选对象属性可以void或省略，但不能是null。比如：el?: string | Element</li>
 <li></li>
 </ol>
+<h2 id="1-vue实质上是一个function实现的类只能通过new-vue去实例化它-为何不用es6的class去实现呢">1. Vue实质上是一个Function实现的类，只能通过new Vue去实例化它， 为何不用ES6的class去实现呢？</h2>
+<p>下面有很多xxxMixin的函数调用，用于给Vue的prototype上扩展一些方法，而这些扩展需要按照功能分散到各个模块中去实现，而不是在一个模块里实现所有，这些方式是class难以实现的。</p>
+<p>这样做的好处是非常方便代码的维护和管理</p>
+<pre><code>initMixin(Vue)
+stateMixin(Vue)
+eventsMixin(Vue)
+lifecycleMixin(Vue)
+renderMixin(Vue)
+</code></pre>
+<h2 id="2objectcreatenull-与-的区别">2.object.create(null) 与 {} 的区别</h2>
+<p>使用create创建的对象，没有任何属性，显示No properties，我们可以把它当作一个非常纯净的map来使用，我们可以自己定义hasOwnProperty、toString方法，不管是有意还是不小心，我们完全不必担心会将原型链上的同名方法覆盖掉。<br>
+<img src="https://alexwjj.github.io//post-images/1565589869458.png" alt=""></p>
+<h2 id="3new-vue-发生了什么">3.new Vue() 发生了什么</h2>
+<p>Vue 初始化：合并配置，初始化生命周期，初始化事件中心，初始化渲染，初始化 data、props、computed、watcher 等等。</p>
+<p>1.new 关键字在 Javascript 语言中代表实例化是一个对象，而 Vue 实际上是一个类，类在 Javascript 中是用 Function 来实现的，来看一下源码，在src/core/instance/index.js 中。</p>
+<pre><code>function Vue (options) {
+  if (process.env.NODE_ENV !== 'production' &amp;&amp;
+    !(this instanceof Vue)
+  ) {
+    warn('Vue is a constructor and should be called with the `new` keyword')
+  }
+  this._init(options)
+}
+</code></pre>
+<p>2.Vue 只能通过 new 关键字初始化，然后会调用 this._init 方法， 该方法在 src/core/instance/init.js 中定义。</p>
+<pre><code>Vue.prototype._init = function (options?: Object) {
+  const vm: Component = this
+  // a uid
+  vm._uid = uid++
+
+  let startTag, endTag
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV !== 'production' &amp;&amp; config.performance &amp;&amp; mark) {
+    startTag = `vue-perf-start:${vm._uid}`
+    endTag = `vue-perf-end:${vm._uid}`
+    mark(startTag)
+  }
+
+  // a flag to avoid this being observed
+  vm._isVue = true
+  // merge options
+  if (options &amp;&amp; options._isComponent) {
+    // optimize internal component instantiation
+    // since dynamic options merging is pretty slow, and none of the
+    // internal component options needs special treatment.
+    initInternalComponent(vm, options)
+  } else {
+    vm.$options = mergeOptions(
+      resolveConstructorOptions(vm.constructor),
+      options || {},
+      vm
+    )
+  }
+  /* istanbul ignore else */
+  if (process.env.NODE_ENV !== 'production') {
+    initProxy(vm)
+  } else {
+    vm._renderProxy = vm
+  }
+  // expose real self
+  vm._self = vm
+  initLifecycle(vm)
+  initEvents(vm)
+  initRender(vm)
+  callHook(vm, 'beforeCreate')
+  initInjections(vm) // resolve injections before data/props
+  initState(vm)
+  initProvide(vm) // resolve provide after data/props
+  callHook(vm, 'created')
+
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV !== 'production' &amp;&amp; config.performance &amp;&amp; mark) {
+    vm._name = formatComponentName(vm, false)
+    mark(endTag)
+    measure(`vue ${vm._name} init`, startTag, endTag)
+  }
+
+  if (vm.$options.el) {
+    vm.$mount(vm.$options.el)
+  }
+}
+</code></pre>
+<h2 id="3vue-实例挂载-mount">3.vue 实例挂载 $mount</h2>
+<p>$mount 方法在多个文件中都有定义，如 src/platform/web/entry-runtime-with-compiler.js、src/platform/web/runtime/index.js、src/platform/weex/runtime/index.js。因为 $mount 这个方法的实现是和平台、构建方式都相关的。</p>
+<p>我们先来关注下compiler 版本的 $mount ， src/platform/web/entry-runtime-with-compiler.js 文件中定义：</p>
+<pre><code>//缓存了原型上的 $mount 方法，再重新定义该方法
+const mount = Vue.prototype.$mount 
+Vue.prototype.$mount = function (
+  el?: string | Element,
+  hydrating?: boolean
+): Component {
+  el = el &amp;&amp; query(el)
+
+  /* istanbul ignore if */
+	//  vue不能挂载在body、html这样的根节点上
+  if (el === document.body || el === document.documentElement) {
+    process.env.NODE_ENV !== 'production' &amp;&amp; warn(
+      `Do not mount Vue to &lt;html&gt; or &lt;body&gt; - mount to normal elements instead.`
+    )
+    return this
+  }
+
+  const options = this.$options
+  // resolve template/el and convert to render function
+	// 如果没有定义 render 方法，则会把 el 或者 template 字符串转换成 render 方法
+  if (!options.render) {
+    let template = options.template
+    if (template) {
+      if (typeof template === 'string') {
+        if (template.charAt(0) === '#') {
+          template = idToTemplate(template)
+          /* istanbul ignore if */
+          if (process.env.NODE_ENV !== 'production' &amp;&amp; !template) {
+            warn(
+              `Template element not found or is empty: ${options.template}`,
+              this
+            )
+          }
+        }
+      } else if (template.nodeType) {
+        template = template.innerHTML
+      } else {
+        if (process.env.NODE_ENV !== 'production') {
+          warn('invalid template option:' + template, this)
+        }
+        return this
+      }
+    } else if (el) {
+      template = getOuterHTML(el)
+    }
+    if (template) {
+      /* istanbul ignore if */
+      if (process.env.NODE_ENV !== 'production' &amp;&amp; config.performance &amp;&amp; mark) {
+        mark('compile')
+      }
+
+      const { render, staticRenderFns } = compileToFunctions(template, {
+        shouldDecodeNewlines,
+        shouldDecodeNewlinesForHref,
+        delimiters: options.delimiters,
+        comments: options.comments
+      }, this)
+      options.render = render
+      options.staticRenderFns = staticRenderFns
+
+      /* istanbul ignore if */
+      if (process.env.NODE_ENV !== 'production' &amp;&amp; config.performance &amp;&amp; mark) {
+        mark('compile end')
+        measure(`vue ${this._name} compile`, 'compile', 'compile end')
+      }
+    }
+  }
+  return mount.call(this, el, hydrating)
+}
+</code></pre>
+<p>$mount 方法实际上会去调用 mountComponent 方法，这个方法定义在 src/core/instance/lifecycle.js 文件中</p>
+<pre><code>export function mountComponent (
+  vm: Component,
+  el: ?Element,
+  hydrating?: boolean
+): Component {
+  vm.$el = el
+  if (!vm.$options.render) {
+    vm.$options.render = createEmptyVNode
+    if (process.env.NODE_ENV !== 'production') {
+      /* istanbul ignore if */
+      if ((vm.$options.template &amp;&amp; vm.$options.template.charAt(0) !== '#') ||
+        vm.$options.el || el) {
+        warn(
+          'You are using the runtime-only build of Vue where the template ' +
+          'compiler is not available. Either pre-compile the templates into ' +
+          'render functions, or use the compiler-included build.',
+          vm
+        )
+      } else {
+        warn(
+          'Failed to mount component: template or render function not defined.',
+          vm
+        )
+      }
+    }
+  }
+  callHook(vm, 'beforeMount')
+
+  let updateComponent
+  /* istanbul ignore if */
+  if (process.env.NODE_ENV !== 'production' &amp;&amp; config.performance &amp;&amp; mark) {
+    updateComponent = () =&gt; {
+      const name = vm._name
+      const id = vm._uid
+      const startTag = `vue-perf-start:${id}`
+      const endTag = `vue-perf-end:${id}`
+
+      mark(startTag)
+      const vnode = vm._render()
+      mark(endTag)
+      measure(`vue ${name} render`, startTag, endTag)
+
+      mark(startTag)
+      vm._update(vnode, hydrating)
+      mark(endTag)
+      measure(`vue ${name} patch`, startTag, endTag)
+    }
+  } else {
+    updateComponent = () =&gt; {
+      vm._update(vm._render(), hydrating)
+    }
+  }
+
+  // we set this to vm._watcher inside the watcher's constructor
+  // since the watcher's initial patch may call $forceUpdate (e.g. inside child
+  // component's mounted hook), which relies on vm._watcher being already defined
+  new Watcher(vm, updateComponent, noop, {
+    before () {
+      if (vm._isMounted) {
+        callHook(vm, 'beforeUpdate')
+      }
+    }
+  }, true /* isRenderWatcher */)
+  hydrating = false
+
+  // manually mounted instance, call mounted on self
+  // mounted is called for render-created child components in its inserted hook
+  if (vm.$vnode == null) {
+    vm._isMounted = true
+    callHook(vm, 'mounted')
+  }
+  return vm
+}
+</code></pre>
+<p>mountComponent 核心就是先实例化一个渲染Watcher，在它的回调函数中会调用 updateComponent 方法，在此方法中调用 vm._render 方法先生成虚拟 Node，最终调用 vm._update 更新 DOM。</p>
+<p>Watcher 在这里起到两个作用，一个是初始化的时候会执行回调函数，另一个是当 vm 实例中的监测的数据发生变化的时候执行回调函数，</p>
+<p>函数最后判断为根节点的时候设置 vm._isMounted 为 true， 表示这个实例已经挂载了，同时执行 mounted 钩子函数。 这里注意 vm.$vnode 表示 Vue 实例的父虚拟 Node，所以它为 Null 则表示当前是根 Vue 的实例。</p>
 ]]></content>
     </entry>
     <entry>
