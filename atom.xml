@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-08-05T11:02:03.338Z</updated>
+    <updated>2019-08-12T02:29:40.630Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -10,6 +10,87 @@
     <logo>https://alexwjj.github.io//images/avatar.png</logo>
     <icon>https://alexwjj.github.io//favicon.ico</icon>
     <rights>All rights reserved 2019, 俊劫、的前端博客</rights>
+    <entry>
+        <title type="html"><![CDATA[vue 源码分析]]></title>
+        <id>https://alexwjj.github.io//post/vue-yuan-ma-fen-xi</id>
+        <link href="https://alexwjj.github.io//post/vue-yuan-ma-fen-xi">
+        </link>
+        <updated>2019-08-12T02:25:29.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>团队技术分享准备贴</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>团队技术分享准备贴</p>
+</blockquote>
+<!-- more -->
+<h1 id="1-源码目录">1. 源码目录</h1>
+<pre><code>    |—  build  打包相关的配置文件，其中最重要的是config.js。主要是根据不同的入口，打包为不同的文件。
+
+    |—  dist 打包之后文件所在位置
+
+    |—  examples 部分示例
+
+    |—  flow 因为Vue使用了[Flow](https://flow.org/)来进行静态类型检查，这里定义了声明了一些静态类型
+
+    |—  packages vue还可以分别生成其它的npm包
+
+    |—  src 主要源码所在位置
+
+        |— compiler 模板解析的相关文件
+
+            |—codegen 根据ast生成render函数
+
+            |—directives 通用生成render函数之前需要处理的指令
+
+            |—parser 模板解析
+
+        |—  core 核心代码
+
+            |— components 全局的组件，这里只有keep-alive
+
+            |— global-api 全局方法，也就是添加在Vue对象上的方法，比如Vue.use,Vue.extend,,Vue.mixin等
+
+            |— instance 实例相关内容，包括实例方法，生命周期，事件等
+
+            |— observer 双向数据绑定相关文件
+
+            |— util 工具方法
+
+            |— vdom 虚拟dom相关
+
+        |— entries 入口文件，也就是build文件夹下config.js中配置的入口文件。看源码可以从这里看起
+
+        |— platforms 平台相关的内容
+
+            |— web web端独有文件
+
+                |— compiler 编译阶段需要处理的指令和模块
+
+                |— runtime 运行阶段需要处理的组件、指令和模块
+
+                |— server 服务端渲染相关
+
+                |— util 工具库
+
+            |— weex weex端独有文件
+
+        |— server 服务端渲染相关
+
+        |— sfc
+
+            |— parser.js 包含了单文件 Vue 组件 (*.vue) 的解析逻辑。在 vue-template-compiler 包中被使用。
+
+        |—  shared 共享的工具方法
+
+    |—  test 测试用例
+
+</code></pre>
+<ol start="2">
+<li></li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Lodash 开发指南]]></title>
         <id>https://alexwjj.github.io//post/lodash-kai-fa-zhi-nan</id>
@@ -818,51 +899,6 @@ export default {
 </code></pre>
 <p>在一个代码片段里this有可能代表不同的对象,而编码者希望_this代表<strong>最初的对象</strong>。JS可以嵌套多层代码，可能下面还可以再嵌一个方法，引用this就会变成<strong>子方法控制的对象</strong>。如果需要<strong>上级的对象</strong>，在没有参数的情况下，前提做了一个临时变量_this，可以保存<strong>上级对象</strong>，子方<br>
 法中就可以用_this来调用了，这才是目的。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[v-for :key 的使用]]></title>
-        <id>https://alexwjj.github.io//post/v-for-key-de-shi-yong</id>
-        <link href="https://alexwjj.github.io//post/v-for-key-de-shi-yong">
-        </link>
-        <updated>2019-06-20T13:29:42.000Z</updated>
-        <summary type="html"><![CDATA[<blockquote>
-<p>在 vue 项目中，大量使用了v-for 来遍历我们的数组。</p>
-<p>:key 是vue 必须要求的，也是 vue 虚拟 DOM的 Diff 算法的依赖</p>
-<p>最近在项目中遇到数据篡改的问题，记录下</p>
-</blockquote>
-]]></summary>
-        <content type="html"><![CDATA[<blockquote>
-<p>在 vue 项目中，大量使用了v-for 来遍历我们的数组。</p>
-<p>:key 是vue 必须要求的，也是 vue 虚拟 DOM的 Diff 算法的依赖</p>
-<p>最近在项目中遇到数据篡改的问题，记录下</p>
-</blockquote>
-<!-- more -->
-<h2 id="v-for">v-for</h2>
-<p>使用<strong>v-for</strong>更新已渲染的元素列表时,默认用<strong>就地复用</strong>策略;列表数据修改的时候,vue会根据key值去<br>
-判断某个值是否修改,如果修改,则重新渲染这一项,否则复用之前的元素;我们在使用的使用经常会使用index(即数组的下标)来作为key,但是我们要谨慎在项目中使用 index 来作为 key。</p>
-<h2 id="key">:key</h2>
-<p>最好的办法是使用数组中互不相同的一个属性作为key值,对应到项目中,即每条数据都有一个<strong>唯一的id</strong>,来标识这条数据的唯一性;使用id作为key值,旧值就不会重新渲染。同理在react中使用map渲染列表时,也是必须加key,且推荐做法也是使用id。</p>
-<h2 id="virtual-dom-diff">Virtual DOM --- diff</h2>
-<p>vue和react的虚拟DOM的Diff算法大致相同，其核心是基于两个简单的假设：</p>
-<ul>
-<li>两个相同的组件产生类似的DOM结构，不同的组件产生不同的DOM结构。</li>
-<li></li>
-<li>同一层级的一组节点，他们可以通过唯一的id进行区分。基于以上这两点假设，使得虚拟DOM的Diff算法<br>
-的复杂度从O(n^3)降到了O(n)。</li>
-</ul>
-<p><strong>key的作用主要是为了高效的更新虚拟DOM</strong></p>
-<h2 id="问题描述">问题描述</h2>
-<p>项目中使用了 element-ui 的 time-picker 组件，绑定了数据之后，通过修改 time-picker 来修改时间。开发过程中，没有充分测试，并没有发现问题。测试提交过来，发现重新生成的时间，聚焦的时候会自动修改为上一次加载的值。</p>
-<p>问题很奇怪，各种定位问题，因为页面是一年以前，一个离职的同事写的。多层数组循环嵌套，由于我们使用的 vue 版本是2.X，object.defineProperty无法监测通过数组下标访问的数据。这也导致我找问题一直在这方面寻找。</p>
-<p>找了快一周了，项目要上线了。硬着头皮去找我组长了，大佬就是大佬，排查问题的方式以及思考的路子都是我要学习的地方。找了一晚上，也没注意到 key的问题。但是大佬和我不同的是，他们定位不到问题的时候会去想办法重写一个 demo，重现问题。而我的缺点是会一直卡在一个问题上，懒或者没有勇气去重写一个例子。</p>
-<h2 id="后续">后续</h2>
-<ol>
-<li>遇到问题解决不了及时问大佬</li>
-<li>学会重现问题根本原因，学会定位问题</li>
-<li>谨慎使用 index 作为 key 值</li>
-<li>去研究 vue api的实现原理，关注其优缺点。</li>
-</ol>
 ]]></content>
     </entry>
 </feed>
