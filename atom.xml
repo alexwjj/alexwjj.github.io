@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-08-12T06:37:16.848Z</updated>
+    <updated>2019-08-13T06:10:34.778Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -325,6 +325,328 @@ Vue.prototype.$mount = function (
 <p>mountComponent 核心就是先实例化一个渲染Watcher，在它的回调函数中会调用 updateComponent 方法，在此方法中调用 vm._render 方法先生成虚拟 Node，最终调用 vm._update 更新 DOM。</p>
 <p>Watcher 在这里起到两个作用，一个是初始化的时候会执行回调函数，另一个是当 vm 实例中的监测的数据发生变化的时候执行回调函数，</p>
 <p>函数最后判断为根节点的时候设置 vm._isMounted 为 true， 表示这个实例已经挂载了，同时执行 mounted 钩子函数。 这里注意 vm.$vnode 表示 Vue 实例的父虚拟 Node，所以它为 Null 则表示当前是根 Vue 的实例。</p>
+<h2 id="4vue-组件-data-为什么必须是函数new-vue可以赋值对象">4.Vue 组件 data 为什么必须是函数？new Vue可以赋值对象？</h2>
+<p>如果两个实例（组件）同时引用一个对象，那么当你修改其中一个属性的时候，另外一个实例也会跟着改。Object是引用数据类型,如果不用function 返回,每个组件的data 都是内存的同一个地址,一个数据改变了其他也改变了;<br>
+而data是函数的话，每个vue组件的data都因为函数有了自己的作用域，互不干扰。</p>
+<pre><code>var MyComponent = function() {
+  this.data = this.data()
+}
+MyComponent.prototype.data = function() {
+  return {
+    a: 1,
+    b: 2,
+  }
+}
+</code></pre>
+<h2 id="5编译生成的render和手写render">5.编译生成的render和手写render</h2>
+<h3 id="render-最终返回的都是vnode">render 最终返回的都是VNode</h3>
+<pre><code> //  编译render调用
+  vm._c = (a, b, c, d) =&gt; createElement(vm, a, b, c, d, false)
+//  手写render调用
+  vm.$createElement = (a, b, c, d) =&gt; createElement(vm, a, b, c, d, true)
+</code></pre>
+<h3 id="提升用户体验v-cloak">提升用户体验：v-cloak</h3>
+<p>这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。<br>
+防止刷新页面，网速慢的情况下出现{{ message }}等数据格式</p>
+<p>页面加载比较慢的时候会看到{{ message }}这样的插值，是因为在vue在渲染时间但是直接使用render就不会如果使用render形式，就不会有这种编译过程。</p>
+<pre><code>render: function (createElement) {
+  return createElement('div', {
+     attrs: {
+        id: 'app'
+      },
+  }, this.message)
+}
+</code></pre>
+<h2 id="6render">6.render</h2>
+<p>src/core/instance/render.js</p>
+<p>vm._render 最终是通过执行 createElement 方法并返回的是 vnode，它是一个虚拟 Node。</p>
+<pre><code>Vue.prototype._render = function (): VNode {
+  const vm: Component = this
+  const { render, _parentVnode } = vm.$options
+
+  // reset _rendered flag on slots for duplicate slot check
+  if (process.env.NODE_ENV !== 'production') {
+    for (const key in vm.$slots) {
+      // $flow-disable-line
+      vm.$slots[key]._rendered = false
+    }
+  }
+
+  if (_parentVnode) {
+    vm.$scopedSlots = _parentVnode.data.scopedSlots || emptyObject
+  }
+
+  // set parent vnode. this allows render functions to have access
+  // to the data on the placeholder node.
+  vm.$vnode = _parentVnode
+  // render self
+  let vnode
+  try {
+    vnode = render.call(vm._renderProxy, vm.$createElement)
+  } catch (e) {
+    handleError(e, vm, `render`)
+    // return error render result,
+    // or previous vnode to prevent render error causing blank component
+    /* istanbul ignore else */
+    if (process.env.NODE_ENV !== 'production') {
+      if (vm.$options.renderError) {
+        try {
+          vnode = vm.$options.renderError.call(vm._renderProxy, vm.$createElement, e)
+        } catch (e) {
+          handleError(e, vm, `renderError`)
+          vnode = vm._vnode
+        }
+      } else {
+        vnode = vm._vnode
+      }
+    } else {
+      vnode = vm._vnode
+    }
+  }
+  // return empty vnode in case the render function errored out
+  if (!(vnode instanceof VNode)) {
+    if (process.env.NODE_ENV !== 'production' &amp;&amp; Array.isArray(vnode)) {
+      warn(
+        'Multiple root nodes returned from render function. Render function ' +
+        'should return a single root node.',
+        vm
+      )
+    }
+    vnode = createEmptyVNode()
+  }
+  // set parent
+  vnode.parent = _parentVnode
+  return vnode
+}
+</code></pre>
+<h1 id="7virtual-dom">7.Virtual DOM</h1>
+<h3 id="一个div元素的属性">一个div元素的属性</h3>
+<p><img src="https://alexwjj.github.io//post-images/1565662147951.png" alt=""></p>
+<h3 id="virtual-dom">Virtual DOM</h3>
+<p>Virtual DOM 就是用一个原生的 JS 对象去描述一个 DOM 节点，所以它比创建一个 DOM 的代价要小很多。在 Vue.js 中，Virtual DOM 是用 VNode 这么一个 Class 去描述，它是定义在 src/core/vdom/vnode.js 中的。</p>
+<p>Virtual DOM的本质就是在JS和DOM之间做一个缓存，可以类比CPU和硬盘，既然硬盘这么慢，我们就也在他们之间添加一个缓存（内存）； 既然DOM这么慢，我们就可以在JS和DOM之间添加一个缓存。 CPU（JS）只操作内存（虚拟DOM），最后的时候在把变更写入硬盘（DOM）。</p>
+<h3 id="vnode">VNode</h3>
+<p>VNode 是对真实 DOM 的一种抽象描述，它的核心定义无非就几个关键属性，标签名、数据、子节点、键值等，其它属性都是都是用来扩展 VNode 的灵活性以及实现一些特殊 feature 的。由于 VNode 只是用来映射到真实 DOM 的渲染，不需要包含操作 DOM 的方法，因此它是非常轻量和简单的。</p>
+<pre><code>export default class VNode {
+  tag: string | void;
+  data: VNodeData | void;
+  children: ?Array&lt;VNode&gt;;
+  text: string | void;
+  elm: Node | void;
+  ns: string | void;
+  context: Component | void; // rendered in this component's scope
+  key: string | number | void;
+  componentOptions: VNodeComponentOptions | void;
+  componentInstance: Component | void; // component instance
+  parent: VNode | void; // component placeholder node
+
+  // strictly internal
+  raw: boolean; // contains raw HTML? (server only)
+  isStatic: boolean; // hoisted static node
+  isRootInsert: boolean; // necessary for enter transition check
+  isComment: boolean; // empty comment placeholder?
+  isCloned: boolean; // is a cloned node?
+  isOnce: boolean; // is a v-once node?
+  asyncFactory: Function | void; // async component factory function
+  asyncMeta: Object | void;
+  isAsyncPlaceholder: boolean;
+  ssrContext: Object | void;
+  fnContext: Component | void; // real context vm for functional nodes
+  fnOptions: ?ComponentOptions; // for SSR caching
+  fnScopeId: ?string; // functional scope id support
+
+  constructor (
+    tag?: string,
+    data?: VNodeData,
+    children?: ?Array&lt;VNode&gt;,
+    text?: string,
+    elm?: Node,
+    context?: Component,
+    componentOptions?: VNodeComponentOptions,
+    asyncFactory?: Function
+  ) {
+    this.tag = tag
+    this.data = data
+    this.children = children
+    this.text = text
+    this.elm = elm
+    this.ns = undefined
+    this.context = context
+    this.fnContext = undefined
+    this.fnOptions = undefined
+    this.fnScopeId = undefined
+    this.key = data &amp;&amp; data.key
+    this.componentOptions = componentOptions
+    this.componentInstance = undefined
+    this.parent = undefined
+    this.raw = false
+    this.isStatic = false
+    this.isRootInsert = true
+    this.isComment = false
+    this.isCloned = false
+    this.isOnce = false
+    this.asyncFactory = asyncFactory
+    this.asyncMeta = undefined
+    this.isAsyncPlaceholder = false
+  }
+
+  // DEPRECATED: alias for componentInstance for backwards compat.
+  /* istanbul ignore next */
+  get child (): Component | void {
+    return this.componentInstance
+  }
+}
+</code></pre>
+<p>Virtual DOM 除了它的数据结构的定义，映射到真实的 DOM 实际上要经历 VNode 的 create、diff、patch 等过程。那么在 Vue.js 中，VNode 的 create 是通过之前提到的 createElement 方法创建的。</p>
+<h2 id="createelement">createElement</h2>
+<p>src/core/vdom/create-elemenet.js</p>
+<pre><code>export function createElement (
+  context: Component,
+  tag: any,
+  data: any,
+  children: any,
+  normalizationType: any,
+  alwaysNormalize: boolean
+): VNode | Array&lt;VNode&gt; {
+  if (Array.isArray(data) || isPrimitive(data)) {
+    normalizationType = children
+    children = data
+    data = undefined
+  }
+  if (isTrue(alwaysNormalize)) {
+    normalizationType = ALWAYS_NORMALIZE
+  }
+  return _createElement(context, tag, data, children, normalizationType)
+}
+</code></pre>
+<p>真正创建 VNode 的函数 _createElement，运用了函数柯里化</p>
+<p>context 表示 VNode 的上下文环境，它是 Component 类型；tag 表示标签，它可以是一个字符串，也可以是一个 Component；data 表示 VNode 的数据，它是一个 VNodeData 类型，children 表示当前 VNode 的子节点，它是任意类型的，normalizationType 表示子节点规范的类型</p>
+<p>simpleNormalizeChildren 和 normalizeChildren 对children做处理，转换成标准的VNode。</p>
+<pre><code>export function _createElement (
+  context: Component,
+  tag?: string | Class&lt;Component&gt; | Function | Object,
+  data?: VNodeData,
+  children?: any,
+  normalizationType?: number
+): VNode | Array&lt;VNode&gt; {
+  if (isDef(data) &amp;&amp; isDef((data: any).__ob__)) {
+    process.env.NODE_ENV !== 'production' &amp;&amp; warn(
+      `Avoid using observed data object as vnode data: ${JSON.stringify(data)}\n` +
+      'Always create fresh vnode data objects in each render!',
+      context
+    )
+    return createEmptyVNode()
+  }
+  // object syntax in v-bind
+  if (isDef(data) &amp;&amp; isDef(data.is)) {
+    tag = data.is
+  }
+  if (!tag) {
+    // in case of component :is set to falsy value
+    return createEmptyVNode()
+  }
+  // warn against non-primitive key
+  if (process.env.NODE_ENV !== 'production' &amp;&amp;
+    isDef(data) &amp;&amp; isDef(data.key) &amp;&amp; !isPrimitive(data.key)
+  ) {
+    if (!__WEEX__ || !('@binding' in data.key)) {
+      warn(
+        'Avoid using non-primitive value as key, ' +
+        'use string/number value instead.',
+        context
+      )
+    }
+  }
+  // support single function children as default scoped slot
+  if (Array.isArray(children) &amp;&amp;
+    typeof children[0] === 'function'
+  ) {
+    data = data || {}
+    data.scopedSlots = { default: children[0] }
+    children.length = 0
+  }
+  if (normalizationType === ALWAYS_NORMALIZE) {
+    children = normalizeChildren(children)
+  } else if (normalizationType === SIMPLE_NORMALIZE) {
+    children = simpleNormalizeChildren(children)
+  }
+  let vnode, ns
+  if (typeof tag === 'string') {
+    let Ctor
+    ns = (context.$vnode &amp;&amp; context.$vnode.ns) || config.getTagNamespace(tag)
+    if (config.isReservedTag(tag)) {
+      // platform built-in elements
+      vnode = new VNode(
+        config.parsePlatformTagName(tag), data, children,
+        undefined, undefined, context
+      )
+    } else if (isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
+      // component
+      vnode = createComponent(Ctor, data, context, children, tag)
+    } else {
+      // unknown or unlisted namespaced elements
+      // check at runtime because it may get assigned a namespace when its
+      // parent normalizes children
+      vnode = new VNode(
+        tag, data, children,
+        undefined, undefined, context
+      )
+    }
+  } else {
+    // direct component options / constructor
+    vnode = createComponent(tag, data, context, children)
+  }
+  if (Array.isArray(vnode)) {
+    return vnode
+  } else if (isDef(vnode)) {
+    if (isDef(ns)) applyNS(vnode, ns)
+    if (isDef(data)) registerDeepBindings(data)
+    return vnode
+  } else {
+    return createEmptyVNode()
+  }
+}
+</code></pre>
+<h2 id="update">update</h2>
+<p>它被调用的时机有 2 个，一个是首次渲染，一个是数据更新的时候；_update 方法的作用是把 VNode 渲染成真实的 DOM，它的定义在 src/core/instance/lifecycle.js 中：</p>
+<pre><code>Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
+  const vm: Component = this
+  const prevEl = vm.$el
+  const prevVnode = vm._vnode
+  const prevActiveInstance = activeInstance
+  activeInstance = vm
+  vm._vnode = vnode
+  // Vue.prototype.__patch__ is injected in entry points
+  // based on the rendering backend used.
+  if (!prevVnode) {
+    // initial render
+    vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */)
+  } else {
+    // updates
+    vm.$el = vm.__patch__(prevVnode, vnode)
+  }
+  activeInstance = prevActiveInstance
+  // update __vue__ reference
+  if (prevEl) {
+    prevEl.__vue__ = null
+  }
+  if (vm.$el) {
+    vm.$el.__vue__ = vm
+  }
+  // if parent is an HOC, update its $el as well
+  if (vm.$vnode &amp;&amp; vm.$parent &amp;&amp; vm.$vnode === vm.$parent._vnode) {
+    vm.$parent.$el = vm.$el
+  }
+  // updated hook is called by the scheduler to ensure that children are
+  // updated in a parent's updated hook.
+}
+</code></pre>
+<p>_update 的核心就是调用 vm.<strong>patch</strong> 方法，这个方法实际上在不同的平台，比如 web 和 weex 上的定义是不一样的，因此在 web 平台中它的定义在 src/platforms/web/runtime/index.js 中：</p>
+<pre><code>Vue.prototype.__patch__ = inBrowser ? patch : noop
+</code></pre>
+<p>通过一些insert操作，将虚拟DOM映射到真实的DOM上，完成首次渲染的更新，后续的更新则是通过vue的响应式系统调用_update。</p>
+<h2 id="vue渲染过程">vue渲染过程</h2>
+<p><img src="https://alexwjj.github.io//post-images/1565676526734.png" alt=""></p>
 ]]></content>
     </entry>
     <entry>
