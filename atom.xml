@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-08-13T06:10:34.778Z</updated>
+    <updated>2019-08-18T11:27:55.644Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -17,97 +17,90 @@
         </link>
         <updated>2019-08-12T02:25:29.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
-<p>团队技术分享准备贴</p>
+<p>每周四团队分享，轮到我了<br>
+之前写的有点乱<br>
+重构，重构</p>
 </blockquote>
 ]]></summary>
         <content type="html"><![CDATA[<blockquote>
-<p>团队技术分享准备贴</p>
+<p>每周四团队分享，轮到我了<br>
+之前写的有点乱<br>
+重构，重构</p>
 </blockquote>
 <!-- more -->
-<h1 id="1-源码目录">1. 源码目录</h1>
-<pre><code>    |—  build  主要为config.js。主要是根据不同的入口，打包为不同的文件。
+<h1 id="1源码目录">1.源码目录</h1>
+<pre><code>    |—  build  主要为config.js。主要是根据不同的入口，打包为不同的文件。
 
-    |—  dist 打包之后文件所在位置
+    |—  dist 打包之后文件所在位置
 
-    |—  examples 部分示例
+    |—  examples 部分示例
 
-    |—  flow 静态类型检查，这里定义了声明了一些静态类型
+    |—  flow 静态类型检查，这里定义了声明了一些静态类型
 
-    |—  packages 生成其他平台的npm包
+    |—  packages 生成其他平台的npm包
 
-    |—  src 主要源码
+    |—  src 主要源码
 
-        |— compiler 模板解析的相关文件
+        |— compiler 模板解析的相关文件
 
-            |—codegen 根据ast生成render函数
+            |—codegen 根据ast生成render函数
 
-            |—directives 通用生成render函数之前需要处理的指令
+            |—directives 通用生成render函数之前需要处理的指令
 
-            |—parser 模板解析
+            |—parser 模板解析
 
-        |—  core 核心代码
+        |—  core 核心代码
 
-            |— components 全局的组件，目前只有keep-alive
+            |— components 全局的组件，目前只有keep-alive
 
-            |— global-api 全局方法，比如Vue.use,Vue.extend,,Vue.mixin等
+            |— global-api 全局方法，比如Vue.use,Vue.extend,,Vue.mixin等
 
-            |— instance 实例相关内容，包括实例方法，生命周期，事件等
+            |— instance 实例相关内容，包括实例方法，生命周期，事件等
 
-            |— observer 双向数据绑定相关文件
+            |— observer 双向数据绑定相关文件
 
-            |— util 工具方法
+            |— util 工具方法
 
-            |— vdom 虚拟dom相关
+            |— vdom 虚拟dom相关
 
-        |— entries 入口文件，也就是build文件夹下config.js中配置的入口文件。源码起点
+        |— entries 入口文件，也就是build文件夹下config.js中配置的入口文件。源码起点
 
-        |— platforms 平台相关的内容
+        |— platforms 平台相关的内容
 
-            |— web web端独有文件
+            |— web web端独有文件
 
-                |— compiler 编译阶段需要处理的指令和模块
+                |— compiler 编译阶段需要处理的指令和模块
 
-                |— runtime 运行阶段需要处理的组件、指令和模块
+                |— runtime 运行阶段需要处理的组件、指令和模块
 
-                |— server 服务端渲染相关
+                |— server 服务端渲染相关
 
-                |— util 工具库
+                |— util 工具库
 
-            |— weex weex端独有文件
+            |— weex weex端独有文件
 
-        |— server 服务端渲染相关
+        |— server 服务端渲染相关
 
         |— sfc
 
             |— parser.js 解析单文件 Vue 组件 (*.vue) 
 
-        |—  shared 共享的工具方法
+        |—  shared 共享的工具方法
 
-    |—  test 测试用例
-
+    |—  test 测试用例
 </code></pre>
-<h1 id="2阅读源码学到的小知识点">2.阅读源码学到的小知识点</h1>
-<h2 id="tips">tips</h2>
-<ol>
-<li>?:  flow中可选对象属性可以void或省略，但不能是null。比如：el?: string | Element</li>
-<li></li>
-</ol>
-<h2 id="1-vue实质上是一个function实现的类只能通过new-vue去实例化它-为何不用es6的class去实现呢">1. Vue实质上是一个Function实现的类，只能通过new Vue去实例化它， 为何不用ES6的class去实现呢？</h2>
-<p>下面有很多xxxMixin的函数调用，用于给Vue的prototype上扩展一些方法，而这些扩展需要按照功能分散到各个模块中去实现，而不是在一个模块里实现所有，这些方式是class难以实现的。</p>
-<p>这样做的好处是非常方便代码的维护和管理</p>
-<pre><code>initMixin(Vue)
-stateMixin(Vue)
-eventsMixin(Vue)
-lifecycleMixin(Vue)
-renderMixin(Vue)
-</code></pre>
-<h2 id="2objectcreatenull-与-的区别">2.object.create(null) 与 {} 的区别</h2>
-<p>使用create创建的对象，没有任何属性，显示No properties，我们可以把它当作一个非常纯净的map来使用，我们可以自己定义hasOwnProperty、toString方法，不管是有意还是不小心，我们完全不必担心会将原型链上的同名方法覆盖掉。<br>
-<img src="https://alexwjj.github.io//post-images/1565589869458.png" alt=""></p>
-<h2 id="3new-vue-发生了什么">3.new Vue() 发生了什么</h2>
-<p>Vue 初始化：合并配置，初始化生命周期，初始化事件中心，初始化渲染，初始化 data、props、computed、watcher 等等。</p>
-<p>1.new 关键字在 Javascript 语言中代表实例化是一个对象，而 Vue 实际上是一个类，类在 Javascript 中是用 Function 来实现的，来看一下源码，在src/core/instance/index.js 中。</p>
-<pre><code>function Vue (options) {
+<h1 id="2new-vue-发什么了什么">2.new Vue() 发什么了什么？</h1>
+<p>Vue 初始化：</p>
+<ul>
+<li>合并配置</li>
+<li>初始化生命周期</li>
+<li>初始化事件中心</li>
+<li>初始化渲染</li>
+<li>初始化 data、props、computed、watcher 等等。</li>
+</ul>
+<h2 id="1new-关键字在-javascript-语言中代表实例化是一个对象而-vue-实际上是一个类类在-javascript-中是用-function-来实现的">1.new 关键字在 Javascript 语言中代表实例化是一个对象，而 Vue 实际上是一个类，类在 Javascript 中是用 Function 来实现的</h2>
+<pre><code>src/core/instance/index.js 
+function Vue (options) {
   if (process.env.NODE_ENV !== 'production' &amp;&amp;
     !(this instanceof Vue)
   ) {
@@ -116,7 +109,7 @@ renderMixin(Vue)
   this._init(options)
 }
 </code></pre>
-<p>2.Vue 只能通过 new 关键字初始化，然后会调用 this._init 方法， 该方法在 src/core/instance/init.js 中定义。</p>
+<h2 id="2vue-只能通过-new-关键字初始化然后会调用-this_init-方法-该方法在-srccoreinstanceinitjs-中定义">2.Vue 只能通过 new 关键字初始化，然后会调用 this._init 方法， 该方法在 src/core/instance/init.js 中定义。</h2>
 <pre><code>Vue.prototype._init = function (options?: Object) {
   const vm: Component = this
   // a uid
@@ -124,15 +117,16 @@ renderMixin(Vue)
 
   let startTag, endTag
   /* istanbul ignore if */
+  // 性能埋点相关
   if (process.env.NODE_ENV !== 'production' &amp;&amp; config.performance &amp;&amp; mark) {
     startTag = `vue-perf-start:${vm._uid}`
     endTag = `vue-perf-end:${vm._uid}`
-    mark(startTag)
+    mark(startTag)  
   }
 
   // a flag to avoid this being observed
   vm._isVue = true
-  // merge options
+  // 合并 options
   if (options &amp;&amp; options._isComponent) {
     // optimize internal component instantiation
     // since dynamic options merging is pretty slow, and none of the
@@ -152,6 +146,7 @@ renderMixin(Vue)
     vm._renderProxy = vm
   }
   // expose real self
+  //  各种初始化
   vm._self = vm
   initLifecycle(vm)
   initEvents(vm)
@@ -168,15 +163,16 @@ renderMixin(Vue)
     mark(endTag)
     measure(`vue ${vm._name} init`, startTag, endTag)
   }
-
+  // 挂载el
   if (vm.$options.el) {
     vm.$mount(vm.$options.el)
   }
 }
 </code></pre>
 <h2 id="3vue-实例挂载-mount">3.vue 实例挂载 $mount</h2>
-<p>$mount 方法在多个文件中都有定义，如 src/platform/web/entry-runtime-with-compiler.js、src/platform/web/runtime/index.js、src/platform/weex/runtime/index.js。因为 $mount 这个方法的实现是和平台、构建方式都相关的。</p>
-<p>我们先来关注下compiler 版本的 $mount ， src/platform/web/entry-runtime-with-compiler.js 文件中定义：</p>
+<p>$mount 方法在多个文件中都有定义，如 src/platform/web/entry-runtime-with-compiler.js、src/platform/web/runtime/index.js、src/platform/weex/runtime/index.js。因为 $mount 这个方法的实现是和平台、构建方式都相关的。我们先来关注下compiler 版本的 $mount ， src/platform/web/entry-runtime-with-compiler.js 文件中定义：</p>
+<p>主要是src/compiler/index.js,打断点看看AST以及render函数是什么样的。</p>
+<p>编译三部曲： 1. 获得AST（Abstract Syntax Tree 抽象语法树） 2. 优化   3.生成render函数</p>
 <pre><code>//缓存了原型上的 $mount 方法，再重新定义该方法
 const mount = Vue.prototype.$mount 
 Vue.prototype.$mount = function (
@@ -247,7 +243,8 @@ Vue.prototype.$mount = function (
   return mount.call(this, el, hydrating)
 }
 </code></pre>
-<p>$mount 方法实际上会去调用 mountComponent 方法，这个方法定义在 src/core/instance/lifecycle.js 文件中</p>
+<p>$mount 方法实际上会去调用 mountComponent 方法，这个方法定义在<br>
+src/core/instance/lifecycle.js 文件中</p>
 <pre><code>export function mountComponent (
   vm: Component,
   el: ?Element,
@@ -322,44 +319,12 @@ Vue.prototype.$mount = function (
   return vm
 }
 </code></pre>
-<p>mountComponent 核心就是先实例化一个渲染Watcher，在它的回调函数中会调用 updateComponent 方法，在此方法中调用 vm._render 方法先生成虚拟 Node，最终调用 vm._update 更新 DOM。</p>
-<p>Watcher 在这里起到两个作用，一个是初始化的时候会执行回调函数，另一个是当 vm 实例中的监测的数据发生变化的时候执行回调函数，</p>
-<p>函数最后判断为根节点的时候设置 vm._isMounted 为 true， 表示这个实例已经挂载了，同时执行 mounted 钩子函数。 这里注意 vm.$vnode 表示 Vue 实例的父虚拟 Node，所以它为 Null 则表示当前是根 Vue 的实例。</p>
-<h2 id="4vue-组件-data-为什么必须是函数new-vue可以赋值对象">4.Vue 组件 data 为什么必须是函数？new Vue可以赋值对象？</h2>
-<p>如果两个实例（组件）同时引用一个对象，那么当你修改其中一个属性的时候，另外一个实例也会跟着改。Object是引用数据类型,如果不用function 返回,每个组件的data 都是内存的同一个地址,一个数据改变了其他也改变了;<br>
-而data是函数的话，每个vue组件的data都因为函数有了自己的作用域，互不干扰。</p>
-<pre><code>var MyComponent = function() {
-  this.data = this.data()
-}
-MyComponent.prototype.data = function() {
-  return {
-    a: 1,
-    b: 2,
-  }
-}
-</code></pre>
-<h2 id="5编译生成的render和手写render">5.编译生成的render和手写render</h2>
-<h3 id="render-最终返回的都是vnode">render 最终返回的都是VNode</h3>
-<pre><code> //  编译render调用
-  vm._c = (a, b, c, d) =&gt; createElement(vm, a, b, c, d, false)
-//  手写render调用
-  vm.$createElement = (a, b, c, d) =&gt; createElement(vm, a, b, c, d, true)
-</code></pre>
-<h3 id="提升用户体验v-cloak">提升用户体验：v-cloak</h3>
-<p>这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。<br>
-防止刷新页面，网速慢的情况下出现{{ message }}等数据格式</p>
-<p>页面加载比较慢的时候会看到{{ message }}这样的插值，是因为在vue在渲染时间但是直接使用render就不会如果使用render形式，就不会有这种编译过程。</p>
-<pre><code>render: function (createElement) {
-  return createElement('div', {
-     attrs: {
-        id: 'app'
-      },
-  }, this.message)
-}
-</code></pre>
-<h2 id="6render">6.render</h2>
-<p>src/core/instance/render.js</p>
-<p>vm._render 最终是通过执行 createElement 方法并返回的是 vnode，它是一个虚拟 Node。</p>
+<p>(1) mountComponent 核心就是先实例化一个渲染Watcher，在它的回调函数中会调用 updateComponent 方法，在此方法中调用 vm._render 方法先生成虚拟 Node，最终调用 vm._update 更新 DOM。</p>
+<p>(2) Watcher 在这里起到两个作用，一个是初始化的时候会执行回调函数，另一个是当 vm 实例中的监测的数据发生变化的时候执行回调函数</p>
+<p>(3)  函数最后判断为根节点的时候设置 vm._isMounted 为 true， 表示这个实例已经挂载了，同时执行 mounted 钩子函数。 这里注意 vm.$vnode 表示 Vue 实例的父虚拟 Node，所以它为 Null 则表示当前是根 Vue 的实例。</p>
+<h1 id="4render">4.render</h1>
+<p>src/core/instance/render.js<br>
+vm._render 最终是通过执行 createElement 方法并返回的是 vnode，它是一个虚拟 Node。</p>
 <pre><code>Vue.prototype._render = function (): VNode {
   const vm: Component = this
   const { render, _parentVnode } = vm.$options
@@ -402,7 +367,7 @@ MyComponent.prototype.data = function() {
     } else {
       vnode = vm._vnode
     }
-  }
+      }
   // return empty vnode in case the render function errored out
   if (!(vnode instanceof VNode)) {
     if (process.env.NODE_ENV !== 'production' &amp;&amp; Array.isArray(vnode)) {
@@ -419,13 +384,7 @@ MyComponent.prototype.data = function() {
   return vnode
 }
 </code></pre>
-<h1 id="7virtual-dom">7.Virtual DOM</h1>
-<h3 id="一个div元素的属性">一个div元素的属性</h3>
-<p><img src="https://alexwjj.github.io//post-images/1565662147951.png" alt=""></p>
-<h3 id="virtual-dom">Virtual DOM</h3>
-<p>Virtual DOM 就是用一个原生的 JS 对象去描述一个 DOM 节点，所以它比创建一个 DOM 的代价要小很多。在 Vue.js 中，Virtual DOM 是用 VNode 这么一个 Class 去描述，它是定义在 src/core/vdom/vnode.js 中的。</p>
-<p>Virtual DOM的本质就是在JS和DOM之间做一个缓存，可以类比CPU和硬盘，既然硬盘这么慢，我们就也在他们之间添加一个缓存（内存）； 既然DOM这么慢，我们就可以在JS和DOM之间添加一个缓存。 CPU（JS）只操作内存（虚拟DOM），最后的时候在把变更写入硬盘（DOM）。</p>
-<h3 id="vnode">VNode</h3>
+<h1 id="5vnode">5.VNode</h1>
 <p>VNode 是对真实 DOM 的一种抽象描述，它的核心定义无非就几个关键属性，标签名、数据、子节点、键值等，其它属性都是都是用来扩展 VNode 的灵活性以及实现一些特殊 feature 的。由于 VNode 只是用来映射到真实 DOM 的渲染，不需要包含操作 DOM 的方法，因此它是非常轻量和简单的。</p>
 <pre><code>export default class VNode {
   tag: string | void;
@@ -498,7 +457,7 @@ MyComponent.prototype.data = function() {
 }
 </code></pre>
 <p>Virtual DOM 除了它的数据结构的定义，映射到真实的 DOM 实际上要经历 VNode 的 create、diff、patch 等过程。那么在 Vue.js 中，VNode 的 create 是通过之前提到的 createElement 方法创建的。</p>
-<h2 id="createelement">createElement</h2>
+<h1 id="6createelement">6.createElement</h1>
 <p>src/core/vdom/create-elemenet.js</p>
 <pre><code>export function createElement (
   context: Component,
@@ -519,7 +478,7 @@ MyComponent.prototype.data = function() {
   return _createElement(context, tag, data, children, normalizationType)
 }
 </code></pre>
-<p>真正创建 VNode 的函数 _createElement，运用了函数柯里化</p>
+<h3 id="真正创建-vnode-的函数-_createelement">真正创建 VNode 的函数 _createElement</h3>
 <p>context 表示 VNode 的上下文环境，它是 Component 类型；tag 表示标签，它可以是一个字符串，也可以是一个 Component；data 表示 VNode 的数据，它是一个 VNodeData 类型，children 表示当前 VNode 的子节点，它是任意类型的，normalizationType 表示子节点规范的类型</p>
 <p>simpleNormalizeChildren 和 normalizeChildren 对children做处理，转换成标准的VNode。</p>
 <pre><code>export function _createElement (
@@ -607,7 +566,7 @@ MyComponent.prototype.data = function() {
   }
 }
 </code></pre>
-<h2 id="update">update</h2>
+<h1 id="7update">7.update</h1>
 <p>它被调用的时机有 2 个，一个是首次渲染，一个是数据更新的时候；_update 方法的作用是把 VNode 渲染成真实的 DOM，它的定义在 src/core/instance/lifecycle.js 中：</p>
 <pre><code>Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
   const vm: Component = this
@@ -641,12 +600,73 @@ MyComponent.prototype.data = function() {
   // updated in a parent's updated hook.
 }
 </code></pre>
-<p>_update 的核心就是调用 vm.<strong>patch</strong> 方法，这个方法实际上在不同的平台，比如 web 和 weex 上的定义是不一样的，因此在 web 平台中它的定义在 src/platforms/web/runtime/index.js 中：</p>
+<p>_update 的核心就是调用 vm.patch 方法，这个方法实际上在不同的平台，比如 web 和 weex 上的定义是不一样的，因此在 web 平台中它的定义在 src/platforms/web/runtime/index.js 中：</p>
 <pre><code>Vue.prototype.__patch__ = inBrowser ? patch : noop
 </code></pre>
 <p>通过一些insert操作，将虚拟DOM映射到真实的DOM上，完成首次渲染的更新，后续的更新则是通过vue的响应式系统调用_update。</p>
-<h2 id="vue渲染过程">vue渲染过程</h2>
-<p><img src="https://alexwjj.github.io//post-images/1565676526734.png" alt=""></p>
+<h1 id="思考">思考</h1>
+<p>为什么看源码</p>
+<ul>
+<li>更清楚的了解vue生命周期，更多解决方案</li>
+<li>看到报错信息，大致定位到问题所在</li>
+<li>代码规范，易读性</li>
+<li>添加sourceMap， 源码调试</li>
+<li>组件化、响应式原理、编译、vueRouter、vueX相关学习</li>
+</ul>
+<h3 id="1vue实质上是一个function实现的类只能通过new-vue去实例化它-为何不用es6的class去实现呢">1.Vue实质上是一个Function实现的类，只能通过new Vue去实例化它， 为何不用ES6的class去实现呢？</h3>
+<p>下面有很多xxxMixin的函数调用，用于给Vue的prototype上扩展一些方法，而这些扩展需要按照功能分散到各个模块中去实现，而不是在一个模块里实现所有，这些方式是class难以实现的。这样做的好处是非常方便代码的维护和管理</p>
+<pre><code>initMixin(Vue)
+stateMixin(Vue)
+eventsMixin(Vue)
+lifecycleMixin(Vue)
+renderMixin(Vue)
+</code></pre>
+<h3 id="3vue-组件-data-为什么必须是函数new-vue可以赋值对象">3.Vue 组件 data 为什么必须是函数？new Vue可以赋值对象？</h3>
+<p>如果两个实例同时引用一个对象，那么当你修改其中一个属性的时候，另外一个实例也会跟着改。Object是引用数据类型,如果不用function 返回,每个组件的data 都是内存的同一个地址,一个数据改变了其他也改变了;<br>
+而data是函数的话，每个vue组件的data都因为函数有了自己的作用域，互不干扰</p>
+<pre><code>var MyComponent = function() {
+  this.data = this.data()
+}
+MyComponent.prototype.data = function() {
+  return {
+    a: 1,
+    b: 2,
+  }
+}
+</code></pre>
+<p>4.编译生成的render和手写render<br>
+render 最终返回的都是VNode<br>
+//  编译render调用<br>
+<code>vm._c = (a, b, c, d) =&gt; createElement(vm, a, b, c, d, false)</code><br>
+//  手写render调用<br>
+<code>vm.$createElement = (a, b, c, d) =&gt; createElement(vm, a, b, c, d, true)</code></p>
+<h3 id="提升用户体验v-cloak">提升用户体验：v-cloak</h3>
+<p>这个指令保持在元素上直到关联实例结束编译。和 CSS 规则如 [v-cloak] { display: none } 一起用时，这个指令可以隐藏未编译的 Mustache 标签直到实例准备完毕。防止刷新页面，网速慢的情况下出现{{ message }}等数据格式<br>
+页面加载比较慢的时候会看到这样的插值，是因为在vue在渲染时插值是初始化完成后更新上去的</p>
+<p>如果直接写render函数，就不会有这种编译过程。</p>
+<pre><code>render: function (createElement) {
+  return createElement('div', {
+     attrs: {
+        id: 'app'
+      },
+  }, this.message)
+}
+</code></pre>
+<h3 id="5virtual-dom">5.Virtual DOM</h3>
+<pre><code>// 控制台打印一个div的属性
+let dom = document.createElement('div');
+for(let key in dom){
+      console.log(key)
+}
+</code></pre>
+<p>Virtual DOM 就是用一个原生的 JS 对象去描述一个 DOM 节点，所以它比创建一个 DOM 的代价要小很多。在 Vue.js 中，Virtual DOM 是用 VNode 这么一个 Class 去描述。</p>
+<p>Virtual DOM的本质就是在JS和DOM之间做一个缓存，可以类比CPU和硬盘，既然硬盘这么慢，我们就也在他们之间添加一个缓存（内存）； 既然DOM这么慢，我们就可以在JS和DOM之间添加一个缓存。 CPU（JS）只操作内存（虚拟DOM），最后的时候在把变更写入硬盘（DOM）。</p>
+<h3 id="6objectcreatenull-与-的区别">6.object.create(null) 与 {} 的区别</h3>
+<p>使用create创建的对象，没有任何属性，显示No properties，我们可以把它当作一个非常纯净的map来使用，我们可以自己定义hasOwnProperty、toString方法，不管是有意还是不小心，我们完全不必担心会将原型链上的同名方法覆盖掉。<br>
+const m = Object.create(null)<br>
+const n = {}</p>
+<h1 id="结尾">结尾</h1>
+<p><img src="https://alexwjj.github.io//post-images/1566127658281.png" alt=""></p>
 ]]></content>
     </entry>
     <entry>
