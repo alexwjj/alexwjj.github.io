@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://alexwjj.github.io/</id>
     <title>俊劫、的前端博客</title>
-    <updated>2019-08-18T11:27:55.644Z</updated>
+    <updated>2019-08-18T11:32:02.862Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://alexwjj.github.io/"/>
     <link rel="self" href="https://alexwjj.github.io//atom.xml"/>
@@ -659,12 +659,12 @@ for(let key in dom){
       console.log(key)
 }
 </code></pre>
+<p><img src="https://alexwjj.github.io//post-images/1566127911822.png" alt=""></p>
 <p>Virtual DOM 就是用一个原生的 JS 对象去描述一个 DOM 节点，所以它比创建一个 DOM 的代价要小很多。在 Vue.js 中，Virtual DOM 是用 VNode 这么一个 Class 去描述。</p>
 <p>Virtual DOM的本质就是在JS和DOM之间做一个缓存，可以类比CPU和硬盘，既然硬盘这么慢，我们就也在他们之间添加一个缓存（内存）； 既然DOM这么慢，我们就可以在JS和DOM之间添加一个缓存。 CPU（JS）只操作内存（虚拟DOM），最后的时候在把变更写入硬盘（DOM）。</p>
 <h3 id="6objectcreatenull-与-的区别">6.object.create(null) 与 {} 的区别</h3>
 <p>使用create创建的对象，没有任何属性，显示No properties，我们可以把它当作一个非常纯净的map来使用，我们可以自己定义hasOwnProperty、toString方法，不管是有意还是不小心，我们完全不必担心会将原型链上的同名方法覆盖掉。<br>
-const m = Object.create(null)<br>
-const n = {}</p>
+<img src="https://alexwjj.github.io//post-images/1566127901150.png" alt=""></p>
 <h1 id="结尾">结尾</h1>
 <p><img src="https://alexwjj.github.io//post-images/1566127658281.png" alt=""></p>
 ]]></content>

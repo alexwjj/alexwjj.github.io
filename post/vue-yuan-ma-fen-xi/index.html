@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1566127672819">
+<link rel="shortcut icon" href="https://alexwjj.github.io//favicon.ico?v=1566127920308">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://alexwjj.github.io//styles/main.css">
 
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://alexwjj.github.io/">
-        <img src="https://alexwjj.github.io//images/avatar.png?v=1566127672819" class="site-logo">
+        <img src="https://alexwjj.github.io//images/avatar.png?v=1566127920308" class="site-logo">
         <h1 class="site-title">俊劫、的前端博客</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -760,12 +760,12 @@ for(let key in dom){
       console.log(key)
 }
 </code></pre>
+<p><img src="https://alexwjj.github.io//post-images/1566127911822.png" alt=""></p>
 <p>Virtual DOM 就是用一个原生的 JS 对象去描述一个 DOM 节点，所以它比创建一个 DOM 的代价要小很多。在 Vue.js 中，Virtual DOM 是用 VNode 这么一个 Class 去描述。</p>
 <p>Virtual DOM的本质就是在JS和DOM之间做一个缓存，可以类比CPU和硬盘，既然硬盘这么慢，我们就也在他们之间添加一个缓存（内存）； 既然DOM这么慢，我们就可以在JS和DOM之间添加一个缓存。 CPU（JS）只操作内存（虚拟DOM），最后的时候在把变更写入硬盘（DOM）。</p>
 <h3 id="6objectcreatenull-与-的区别">6.object.create(null) 与 {} 的区别</h3>
 <p>使用create创建的对象，没有任何属性，显示No properties，我们可以把它当作一个非常纯净的map来使用，我们可以自己定义hasOwnProperty、toString方法，不管是有意还是不小心，我们完全不必担心会将原型链上的同名方法覆盖掉。<br>
-const m = Object.create(null)<br>
-const n = {}</p>
+<img src="https://alexwjj.github.io//post-images/1566127901150.png" alt=""></p>
 <h1 id="结尾">结尾</h1>
 <p><img src="https://alexwjj.github.io//post-images/1566127658281.png" alt=""></p>
 
