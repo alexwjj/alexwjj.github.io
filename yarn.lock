@@ -955,6 +955,16 @@
   optionalDependencies:
     prettier "^1.18.2"
 
+"@vuepress-reco/vuepress-plugin-kan-ban-niang@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@vuepress-reco/vuepress-plugin-kan-ban-niang/-/vuepress-plugin-kan-ban-niang-1.0.5.tgz#73b47094f1a07af05923fe9ae6c25a4c33586168"
+  integrity sha512-ufqpOw0zhLxv3PvoYlHTsjmG4CFiCaQ8dnf950Ov7JmajKgpAMarZ3ObB+xi5ex0sgetxU82YSf+CptQceXQIw==
+
+"@vuepress-reco/vuepress-plugin-loading-page@^1.4.0":
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/@vuepress-reco/vuepress-plugin-loading-page/-/vuepress-plugin-loading-page-1.5.7.tgz#b673d10cb18a579008c3487d860984c81cffd340"
+  integrity sha512-1Ozzv3WfL/+cNaO9czY8gOW2DbZISe7XC5kQeKVhLlNhqqLYMMNVr+fRbafMCJA4AFWsz2N2QlBB/bASX+qKwA==
+
 "@vuepress/core@^1.0.3":
   version "1.5.0"
   resolved "https://registry.npm.taobao.org/@vuepress/core/download/@vuepress/core-1.5.0.tgz#a1880a550c59e25a4ac52c2d42f6f3ca70c2bb14"
@@ -2152,8 +2162,8 @@ cli-boxes@^2.2.0:
 
 clipboard@^2.0.0:
   version "2.0.6"
-  resolved "https://registry.npm.taobao.org/clipboard/download/clipboard-2.0.6.tgz#52921296eec0fdf77ead1749421b21c968647376"
-  integrity sha1-UpISlu7A/fd+rRdJQhshyWhkc3Y=
+  resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-2.0.6.tgz#52921296eec0fdf77ead1749421b21c968647376"
+  integrity sha512-g5zbiixBRk/wyKakSwCKd7vQXDjFnAMGHoEyBogG/bw9kTD9GvdAvaoRR1ALcEzt3pVKxZR0pViekPMIS0QyGg==
   dependencies:
     good-listener "^1.2.2"
     select "^1.1.2"
@@ -2857,8 +2867,8 @@ delayed-stream@~1.0.0:
 
 delegate@^3.1.2:
   version "3.2.0"
-  resolved "https://registry.npm.taobao.org/delegate/download/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
-  integrity sha1-tmtxwxWFIuirV0T3INjKDCr1kWY=
+  resolved "https://registry.yarnpkg.com/delegate/-/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
+  integrity sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==
 
 depd@~1.1.2:
   version "1.1.2"
@@ -3752,7 +3762,7 @@ globby@^9.2.0:
 
 good-listener@^1.2.2:
   version "1.2.2"
-  resolved "https://registry.npm.taobao.org/good-listener/download/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"
+  resolved "https://registry.yarnpkg.com/good-listener/-/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"
   integrity sha1-1TswzfkxPf+33JoNR3CWqm0UXFA=
   dependencies:
     delegate "^3.1.2"
@@ -6197,9 +6207,9 @@ pretty-time@^1.1.0:
   integrity sha1-/7dCmvq7hTXDRqNOQYc63z103Q4=
 
 prismjs@^1.13.0:
-  version "1.20.0"
-  resolved "https://registry.npm.taobao.org/prismjs/download/prismjs-1.20.0.tgz#9b685fc480a3514ee7198eac6a3bf5024319ff03"
-  integrity sha1-m2hfxICjUU7nGY6sajv1AkMZ/wM=
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.22.0.tgz#73c3400afc58a823dd7eed023f8e1ce9fd8977fa"
+  integrity sha512-lLJ/Wt9yy0AiSYBf212kK3mM5L8ycwlyTlSxHBAneXLR0nzFMlZ5y7riFPF3E33zXOF2IH95xdY5jIyZbM9z/w==
   optionalDependencies:
     clipboard "^2.0.0"
 
@@ -6754,7 +6764,7 @@ select-hose@^2.0.0:
 
 select@^1.1.2:
   version "1.1.2"
-  resolved "https://registry.npm.taobao.org/select/download/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
+  resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
   integrity sha1-DnNQrN7ICxEIUoeG7B1EGNEbOW0=
 
 selfsigned@^1.10.7:
@@ -7438,8 +7448,8 @@ timsort@^0.3.0:
 
 tiny-emitter@^2.0.0:
   version "2.1.0"
-  resolved "https://registry.npm.taobao.org/tiny-emitter/download/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
-  integrity sha1-HRpW7fxRxD6GPLtTgqcjMONVVCM=
+  resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
+  integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
 to-arraybuffer@^1.0.0:
   version "1.0.1"
@@ -7938,6 +7948,16 @@ vuepress-plugin-container@^2.0.2:
   integrity sha1-tYc8uNIbZr1i9/sVqyVOVdz+/3g=
   dependencies:
     markdown-it-container "^2.0.0"
+
+vuepress-plugin-cursor-effects@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/vuepress-plugin-cursor-effects/-/vuepress-plugin-cursor-effects-0.0.4.tgz#f8596c9b90da314d46571fc11f11b6b6f634d4a8"
+  integrity sha512-QBzd00awqtBazV7RqQqaCVYh7rIhAhepnNVpCaTDyrq0fsQllxkrCWyz3vg1U1y8d7z7O6BWNwK9SBv4T9Lo/A==
+
+vuepress-plugin-dynamic-title@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/vuepress-plugin-dynamic-title/-/vuepress-plugin-dynamic-title-0.0.5.tgz#32b2c6f381c94aa7b247a9833c63c055300463d6"
+  integrity sha512-SVkyxGHMFnVDJz5T78j0imq9DJlfy1XapWbUKzL3IdTKo7iFE0osQRrO78rr3+adXX/oj3Y4KROvfYaI0DEcBQ==
 
 vuepress-plugin-flowchart@^1.4.3:
   version "1.4.3"
