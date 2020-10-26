@@ -1,4 +1,4 @@
 # alexlxy's blog [website](https://www.alexlxy.com)
 
-* Name: 李雪扬
+* Name: 吴俊杰
 * Github: alexlxy
