@@ -1,8 +1,10 @@
 language: node_js
 node_js:
-  - lts/*
+    - "10"
+install:
+    - yarn
 script:
-  - npm run build
+    - yarn build
 deploy:
   provider: pages
   skip-cleanup: true
