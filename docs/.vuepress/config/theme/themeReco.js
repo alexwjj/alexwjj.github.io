@@ -21,7 +21,7 @@ module.exports = {
   // 最后更新时间
   lastUpdated: 'Last Updated', // string | boolean
   // 作者
-  author: '吴俊杰',
+  author: '李雪扬',
   // 备案号
   record: '审核中',
   // 项目开始时间

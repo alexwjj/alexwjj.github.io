@@ -1,4 +1,4 @@
-# alexWjj's blog [website](https://www.alexWjj.com)
+# alexlxy's blog [website](https://www.alexlxy.com)
 
-* Name: 吴俊杰
-* Github: alexWjj
+* Name: 李雪扬
+* Github: alexlxy

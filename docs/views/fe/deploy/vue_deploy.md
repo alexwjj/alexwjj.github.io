@@ -16,7 +16,7 @@ sidebar: false
 所以选择vuepress + Github Pages + travis-ci 搭建一个个人博客。
 :::
 
-很幸运的是，有一个我喜欢的主题[vuepress-theme-reco](https://vuepress-theme-reco.alexWjj.com/)。作为一个前端freshbird，它能最大程度地减少我的掉毛数。下面的搭建过程就以这个主题展开。以我自己的工程blog举例。
+很幸运的是，有一个我喜欢的主题[vuepress-theme-reco](https://vuepress-theme-reco.alexlxy.com/)。作为一个前端freshbird，它能最大程度地减少我的掉毛数。下面的搭建过程就以这个主题展开。以我自己的工程blog举例。
 
 @flowstart ant
 st=>start: Start
@@ -83,7 +83,7 @@ yarn build
 ? What's the title of your project? blog
 ? What's the description of your project? 个人博客
 ? What's the author's name? Qiu Zhongrun
-? What style do you want your home page to be?(Select afternoon-grocery, if you want to download alexWjj's '午后南杂')
+? What style do you want your home page to be?(Select afternoon-grocery, if you want to download alexlxy's '午后南杂')
   blog
   doc
 ❯ afternoon-grocery
@@ -112,7 +112,7 @@ module.exports = {
 ```
 
 # travis-ci部署
-参考这里的[自动部署](https://vuepress-theme-reco.alexWjj.com/views/other/deploy.html#%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2)，这里不展开讲，只讲一些注意点。
+参考这里的[自动部署](https://vuepress-theme-reco.alexlxy.com/views/other/deploy.html#%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2)，这里不展开讲，只讲一些注意点。
 1. build命令里面写的是`npm run build`，如果你看着不顺眼，可以修改为`yarn build`意思是一个意思。
 2. 设置token的时候，除了delete repo的权限不给，其他都给上吧。
 3. 授权travis-ci Manage repositories on GitHub的时候，不要全选，就选你要的就行
