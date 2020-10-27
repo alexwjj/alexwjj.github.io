@@ -1,57 +1,28 @@
-<!-- ---
-title: vuepress/Github Pages/travis-ci搭建个人博客
+---
+title: VuePress + Travis CI + Github Pages搭建个人博客
 date: 2020-05-18
 tags:
  - vuepress
 categories:
- - 前端
+ - 持续集成
 sidebar: false
---- -->
+---
 
 ::: tip
-* vuepress好看
+* vuepress 简洁易用
 * Github Pages配合github好管理
 * travis-ci足够自动化
-
-所以选择vuepress + Github Pages + travis-ci 搭建一个个人博客。
 :::
 
-很幸运的是，有一个我喜欢的主题[vuepress-theme-reco](https://vuepress-theme-reco.alexwjj.com/)。作为一个前端freshbird，它能最大程度地减少我的掉毛数。下面的搭建过程就以这个主题展开。以我自己的工程blog举例。
-
-@flowstart ant
-st=>start: Start
-e=>end: 通过访问https://qiuzhongrun.github.io/blog访问到博客内容
-op_github_repo=>operation: 创建一个github项目blog
-op_vuepress_project=>subroutine: 根据vuepress-theme-reco创建出vuepress工程blog
-op_hook=>operation: github端配置好Github Pages的钩子
-op_ci=>parallel: travis-ci自动构建推送到Github Pages
-
-st->op_github_repo->op_vuepress_project->op_hook->op_ci->e
-@flowend
 
 # 创建github工程
-打开官网主页[Github Pages](https://pages.github.com/)，你会发现它的教程其实很详细，这里不赘述。这里讨论的是它的两种方式，[User or organization site]和[project-site]注意，如果没搞清楚这两个，后面你会很困惑的。
+### 创建一个 username.github.io  的仓库，username是你github的名称
 
-下面主要讲一下关于Github Pages配置的区别：project → Settings → GitHub Pages
-### User or organization site
-以个人或者组织的角度，全新创建一个<span style="color: red;">github.io</span>为结尾的github工程。注意前面红色的字，如果你一旦以<span style="color: red;">github.io</span>为结尾创建工程，然后你会惊奇地发现Github Pages配置时无法选择展示的Source了。
-![github_pages_config.jpg](./../../images/github_pages_config.jpg)
-这个意思是说以后你去访问https://username.github.io/blog访问到的只能是master分支的内容，这会带出一个很棘手的问题：“为何我什么都配置了，最后只能显示master代码分支的README.md文件，不是预期的gh-pages分支里的静态文件?”。
+https://username.github.io/blog访问到的只能是master分支的内容，这会带出一个很棘手的问题：“为何我什么都配置了，最后只能显示master代码分支的README.md文件，不是预期的gh-pages分支里的静态文件?”。
 
-解决的办法也有，那就是顺着它的思路，使用mater分支当做build后静态资源存放的分支，代码分支放到别处去。参考[拯救懒癌文档君 - VuePress + Travis CI + Github Pages 自动线上生成文档](https://juejin.im/post/5d0715f6f265da1ba56b1e01),我被伤到了，这种方案我就不细说了。
-::: warning
-这种方式的工程一般在Github Pages配置的时候，需要选择主题。
-:::
+解决的办法也有，那就是顺着它的思路，使用mater分支当做build后静态资源存放的分支，代码分支放到别处去。参考[拯救懒癌文档君 - VuePress + Travis CI + Github Pages 自动线上生成文档](https://juejin.im/post/5d0715f6f265da1ba56b1e01)
 
-### project-site
-以工程的角度来创建一个专门展示工程，这里就可以选择分支了。切记工程名不要是<span style="color: red;">github.io</span>为结尾。
-![github_pages_config.jpg](./../../images/github_pages_config2.jpg)
-gh-pages分支是Github Pages约好的分支，这个后面travis-ci推送的时候会自动创建。这个方式不单只可以创建新的工程的时候适用，老工程也同样适用。
-::: warning
-这种方式的工程在Github Pages配置的时候，不要选择主题，因为我们用的是vuepress的主题。
-:::
-
-# 根据vuepress-theme-reco创建出vuepress工程
+# 根据vuepress-theme-reco创建出vuepress工程（qiuzhongrun老哥的教程）
 1. 下载空github工程
 ``` sh
 # 注意你clone你自己的路径哈，下面这个是我的举例
@@ -147,3 +118,7 @@ yarn start
 ```
 这个方案监控了.vue和.md文件的变动，会触发vuepress工程reload，浏览器刷新可见新内容。
 
+## 参考文章
+
+- [拯救懒癌文档君 - VuePress + Travis CI + Github Pages 自动线上生成文档](https://juejin.im/post/6844903869558816781)
+- [GitHub Pages自定义域名](https://juejin.im/post/6844903558106578957)
