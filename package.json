@@ -1,14 +1,14 @@
 {
   "name": "afternoon-grocery-store",
   "version": "1.0.0",
-  "description": "alexlxy's blog",
+  "description": "alexwjj's blog",
   "main": "index.js",
   "repository": "https://github.com/alexwjj/alexwjj.github.io",
-  "author": "alexlxy",
+  "author": "alexwjj",
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vuepress dev docs",
+    "serve": "vuepress dev docs",
     "build": "vuepress build docs",
     "start": "nodemon --ext md,vue --watch .vuepress --watch . --exec vuepress dev docs"
   },

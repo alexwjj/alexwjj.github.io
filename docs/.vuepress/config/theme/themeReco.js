@@ -21,9 +21,9 @@ module.exports = {
   // 最后更新时间
   lastUpdated: 'Last Updated', // string | boolean
   // 作者
-  author: '李雪扬',
+  author: '吴俊杰',
   // 备案号
-  record: '审核中',
+  record: '浙ICP备20018057号-2',
   // 项目开始时间
   startYear: '2020',
   search: true,
