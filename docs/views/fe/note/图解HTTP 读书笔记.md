@@ -11,6 +11,8 @@ categories:
 > 学习笔记，多图警告 🚫🚫🚫
 <!-- more -->
 
+图片加载不出来的话，掘金地址：[https://juejin.im/post/6844904021841412104](https://juejin.im/post/6844904021841412104)
+
 # 知识点
 * tcp/ip三次握确保通信可靠性。TCP标志SYN/ACK
 * ping www.baidu.com 解析对应的IP地址
