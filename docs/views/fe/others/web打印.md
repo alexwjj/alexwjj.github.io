@@ -1,4 +1,3 @@
-
 ---
 title: web打印，一篇搞定
 date: 2020-11-05
@@ -6,7 +5,7 @@ tags:
  - 前端
 categories:
  - 前端
-sidebar: false
+sidebar: 'auto'
 ---
 
 
@@ -241,7 +240,7 @@ Puppeteer: [无头浏览器 Puppeteer 初探 - 蚂蚁金服](https://juejin.im/p
   
 2.看业务需求，如果是网络打印机，需要无痕打印，可以采用node+ipp的云打印，实现起来也不难。🕵
   
-3.后端给的源文件，要求不高可以用pdfjs转canvas，要求比较高用<object>、<embed>标签加载后端给的文件流，完美还原源文件清晰度
+3.后端给的源文件，要求不高可以用pdfjs转canvas，要求比较高用`<object>、<embed>`标签加载后端给的文件流，完美还原源文件清晰度
   
 4.[pdf2htmlEX插件](https://github.com/coolwanglu/pdf2htmlEX)，pdf转html，4年前最后一次维护，可以尝试
   
