@@ -15,6 +15,7 @@ function myApply(ctx = window, args) {
   ctx = ctx || window;
   const fn = Symbol();
   ctx[fn] = this;
+  let result = null;
   if (Array.isArray(args)) {
     result = ctx[fn](...args);
   } else {
