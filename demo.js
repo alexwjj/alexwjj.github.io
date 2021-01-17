@@ -1,34 +1,27 @@
+var longestCommonPrefix = function (strs) {
+	if (strs.length === 0) return ''
+	// 寻找数组中最短的字符串，可通过length排序找到
+	let arrMap = strs.map(v => {
+		return {
+			length: v.length,
+			value: v
+		}
+	})
+	arrMap.sort((a, b) => a.length - b.length);
 
-// A、 B 、 C 是 3 个字符串。把 A 中包含的所有 B 都替换为 C ，如果替换以后还有 B 就继续替换，直到 A 不包含 B 为止。
-// 1、请编写程序实现以上功能。不允许使用系统提供的字符串比较、查找和替换函数。
-
-let a1 = 'aaabbbcccbbbffbbb';
-let b1 = 'bbb';
-let c1 = 'ddd';
- 
-function find(a,b,c){
-	while(true){//直到a中没有b
-		let num = a.indexOf(b);//确定a中b的开始下标
-		// console.log(num)
-		if(num != -1){//查找到
-			let Aarr = a.split('');//转换成数组
-			a = '';
-			let count = 0;
-			Aarr.map((item,index)=>{
-				// console.log(item,index);
-				if(index>=num && index<num+b.length){
-					if(count == 0){
-						a += c;
-					}
-					count ++;
-				}else{
-					a += Aarr[index];
-				}
-			})
-		}else{
-			return a;
+	// 每次对最短字符串删除最后一位，然后和strs的每一项开头就行比对
+	// 注意循环次数是arrMap中长度最长的，排过序的取最后一个就行
+	let miniStr = arrMap[0].value;
+	let miniArr = miniStr.split('');
+	for (let i = 0; i < arrMap[arrMap.length - 1].length; i++) {
+		if (strs.every(v => v.startsWith(miniStr))) {
+			return miniStr
+		} else if (miniArr.length) {
+			miniArr.pop()
+			miniStr = miniArr.join('');
+		} else {
+			miniStr = ''
 		}
 	}
-}
-let f = find(a1,b1,c1);
-console.log(f);
+	return miniStr
+};
