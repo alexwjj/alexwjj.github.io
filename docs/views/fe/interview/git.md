@@ -3,7 +3,7 @@ title: git学习笔记
 sidebar: 'auto'
 date: 2020-06-19
 tags:
- - 基础
+ - git
 categories:
  - 工具
 ---

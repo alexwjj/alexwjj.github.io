@@ -3,9 +3,9 @@ title: 【官方文档】Lodash学习笔记
 sidebar: 'auto'
 date: 2020-01-02
 tags:
- - 类库
+ - lodash
 categories:
- - 前端
+ - 工具
 ---
 
 > 一些常用的函数还是要掌握下的，提高开发效率，减少线上bug
