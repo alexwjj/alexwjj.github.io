@@ -11,6 +11,7 @@ module.exports = {
   ],
   theme: 'reco',
   themeConfig,
+  codeTheme: 'coy',
   markdown: {
     lineNumbers: true
   },
@@ -75,18 +76,18 @@ module.exports = {
           src: '/wechat.jpeg'
         }
       ],
-      footer: [
-        {
-          type: 'button',
-          text: '微信',
-          link: '/wechat.jpeg'
-        },
-        {
-          type: 'button',
-          text: '支付宝',
-          link: '/alipay.jpeg'
-        }
-      ]
+      // footer: [
+      //   {
+      //     type: 'button',
+      //     text: '微信',
+      //     link: '/wechat.jpeg'
+      //   },
+      //   {
+      //     type: 'button',
+      //     text: '支付宝',
+      //     link: '/alipay.jpeg'
+      //   }
+      // ]
     }]
   ] 
 }  
