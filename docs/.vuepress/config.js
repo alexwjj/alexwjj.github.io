@@ -42,6 +42,7 @@ module.exports = {
         zIndex: 999999999           // z-index property of the canvas, default: 999999999
       }
     ],
+    
     // // 动态标题
     [
       "dynamic-title",
@@ -52,6 +53,40 @@ module.exports = {
         hideText: "(●—●)快快回来！",
         recoverTime: 2000
       }
-    ]
+    ],
+    // ['@vuepress-reco/comments', {
+    //   solution: 'valine',
+    //   options: {
+    //     appId: 'vcfdlxv9vEKeHDQT1bEaLVaG-gzGzoHsz',// your appId
+    //     appKey: 'E0Ae8xnQUmiCUesRH42CA48H', // your appKey
+    //   }
+    // }],
+    ['@vuepress-reco/vuepress-plugin-bulletin-popover', {
+      // width: '300px', // 默认 260px
+      title: '欢迎添加个人微信',
+      body: [
+        // {
+        //   type: 'title',
+        //   content: '',
+        //   style: 'text-aligin: center;'
+        // },
+        {
+          type: 'image',
+          src: '/wechat.jpeg'
+        }
+      ],
+      footer: [
+        {
+          type: 'button',
+          text: '微信',
+          link: '/wechat.jpeg'
+        },
+        {
+          type: 'button',
+          text: '支付宝',
+          link: '/alipay.jpeg'
+        }
+      ]
+    }]
   ] 
 }  
