@@ -64,7 +64,7 @@ module.exports = {
     // }],
     ['@vuepress-reco/vuepress-plugin-bulletin-popover', {
       // width: '300px', // 默认 260px
-      title: '欢迎添加个人微信',
+      title: '个人微信:18697737169',
       body: [
         // {
         //   type: 'title',
