@@ -42,6 +42,10 @@ sidebar: false
 
 ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9be52da0d04c49f78409ee415dc8de66~tplv-k3u1fbpfcp-watermark.image)
 
+## 四：程序员财富
+希望能持续更新
+![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e0884d8036b44740868dadf8106b8845~tplv-k3u1fbpfcp-watermark.image)
+
 <!-- ## 项目 -->
 
 <!-- 个人博客： [基于 vuepress 搭建的个人博客](http://alexwjj.club/)
