@@ -13,12 +13,12 @@
     "start": "nodemon --ext md,vue --watch .vuepress --watch . --exec vuepress dev docs"
   },
   "dependencies": {
+    "@vuepress-reco/vuepress-plugin-bulletin-popover": "^1.5.7",
     "@vuepress/plugin-medium-zoom": "1.0.0-alpha.0",
     "@vuepress/plugin-pwa": "1.0.0-alpha.3",
     "vuepress": "1.0.3",
     "vuepress-plugin-flowchart": "^1.4.3",
-    "vuepress-theme-reco": "1.0.8-alpha.3",
-    "@vuepress-reco/vuepress-plugin-bulletin-popover": "^1.5.7"
+    "vuepress-theme-reco": "1.0.8-alpha.3"
   },
   "devDependencies": {
     "@vuepress-reco/vuepress-plugin-kan-ban-niang": "^1.0.5",
