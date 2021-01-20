@@ -9,7 +9,7 @@ module.exports = [
   //   ]
   // },
   { text: '时间轴', link: '/timeline/', icon: 'reco-date' },
-  { text: '联系方式', 
+  { text: '关于我', 
     icon: 'reco-message',
     items: [
       { text: '关于我', link: '/views/about/', icon: 'reco-account' },
