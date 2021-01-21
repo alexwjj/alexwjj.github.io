@@ -1,15 +1,6 @@
-
-::: tip 吴俊杰
-1. 英雄联盟 嘴强王者<br>
-2. 和平精英 无敌LYB<br>
-3. 前端菜狗
-:::
-
 ## 一：科班自学一个月前端历程
 [简书记录前端自学的30天](https://www.jianshu.com/u/81a990ed5eff)
-
-[github主页](https://alexwjj.github.io/)
-## 目前在微医集团(两年半经验)
+## 目前在微医集团(两年半经验-加实习)
 ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a6ab3a2d4e834cea8f48acc2af2db08f~tplv-k3u1fbpfcp-watermark.image)
 ## 二：值得骄傲的事
 ### 1、集团年度最佳拼搏奖
