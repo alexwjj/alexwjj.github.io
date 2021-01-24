@@ -1,5 +1,5 @@
 ---
-title: 【vue】- vue2.x 原理解析
+title: 【vue】🔥vue2.x底层的问题，你能答多少
 sidebar: 'auto'
 date: 2021-01-20
 tags:
@@ -8,30 +8,43 @@ categories:
  - 前端
 ---
 
-> 学习框架的思想，看齐and思考自己什么时候可以接近大佬
+> 有句老话说，在父母那里我们永远是孩子，同样在各位大佬这里，我永远是菜鸡🐣🐣🐣。不管怎样，学习的激情永远不可磨灭。答案如有错误，感谢指教🌚
 <!-- more -->
+## 首发个人博客
+[种一棵树，最好的时机是十年前，其次是现在](https://alexwjj.github.io/)
 
-## vue中值得学习的点
-1. 科里化: 一个函数原本有多个参数, 只传入`一个`参数, 生成一个新函数, 由新函数接收剩下的参数来运行得到结构.
-2. 偏函数: 一个函数原本有多个参数, 只传入`一部分`参数, 生成一个新函数, 由新函数接收剩下的参数来运行得到结构.
-3. 高阶函数: 一个函数`参数是一个函数`, 该函数对参数这个函数进行加工, 得到一个函数, 这个加工用的函数就是高阶函数.
+## vue源码中值得学习的点
+1. `科里化`: 一个函数原本有多个参数, 只传入`一个`参数, 生成一个新函数, 由新函数接收剩下的参数来运行得到结构
+2. `偏函数`: 一个函数原本有多个参数, 只传入`一部分`参数, 生成一个新函数, 由新函数接收剩下的参数来运行得到结构
+3. `高阶函数`: 一个函数`参数是一个函数`, 该函数对参数这个函数进行加工, 得到一个函数, 这个加工用的函数就是高阶函数
+4. ...
 
 ## vue 响应式系统
 简述：
-vue 初始化时会用Object.defineProperty()给data中每一个属性添加get和set，同时创建dep和watcher进行依赖收集与派发更新，最后通过diff算法对比新老vnode差异，通过patch即时更新DOM
+vue 初始化时会用`Object.defineProperty()`给data中每一个属性添加`getter`和`setter`，同时创建`dep`和`watcher`进行`依赖收集`与`派发更新`，最后通过`diff`算法对比新老vnode差异，通过`patch`即时更新DOM
 
-简易版本：
+### 简易图解：
 ![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f6d4d627b9d34347b39830acc9df07c1~tplv-k3u1fbpfcp-watermark.image)
 
-详细版本，可以参考下[图片引用地址: 图解 Vue 响应式原理](https://juejin.cn/post/6857669921166491662)
+### 详细版本
+可以参考下[图片引用地址: 图解 Vue 响应式原理](https://juejin.cn/post/6857669921166491662)
 ![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7c41d69e2a646d1a97327c5922e2b8a~tplv-k3u1fbpfcp-watermark.image)
 
+## Vue的数据为什么频繁变化但只会更新一次
+1. 检测到数据变化
+2. 开启一个队列
+3. 在同一事件循环中缓冲所有数据改变
+4. 如果同一个 `watcher (watcherId相同)`被多次触发，只会被推入到队列中`一次`
 
+不优化，每一个数据变化都会执行: `setter->Dep->Watcher->update->run`
+
+优化后：`执行顺序update -> queueWatcher -> 维护观察者队列（重复id的Watcher处理） -> waiting标志位处理 -> 处理$nextTick（在为微任务或者宏任务中异步更新DOM）
+`
 ## vue使用Object.defineProperty() 的缺陷
 
-通过下标修改数组长度，数组的length属性被初始化configurable	false，所以想要通过get/set方法来监听length属性是不可行的。
+数组的length属性被初始化`configurable false`，所以想要通过get/set方法来监听length属性是不可行的。
 
-vue中通过重写了七个能改变原数组的方法来进行数据监听
+vue中通过重写了`七个`能改变原数组的方法来进行数据监听
 
 对象还是使用Object.defineProperty()添加get和set来监听
 
@@ -49,65 +62,50 @@ vue中通过重写了七个能改变原数组的方法来进行数据监听
 参考文章：[浅析Vue.nextTick()原理](https://segmentfault.com/a/1190000020499713)
 
 ## computed 的实现原理
-computed 本质是一个惰性求值的观察者。
+computed 本质是一个惰性求值的观察者`computed watcher`。其内部通过 `this.dirty` 属性标记计算属性是否需要重新求值。
+- 当 computed 的依赖状态发生改变时,就会通知这个惰性的 watcher,`computed watcher` 通过 `this.dep.subs.length` 判断有没有订阅者,
+- 有的话,会重新计算,然后对比新旧值,如果变化了,会重新渲染。 (Vue 想确保不仅仅是计算属性依赖的值发生变化，而是当计算属性`最终计算的值`发生变化时才会`触发渲染 watcher` 重新渲染，本质上是一种优化。)
+- 没有的话,仅仅把 `this.dirty = true` (当计算属性依赖于其他数据时，属性并不会立即重新计算，只有之后其他地方需要读取属性的时候，它才会真正计算，即具备 lazy（懒计算）特性。)
 
-computed 内部实现了一个惰性的 watcher,也就是 computed watcher,computed watcher 不会立刻求值,同时持有一个 dep 实例。
-
-其内部通过 this.dirty 属性标记计算属性是否需要重新求值。
-
-当 computed 的依赖状态发生改变时,就会通知这个惰性的 watcher,
-
-computed watcher 通过 this.dep.subs.length 判断有没有订阅者,
-
-有的话,会重新计算,然后对比新旧值,如果变化了,会重新渲染。 (Vue 想确保不仅仅是计算属性依赖的值发生变化，而是当计算属性最终计算的值发生变化时才会触发渲染 watcher 重新渲染，本质上是一种优化。)
-
-没有的话,仅仅把 this.dirty = true。 (当计算属性依赖于其他数据时，属性并不会立即重新计算，只有之后其他地方需要读取属性的时候，它才会真正计算，即具备 lazy（懒计算）特性。)
-
-## computed 和 watch
-
-Computed本质是一个具备缓存的watcher，依赖的属性发生变化就会更新视图。
-适用于计算比较消耗性能的计算场景。当表达式过于复杂时，在模板中放入过多逻辑会让模板难以维护，可以将复杂的逻辑放入计算属性中处理。
-
-Watch没有缓存性，更多的是观察的作用，可以监听某些数据执行回调。当我们需要深度监听对象中的属性时，可以打开deep：true选项，这样便会对对象中的每一项进行监听。这样会带来性能问题，优化的话可以使用字符串形式监听，如果没有写到组件中，不要忘记使用unWatch手动注销哦。
+## watch 的理解
+`watch`没有缓存性，更多的是观察的作用，可以监听某些数据执行回调。当我们需要`深度监听对象中`的属性时，可以打开deep：true选项，这样便会对对象中的每一项进行监听。这样会带来性能问题，优化的话可以使用字符串形式监听
 
 注意：Watcher : 观察者对象 , 实例分为`渲染 watcher` (render watcher),`计算属性 watcher` (computed watcher),`侦听器 watcher`（user watcher）三种
 
 ## vue diff 算法
-针对新旧Vnode，只对比父节点相同的新旧子节点（比较的是Vnode），时间复杂度只有O(n)
+- 只对比父节点相同的新旧子节点（比较的是Vnode）,时间复杂度只有O(n)
+- 在 diff 比较的过程中，循环从两边向中间收拢
 
 **新旧节点对比过程**
 
-1、先找到 不需要移动的相同节点，消耗最小
+1、先`找`到 不需要移动的相同节点，借助key值找到可复用的节点是，消耗最小
 
-2、再找相同但是需要移动的节点，消耗第二小
+2、再找相同但是需要`移动`的节点，消耗第二小
 
-3、最后找不到，才会去新建删除节点，保底处理
+3、最后找不到，才会去`新建删除`节点，保底处理
 
 注意：新旧节点对比过程，不会对这两棵Vnode树进行修改，而是以`比较的结果直接对 真实DOM 进行修改`
 
-Vue的patch是即时的，并不是打包所有修改最后一起操作DOM（React则是将更新放入队列后集中处理），朋友们会问这样做性能很差吧？实际上现代浏览器对这样的DOM操作做了优化，并无差别
-
-Vue2的核心Diff算法采用了双端比较的算法，同时从新旧children的两端开始进行比较，借助key值找到可复用的节点，再进行相关操作。相比React的Diff算法，同样情况下可以减少移动节点次数，减少不必要的性能损耗，更加的优雅。
+Vue的patch是`即时的`，并不是打包所有修改最后一起操作DOM（React则是将更新放入队列后集中处理）
 
 参考文章：[Vue 虚拟dom diff原理详解](https://segmentfault.com/a/1190000020663531)
 ## vue 渲染过程
 ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/93839e5df0f0408d994e6b7b2dd2f474~tplv-k3u1fbpfcp-watermark.image)
 
-1. 调用 compile 函数,生成 render 函数字符串 ,编译过程如下:
- - parse 使用大量的正则表达式对template字符串进行解析，将标签、指令、属性等转化为抽象语法树AST。模板 -> AST （最消耗性能）
- - optimize 遍历AST，找到其中的一些静态节点并进行标记，方便在页面重渲染的时候进行diff比较时，直接跳过这一些静态节点，优化runtime的性能。AST -> VNode
- - generate 将最终的AST转化为render函数字符串。VNode -> DOM
-2. 调用 new Watcher 函数,监听数据的变化,当数据发生变化时，Render 函数执行生成 vnode 对象
-3. 调用 patch 方法,对比新旧 vnode 对象,通过 DOM diff 算法,添加、修改、删除真正的 DOM 元素
-
+1. 调用 `compile` 函数,生成 render 函数字符串 ,编译过程如下:
+ - parse 使用大量的正则表达式对template字符串进行解析，将标签、指令、属性等转化为抽象语法树AST。`模板 -> AST （最消耗性能）`
+ - optimize 遍历AST，找到其中的一些静态节点并进行标记，方便在页面重渲染的时候进行diff比较时，直接跳过这一些静态节点，`优化runtime的性能`
+ - generate 将最终的AST转化为render函数字符串
+2. 调用 `new Watcher` 函数,监听数据的变化,当数据发生变化时，Render 函数执行生成 vnode 对象
+3. 调用 `patch` 方法,对比新旧 vnode 对象,通过 DOM diff 算法,添加、修改、删除真正的 DOM 元素
+## 结合源码，谈一谈vue生命周期
+[vue 生命周期官方图解](https://cn.vuejs.org/v2/guide/instance.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA)
 ## Vue 中的 key 到底有什么用？
-key 是给每一个 vnode 的唯一 id,依靠 key,我们的 diff 操作可以更准确、更快速 (对于简单列表页渲染来说 diff 节点也更快,但会产生一些隐藏的副作用,比如可能不会产生过渡效果,或者在某些节点有绑定数据（表单）状态，会出现状态错位。)
-
-diff 算法的过程中,先会进行新旧节点的首尾交叉对比,当无法匹配的时候会用新节点的 key 与旧节点进行比对,从而找到相应旧节点.
+key 是给每一个 vnode 的唯一 id,依靠 key,我们的 diff 操作可以更准确、更快速
 
 更准确 : 因为带 key 就不是就地复用了,在 sameNode 函数 a.key === b.key 对比中可以避免就地复用的情况。所以会更加准确,如果不加 key,会导致之前节点的状态被保留下来,会产生一系列的 bug。
 
-更快速 : key 的唯一性可以被 Map 数据结构充分利用,相比于遍历查找的时间复杂度 O(n),Map 的时间复杂度仅仅为 O(1),源码如下:
+更快速 : key 的`唯一性`可以被 Map 数据结构充分利用,相比于遍历查找的时间复杂度 O(n),Map 的时间复杂度仅仅为 `O(1)`,源码如下:
 
 ```js
 function createKeyToOldIdx(children, beginIdx, endIdx) {
@@ -121,7 +119,30 @@ function createKeyToOldIdx(children, beginIdx, endIdx) {
 }
 
 ```
-## 解析 a.b.c.d
+## vue-router 路由模式有几种
+默认值: `"hash"` (浏览器环境) | `"abstract"` (Node.js 环境)
+
+可选值: `"hash"` | `"history"` | `"abstract"`
+
+配置路由模式:
+- `hash`: 使用 URL hash 值来作路由。`支持所有浏览器`，包括不支持 HTML5 History Api 的浏览器。
+- `history`: 依赖 `HTML5 History API` 和服务器配置。
+- `abstract`: 支持所有 JavaScript 运行环境，如 Node.js 服务器端。如果发现没有浏览器的 API，路由会自动强制进入这个模式.
+
+## 说一说keep-alive实现原理
+### 定义
+`keep-alive`组件接受三个属性参数：`include`、`exclude`、`max`
+- `include` 指定需要缓存的`组件name`集合，参数格式支持`String, RegExp, Array。`当为字符串的时候，多个组件名称以逗号隔开。
+- `exclude` 指定不需要缓存的`组件name`集合，参数格式和include一样。
+- `max` 指定最多可缓存组件的数量,超过数量删除第一个。参数格式支持String、Number。
+### 原理
+`keep-alive`实例会缓存对应组件的VNode,如果命中缓存，直接从缓存对象返回对应VNode
+
+`LRU（Least recently used）`算法根据数据的历史访问记录来进行淘汰数据，其核心思想是“如果数据最近被访问过，那么将来被访问的几率也更高”。(墨菲定律：越担心的事情越会发生)
+
+## 对对象属性访问的解析方法
+eg：访问 a.b.c.d
+
 函数柯里化 + 闭包 + 递归
 ```js
     function createGetValueByPath( path ) {
@@ -136,8 +157,9 @@ function createKeyToOldIdx(children, beginIdx, endIdx) {
         return res;
       }
     }
+    
     let getValueByPath = createGetValueByPath( 'a.b.c.d' );
-
+    
     var o = {
       a: {
         b: {
@@ -149,15 +171,12 @@ function createKeyToOldIdx(children, beginIdx, endIdx) {
         }
       }
     };
-
     var res = getValueByPath( o );
-
-
     console.log( res );
 ```
 
-## 针对7个数组方法的重写
-Vue 通过原型拦截的方式重写了数组的 7 个方法,首先获取到这个数组的ob,也就是它的 Observer 对象,如果有新的值,就调用 observeArray 对新的值进行监听,然后手动调用 notify,通知 render watcher,执行 update
+## vue中针对7个数组方法的重写
+Vue 通过`原型拦截`的方式重写了数组的 7 个方法,首先获取到这个数组的`Observer`。如果有新的值,就调用 `observeArray` 对新的值进行监听,然后调用 `notify`,通知 `render watcher`,执行 `update`
 ```js
 const arrayProto = Array.prototype;
 export const arrayMethods = Object.create(arrayProto);
@@ -171,9 +190,6 @@ const methodsToPatch = [
   "reverse"
 ];
 
-/**
- * Intercept mutating methods and emit events
- */
 methodsToPatch.forEach(function(method) {
   // cache original method
   const original = arrayProto[method];
@@ -197,9 +213,6 @@ methodsToPatch.forEach(function(method) {
   });
 });
 
-/**
- * Observe a list of Array items.
- */
 Observer.prototype.observeArray = function observeArray(items) {
   for (var i = 0, l = items.length; i < l; i++) {
     observe(items[i]);
@@ -207,7 +220,7 @@ Observer.prototype.observeArray = function observeArray(items) {
 };
 ```
 
-### vue响应式 defineReactive 实现
+## vue处理响应式 defineReactive 实现
 ```js
     // 简化后的版本 
     function defineReactive( target, key, value, enumerable ) {
@@ -237,7 +250,7 @@ Observer.prototype.observeArray = function observeArray(items) {
       } );
     }
 ```
-### vue响应式 reactify 实现
+## vue响应式 reactify 实现
 ```js
 // 将对象 o 响应式化
     function reactify( o, vm ) {
@@ -256,16 +269,11 @@ Observer.prototype.observeArray = function observeArray(items) {
           // 对象或值类型
           defineReactive.call( vm, o, key, value, true );
         }
-
-        // 只需要在这里添加代理即可 ( 问题: 在这里写的代码是会递归 )
-        // 如果在这里将 属性映射到 Vue 实例上, 那么就表示 Vue 实例可以使用属性 key
-        // { 
-        //   data:  { name: 'jack', child: { name: 'jim' } }
-        // }
       }
     }
 ```
-### vue中组件访问属性代理this.data.xxx 转换 this.xxx
+## 为什么访问data属性不需要带data
+vue中访问属性代理this.data.xxx 转换 this.xxx的实现
 ```js
     /** 将 某一个对象的属性 访问 映射到 对象的某一个属性成员上 */
     function proxy( target, prop, key ) {
@@ -283,7 +291,13 @@ Observer.prototype.observeArray = function observeArray(items) {
 ```
 
 
-
+## 参考文章（除文章已指出的）
+- [Vue.js 技术揭秘](https://ustbhuangyi.github.io/vue-analysis/)
+- [「面试题」20+Vue面试题整理](https://juejin.cn/post/6844904084374290446)
+- [12道vue高频原理面试题,你能答出几道?](https://segmentfault.com/a/1190000021407782)
+- [B站 vue源码分析(视频有缺失)](https://www.bilibili.com/video/BV1LE411e7HE?p=1)
+- [你要找的 vue 源码 全宇宙的都在这](https://github.com/vue3/vue3-News/issues/16)
+- [Vue技术内幕](http://caibaojian.com/vue-design/)
 
 
 
