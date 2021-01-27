@@ -1,31 +1,52 @@
-class Sub {
-	constructor() {
-		this.obers = []
-	}
-	add(ob) {
-		this.obers.push(ob)
-	}
-	notify(...args) {
-		this.obers.forEach(ob => ob.update(...args))
-	}
-	remove(ob) {
-		let index = this.obers.indexOf(ob)
-		delete this.obers.splice(index,1)
-	}
-}
+let p1 = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve('p1');
+	},3000)
+})
+let p2 = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve('p2');
+	},2000)
+})
 
-class Ob {
-	update(...args) {
-		console.log(...args);
-	}
-}
+let p3 = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve('p3');
+	},2000)
+})
+Promise.allSettled = function(promises) {
+    return new Promise(function(resolve, reject) {
+        if (!Array.isArray(promises)) {
+            return reject(
+                new TypeError("arguments must be an array")
+            );
+        }
+        let resolvedCounter = 0;
+        const promiseNum = promises.length;
+        // 统计所有的promise结果并最后返回
+        const resolvedResults = new Array(promiseNum);
+        for (let i = 0; i < promiseNum; i++) {
+            Promise.resolve(promises[i]).then(
+                function(value) {
+                    resolvedCounter++;
+                    resolvedResults[i] = value;
+                    if (resolvedCounter == promiseNum) {
+                        return resolve(resolvedResults);
+                    }
+                },
+                // 错误结果
+                function(reason) {
+                    resolvedCounter++;
+                    resolvedResults[i] = reason;
+                    if (resolvedCounter == promiseNum) {
+                        return resolve(reason);
+                    }
+                }
+            );
+        }
+    });
+};
 
-let ob1 = new Ob()
-let ob2 = new Ob()
-
-let sub = new Sub()
-
-sub.add(ob1)
-sub.add(ob2)
-sub.remove(ob2)
-sub.notify('hhh')
+Promise.allSettled([p3,p1,p2]).then(res => {
+	console.log(res);
+})
