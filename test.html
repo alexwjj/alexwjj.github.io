@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
 <style>
-  .parent{
-    display: flex;
-    border: 1px solid red;
-    /* width: 300px; */
-    height: 300px;
-  }
-  .children{
-    flex: 1;
-    background: black;
-  }
+.box {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #000;
+  padding: 2px;
+  margin: 2px;
+  background: blue;
+}
+
+#box1 {
+  box-sizing: border-box;
+}
+
+#box2 {
+  box-sizing: content-box;
+}
 </style>
+</head>
+
 <body>
-  <div class="parent">
-    <div style="width:100px;"></div>
-    <div class="children">1111</div>
-    <div style="flex-basis: 100px;"></div>
-  </div>
+<div id="box1" class="box"></div>
+<div id="box2" class="box"></div>
+<div>
+  <video autoplay controls="controls" src="https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200f850000bvmvc4h5jv5cue0io42g&ratio=1080p&line=0" width="500" height="500">
+    您的浏览器不支持 video 标签。
+    </video>
+</div>
 </body>
+
 </html>

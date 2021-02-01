@@ -50,7 +50,6 @@ categories:
  ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/96cd59cc46834b22a7b3c3dd2ba864c7~tplv-k3u1fbpfcp-watermark.image)
  ## 选用Egg + Puppeteer 😉😉😉
  
- 如何你是从零开始的项目，不想自己搭建~那么恭喜你遇到了我。这里我给你准备了现成的 [Egg + Puppeteer 实现Html转PDF](https://github.com/alexwjj/htmlToPdf)
  
 如果你想自己重头开始搭建，可以参考：[puppeteer 生成pdf，绝对解决你的需求](https://blog.csdn.net/zhai_865327/article/details/104792646)
 
@@ -190,7 +189,7 @@ pm2 start pm2.config.json
 
 
 ## 大功告成
-这个时候基本就没问题了, 后续遇到的问题再更新。不想动手的，需要这个功能的，欢迎start[Egg + Puppeteer 实现Html转PDF](https://github.com/alexwjj/htmlToPdf)
+这个时候基本就没问题了, 后续遇到的问题再更新。
 
  ![](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/967055123abf44c794f39a474474e041~tplv-k3u1fbpfcp-watermark.image)
  
