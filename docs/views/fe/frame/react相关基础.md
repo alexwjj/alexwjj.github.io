@@ -22,7 +22,7 @@ categories:
 
 项目搭建，写了个登录页面。写的时候磕磕碰碰，之前学的 react，忘的差不多了，晚上复习一波；
 
-### react 引入图片
+### 引入图片
 
 ```js
 import imgURL from './../images/photo.png';
