@@ -235,11 +235,7 @@ function get<T extends object, K extends keyof T>(o: T, name: K): T[K] {
 }
 ```
 
-## 视频学习
-
-技术胖基础视频学习
-
-### 类里的关键字
+## 类里的关键字
 
 - public
 - private 类的外部不可用，继承也不行
@@ -248,19 +244,11 @@ function get<T extends object, K extends keyof T>(o: T, name: K): T[K] {
 - static funcXXX 静态方法，不需要 new 就可以调用
 - abstract funcXXX 抽象类，所有子类都必须要实现 funcXXX
 
-### tsconfig.json
+## tsconfig.json
 
 - tsc -init 生成 tsconfig.json，项目目录下直接 tsc,编译的时候就会走配置文件
 
-### 联合类型
-
-### 类型保护
-
-针对一些不确定的类型，进行计算时，不加保护会报错。可以通过断言和 typeof/instanceof 的形式加一些判断
-
-### 断言
-
-### enum 定义枚举值
+## enum 定义枚举值
 
 ```js
 enum ReqMethodEnum {
