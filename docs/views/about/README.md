@@ -20,7 +20,10 @@ sidebar: false
 [简书记录前端自学的30天](https://www.jianshu.com/u/81a990ed5eff)
 
 [github主页](https://alexwjj.github.io/)
-## 目前在微医集团(两年半经验)
+
+## 目前在有赞
+有需要内推的找我哈，全程跟进进度
+## 之前在微医集团(实习1年，正式1.5年)
 ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a6ab3a2d4e834cea8f48acc2af2db08f~tplv-k3u1fbpfcp-watermark.image)
 ## 二：值得骄傲的事
 ### 1、集团年度最佳拼搏奖

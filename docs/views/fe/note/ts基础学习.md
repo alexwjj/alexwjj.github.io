@@ -11,7 +11,10 @@ categories:
 > 边学边写，冲冲冲
 
 <!-- more -->
+## 记忆点（简单记忆）
+- <T>代表 类型参数 eg identity<T> 等于 identity<string>
 
+- 
 ## 基础类型
 
 null,undefinde,symbol,boolean，void 这些都是最常用的基础数据类型
@@ -258,3 +261,4 @@ enum ReqMethodEnum {
 	DELETE = 'DELETE',
 }
 ```
+
