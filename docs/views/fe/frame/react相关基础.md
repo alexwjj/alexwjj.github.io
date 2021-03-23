@@ -5,7 +5,7 @@ date: 2021-02-10
 tags:
   - React
 categories:
-  - 前端
+  - framework
 ---
 
 > 边写项目边总结，冲冲冲！

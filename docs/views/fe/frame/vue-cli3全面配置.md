@@ -5,7 +5,7 @@ date: 2020-05-20
 tags:
  - Vue
 categories:
- - 前端
+ - framework
 ---
 
 > 收集的一些优化方法，项目中要多尝试 🤔🤔🤔

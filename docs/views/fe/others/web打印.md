@@ -2,7 +2,7 @@
 title: web打印，一篇搞定
 date: 2020-11-05
 tags:
- - 前端
+ - 基础
 categories:
  - 前端
 sidebar: 'auto'

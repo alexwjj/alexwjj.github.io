@@ -5,7 +5,7 @@ date: 2021-02-12
 tags:
  - React
 categories:
- - 前端
+ - framework
 ---
 
 > 把之前总结的复习一波
