@@ -3,7 +3,7 @@ const themeConfig = require('./config/theme/')
 module.exports = {
   base: '/',
   title: "Alex wjj",
-  description: '正道的光，照在了大地上啊！把每个...',
+  description: 'Just Do It',
   dest: 'docs/.vuepress/dist',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
