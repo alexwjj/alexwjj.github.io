@@ -83,6 +83,8 @@ type JUserModel3 = {
 ## Record<K,T>
 构造一个类型，该类型具有一组属性K，每个属性的类型为T。可用于将一个类型的属性映射为另一个类型。
 
+Record 后面的泛型就是对象键和值的类型。
+
 ```js
 type TodoProperty = 'title' | 'description';
 
