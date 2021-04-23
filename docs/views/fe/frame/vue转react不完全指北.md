@@ -61,7 +61,7 @@ React 早期口号是 `Rethinking Best Practices`(重新思考最佳实践)。�
 
 ### Vue
 
-双向数据流：vue2.x 通过 `v-model` 实现双向绑定，不存在受控组件，v-model 相当于 onChange 的语法糖
+双向绑定，单向数据流：vue2.x 通过 `v-model` 实现双向绑定，可以不关心受控组件，v-model 相当于 onChange 的语法糖
 
 ```js
 <input v-model="value" />
@@ -69,7 +69,7 @@ React 早期口号是 `Rethinking Best Practices`(重新思考最佳实践)。�
 
 ### React
 
-单向数据流：`万物皆 Props`，主要通过 `onChange/setState()`的形式该更新数据，所以在 react 存在受控组件的说法
+单向数据流：`万物皆 Props`，主要通过 `onChange/setState()`的形式该更新数据，需要所以在 react 中需要关注受控组件的写法
 
 ```js
 // 会报错，props的值不可修改
@@ -78,6 +78,10 @@ React 早期口号是 `Rethinking Best Practices`(重新思考最佳实践)。�
 // 在onChange调用setState修改数据,需要调用setState修改绑定数据
 <input value={this.state.value} onChange={this.onChange}/>
 ```
+
+### 受控组件
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/af615ffb5d2e4d05a0377d6cd53b6b7a~tplv-k3u1fbpfcp-watermark.image)
 
 ## 五、组件
 
@@ -90,7 +94,7 @@ React 早期口号是 `Rethinking Best Practices`(重新思考最佳实践)。�
 <template>
   <div class="father">
     父组件
-    <Child :name="name"></Child>
+    <Child :text="text"></Child>
   </div>
 </template>
 <script>
@@ -111,7 +115,7 @@ export default {
 // 子组件
 <template>
   <div class="child">
-    <p>{{ name }}</p>
+    <p>{{ text }}</p>
     <p>{{ children }}</p>
   </div>
 </template>
@@ -119,7 +123,7 @@ export default {
 <script>
 export default {
   name: 'child',
-  props: ['name'],
+  props: ['text'],
   data() {
     return {
       children: '子组件自己的数据'
@@ -240,12 +244,14 @@ export default Test;
 ### 2、学习
 
 - 很多人说 vue 转 react 很简单，一周熟练上手。我比较菜，感觉适应起来还是`有成本的`，但是也没有很难，最主要的还是要多动手，不懂就深挖为什么
-- 为了提高熟练度，用公司的组件库（[zent](https://youzan.github.io/zent/zh/guides/install)）自己动手写了写，有兴趣的老哥参考下：在线预览:[俊劫学习系统](https://alexwjj.github.io/study/)  Github 源码:[基于 react + typescript ](https://github.com/alexwjj/react-ts) 欢迎`start`
 - 通读一遍 [react 官网](https://zh-hans.reactjs.org/)，对着例子多敲敲，好好理解，做做笔记。
 - [B 站 React技术全家桶](https://www.bilibili.com/video/BV1wy4y1D7JT?from=search&seid=11486613745896637616) 学习视频，可以不敲，`快速过一遍`，毕竟都不是小白了。然后自己搞个项目，`去实现一些自己感兴趣的东西`
 - 基础知识过完以后，`查缺补漏`，找各种博文读一读，不理解的`再次`进行学习
 - `总结`自己的学习成果，react已经学了一段时间了，后面再整理一下，发出来
+- 为了提高熟练度，用公司的组件库（[zent](https://youzan.github.io/zent/zh/guides/install)）自己动手写了写，有兴趣的老哥参考下：在线预览:[俊劫学习系统](https://alexwjj.github.io/study/)  Github 源码:[基于 react + typescript ](https://github.com/alexwjj/react-ts) 欢迎`start`
 
+
+![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3f46c5cabc554d65b48b3bc4a80ee9c4~tplv-k3u1fbpfcp-watermark.image)
 ### 3、资源推荐
 - [React 中文文档](https://zh-hans.reactjs.org/)
 - [React 生命周期图解](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
@@ -255,13 +261,13 @@ export default Test;
 - [学习React Hooks系列 - useRef](https://juejin.cn/post/6844903929499615240)
 - [React+TS+Redux+Antd从零开发一个企业级后台管理系统 B站视频](https://www.bilibili.com/video/BV1Ba4y1H77E?p=1) 视频
 - [B 站 React技术全家桶](https://www.bilibili.com/video/BV1wy4y1D7JT?from=search&seid=11486613745896637616) 视频
-## 参考文章
+## 七、参考文章
 
 - [「Vue」与「React」--使用上的区别](https://juejin.cn/post/6844903751795359752)
 - [从 Vue 转 React 的一些体验](https://www.jianshu.com/p/ac516feb6974)
 - [Vue 转 React 指南，看这篇文章就够了](https://markdowner.net/article/166272088981004288)
 - [理解 Vue 和 React 区别](https://lq782655835.github.io/blogs/vue/diff-vue-vs-react.html)
 
-## 七、最后
+## 八、最后
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a09efd5a6cff49f6bf5526f05947307c~tplv-k3u1fbpfcp-watermark.image)
