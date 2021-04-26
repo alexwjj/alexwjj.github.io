@@ -1,8 +1,24 @@
+<p align="center">
+  <img width="120" src="https://alexwjj.github.io/logo.png">
+</p>
+
+<p align="center">
+  <a href="https://alexwjj.github.io/">
+    <img src="https://img.shields.io/badge/%E4%BF%8A%E5%8A%AB%E5%8D%9A%E5%AE%A2-5.0-blue" alt="blog">
+  </a>
+  <a href="https://alexwjj.github.io/">
+    <img src="https://img.shields.io/github/stars/alexwjj/alexwjj.github.io" alt="start">
+  </a>
+  <a href="https://alexwjj.github.io/">
+    <img src="https://img.shields.io/github/forks/alexwjj/alexwjj.github.io" alt="fork">
+  </a>
+</p>
+
 ## 关于我
 
 [关于我 - 图文介绍](https://alexwjj.github.io/views/about/)
 
-## 资源分享
+## 资源分享(持续更新)
 ### 1、博客
 - [阮一峰的个人网站](http://www.ruanyifeng.com/home.html)  持续更新，没事就去看看，阮大的风格就是`很容易看懂`
 - [字节飞书的学习计划 - 超清楚（必看）](https://bitable.feishu.cn/appNuDKPaGtimrdkB0JnXmpoktZ) 字节前端知识梳理，很清楚，`建议收藏`
