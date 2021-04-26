@@ -67,6 +67,7 @@
 - [一次关于Vue的自我模拟面试](https://juejin.cn/post/6870374238760894472#heading-5) 百度大佬的梦，学习一波，也去做个梦
 - [vue2.x高阶问题，你能答多少](https://juejin.cn/post/6921911974611664903) `我写的`，掺个水
 - [图解 Vue 响应式原理](https://juejin.cn/post/6857669921166491662) `图解`，懂了吧，思路很清晰
+- [Vue3+ & Vue-CLI3+ 开发生态圈资讯](https://github.com/vue3/vue3-News) 很多讲解vue3的文章，值得关注
 
 ### 7、效率&工具
 - [写文档专用](https://www.docz.site/) 各种技术文档写作
