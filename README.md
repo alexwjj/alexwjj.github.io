@@ -68,14 +68,17 @@
 - [vue2.x高阶问题，你能答多少](https://juejin.cn/post/6921911974611664903) `我写的`，掺个水
 - [图解 Vue 响应式原理](https://juejin.cn/post/6857669921166491662) `图解`，懂了吧，思路很清晰
 - [Vue3+ & Vue-CLI3+ 开发生态圈资讯](https://github.com/vue3/vue3-News) 很多讲解vue3的文章，值得关注
+### 7、小程序
+- [微信小程序开发资源汇总](https://github.com/justjavac/awesome-wechat-weapp)
 
-### 7、效率&工具
+
+### 6、效率&工具
 - [写文档专用](https://www.docz.site/) 各种技术文档写作
 - [用来生成好看的代码块的](https://carbon.now.sh/)   mac风格的代码块
 - [Markdown Nice](https://www.mdnice.com/) 美化markdowm样式，很多模板可用
 - [reveal.js制作网页版PPT](https://juejin.cn/post/6850037266082070535) 之前写了一个，[聊一聊前端性能与体验的优化](http://118.25.49.69:8086/) 在线PPT展示，点击直达
 
-### 8、其他文章
+### 9、其他文章
 - [一个合格(优秀)的前端都应该阅读这些文章 ](https://juejin.cn/post/6844903896637259784) 合格&优秀
 - [前端常见跨域解决方案（全)](https://segmentfault.com/a/1190000011145364) 跨域的问题，就一篇`搞定`吧
 - [2021年，我是如何从一名Vueer转岗到React阵营！](https://mp.weixin.qq.com/s/_U6MtxJ9_UWJYN3mPx9heg)  目前个人也在`vue转react`，后续也会出一篇个人的感受
