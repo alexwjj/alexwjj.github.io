@@ -64,7 +64,7 @@ module.exports = {
     }],
     ['@vuepress-reco/vuepress-plugin-bulletin-popover', {
       // width: '300px', // 默认 260px
-      title: '个人微信:18697737169',
+      title: '关注回复wx加博主微信',
       body: [
         // {
         //   type: 'title',
@@ -73,7 +73,7 @@ module.exports = {
         // },
         {
           type: 'image',
-          src: '/wechat.jpeg'
+          src: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d8325aaa0834c0d9f823d14acff248c~tplv-k3u1fbpfcp-watermark.image'
         }
       ],
       // footer: [
