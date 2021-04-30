@@ -62,6 +62,8 @@
 - [React 入门儿](https://juejin.cn/post/6899243806214848519) 京东凹凸实验室出品，非入门
 - [成都房协网数据分析](https://github.com/mengsixing/cdfang-spider) `React + TS` 可以学习一波
 - [React 中文风格组件库](https://github.com/zhui-team/zhui) 很`有意思`的开源项目
+- [react-component ](https://github.com/react-component) React components foundation of http://ant.design
+- [掘金 React热门](https://juejin.cn/tag/React.js?sort=hottest) 有很多最新的文章，可以挑选着看
 
 ### 6、Vue
 - [Vue.js 技术揭秘](https://ustbhuangyi.github.io/vue-analysis/) `ustbhuangyi`大佬的课，讲的很清楚
