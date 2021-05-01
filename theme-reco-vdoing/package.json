@@ -1,0 +1,65 @@
+{
+  "_from": "vuepress-theme-reco@1.6.1",
+  "_id": "vuepress-theme-reco@1.6.1",
+  "_inBundle": false,
+  "_integrity": "sha1-d7eN9682wn67vPzquRbWyxiqLiU=",
+  "_location": "/vuepress-theme-reco",
+  "_phantomChildren": {
+    "smoothscroll-polyfill": "0.4.4"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "vuepress-theme-reco@1.6.1",
+    "name": "vuepress-theme-reco",
+    "escapedName": "vuepress-theme-reco",
+    "rawSpec": "1.6.1",
+    "saveSpec": null,
+    "fetchSpec": "1.6.1"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/vuepress-theme-reco/download/vuepress-theme-reco-1.6.1.tgz",
+  "_shasum": "77b78df7af36c27ebbbcfceab916d6cb18aa2e25",
+  "_spec": "vuepress-theme-reco@1.6.1",
+  "_where": "D:\\MyGitee\\KXM-BLOG\\kxm-blog",
+  "author": {
+    "name": "reco_luan"
+  },
+  "bugs": {
+    "url": "https://github.com/vuepress-reco/vuepress-theme-reco/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@vue/composition-api": "^1.0.0-beta.20",
+    "@vuepress-reco/core": "^1.6.0",
+    "@vuepress-reco/vuepress-plugin-back-to-top": "^1.6.0",
+    "@vuepress-reco/vuepress-plugin-comments": "^1.6.0",
+    "@vuepress-reco/vuepress-plugin-loading-page": "^1.6.0",
+    "@vuepress-reco/vuepress-plugin-pagation": "^1.6.0",
+    "@vuepress/plugin-blog": "1.9.2",
+    "@vuepress/plugin-medium-zoom": "1.5.0",
+    "docsearch.js": "2.6.3",
+    "md5": "2.2.1",
+    "vue-click-outside": "1.1.0",
+    "vuepress-plugin-smooth-scroll": "^0.0.9"
+  },
+  "deprecated": false,
+  "description": "A simple and beautiful vuepress Blog & Doc theme.",
+  "gitHead": "ec1eb4190d3f519026691cfa305c1b11bef43806",
+  "homepage": "https://vuepress-theme-reco.recoluan.com",
+  "keywords": [
+    "vuepress",
+    "vue",
+    "theme"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "vuepress-theme-reco",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuepress-reco/vuepress-theme-reco.git"
+  },
+  "version": "1.6.1"
+}

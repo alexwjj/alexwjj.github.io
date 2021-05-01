@@ -1,93 +1,17 @@
-const themeConfig = require('./config/theme/')
+const head = require('./config/head.js');
+const plugins = require('./config/plugins.js');
+const themeConfig = require('./config/themeConfig.js');
 
 module.exports = {
-  base: '/',
-  title: "Alex wjj",
-  description: 'Just Do It',
-  dest: 'docs/.vuepress/dist',
-  head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
-    ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }]
-  ],
-  theme: 'reco',
-  themeConfig,
-  codeTheme: 'coy',
+  title: "俊劫的学习基地",
+  base: '/', // 格式：'/<部署仓库名>/'， 默认'/'
+  description: "俊劫的学习基地是俊劫的个人博客，用于记录学习笔记、分享音乐、书籍、旅行等个人兴趣的站点。",
+  dest: "public",
+  theme: require.resolve('../../theme-reco-vdoing'), // 使用本地主题
   markdown: {
-    lineNumbers: true
+    lineNumbers: true // 代码行号
   },
-  plugins: [
-    '@vuepress/medium-zoom',
-    'flowchart',
-    '@vuepress-reco/vuepress-plugin-loading-page',
-    // 看板娘
-    // [
-    //   "@vuepress-reco/vuepress-plugin-kan-ban-niang",
-    //   {
-    //     theme: ["z16"],
-    //     clean: true,
-    //     modelStyle: {
-    //       position: "fixed",
-    //       right: "0px",
-    //       bottom: "0px",
-    //       opacity: "0.9",
-    //       zIndex: 99999
-    //     }
-    //   }
-    // ],
-    // 鼠标点击特效
-    [
-      "cursor-effects",
-      {
-        size: 2,                    // size of the particle, default: 2
-        shape: ['circle'],  // shape of the particle, default: 'star'， 可选'circle'
-        zIndex: 999999999           // z-index property of the canvas, default: 999999999
-      }
-    ],
-    
-    // // 动态标题
-    [
-      "dynamic-title",
-      {
-        showIcon: "/favicon.ico",
-        showText: "(/≧▽≦/)老板好！",
-        hideIcon: "/failure.ico",
-        hideText: "(●—●)快快回来！",
-        recoverTime: 2000
-      }
-    ],
-    ['@vuepress-reco/comments', {
-      solution: 'valine',
-      options: {
-        appId: 'vcfdlxv9vEKeHDQT1bEaLVaG-gzGzoHsz',// your appId
-        appKey: 'E0Ae8xnQUmiCUesRH42CA48H', // your appKey
-      }
-    }],
-    ['@vuepress-reco/vuepress-plugin-bulletin-popover', {
-      // width: '300px', // 默认 260px
-      title: '关注回复wx加博主微信',
-      body: [
-        // {
-        //   type: 'title',
-        //   content: '',
-        //   style: 'text-aligin: center;'
-        // },
-        {
-          type: 'image',
-          src: 'https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d8325aaa0834c0d9f823d14acff248c~tplv-k3u1fbpfcp-watermark.image'
-        }
-      ],
-      // footer: [
-      //   {
-      //     type: 'button',
-      //     text: '微信',
-      //     link: '/wechat.jpeg'
-      //   },
-      //   {
-      //     type: 'button',
-      //     text: '支付宝',
-      //     link: '/alipay.jpeg'
-      //   }
-      // ]
-    }]
-  ] 
-}  
+  head,
+  plugins,
+  themeConfig
+}

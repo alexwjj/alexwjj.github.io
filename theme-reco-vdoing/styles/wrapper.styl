@@ -1,0 +1,23 @@
+$wrapper
+  max-width $contentWidth
+  margin 0 auto
+  padding 2rem 2.5rem
+  @media (max-width: $MQNarrow)
+    padding 2rem
+  @media (max-width: $MQMobileNarrow)
+    padding 1.5rem
+
+$vdoing-wrapper
+  max-width $contentWidth
+  margin 0 auto
+  padding 1rem 2.5rem 2rem 2.5rem
+  &:not(.footer)
+    background-color var(--background-color)
+    box-shadow var(--box-shadow)
+    margin-bottom 1rem
+    @media (min-width $contentWidth + 80)
+      border-radius 2px
+  @media (max-width: $MQNarrow)
+    padding 1rem 2rem
+  @media (max-width: $MQMobileNarrow)
+    padding 1rem 1.5rem

@@ -1,30 +1,37 @@
 {
-  "name": "afternoon-grocery-store",
-  "version": "1.0.0",
-  "description": "alexwjj's blog",
-  "main": "index.js",
-  "repository": "https://github.com/alexwjj/alexwjj.github.io",
+  "name": "alexwjj-blog",
+  "version": "5.0.0",
+  "description": "A personal blog based on vuepress.",
   "author": "alexwjj",
-  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "start": "nodemon --ext md,vue --watch .vuepress --watch . --exec vuepress dev docs"
-  },
-  "dependencies": {
-    "@vuepress-reco/vuepress-plugin-bulletin-popover": "^1.5.7",
-    "@vuepress/plugin-medium-zoom": "1.0.0-alpha.0",
-    "@vuepress/plugin-pwa": "1.0.0-alpha.3",
-    "vuepress": "1.0.3",
-    "vuepress-plugin-flowchart": "^1.4.3",
-    "vuepress-theme-reco": "1.0.8-alpha.3"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
   },
   "devDependencies": {
-    "@vuepress-reco/vuepress-plugin-kan-ban-niang": "^1.0.5",
-    "@vuepress-reco/vuepress-plugin-loading-page": "^1.4.0",
-    "nodemon": "^2.0.4",
-    "vuepress-plugin-cursor-effects": "0.0.4",
-    "vuepress-plugin-dynamic-title": "0.0.5"
+    "@vuepress-reco/vuepress-plugin-back-to-top": "^1.6.0",
+    "@vuepress-reco/vuepress-plugin-comments": "^1.6.0",
+    "@vuepress-reco/vuepress-plugin-pagation": "^1.6.0",
+    "@vuepress/plugin-blog": "1.9.2",
+    "@vuepress/plugin-medium-zoom": "1.5.0",
+    "@vuepress/plugin-pwa": "^1.8.0",
+    "vuepress-plugin-container": "^2.0.2",
+    "vuepress-plugin-demo-block": "^0.7.2",
+    "vuepress-plugin-dynamic-title": "^1.0.0",
+    "vuepress-plugin-meting": "^0.1.1",
+    "vuepress-plugin-one-click-copy": "^1.0.2",
+    "vuepress-plugin-smooth-scroll": "^0.0.9",
+    "vuepress-plugin-zooming": "^1.1.8"
+  },
+  "dependencies": {
+    "@vue/composition-api": "^1.0.0-beta.20",
+    "@vuepress-reco/core": "^1.6.0",
+    "chalk": "^4.1.0",
+    "comutils": "^1.1.19",
+    "docsearch.js": "2.6.3",
+    "gray-matter": "^4.0.2",
+    "json2yaml": "^1.1.0",
+    "md5": "2.2.1",
+    "vue-click-outside": "1.1.0",
+    "vuepress": "1.7.1"
   }
 }

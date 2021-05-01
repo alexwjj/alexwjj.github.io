@@ -1,3 +1,7 @@
+.vscode
+
 node_modules/
-docs/.vuepress/dist/
-.temp
+
+/public
+
+package-lock.json
