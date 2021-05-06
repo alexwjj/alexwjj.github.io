@@ -2,9 +2,8 @@
 <ModuleTransition delay="0.46">
   <div class="footer-wrapper">
     <span class="footer-reco-theme">
-      <reco-icon icon="reco-theme" />
-      <a target="blank" href="https://vuepress-theme-reco.recoluan.com">vuepress-theme-reco@1.6.1</a>
-      <a class="vdoing ml5" target="blank" href="https://doc.xugaoyi.com/">vuepress-theme-vdoing@1.7.2</a>
+      <reco-icon icon="reco-github" />
+      <a target="blank" href="https://github.com/alexwjj/alexwjj.github.io">alexwjj.github.io@5.0</a>
     </span>
     <span v-if="$themeConfig.record">
       <reco-icon icon="reco-beian" />
