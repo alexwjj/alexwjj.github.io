@@ -1,8 +1,8 @@
 var logsFunc = function(version) {
   if(typeof window !== 'undefined') {
-    console.log(`%c %c\n在一个夜晚，因为一本书\n内心的激情突然如潮水一样蔓延出来\n在那一个瞬间\n你可以成为任何人，成就任何事\n%c 俊劫的学习基地 %c 当前版本：${version}`,
+    console.log(`%c %c\n嘈杂的社会\n不忘初心已经变成了某种奢求\n一句加油💪🏻\n坚持就是胜利✌🏻\n%c 俊劫的学习基地 %c 当前版本：${version}`,
       ` padding: 25px 200px;
-        background-image: url(${window.location.origin}/img/hero-img2.png);
+        background-image: url(${window.location.origin}/img/logo.png);
         background-size: contain;
         background-repeat: no-repeat;
         color: transparent;`, 
