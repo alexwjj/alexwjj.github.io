@@ -11,6 +11,11 @@ module.exports = [
   //   "link": "https://xugaoyi.com/"
   // }
   {
+    "title": "卡夫卡的岛上书店",
+    "desc": "standing on the shoulders of giants",
+    "link": "http://kaimo313.gitee.io/blogs/"
+  },
+  {
     "title": "Hyouka",
     "desc": "菜鸟我是认真的",
     "link": "https://hyoukam.github.io/"
