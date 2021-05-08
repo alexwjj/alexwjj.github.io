@@ -309,7 +309,7 @@ export default {
     z-index -1
   .home-blog-canvas
     z-index -2
-    opacity 0.8
+    opacity 0.4
   .hero-img-background
     position absolute
     left 0

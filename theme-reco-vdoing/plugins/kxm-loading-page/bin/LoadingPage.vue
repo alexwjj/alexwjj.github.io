@@ -1,7 +1,7 @@
 <template>
   <div class="global-loading-wrapper">
     <div class="loader-main">
-      <img :src="require('../../../images/loading.jpg')" alt="loading">
+      <img :src="require('../../../images/loading.gif')" alt="loading">
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@
   margin auto
   height 100vh
   width 100vw
-  background #f5f3ef
+  background white
   text-align center
   cursor url(/cursor.ico), auto !important
   &::after
@@ -30,5 +30,5 @@
     display inline-block
     vertical-align middle
     img
-      width 18rem
+      width 40rem
 </style>

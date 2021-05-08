@@ -10,7 +10,7 @@
   </div>
   <div class="personal-info-details">
     <div>文章：<span>{{pageNums}}</span></div>
-    <div>地点：<span>canton</span></div>
+    <div>地点：<span>杭州·西湖</span></div>
   </div>
   <div class="slogan" v-if="$themeConfig.slogan">
     {{$themeConfig.slogan}}
@@ -77,7 +77,7 @@ export default defineComponent({
   .social-links
     box-sizing border-box
     display flex
-    justify-content space-between
+    justify-content center
     flex-wrap wrap
     padding 0 10px
     margin 10px 0 20px
