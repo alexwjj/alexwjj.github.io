@@ -12,6 +12,12 @@
   <a href="https://alexwjj.github.io/">
     <img src="https://img.shields.io/github/forks/alexwjj/alexwjj.github.io" alt="fork">
   </a>
+  <a href="https://vuepress-theme-reco.recoluan.com/">
+    <img src="https://img.shields.io/badge/vuepress--theme--reco-1.x-blue" alt="vuepress-theme-reco">
+  </a>
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing">
+    <img src="https://img.shields.io/badge/vuepress--theme--vdoing-1.8.3-red" alt="vuepress-theme-vdoing">
+  </a>
 </p>
 
 ## 关于我
