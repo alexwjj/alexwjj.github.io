@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img
+      width="100%"
+      height="450px"
+      src="./assets/loading.gif"
+      data-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/73a125a0507748be8053f284412a2e70~tplv-k3u1fbpfcp-watermark.image"
+      ,
+      alt=""
+    />
+    <img
+      width="100%"
+      height="450px"
+      src="./assets/loading.gif"
+      data-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ff32a1272a94d0da1d3e6277f8b1ff8~tplv-k3u1fbpfcp-watermark.image"
+      ,
+      alt=""
+    />
+    <img
+      src="./assets/loading.gif"
+      height="450px"
+      width="100%"
+      data-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/55e5bd836b9d43d898d550e7e87b9672~tplv-k3u1fbpfcp-watermark.image"
+      ,
+      alt=""
+    />
+    <img
+      width="100%"
+      src="./assets/loading.gif"
+      height="450px"
+      data-src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5ef445c9649c47ff999f9686a452899f~tplv-k3u1fbpfcp-watermark.image"
+      ,
+      alt=""
+    />
+    <img
+      width="100%"
+      src="./assets/loading.gif"
+      height="450px"
+      onerror="javascript:this.src='./assets/loading.gif';"
+      data-src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5ef445c9649c47ff999f9686a452899f~tplv-k3u1fb"
+      ,
+      alt=""
+    />
+  </body>
+  <script type="text/javascript">
+    const test = (e) => {
+      console.log(e, "e");
+    };
+    const imgArr = document.getElementsByTagName("img");
+    let n = 0;
+    // 节流，防止重复触发
+    const throttle = (fn, time) => {
+      let timer = null;
+      return function(...args) {
+        if (!timer) {
+          timer = setTimeout(() => {
+            timer = null;
+            fn.apply(this, args);
+          }, time);
+        }
+      };
+    };
+    const lazyLoad = () => {
+      // 可视区高度，固定值
+      const seeHight = window.innerHeight;
+      // 获取当前页面的滚动条纵坐标位置(Y轴)
+      const scrollTop = document.documentElement.scrollTop;
+      // 从n开始遍历
+      for (let i = n; i < imgArr.length; i++) {
+        // 如果图片距离顶部距离 < 滚动条距顶部高度 + 可视区高度
+        // 认定该图片进入视野，可以进行加载
+        if (imgArr[i].offsetTop < scrollTop + seeHight) {
+          if (imgArr[i].getAttribute("src") === "./assets/loading.gif") {
+            imgArr[i].src = imgArr[i].getAttribute("data-src");
+          }
+          n = i + 1;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", throttle(lazyLoad, 200));
+    // 页面第一次加载，无滚动事件，执行一次
+    lazyLoad();
+  </script>
+</html>
