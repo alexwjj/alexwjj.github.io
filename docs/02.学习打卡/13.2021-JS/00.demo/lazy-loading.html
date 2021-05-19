@@ -11,6 +11,7 @@
       width="100%"
       height="450px"
       src="./assets/loading.gif"
+      onload="onload()"
       data-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/73a125a0507748be8053f284412a2e70~tplv-k3u1fbpfcp-watermark.image"
       ,
       alt=""
@@ -50,6 +51,9 @@
     />
   </body>
   <script type="text/javascript">
+  const onload = (e) => {
+    console.log(e, "e");
+  };
     const test = (e) => {
       console.log(e, "e");
     };
