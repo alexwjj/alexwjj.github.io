@@ -155,12 +155,12 @@ export default {
   .comments-wrapper
     @extend $wrapper
     .valine-wrapper
-      #valine.v
-        .vwrap
-          background-image url('/img/avatar-2.png')
-          background-repeat no-repeat
-          background-size 10rem
-          background-position 90% 50%
+      // #valine.v
+      //   .vwrap
+      //     background-image url('/img/avatar-2.png')
+      //     background-repeat no-repeat
+      //     background-size 10rem
+      //     background-position 90% 50%
     @media (max-width $MQMobile)
       .valine-wrapper
         #valine.v
