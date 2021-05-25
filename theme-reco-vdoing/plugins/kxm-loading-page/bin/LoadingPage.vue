@@ -30,5 +30,5 @@
     display inline-block
     vertical-align middle
     img
-      width 40rem
+      width 25rem
 </style>
