@@ -4,20 +4,20 @@ module.exports = [
   [require('./plugins/love-me'), { // 鼠标点击爱心特效
     excludeClassName: ['mod_404','theme-vdoing-wrapper'] // 要排除元素的class, 默认空[]
   }],
-  ['@vuepress/pwa', {
-    serviceWorker: true,
-    updatePopup: {
-      message: "发现新内容可用",
-      buttonText: "刷新"
-    }
-  }],
+  // ['@vuepress/pwa', {
+  //   serviceWorker: true,
+  //   updatePopup: {
+  //     message: "发现新内容可用",
+  //     buttonText: "刷新"
+  //   }
+  // }],
   [
     "dynamic-title",
     {
       showIcon: "/favicon.ico",
       showText: "(*╹▽╹*)欢迎回来：",
       hideIcon: "/cursor.ico",
-      hideText: "o(╥﹏╥)大哥人呢！",
+      hideText: "浏览器即将爆炸，快回来",
       recoverTime: 2000
     }
   ],
