@@ -19,5 +19,10 @@ module.exports = [
     "title": "Hyouka",
     "desc": "菜鸟我是认真的",
     "link": "https://hyoukam.github.io/"
+  },
+  {
+    "title": "飞鸟",
+    "desc": "一只平凡的鸟罢了",
+    "link": "https://lzxjack.top/"
   }
 ]
