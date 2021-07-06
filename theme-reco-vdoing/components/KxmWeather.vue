@@ -12,13 +12,13 @@
         <iframe width="240" scrolling="no" height="70" frameborder="0" allowtransparency="true" src="https://i.tianqi.com?c=code&id=8&color=%233eaf7c&icon=1&site=14"></iframe>
       </div>
       <div class="weather-footer">
-        <div class="tips">欢迎大哥👏🏻扫码加我：<b>俊劫</b></div>
+        <div class="tips">技术交流、内推、外包等欢迎加V👏🏻</div>
         <div class="qrcode">
-          <img v-show="isWechat" :src="$withBase('/img/wx-global.png')" alt="公众号">
+          <img v-show="isWechat" :src="$withBase('/img/wx-global.png')" alt="摸鱼群" height="250px">
           <img v-show="!isWechat" :src="$withBase('/img/wechat.png')" alt="微信">
         </div>
         <div class="toggle-qrcode">
-          <span class="toggle-1" :class="{'actived': isWechat}" @click="toggleQrcode(true)">公众号</span>
+          <span class="toggle-1" :class="{'actived': isWechat}" @click="toggleQrcode(true)">摸鱼群</span>
           <span class="toggle-2" :class="{'actived': !isWechat}" @click="toggleQrcode(false)">微信</span>
           <span class="toggle-bg" :class="{'actived': !isWechat}"></span>
         </div>
