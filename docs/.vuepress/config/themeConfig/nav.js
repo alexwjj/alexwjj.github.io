@@ -9,6 +9,7 @@ module.exports = [
       {
         text: '文档教程',
         items: [
+          { text: '资源导航', link: '/web/docs/nav/', icon: 'reco-blog' },
           { text: '慕课教程', link: '/web/docs/imooc/wiki/', icon: 'reco-blog' },
           { text: 'ES6 入门教程', link: '/web/docs/es6/', icon: 'reco-blog' },
           { text: '网道-JavaScript 教程', link: '/web/docs/wangdoc/javascript/', icon: 'reco-blog' },
@@ -36,6 +37,7 @@ module.exports = [
     ]
   },
   { text: '留言板', link: '/bookshop/message-board/', icon: 'reco-suggestion' },
+  { text: '资源导航', link: '/web/docs/nav/', icon: 'reco-api' },
   {
     text: '关于',
     icon: 'reco-message',
