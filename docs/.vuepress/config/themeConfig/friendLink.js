@@ -24,5 +24,10 @@ module.exports = [
     "title": "飞鸟",
     "desc": "一只平凡的鸟罢了",
     "link": "https://lzxjack.top/"
+  },
+  {
+    "title": "Hermoso",
+    "desc": "时间如一捧流沙,缓缓的在指间流尽",
+    "link": "https://imszz.com/"
   }
 ]

@@ -20,12 +20,13 @@
   </a>
 </p>
 
+![](https://alexwjj.github.io/img/blog-index.webp)
 ## 关于我
 
 [关于我 - 图文介绍](https://alexwjj.github.io/views/about/)
 
-## 关注我
-![wxgzh](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35e5fb5f6e654ba88d9b6c860ff859e4~tplv-k3u1fbpfcp-watermark.image)
+<!-- ## 关注我
+![wxgzh](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35e5fb5f6e654ba88d9b6c860ff859e4~tplv-k3u1fbpfcp-watermark.image) -->
 
 ## blog 4.0
 请切换分支：[20210501_blog_4.0](https://github.com/alexwjj/alexwjj.github.io/tree/20210501_blog_4.0)。当前博客5.0，2021.5.1上线。
