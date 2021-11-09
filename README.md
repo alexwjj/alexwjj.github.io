@@ -23,7 +23,7 @@
 ![](https://alexwjj.github.io/img/blog-index.webp)
 ## 关于我
 
-[关于我 - 图文介绍](https://alexwjj.github.io/views/about/)
+[关于我 - 图文介绍](https://alexwjj.github.io/bookshop/linkme/)
 
 <!-- ## 关注我
 ![wxgzh](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/35e5fb5f6e654ba88d9b6c860ff859e4~tplv-k3u1fbpfcp-watermark.image) -->
