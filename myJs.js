@@ -299,33 +299,146 @@
 //   }
 
 // }
-let p1 = new Promise(function (resolve, reject) {
-  setTimeout(function () {
-    console.log(1);
-      resolve(1)
-  }, 1000)
-})
-let p2 = new Promise(function (resolve, reject) {
-  setTimeout(function () {
-    console.log(2);
+// let p1 = new Promise(function (resolve, reject) {
+//   setTimeout(function () {
+//     console.log(1);
+//       resolve(1)
+//   }, 1000)
+// })
+// let p2 = new Promise(function (resolve, reject) {
+//   setTimeout(function () {
+//     console.log(2);
 
-      resolve(2)
-  }, 2000)
-})
-let p3 = new Promise(function (resolve, reject) {
-  setTimeout(function () {
-    console.log(3);
+//       resolve(2)
+//   }, 2000)
+// })
+// let p3 = new Promise(function (resolve, reject) {
+//   setTimeout(function () {
+//     console.log(3);
 
-      resolve(3)
-  }, 3000)
-})
+//       resolve(3)
+//   }, 3000)
+// })
 
-const myPromiseRace = (promises) => {
-  return new Promise((resolve, reject) => {
-    for (let i = 0; i < promises.length; i++) {
-      promises[i].then(resolve, reject)
-    }
-  })
-}
+// const myPromiseRace = (promises) => {
+//   return new Promise((resolve, reject) => {
+//     for (let i = 0; i < promises.length; i++) {
+//       promises[i].then(resolve, reject)
+//     }
+//   })
+// }
 
-myPromiseRace([p1, p2, p3])
+// myPromiseRace([p1, p2, p3])
+// const intervalMap = new Map();
+
+// let mySetInterval = (callback, time) => {
+//   let timeIdFirst = null;
+//   let interval = () => {
+//     let timeId = setTimeout(() => {
+//       callback && callback();
+//       interval();
+//     }, time);
+//     if (!timeIdFirst) {
+//       timeIdFirst = timeId;
+//     }
+//     intervalMap.set(timeIdFirst, timeId);
+//   };
+//   interval();
+//   return timeIdFirst;
+// };
+
+// const myClearInterval = (timeId) => {
+//   clearTimeout(intervalMap.get(timeId));
+//   intervalMap.delete(timeId);
+// };
+
+// let time1 = mySetInterval(() => {
+//   console.log(123);
+// }, 1000);
+
+// let time2 = mySetInterval(() => {
+//   console.log(456);
+// }, 2000);
+
+// setTimeout(() => {
+//   myClearInterval(time1);
+//   myClearInterval(time2);
+// }, 5000);
+
+// class myPromise {
+//   constructor(executor) {
+//     this.state = "pending";
+//     this.value = null;
+//     this.reason = null;
+
+//     this.resolveCallback = [];
+//     this.rejectedCallback = [];
+
+
+//     const resolve = (value) => {
+//       setTimeout(() => {
+//         if(this.state === "pending") {
+//           this.value = value;
+//           this.state = 'fulfilled';
+//           this.resolveCallback.forEach (cb => cb(value))
+//         }
+//       }, 0)
+//     };
+
+//     const reject = (reason) => {
+//       setTimeout(() => {
+//         if(this.state === "pending") {
+//           this.reason = reason;
+//           this.state = 'rejected';
+//           this.rejectedCallback.forEach (cb => cb(reason))
+//         }
+//       }, 0)
+//     };
+//     try {
+//       executor(resolve, reject);
+//     } catch (err) {
+//       reject(err);
+//     }
+//   }
+
+//   then(onResolved, onRejected) {
+//     let promise2 = null
+//     onResolved = typeof onResolved === 'function' ? onResolved:  value => value;
+//     onRejected = typeof onRejected === 'function' ? onRejected : value => value;
+//     if(this.state === 'fulfilled') {
+//       return promise2 = new Promise((resolve,reject)=> {
+//         try {
+//           let res = onResolved(this.value);
+//           if(res instanceof Promise) {
+//             res.then(resolve, reject);
+//           } else {
+//             resolve(res);
+//           }
+//         } catch (err) {
+//           reject(err);
+//         }
+//       })
+//     }
+//     if(this.state === 'rejected') {
+//       return promise2 = new Promise((resolve,reject)=> {
+//         try {
+//           let res = onRejected(this.reason);
+//           if(res instanceof Promise) {
+//             res.then(resolve, reject);
+//           } else {
+//             resolve(res);
+//           }
+//         } catch (err) {
+//           reject(err);
+//         }
+//       })
+//     }
+//     if(this.state === 'pending') {
+//       this.resolveCallback.push(onResolved);
+//       this.rejectedCallback.push(onRejected);
+//     }
+//   }
+//   catch (onRejected) {
+//     return this.then(null, onRejected);
+//   }
+// }
