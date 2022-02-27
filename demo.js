@@ -1,25 +1,69 @@
-// 给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素。
+const promise1 = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log(1);
+      resolve(1);
+    }, 1000);
+  });
+}
 
-// 你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+const promise2 = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log(2);
+      resolve(2);
+    }, 1000);
+  });
+}
+const promise3 = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log(3);
+      resolve(3);
+    }, 1000);
+  });
+}
+const promise4 = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log(4);
+      resolve(4);
+    }, 1000);
+  });
+}
+const promiseArr = [promise1, promise2, promise3, promise4];
 
-//  
+const pLimit = (promiseArr, limit) => {
+  return new Promise((resolve) => {
+    let resolvedCount = 0;
+    let count = 0;
+    let res = [];
+    const len = promiseArr.length;
 
-// 示例 1：
-
-// 输入：[3,2,3]
-// 输出：3
-// 示例 2：
-
-// 输入：[2,2,1,1,1,2,2]
-// 输出：2
-/**
- * @param {number[]} nums
- * @return {number}
- */
-
-var majorityElement = function (nums) {
-    nums.sort((a, b) => a - b)
-    return nums[Math.floor(nums.length / 2)]
+    const next = (p, index) => {
+      p().then((r) => {
+        res[index] = r;
+        // 记录请求成功的数量
+        resolvedCount++;
+        // 数组还存在为执行的promise
+        if (promiseArr.length) {
+          const p = promiseArr.shift();
+          next(p, count);
+          count++;
+        } else if (resolvedCount === len) {
+          resolve(res);
+        }
+      });
+    };
+    // 1. 设置最开始的并发请求为最大值或全部promise数组
+    while (count < limit && promiseArr.length) {
+      const p = promiseArr.shift();
+      next(p, count);
+      count++;
+    }
+  });
 };
-
-console.log(majorityElement([2, 2, 1, 1, 1, 2, 2]));
+pLimit(promiseArr, 2).then(res => {
+  console.log(res);
+})
+// console.log(pLimit(promiseArr, 2));
