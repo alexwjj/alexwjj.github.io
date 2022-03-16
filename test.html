@@ -1,22 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>switch开关实现</title>
+  <style type="text/css">
+      .switch {
+          width: 60px;
+          height: 30px;
+          background-color: #DCDFE6;
+          border-radius: 15px;
+          appearance: none;
+          position: relative;
+      }
+      .switch::before {
+          content: '';
+          width: 22px;
+          height: 22px;
+          background-color: #FFFFFF;
+          border-radius: 50%;
+          position: absolute;
+          left: 4px;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          transition: .3s;
+      }
+      .switch:checked {
+          background-color: #409EFF;
+          transition: .6s;
+      }
+      .switch:checked::before {
+          left: 30px;
+          transition: .3s;
+      }
+  </style>
 </head>
-<style>
-  div {
-    width: 0;
-    height: 0;
-    border: 100px solid;
-    border-color: orange blue red green;
-}
-</style>
 <body>
-  <div>
-    
-  </div>
+    <input type="checkbox" class="switch" checked />
 </body>
 </html>

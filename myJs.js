@@ -25,7 +25,7 @@
 
 // // 使用定时器写法，delay毫秒后第一次执行，第二次事件停止触发后依然会再一次执行
 // // 可以结合时间戳 实现更准确的节流
-// function debounce(fn, delay = 500) {
+// function throttle(fn, delay = 500) {
 //   let timer = null;
 //   return function () {
 //     if(timer) return;
@@ -374,25 +374,24 @@
 //     this.resolveCallback = [];
 //     this.rejectedCallback = [];
 
-
 //     const resolve = (value) => {
 //       setTimeout(() => {
-//         if(this.state === "pending") {
+//         if (this.state === "pending") {
 //           this.value = value;
-//           this.state = 'fulfilled';
-//           this.resolveCallback.forEach (cb => cb(value))
+//           this.state = "fulfilled";
+//           this.resolveCallback.forEach((cb) => cb(value));
 //         }
-//       }, 0)
+//       }, 0);
 //     };
 
 //     const reject = (reason) => {
 //       setTimeout(() => {
-//         if(this.state === "pending") {
+//         if (this.state === "pending") {
 //           this.reason = reason;
-//           this.state = 'rejected';
-//           this.rejectedCallback.forEach (cb => cb(reason))
+//           this.state = "rejected";
+//           this.rejectedCallback.forEach((cb) => cb(reason));
 //         }
-//       }, 0)
+//       }, 0);
 //     };
 //     try {
 //       executor(resolve, reject);
@@ -402,43 +401,78 @@
 //   }
 
 //   then(onResolved, onRejected) {
-//     let promise2 = null
-//     onResolved = typeof onResolved === 'function' ? onResolved:  value => value;
-//     onRejected = typeof onRejected === 'function' ? onRejected : value => value;
-//     if(this.state === 'fulfilled') {
-//       return promise2 = new Promise((resolve,reject)=> {
-//         try {
-//           let res = onResolved(this.value);
-//           if(res instanceof Promise) {
-//             res.then(resolve, reject);
-//           } else {
-//             resolve(res);
+//     let promise2 = null;
+//     onResolved =
+//       typeof onResolved === "function" ? onResolved : (value) => value;
+//     onRejected =
+//       typeof onRejected === "function" ? onRejected : (value) => value;
+//     if (this.state === "fulfilled") {
+//       setTimeout(() => {
+//         return (promise2 = new Promise((resolve, reject) => {
+//           try {
+//             let res = onResolved(this.value);
+//             if (res instanceof Promise) {
+//               res.then(resolve, reject);
+//             } else {
+//               resolve(res);
+//             }
+//           } catch (err) {
+//             reject(err);
 //           }
-//         } catch (err) {
-//           reject(err);
-//         }
-//       })
+//         }));
+//       }, 0);
 //     }
-//     if(this.state === 'rejected') {
-//       return promise2 = new Promise((resolve,reject)=> {
-//         try {
-//           let res = onRejected(this.reason);
-//           if(res instanceof Promise) {
-//             res.then(resolve, reject);
-//           } else {
-//             resolve(res);
+//     if (this.state === "rejected") {
+//       setTimeout(() => {
+//         return (promise2 = new Promise((resolve, reject) => {
+//           try {
+//             let res = onRejected(this.reason);
+//             if (res instanceof Promise) {
+//               res.then(resolve, reject);
+//             } else {
+//               resolve(res);
+//             }
+//           } catch (err) {
+//             reject(err);
 //           }
-//         } catch (err) {
-//           reject(err);
-//         }
-//       })
+//         }));
+//       }, 0);
 //     }
-//     if(this.state === 'pending') {
-//       this.resolveCallback.push(onResolved);
-//       this.rejectedCallback.push(onRejected);
+//     if (this.state === "pending") {
+//       this.resolveCallback.push(() => {
+//         setTimeout(() => {
+//           try {
+//             let res = onResolved(this.reason);
+//             if (res instanceof Promise) {
+//               res.then(resolve, reject);
+//             } else {
+//               resolve(res);
+//             }
+//           } catch (e) {
+//             reject(e);
+//           }
+//         }, 0);
+//       });
+//       this.rejectedCallback.push(() => {
+//         setTimeout(() => {
+//           try {
+//             let res = onRejected(this.reason);
+//             if (res instanceof Promise) {
+//               res.then(resolve, reject);
+//             } else {
+//               resolve(res);
+//             }
+//           } catch (e) {
+//             reject(e);
+//           }
+//         }, 0);
+//       });
 //     }
 //   }
-//   catch (onRejected) {
+//   catch(onRejected) {
 //     return this.then(null, onRejected);
 //   }
 // }
+
+
+
