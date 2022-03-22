@@ -1,36 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
-.container {
-    display: flex;
-    /* width: 100%; */
-    width: 300px;
-    height: 300px;
-}
-.container1{
-    width: 200px;
-    background-color: blue;
-}
-.container2{
-    flex: 1;
-    background-color: red;
-}
-.container3{
-    width: 200px;
-    background-color: black;
-}
-</style>
-<body> 
-    <div class="container">
-        <div class="container1"></div>
-        <div class="container2"></div>
-        <div class="container3"></div>
-    </div>
-</body>
+  </head>
+  <body>
+    <form action="" class="example-form">
+      <div>
+        <label for="name">名称</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="please input your name"
+        />
+      </div>
+      <div>
+        <label for="res">输入</label>
+        <textarea
+          type="multipart"
+          name="res"
+          id="res"
+          placeholder="这里是每一次输入的结果"
+        ></textarea>
+      </div>
+    </form>
+  </body>
+  <script type="text/javascript">
+    window.onload = () => {
+      const resEle = document.querySelector("#res");
+      function changeOutputVal(value) {
+        resEle.value += `\n${value}`;
+      }
+
+      function debounce(fn, delay = 1000) {
+        let timer = null;
+        return function(...args) {
+          console.log(args);
+          if (timer) {
+            clearTimeout(timer);
+            timer = null;
+          }
+
+          timer = setTimeout(() => {
+            fn.apply(this, args);
+          }, delay);
+        };
+      }
+
+      const outputRes = debounce(changeOutputVal, 1000);
+
+      const inputEle = document.querySelector("#name");
+
+      inputEle.addEventListener("input", (eve) => {
+        outputRes(eve.target.value);
+      });
+    };
+  </script>
 </html>
