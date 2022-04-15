@@ -7,56 +7,31 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="" class="example-form">
-      <div>
-        <label for="name">名称</label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="please input your name"
-        />
-      </div>
-      <div>
-        <label for="res">输入</label>
-        <textarea
-          type="multipart"
-          name="res"
-          id="res"
-          placeholder="这里是每一次输入的结果"
-        ></textarea>
-      </div>
-    </form>
+    <div>111111</div>
   </body>
   <script type="text/javascript">
-    window.onload = () => {
-      const resEle = document.querySelector("#res");
-      function changeOutputVal(value) {
-        resEle.value += `\n${value}`;
-      }
+    setTimeout(() => {
+  console.log(1);
+}, 0)
 
-      function debounce(fn, delay = 1000) {
-        let timer = null;
-        return function(...args) {
-          console.log(args);
-          if (timer) {
-            clearTimeout(timer);
-            timer = null;
-          }
+new Promise((resolve, reject) => {
+  console.log(2)
+  for (let i = 0; i <10000;i++) {
+    if(i === 9999) {
+      resolve()
+    }
+  }
+  console.log(3)
+}).then(() => {
+  console.log(4);
+  for (let i = 0; i <1000000000;i++) {
+    if(i === 999999999) {
+      console.log(9);
+    }
+  }
+})
 
-          timer = setTimeout(() => {
-            fn.apply(this, args);
-          }, delay);
-        };
-      }
+console.log(5);
 
-      const outputRes = debounce(changeOutputVal, 1000);
-
-      const inputEle = document.querySelector("#name");
-
-      inputEle.addEventListener("input", (eve) => {
-        outputRes(eve.target.value);
-      });
-    };
   </script>
 </html>
