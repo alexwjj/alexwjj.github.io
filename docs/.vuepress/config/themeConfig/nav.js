@@ -10,7 +10,7 @@ module.exports = [
         text: '文档教程',
         items: [
           { text: '资源导航', link: '/web/docs/nav/', icon: 'reco-blog' },
-          { text: '慕课教程', link: '/web/docs/imooc/wiki/', icon: 'reco-blog' },
+          { text: '2022前端面试精华', link: '/web/docs/alexwjj/fe-study/', icon: 'reco-blog' },
           { text: 'ES6 入门教程', link: '/web/docs/es6/', icon: 'reco-blog' },
           { text: '网道-JavaScript 教程', link: '/web/docs/wangdoc/javascript/', icon: 'reco-blog' },
           { text: 'Angular 文档', link: '/web/docs/angular/', icon: 'reco-blog' },
