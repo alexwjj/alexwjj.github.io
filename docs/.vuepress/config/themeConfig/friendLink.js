@@ -29,5 +29,10 @@ module.exports = [
     "title": "Hermoso",
     "desc": "时间如一捧流沙,缓缓的在指间流尽",
     "link": "https://imszz.com/"
+  },
+  {
+    "title": "lzp的个人网站 ",
+    "desc": "唯有热爱，可抵岁月漫长",
+    "link": "https://www.liuzepeng.com"
   }
 ]
