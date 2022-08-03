@@ -47,7 +47,7 @@ export default {
     this.visible = closeKxmWeather !== 'true'
   },
   methods: {
-    // 关闭弹层
+    // 关闭弹层1
     closeKxmWeather () {
       this.visible = false
       sessionStorage.setItem('closeKxmWeather', 'true')
