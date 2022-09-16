@@ -40,4 +40,9 @@ module.exports = [
     desc: "古今之成大事者，不惟有超世之才，亦必有坚忍不拔之志",
     link: "https://tzy1997.com/",
   },
+  {
+    title: "chetserenade",
+    desc: "前端拾荒者",
+    link: "https://chetserenade.info/",
+  },
 ];
