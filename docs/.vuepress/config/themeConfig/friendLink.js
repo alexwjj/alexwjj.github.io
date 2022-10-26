@@ -45,4 +45,9 @@ module.exports = [
     desc: "前端拾荒者",
     link: "https://chetserenade.info/",
   },
+  {
+    title: "Hyyyh的博客",
+    desc: "Hyyyh的博客",
+    link: "https://hyyyh.top",
+  },
 ];
