@@ -50,4 +50,9 @@ module.exports = [
     desc: "Hyyyh的博客",
     link: "https://hyyyh.top",
   },
+  {
+    title: "codefish",
+    desc: "一个爱好半小时的前端混子",
+    link: "https://offerkillers.gitee.io",
+  },
 ];
