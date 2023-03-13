@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>前端基础 - 手写系列 | 俊劫的学习基地</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content="俊劫的学习基地是俊劫的个人博客，用于记录学习笔记、分享音乐、书籍、旅行等个人兴趣的站点。">
+    <meta name="keywords" content="俊劫,俊劫的博客,博客,个人博客,vue,vuejs,vuepress,vuepress-theme-reco">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="baidu-site-verification" content="code-qA2kKqLXFO">
+    
+    <link rel="preload" href="/assets/css/0.styles.c04ea52f.css" as="style"><link rel="preload" href="/assets/js/app.25a6c90c.js" as="script"><link rel="preload" href="/assets/js/2.c8a47147.js" as="script"><link rel="preload" href="/assets/js/55.c7c2b4ff.js" as="script"><link rel="preload" href="/assets/js/4.cb75aceb.js" as="script"><link rel="prefetch" href="/assets/js/10.39713a02.js"><link rel="prefetch" href="/assets/js/100.4ed29243.js"><link rel="prefetch" href="/assets/js/101.5cbe7233.js"><link rel="prefetch" href="/assets/js/102.c0397e6e.js"><link rel="prefetch" href="/assets/js/11.ec569cef.js"><link rel="prefetch" href="/assets/js/12.522ecdc3.js"><link rel="prefetch" href="/assets/js/13.207c68b0.js"><link rel="prefetch" href="/assets/js/14.6f3bfd93.js"><link rel="prefetch" href="/assets/js/15.08fd035b.js"><link rel="prefetch" href="/assets/js/16.53c5ba40.js"><link rel="prefetch" href="/assets/js/17.567d1b3b.js"><link rel="prefetch" href="/assets/js/18.f91f108b.js"><link rel="prefetch" href="/assets/js/19.ace28d8d.js"><link rel="prefetch" href="/assets/js/20.2097d503.js"><link rel="prefetch" href="/assets/js/21.79ddc836.js"><link rel="prefetch" href="/assets/js/22.6b98a5ce.js"><link rel="prefetch" href="/assets/js/23.34c9303f.js"><link rel="prefetch" href="/assets/js/24.45439902.js"><link rel="prefetch" href="/assets/js/25.4d89bcf7.js"><link rel="prefetch" href="/assets/js/26.fa4711d9.js"><link rel="prefetch" href="/assets/js/27.b62d88a6.js"><link rel="prefetch" href="/assets/js/28.4308d800.js"><link rel="prefetch" href="/assets/js/29.8f086102.js"><link rel="prefetch" href="/assets/js/3.107a69e3.js"><link rel="prefetch" href="/assets/js/30.4862bcdb.js"><link rel="prefetch" href="/assets/js/31.ef40ed08.js"><link rel="prefetch" href="/assets/js/32.404d2163.js"><link rel="prefetch" href="/assets/js/33.f63d91fa.js"><link rel="prefetch" href="/assets/js/34.69c0674d.js"><link rel="prefetch" href="/assets/js/35.9c66d81d.js"><link rel="prefetch" href="/assets/js/36.ded0642d.js"><link rel="prefetch" href="/assets/js/37.30c5a805.js"><link rel="prefetch" href="/assets/js/38.93da81b5.js"><link rel="prefetch" href="/assets/js/39.28df12f4.js"><link rel="prefetch" href="/assets/js/40.0da8149c.js"><link rel="prefetch" href="/assets/js/41.9a5e62f5.js"><link rel="prefetch" href="/assets/js/42.7b2f1416.js"><link rel="prefetch" href="/assets/js/43.8c114613.js"><link rel="prefetch" href="/assets/js/44.eb1f3126.js"><link rel="prefetch" href="/assets/js/45.6af6c4c9.js"><link rel="prefetch" href="/assets/js/46.c520d5cd.js"><link rel="prefetch" href="/assets/js/47.28c830d7.js"><link rel="prefetch" href="/assets/js/48.b290a6e6.js"><link rel="prefetch" href="/assets/js/49.caa1af05.js"><link rel="prefetch" href="/assets/js/5.1928d672.js"><link rel="prefetch" href="/assets/js/50.0161c4f4.js"><link rel="prefetch" href="/assets/js/51.33bf45cb.js"><link rel="prefetch" href="/assets/js/52.b33ed170.js"><link rel="prefetch" href="/assets/js/53.a37995e8.js"><link rel="prefetch" href="/assets/js/54.9b36e93b.js"><link rel="prefetch" href="/assets/js/56.1d3980d6.js"><link rel="prefetch" href="/assets/js/57.205fc147.js"><link rel="prefetch" href="/assets/js/58.4fe4e658.js"><link rel="prefetch" href="/assets/js/59.b5e46b99.js"><link rel="prefetch" href="/assets/js/6.ef94a230.js"><link rel="prefetch" href="/assets/js/60.e4895bcb.js"><link rel="prefetch" href="/assets/js/61.b54502c5.js"><link rel="prefetch" href="/assets/js/62.e8847cb0.js"><link rel="prefetch" href="/assets/js/63.cfad8307.js"><link rel="prefetch" href="/assets/js/64.e743e2aa.js"><link rel="prefetch" href="/assets/js/65.7ba8a405.js"><link rel="prefetch" href="/assets/js/66.e6d37000.js"><link rel="prefetch" href="/assets/js/67.6b144fc4.js"><link rel="prefetch" href="/assets/js/68.07338ba8.js"><link rel="prefetch" href="/assets/js/69.e6dbc415.js"><link rel="prefetch" href="/assets/js/7.3bb3e13d.js"><link rel="prefetch" href="/assets/js/70.cf6248f4.js"><link rel="prefetch" href="/assets/js/71.7e0cafe9.js"><link rel="prefetch" href="/assets/js/72.f15c538f.js"><link rel="prefetch" href="/assets/js/73.c1840ab2.js"><link rel="prefetch" href="/assets/js/74.24bd1bfb.js"><link rel="prefetch" href="/assets/js/75.c4b01dec.js"><link rel="prefetch" href="/assets/js/76.231b0541.js"><link rel="prefetch" href="/assets/js/77.c84f02f9.js"><link rel="prefetch" href="/assets/js/78.c7eb89b7.js"><link rel="prefetch" href="/assets/js/79.cf86868f.js"><link rel="prefetch" href="/assets/js/8.e078f2c8.js"><link rel="prefetch" href="/assets/js/80.f8c4d374.js"><link rel="prefetch" href="/assets/js/81.ad369766.js"><link rel="prefetch" href="/assets/js/82.a628fc41.js"><link rel="prefetch" href="/assets/js/83.13a7cf10.js"><link rel="prefetch" href="/assets/js/84.b4a2d432.js"><link rel="prefetch" href="/assets/js/85.61647e4e.js"><link rel="prefetch" href="/assets/js/86.a00e1dd4.js"><link rel="prefetch" href="/assets/js/87.0f62c2ae.js"><link rel="prefetch" href="/assets/js/88.097d7ab5.js"><link rel="prefetch" href="/assets/js/89.441809aa.js"><link rel="prefetch" href="/assets/js/9.c2449896.js"><link rel="prefetch" href="/assets/js/90.813e2988.js"><link rel="prefetch" href="/assets/js/91.b18c5ec1.js"><link rel="prefetch" href="/assets/js/92.ef45e850.js"><link rel="prefetch" href="/assets/js/93.997258f2.js"><link rel="prefetch" href="/assets/js/94.98247d47.js"><link rel="prefetch" href="/assets/js/95.6a9841fb.js"><link rel="prefetch" href="/assets/js/96.93f2653d.js"><link rel="prefetch" href="/assets/js/97.22b04994.js"><link rel="prefetch" href="/assets/js/98.5ac1583b.js"><link rel="prefetch" href="/assets/js/99.de2d3b40.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c04ea52f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container have-rightmenu" data-v-f848d4e8><div class="global-loading-wrapper" data-v-137da995 data-v-f848d4e8 data-v-f848d4e8><div class="loader-main" data-v-137da995><img src="/assets/img/loading.18d75e19.gif" alt="loading" data-v-137da995></div></div> <div class="hide" data-v-f848d4e8><header class="navbar" data-v-f848d4e8><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/logo.png" alt="俊劫的学习基地" class="logo"> <span class="site-name">俊劫的学习基地</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">选择模式</h4> <ul class="color-mode-options"><li class="dark">深色模式</li><li class="light active">浅色模式</li><li class="read">阅读模式</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <ul class="suggestions" style="display:none;"></ul></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i></i>前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>文档教程</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/web/docs/nav/" class="nav-link"><i class="iconfont reco-blog"></i>资源导航
+</a></li><li class="dropdown-subitem"><a href="/web/docs/alexwjj/fe-study/" class="nav-link"><i class="iconfont reco-blog"></i>2022前端面试精华
+</a></li><li class="dropdown-subitem"><a href="/web/docs/es6/" class="nav-link"><i class="iconfont reco-blog"></i>ES6 入门教程
+</a></li><li class="dropdown-subitem"><a href="/web/docs/wangdoc/javascript/" class="nav-link"><i class="iconfont reco-blog"></i>网道-JavaScript 教程
+</a></li><li class="dropdown-subitem"><a href="/web/docs/angular/" class="nav-link"><i class="iconfont reco-blog"></i>Angular 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/react/" class="nav-link"><i class="iconfont reco-blog"></i>React 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/vue/" class="nav-link"><i class="iconfont reco-blog"></i>Vue 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/node/" class="nav-link"><i class="iconfont reco-blog"></i>Node 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/babel/" class="nav-link"><i class="iconfont reco-blog"></i>Babel 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/webpack/" class="nav-link"><i class="iconfont reco-blog"></i>Webpack 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/typescript/" class="nav-link"><i class="iconfont reco-blog"></i>TypeScript 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/runoob/" class="nav-link"><i class="iconfont reco-blog"></i>菜鸟教程
+</a></li><li class="dropdown-subitem"><a href="/web/docs/docschina/" class="nav-link"><i class="iconfont reco-blog"></i>印记中文
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-api"></i>索引
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link"><i class="iconfont reco-category"></i>分类
+</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link"><i class="iconfont reco-tag"></i>标签
+</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link"><i class="iconfont reco-date"></i>归档
+</a></li></ul></div></div><div class="nav-item"><a href="/bookshop/message-board/" class="nav-link"><i class="iconfont reco-suggestion"></i>留言板
+</a></div><div class="nav-item"><a href="/web/docs/nav/" class="nav-link"><i class="iconfont reco-api"></i>资源导航
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>关于
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>联系</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://github.com/alexwjj" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="/bookshop/linkme/" class="nav-link"><i class="iconfont reco-account"></i>关于我
+</a></li></ul></li><li class="dropdown-item"><h4>博客</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://github.com/alexwjj/alexwjj.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-document"></i>本站源码
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://alexwjj.github.io/old-blog" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-document"></i>老版博客
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li><li class="dropdown-item"><h4>其他</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/bookshop/friendslink/" class="nav-link"><i class="iconfont reco-friend"></i>友情链接
+</a></li></ul></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-f848d4e8></div> <aside class="sidebar" data-v-f848d4e8><div class="personal-info-wrapper" data-v-4a2491c0 data-v-f848d4e8><img src="/img/logo.png" alt="author-avatar" class="personal-img" data-v-4a2491c0> <div class="author" data-v-4a2491c0>
+    俊劫
+  </div> <div class="personal-info-details" data-v-4a2491c0><div data-v-4a2491c0>文章：<span data-v-4a2491c0>81</span></div> <div data-v-4a2491c0>地点：<span data-v-4a2491c0>杭州·西湖</span></div></div> <div class="slogan" data-v-4a2491c0>
+    just do it
+  </div> <ul class="social-links" data-v-4a2491c0><li class="social-item" data-v-4a2491c0><i class="iconfont reco-github" style="color:#3eaf7c;" data-v-4a2491c0></i></li><li class="social-item" data-v-4a2491c0><i class="iconfont reco-juejin" style="color:#00a1d6;" data-v-4a2491c0></i></li></ul></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont reco-home"></i>首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i></i>前端
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>文档教程</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/web/docs/nav/" class="nav-link"><i class="iconfont reco-blog"></i>资源导航
+</a></li><li class="dropdown-subitem"><a href="/web/docs/alexwjj/fe-study/" class="nav-link"><i class="iconfont reco-blog"></i>2022前端面试精华
+</a></li><li class="dropdown-subitem"><a href="/web/docs/es6/" class="nav-link"><i class="iconfont reco-blog"></i>ES6 入门教程
+</a></li><li class="dropdown-subitem"><a href="/web/docs/wangdoc/javascript/" class="nav-link"><i class="iconfont reco-blog"></i>网道-JavaScript 教程
+</a></li><li class="dropdown-subitem"><a href="/web/docs/angular/" class="nav-link"><i class="iconfont reco-blog"></i>Angular 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/react/" class="nav-link"><i class="iconfont reco-blog"></i>React 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/vue/" class="nav-link"><i class="iconfont reco-blog"></i>Vue 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/node/" class="nav-link"><i class="iconfont reco-blog"></i>Node 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/babel/" class="nav-link"><i class="iconfont reco-blog"></i>Babel 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/webpack/" class="nav-link"><i class="iconfont reco-blog"></i>Webpack 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/typescript/" class="nav-link"><i class="iconfont reco-blog"></i>TypeScript 文档
+</a></li><li class="dropdown-subitem"><a href="/web/docs/runoob/" class="nav-link"><i class="iconfont reco-blog"></i>菜鸟教程
+</a></li><li class="dropdown-subitem"><a href="/web/docs/docschina/" class="nav-link"><i class="iconfont reco-blog"></i>印记中文
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-api"></i>索引
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link"><i class="iconfont reco-category"></i>分类
+</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link"><i class="iconfont reco-tag"></i>标签
+</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link"><i class="iconfont reco-date"></i>归档
+</a></li></ul></div></div><div class="nav-item"><a href="/bookshop/message-board/" class="nav-link"><i class="iconfont reco-suggestion"></i>留言板
+</a></div><div class="nav-item"><a href="/web/docs/nav/" class="nav-link"><i class="iconfont reco-api"></i>资源导航
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>关于
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>联系</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://github.com/alexwjj" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="/bookshop/linkme/" class="nav-link"><i class="iconfont reco-account"></i>关于我
+</a></li></ul></li><li class="dropdown-item"><h4>博客</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="https://github.com/alexwjj/alexwjj.github.io" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-document"></i>本站源码
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://alexwjj.github.io/old-blog" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-document"></i>老版博客
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li><li class="dropdown-item"><h4>其他</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/bookshop/friendslink/" class="nav-link"><i class="iconfont reco-friend"></i>友情链接
+</a></li></ul></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/pages/74b89136d37c/" class="sidebar-link">【面试】2020年底面经</a></li><li><a href="/pages/ac34940436a4a/" class="sidebar-link">前端基础知识整理01</a></li><li><a href="/pages/aa9d140ec6135/" class="sidebar-link">前端基础知识整理02</a></li><li><a href="/pages/3cea8c7d5577f/" class="sidebar-link">xdm 来当当前端面试官</a></li><li><a href="/pages/9de40adc21b12/" aria-current="page" class="active sidebar-link">前端基础 - 手写系列</a></li><li><a href="/pages/f15a7725f87e7/" class="sidebar-link">【分享】2021新鲜面经和资源分享</a></li><li><a href="/pages/a336385364f8/" class="sidebar-link">【面试】前端求职之路</a></li><li><a href="/pages/e8f47145dd883/" class="sidebar-link">【面试】2022被裁之后的面经-详细篇</a></li><li><a href="/pages/e19d1d769db25/" class="sidebar-link">【逃离一线】被裁后的面经与感慨</a></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper bg-style-3"><div class="articleInfo-wrap" data-v-13f19dad><div class="articleInfo" data-v-13f19dad><ul class="breadcrumbs" data-v-13f19dad><li data-v-13f19dad><a href="/" title="首页" class="fa fa-laptop-house router-link-active" data-v-13f19dad></a></li> <li data-v-13f19dad><a href="/categories/?category=%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3" title="分类" data-v-13f19dad>面试相关</a></li> <!----> <!----></ul> <div class="info" data-v-13f19dad><div title="作者" class="author fa fa-user" data-v-13f19dad><a href="javascript:;" data-v-13f19dad>俊劫</a></div> <div title="创建时间" class="date fa fa-calendar-alt" data-v-13f19dad><a href="javascript:;" data-v-13f19dad>2020/12/03 00:00:00</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABGpJREFUSA3tVVtoXFUU3fvOI53UlmCaKIFmwEhsE7QK0ipFEdHEKpXaZGrp15SINsXUWvBDpBgQRKi0+KKoFeJHfZA+ED9KKoIU2gYD9UejTW4rVIzm0VSTziPzuNu1z507dibTTjL4U/DAzLn3nL3X2o91ziX6f9wMFdh6Jvbm9nNSV0msViVO6tN1Rm7NMu2OpeJ9lWBUTDxrJbYTS0hInuwciu9eLHlFxCLCZEk3MegsJmZ5K/JD6t7FkFdEvGUo1g7qJoG3MHImqRIn8/nzY1K9UPKKiJmtnUqHVE3Gbuay6vJE/N2FEmuxFjW2nUuE0yQXRRxLiTUAzs36zhZvOXJPdX850EVnnLZkB8prodQoM5JGj7Xk2mvC7JB8tG04Ef5PiXtG0UtxupRQSfTnBoCy554x18yJHI6I+G5Eru4LHmPJZEQsrvPUbMiA8G/WgMK7w7I+ez7++o2ANfbrjvaOl1tFMs+htG3IrZH9/hDX1Pr8Tc0UvH8tcX29KzAgIGcEkINyW5BF9x891hw6VYqgJHEk0huccS7vh3C6gTiODL+26huuBtbct8eZnqLML8PkxGYpuPZBqtqwkSjgc4mB5gbgig5i+y0UDK35LMxXisn9xQtK+nd26gTIHsHe/oblK/b29fUmN/8Y+9jAQrnBp56m1LcDlDp9irKTExSKduXJVWSqdBMA08pEJnEIOB3FPPMybu/oeV8zFeYN3xx576Q6RH+VmplE4ncQV5v+5rzSoyOU7PuEAg8g803PwBJ0CExno/jcMbN8tONYeOmHiuUNryvm3fRUy4tMPVLdAGkUhNWuggGrJcXPv+ouCjz0MKUHz1J2/E8IC9nqTabcxgaBYM0hPhD5Y65FsbxRQKxCQrDjDctW7PUM3HuZunFyifSAqEfuzCp48Il24luWUWZoyJCaPR82jE0+kFA643wRFVni4RYSq3ohJO2pZ7B5dO4xkDWbEpossJPLSrPjYID8rS2UHTlvyNxqIGsg674XJJ7vnh5L7PNwC4hh2sjCI96mzszOTpxLF0T7l88Yz7lAuK6OnL8gXLOnTvpzSb22YG8W7us3jSebFHeeqnXRG1vt+MoUM84LQIBmMsCTAcOauTh0T0l0neQK7m2bLMt2mGxU3HYssS0J2cdv5wljlPsrIuZLAG/2DOZIXgCYT8uMGZN+e2kSirfxZOPCsC0f24nTZzspnVn9VePS1Z5vubmAGGXG8ZFno9Hel0yfA5ZPhF7Dh972BQJ2qCpgH67lmWtBYbvk6sz02wjky2vXyz0XErP/kFB619js1BtwfOV4OPRqOQBjy3Qbk18vigUPPSD5ceHnwck7W9bhAqZdd7SuG7w4/P2F/GaJh8c7e9qgow+Q7cGBo+98WsLkuktFqiZabtXuQTu/Y5ETbR0v7tNSFnvrmu6pjdoan2KjMu8q/Hmj1EfCO2ZGfEIbIXKUlw8qaX9/b2oeSJmFksSeT/Fn0V3nSypChh4Gjh74ybO9aeZ/AN2dwciu2/MhAAAAAElFTkSuQmCC">
+            前端基础 - 手写系列
+          </h1> <div class="theme-vdoing-content content__default"><blockquote><p>磨刀不误砍柴工 🕵🕵🕵</p></blockquote> <h2 id="实现-call、apply、bind"><a href="#实现-call、apply、bind" class="header-anchor">#</a> 实现 call、apply、bind</h2> <h3 id="call"><a href="#call" class="header-anchor">#</a> call</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>function myCall(ctx = window, ...args) {
+  ctx = ctx || window;
+  // 为context 创建一个 Symbol（保证不会重名）属性，将当前函数赋值给这个属性
+  const fn = Symbol();
+  ctx[fn] = this;
+  // 处理参数，传入第一个参数后的其余参数
+  const res = ctx[fn](...args);
+  // 调用函数后即删除该Symbol属性
+  delete ctx[fn];
+  return res;
+}
+Function.prototype.call = function (context, ...args) {
+
+  var context = context || window;
+
+  context.fn = this;
+
+  var result = eval('context.fn(...args)');
+
+  delete context.fn
+
+  return result;
+
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><h3 id="apply"><a href="#apply" class="header-anchor">#</a> apply</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>function myApply(ctx = window, args) {
+  ctx = ctx || window;
+  const fn = Symbol();
+  ctx[fn] = this;
+  if (Array.isArray(args)) {
+    result = ctx[fn](...args);
+  } else {
+    result = ctx[fn]();
+  }
+  delete ctx[fn];
+  return res;
+}
+Function.prototype.apply = function (context, args) {
+
+  let context = context || window;
+
+  context.fn = this;
+
+  let result = eval('context.fn(...args)');
+
+  delete context.fn
+
+  return result;
+
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><h3 id="bind"><a href="#bind" class="header-anchor">#</a> bind</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>function myBind(ctx, ...args1) {
+  const _this = this;
+  return function F(...args2) {
+    if (this instanceof F) {
+      // 判断是否为构造函数调用，如果是则使用new调用当前函数
+      return new _this(...args1, ...args2)
+    } else {
+      // 如果不是，使用apply，将context和处理好的参数传入
+      return _this.apply(ctx, args1.concat(args2))
+    }
+  }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h2 id="实现发布订阅、观察者模式"><a href="#实现发布订阅、观察者模式" class="header-anchor">#</a> 实现发布订阅、观察者模式</h2> <p><a href="https://www.cnblogs.com/onepixel/p/10806891.html" target="_blank" rel="noopener noreferrer">观察者模式与订阅发布模式的区别<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><code>一句话总结： 发布-订阅模式是面向调度中心编程的，而观察者模式则是面向目标和观察者编程的。前者用于解耦发布者和订阅者，后者用于耦合目标和观察者</code></p> <h2 id="发布订阅"><a href="#发布订阅" class="header-anchor">#</a> 发布订阅</h2> <div class="language- line-numbers-mode"><pre class="language-text"><code>class PubSub {
+	constructor() {
+		this.subers = [];
+	}
+
+	sub(topic, callback) {
+		let callbacks = this.subers[topic];
+		if (!callbacks) {
+			this.subers[topic] = [callback];
+		} else {
+			callbacks.push(callback);
+		}
+	}
+
+	pub(topic, ...args) {
+		let callbacks = this.subers[topic];
+		callbacks.forEach(callback =&gt; callback(...args))
+	}
+}
+
+const aEvent = (msg) =&gt; {
+	console.log(msg + 'aaa');
+}
+
+const bEvent = (msg) =&gt; {
+	console.log(msg + 'bbb');
+}
+
+let pubsub = new PubSub();
+
+pubsub.sub('a', aEvent)
+pubsub.sub('b', bEvent)
+
+pubsub.pub('a', 'A订阅者')
+pubsub.pub('b', 'B订阅者')
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br></div></div><h3 id="观察者模式"><a href="#观察者模式" class="header-anchor">#</a> 观察者模式</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>class Sub {
+	constructor() {
+		this.obers = []
+	}
+
+	add(ob) {
+		this.obers.push(ob)
+	}
+
+	notify(...args) {
+		this.obers.forEach(ob =&gt; ob.update(...args))
+	}
+}
+
+class Ob {
+	update(...args) {
+		console.log(...args)
+	}
+}
+
+let ob1 = new Ob();
+let ob2 = new Ob();
+
+let sub = new Sub();
+
+sub.add(ob1)
+sub.add(ob2)
+
+
+sub.notify('目标发生了变化')
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><h2 id="debounce"><a href="#debounce" class="header-anchor">#</a> debounce</h2> <p>一段时间内只执行最后一次</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function debounce(fn, delay=500) {
+    // timer 写在闭包中，因此防抖也是闭包的一个应用
+    let timer = null;
+
+    return function() {
+        if (timer) {
+            clearTimeout(timer)
+        }
+        timer = setTimeout(() =&gt; {
+            fn.apply(this, arguments);
+            timer = null;
+        }, delay)
+    }
+}
+
+// 验证
+input1.addEventListener('keyup', debounce(() =&gt; {
+    console.log(input1.value);
+}), 600)
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h2 id="throttle"><a href="#throttle" class="header-anchor">#</a> throttle</h2> <p>一段时间内只执行第一次</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function throttle(fn, delay = 100) {
+    let timer = null
+
+    return function() {
+        if (timer) {
+            return
+        }
+        timer = setTimeout(() =&gt; {
+            fn.apply(this, arguments)
+            clearTimeout(timer) 
+            timer = null
+        }, delay)
+    }
+}
+
+div1.addEventListener(('drag', throttle(function (e) {
+    console.log(e.offsetX, e.offsetY)
+})))
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div></div></div> <div class="page-edit"><div class="tags"><a href="/tags/?tag=%E6%BA%90%E7%A0%81" title="标签">#源码</a></div> <div class="last-updated"><span class="prefix">最近更新时间：</span> <span class="time">2021/05/01 17:06:28</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/pages/3cea8c7d5577f/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">xdm 来当当前端面试官</div></a> <a href="/pages/f15a7725f87e7/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">【分享】2021新鲜面经和资源分享</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/pages/3cea8c7d5577f/" class="prev">xdm 来当当前端面试官</a></span> <span class="next"><a href="/pages/f15a7725f87e7/">【分享】2021新鲜面经和资源分享</a>→
+      </span></p></div></div></div> <div class="theme-vdoing-wrapper article-list bg-style-5"><div class="article-title"><a href="/archives/" class="fa fa-pencil-alt">
+      最近更新
+    </a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><div><a href="/pages/514d9f101e80a/"><div>35的程序员开外包会是什么情况？</div></a></div> <div class="date"><span>2023/02/08 00:00:00</span></div></dt></dl><dl><dd>02</dd> <dt><div><a href="/pages/745d319268407/"><div>2022 被裁后的躺平平🔥</div></a></div> <div class="date"><span>2023/01/03 00:00:00</span></div></dt></dl><dl><dd>03</dd> <dt><div><a href="/pages/3f814143a603f/"><div>【随想】那些年用过的手机</div></a></div> <div class="date"><span>2022/12/21 00:00:00</span></div></dt></dl> <div class="more-box"><a href="/archives/" class="more"><i class="fas fa-angle-double-right"></i>前往更多 ...
+      </a></div></div></div> <div class="comments-wrapper" style="display:none;"><!----></div></main></div> <div class="footer-wrapper" data-v-51417878 data-v-51417878><span class="footer-reco-theme" data-v-51417878><i class="iconfont reco-github" data-v-51417878></i> <a target="blank" href="https://github.com/alexwjj/alexwjj.github.io" data-v-51417878>alexwjj.github.io@5.0</a></span> <!----> <span class="footer-copyright" data-v-51417878><i class="iconfont reco-copyright" data-v-51417878></i> <a data-v-51417878><span data-v-51417878>俊劫</span> <span class="ml5" data-v-51417878>
+          2018 - 2023
+        </span></a></span> <span class="footer-view-site" data-v-51417878><i class="iconfont reco-eye" data-v-51417878></i> <span id="busuanzi_container_site_uv" data-v-51417878>
+        访客数：<span id="busuanzi_value_site_uv" class="num" data-v-51417878>-</span></span> <span id="busuanzi_container_site_pv" class="ml5" data-v-51417878>
+        访问量：<span id="busuanzi_value_site_pv" class="num" data-v-51417878>-</span></span></span> <!----></div> <!----></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-a008c6ba data-v-a008c6ba><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-a008c6ba><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-a008c6ba></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-a008c6ba></path></svg></div><!----><div></div></div></div>
+    <script src="/assets/js/app.25a6c90c.js" defer></script><script src="/assets/js/2.c8a47147.js" defer></script><script src="/assets/js/55.c7c2b4ff.js" defer></script><script src="/assets/js/4.cb75aceb.js" defer></script>
+  </body>
+</html>

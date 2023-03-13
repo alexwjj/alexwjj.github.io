@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>前端性能与体验优化</title>
+
+    <meta
+      name="description"
+      content="A framework for easily creating beautiful presentations using HTML"
+    />
+    <meta name="author" content="Hakim El Hattab" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/index.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+  </head>
+  <style>
+    #loadding {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+      #loadding > span {
+        display: inline-block;
+        width: 8px;
+        height: 100%;
+        margin-right: 5px;
+        border-radius: 4px;
+        -webkit-animation: load 1.04s ease infinite;
+        animation: load 1.04s ease infinite;
+      }
+      @keyframes load {
+        0%,100%{
+          height: 40px;
+          background: #98BEFF;
+        }
+        50%{
+          height: 60px;
+          margin-top: -20px;
+          background: #3E7FEE;
+        }
+      }
+  </style>
+
+  <body>
+    <!-- <div id="loadding">
+      <span></span>
+      <span style="animation-delay:0.13s;"></span>
+      <span style="animation-delay:0.26s;"></span>
+      <span style="animation-delay:0.39s;"></span>
+      <span style="animation-delay:0.52s;"></span>
+    </div> -->
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h3 style="font-family: 'STLiti', 华文隶书">
+            <font color="#3E7FEE">聊一聊</font>
+          </h3>
+          <h6 style="text-transform: none">前端性能与体验的优化</h6>
+          <br />
+          <br />
+          <p>
+            <small>分享By <a href="" target="_blank">吴俊杰</a> </small>
+          </p>
+          <p><small>时间 2020-12-30</small></p>
+        </section>
+
+        <section data-transition="concave" style="text-align: left" >
+          <h5>目录</h5>
+          <hr style="transition: width 0.5s linear" />
+          <div class="catalog-p">
+            <p>一、调试工具</p>
+            <p>二、WEB API</p>
+            <p>三、雅虎军规</p>
+            <p>四、资源压缩</p>
+            <p>五、webpack优化</p>
+            <p>六、骨架屏</p>
+            <p>七、窗口化</p>
+            <p>八、缓存</p>
+            <p>九、预/懒加载</p>
+            <p>十、体验优化</p>
+          </div>
+          <hr />
+        </section>
+
+        <!-- Example of nested vertical slides -->
+        <section data-transition="convex">
+          <section>
+            <h5 style="font-family: 'STLiti', 华文隶书">一、调试工具</h5>
+            <div style="font-size: 30px">磨刀不误砍柴工</div>
+          </section>
+
+          <section>
+            <h2>1、Network</h2>
+            <div style="font-size: 18px">
+              这里可以看到资源加载详情，初步评估影响<span class="font-red"
+                >页面性能</span
+              >的因素。鼠标右键可以自定义选项卡，页面底部是当前加载资源的一个概览。<span
+                class="font-red"
+                >DOMContentLoaded</span
+              >DOM渲染完成的时间，<span class="font-red">Load</span
+              >：当前页面所有资源加载完成的时间
+            </div>
+            <br />
+            <a href="#" class="navigate-down">
+              <img
+                class="r-frame"
+                style="background: rgba(255, 255, 255, 0.1)"
+                width="80%"
+                height="408"
+                data-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/62898f76c242450eb318b1816428ff65~tplv-k3u1fbpfcp-watermark.image"
+                alt="Down arrow"
+              />
+            </a>
+          </section>
+          <section>
+            <h4>思考：如何判断哪些资源对当前页面加载？</h4>
+            <div>
+              <span class="font-red"
+                >shift + cmd + P 调出控制台的扩展工具，添加规则</span
+              >
+            </div>
+            <a href="#" class="navigate-down">
+              <img
+                class="r-frame"
+                style="background: rgba(255, 255, 255, 0.1)"
+                width="80%"
+                height="408"
+                data-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a5141f1221f0494a93ace014e64b20ba~tplv-k3u1fbpfcp-watermark.image"
+                alt="Down arrow"
+              />
+            </a>
+          </section>
+          <section>
+            <h2>瀑布流waterfall</h2>
+            <p>资源加载的一个过程</p>
+            <br />
+            <image
+              style="margin-top: -20px"
+              src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1613fbeaffb64587a36613271ecfcade~tplv-k3u1fbpfcp-watermark.image"
+              width="300"
+              height="500"
+            ></image>
+            <div style="float: right; font-size: 28px; margin-top: 50px">
+              <ul>
+                <li>
+                  <span class="font-red">Queueing</span>
+                  浏览器将资源放入队列时间
+                </li>
+                <li>
+                  <span class="font-red">Stalled</span>
+                  因放入队列时间而发生的停滞时间
+                </li>
+                <li><span class="font-red">DNS Lookup</span> DNS解析时间</li>
+                <li>
+                  <span class="font-red">Initial connection</span>
+                  建立HTTP连接的时间
+                </li>
+                <li>
+                  <span class="font-red">SSL</span>
+                  浏览器与服务器建立安全性连接的时间
+                </li>
+                <li>
+                  <span class="font-red">TTFB</span> 等待服务端返回数据的时间
+                </li>
+                <li>
+                  <span class="font-red">Content Download</span>
+                  浏览器下载资源的时间
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section>
+            <h2>2、Lighthouse</h2>
+            <div style="font-size: 18px">
+              根据chrome的一些策略自动对网站做一个质量评估，并且会给出一些优化的建议。<span
+                class="font-red"
+                >First Contentful Paint</span
+              >
+              首屏渲染时间，1s以内绿色<span class="font-red">Speed Index</span>
+              速度指数，4s以内绿色<span class="font-red"
+                >Time to Interactive</span
+              >
+              到页面可交换的时间
+            </div>
+            <br />
+            <a href="#" class="navigate-down">
+              <img
+                class="r-frame"
+                style="background: rgba(255, 255, 255, 0.1)"
+                width="80%"
+                height="408"
+                data-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ce06248190e44dd4b043b168e596251f~tplv-k3u1fbpfcp-watermark.image"
+                alt="Down arrow"
+              />
+            </a>
+          </section>
+
+          <section>
+            <h2>3、Peformance</h2>
+            <div style="font-size: 18px">对网站最专业的分析~后面会多次讲到</div>
+            <br />
+            <a href="#" class="navigate-down">
+              <img
+                class="r-frame"
+                style="background: rgba(255, 255, 255, 0.1)"
+                width="80%"
+                height="408"
+                data-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/56fbfc64c756487c9ae61c9f59de9add~tplv-k3u1fbpfcp-watermark.image"
+                alt="Down arrow"
+              />
+            </a>
+          </section>
+
+          <section>
+            <h2>4、webPageTest</h2>
+            <div style="font-size: 18px">
+              可以模拟不同场景下访问的情况，比如模拟不同浏览器、不同国家等等，在线测试地址：<a
+                href="https://www.webpagetest.org/"
+                target="_blank"
+                >webPageTest</a
+              >
+            </div>
+            <br />
+            <a href="#" class="navigate-down" style="display: flex">
+              <img
+                style="background: rgba(255, 255, 255, 0.1)"
+                width="50%"
+                height="408"
+                data-src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1da6a84b5944311a4f8c6f78b2f5fa1~tplv-k3u1fbpfcp-watermark.image"
+                alt="Down arrow"
+              />
+              <img
+                style="background: rgba(255, 255, 255, 0.1)"
+                width="50%"
+                height="408"
+                data-src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c2fd7f9c05be47bb80ad67064fc72917~tplv-k3u1fbpfcp-watermark.image"
+                alt="Down arrow"
+              />
+            </a>
+          </section>
+
+          <section>
+            <h2>5、打包资源分析</h2>
+            <div style="font-size: 18px">
+              使用 <span class="font-red">webpack-bundle-analyzer</span> 或者
+              开启 <span class="font-red">source-map</span> 使用<span
+                class="font-red"
+                >source-map-explorer 'build/*.js</span
+              >
+            </div>
+            <br />
+            <a href="#" class="navigate-down" style="display: flex">
+              <img
+                style="background: rgba(255, 255, 255, 0.1)"
+                width="50%"
+                height="408"
+                data-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1575bf78f22243bcb393b8dbc23d395b~tplv-k3u1fbpfcp-watermark.image"
+                alt="Down arrow"
+              />
+              <img
+                style="background: rgba(255, 255, 255, 0.1)"
+                width="50%"
+                height="408"
+                data-src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2057c48588f942579c235925d943c162~tplv-k3u1fbpfcp-watermark.image"
+                alt="Down arrow"
+              />
+            </a>
+          </section>
+        </section>
+
+        <section data-transition="convex">
+          <section>
+            <h5 style="font-family: 'STLiti', 华文隶书">二、WEB API</h5>
+            <div style="font-size: 30px">
+              工欲善其事，必先利其器。浏览器提供的一些分析API
+              <span class="font-red">至关重要</span>
+            </div>
+          </section>
+          <section>
+            <p>大家应该刷过慕课，只要离开窗口视频就会暂停~</p>
+            <p>或者一些考试网站，提醒你不能离开当前窗口</p>
+            <p>再或者，这种效果~</p>
+            <img
+              src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b7ab11fc7b94fcf8c79bd3b28706b2c~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+          <section data-auto-animate>
+            <h2 data-id="code-title">1、窗口激活状态监听</h2>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers>
+							let vEvent = 'visibilitychange';
+							if (document.webkitHidden != undefined) {
+								vEvent = 'webkitvisibilitychange';
+							}
+							function visibilityChanged() {
+								if (document.hidden || document.webkitHidden) {
+									document.title = '客官，别走啊~'
+								} else {
+									document.title = '客官，你又回来了呢~'
+								}
+							}
+							document.addEventListener(vEvent,visibilityChanged,false)
+						</code></pre>
+          </section>
+          <section data-auto-animate>
+            <h2 data-id="code-title">2、监听网络变化</h2>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers>
+              const connection = navigator.connection 
+                              || navigator.mozConnection 
+                              || navigator.webkitConnection;
+              function changedStatus() {
+                type = connection.effectiveType;
+                console.log("changed from "+ type + " to " + type);
+              }
+              connection.addEventListener('change', changedStatus);
+						</code></pre>
+          </section>
+          <section data-auto-animate>
+            <h2 data-id="code-title">3、计算DOMContentLoaded</h2>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers>
+              window.addEventListener('DOMContentLoaded', 
+              (event) => {
+                let time = performance.getEntriesByType('navigation')[0]
+                console.log(time.domInteractive);
+                console.log(time.fetchStart);
+                let diff = time.domInteractive - time.fetchStart;
+                console.log("TTI: " + diff);
+              })
+						</code></pre>
+          </section>
+          <section data-auto-animate>
+            <h2 data-id="code-title">4、更多计算规则：</h2>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers>
+              DNS 解析耗时: domainLookupEnd - domainLookupStart
+              TCP 连接耗时: connectEnd - connectStart
+              SSL 安全连接耗时: connectEnd - secureConnectionStart
+              TTFB 网络请求耗时: responseStart - requestStart
+              数据传输耗时: responseEnd - responseStart
+              DOM 解析耗时: domInteractive - responseEnd
+              资源加载耗时: loadEventStart - domContentLoadedEventEnd
+              白屏时间: responseEnd - fetchStart
+              首次可交互时间: domInteractive - fetchStart
+              DOM Ready 时间: domContentLoadEventEnd - fetchStart
+              Load 页面完全加载时间: loadEventStart - fetchStart
+              http 头部大小: transferSize - encodedBodySize
+              重定向次数:performance.navigation.redirectCount
+              重定向耗时: redirectEnd - redirectStart
+						</code></pre>
+          </section>
+        </section>
+
+        <section data-transition="convex">
+          <section>
+            <h5 style="font-family: 'STLiti', 华文隶书">三、雅虎军规</h5>
+            <div style="font-size: 30px">老生常谈，但是又不得不谈</div>
+          </section>
+          <section>
+            <img
+              src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bda756efa4f546e3b2fd6744e2e3336c~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+          <section>
+            <pre
+              data-id="code-animation"
+              style="width: 100%; max-height: 300px; overflow: auto"
+            ><code class="hljs" data-trim data-line-numbers>
+              let cards = document.getElementsByClassName("MuiPaper-rounded");
+              const update = (timestamp) => {
+                for (let i = 0; i < cards.length; i++) {
+                  let top = cards[i].offsetTop;
+                  cards[i].style.width = ((Math.sin(cards[i].offsetTop 
+                  + timestamp / 100 + 1) * 500) + 'px')
+                }
+                window.requestAnimationFrame(update)
+              }
+              update(1000);
+            </code></pre>
+            <img
+              src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7618dea1a4774c8685e9926b08d67fdd~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+          <section>
+            <pre
+              data-id="code-animation"
+              style="width: 100%; max-height: 300px; overflow: auto"
+            ><code class="hljs" data-trim data-line-numbers>
+              let cards = document.getElementsByClassName("MuiPaper-rounded");
+                const update = (timestamp) => {
+                  for (let i = 0; i < cards.length; i++) {
+                    fastdom.measure(() => {
+                      let top = cards[i].offsetTop;
+                      fastdom.mutate(() => {
+                        cards[i].style.width = Math.sin(top 
+                        + timestamp / 100 + 1) * 500 + "px";
+                      });
+                    });
+                  }
+                  window.requestAnimationFrame(update)
+                }
+                update(1000);
+            </code></pre>
+            <img
+              src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1df5c32c30494c13b3402305f866b327~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+          <section>
+            <p>Performance 分析结果对比</p>
+            <img
+              style="margin: 0"
+              src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b543d68fab7445da1dedb72bb224f69~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+            <img
+              style="margin: 0"
+              src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/db47cc5e20544043b9a5293c311dc0fe~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+        </section>
+
+        <section data-transition="convex">
+          <section>
+            <h5 style="font-family: 'STLiti', 华文隶书">四、资源压缩</h5>
+          </section>
+          <section>
+            <p>1、GZIP</p>
+            <div>
+              <ul>
+                <li>修改Nginx配置</li>
+                <li>
+                  借助
+                  <span class="font-red">Compression-webpack-plugin</span>来生成
+                  .gz 文件
+                </li>
+                <li>Node Compress</li>
+              </ul>
+            </div>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers>
+              var compression = require('compression')
+              var app = express();
+              //尽量在其他中间件前使用compression
+              app.use(compression());
+            </code></pre>
+          </section>
+          <section>
+            <p>2、JavaScript、Css、Html压缩</p>
+            <div style="font-size: 18px">
+              <span class="font-red">压缩原理</span>
+              简单的讲就是去除一些空格、换行、注释，借助es6模块化的功能，做了一些<span
+                class="font-red"
+                >tree-shaking</span
+              >
+              的优化。同时做了一些代码混淆，一方面是为了更小的体积，另一方面也是为了源码的安全性。
+            </div>
+            <div>
+              <ul>
+                <li>UglifyJS</li>
+                <li>webpack-parallel-uglify-plugin</li>
+                <li>terser-webpack-plugin</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <p>3、http2首部压缩</p>
+            http2除了首部压缩，还有一些其他的特性
+            <div>
+              <ul>
+                <li>二进制分帧</li>
+                <li>首部压缩</li>
+                <li>流量控制</li>
+                <li>多路复用</li>
+                <li>请求优先级</li>
+                <li>
+                  服务器推送<span class="font-red">http2_push: 'xxx.jpg'</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <section data-transition="convex">
+          <section>
+            <h5 style="font-family: 'STLiti', 华文隶书">五、webpack优化</h5>
+            <div style="font-size: 23px">
+              上文中也提到了部分webpack插件，下面再举几个例子~
+            </div>
+          </section>
+          <section>
+            <p>1、DllPlugin 提升构建速度</p>
+            <div style="font-size: 18px">
+              通过<span class="font-red">DllPlugin</span>
+              插件，将一些比较大的，基本很少升级的包拆分出来，生成<span
+                class="font-red"
+                >xx.dll.js</span
+              >文件,通过<span class="font-red">manifest.json</span>引用
+            </div>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers>
+              const path = require("path");
+              const webpack = require("webpack");
+              module.exports = {
+                  mode: "production",
+                  entry: {
+                      react: ["react", "react-dom"],
+                  },
+                  output: {
+                      filename: "[name].dll.js",
+                      path: path.resolve(__dirname, "dll"),
+                      library: "[name]"
+                  },
+                  plugins: [
+                      new webpack.DllPlugin({
+                          name: "[name]",
+                          path: path.resolve(__dirname, "dll/[name].manifest.json")
+                      })
+                  ]
+              };
+            </code></pre>
+          </section>
+          <section>
+            <p>2、splitChunks 拆包</p>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers>
+              optimization: {
+                splitChunks: {
+                    cacheGroups: {
+                        vendor: {
+                            name: 'vendor',
+                            test: /[\\/]node_modules[\\/]/,
+                            minSize: 0,
+                            minChunks: 1,
+                            priority: 10,
+                            chunks: 'initial'
+                        },
+                        common: {
+                            name: 'common',
+                            test: /[\\/]src[\\/]/,
+                            chunks: 'all',
+                            minSize: 0,
+                            minChunks: 2
+                        }
+                    }
+                }
+            },
+            </code></pre>
+          </section>
+        </section>
+
+        <section data-transition="convex">
+          <section>
+            <h5 style="font-family: 'STLiti', 华文隶书">六、骨架屏</h5>
+          </section>
+          <section data-transition="zoom">
+            <div style="font-size: 18px">
+              <div>
+                用css提前占好位置，当资源加载完成即可填充，减少页面的回流与重绘，同时还能给用户最直接的反馈。
+              </div>
+              图中使用插件：<a
+                href="https://github.com/buildo/react-placeholder"
+                target="_blank"
+                >react-placeholder</a
+              >
+            </div>
+            <img
+              src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3666ae07b9eb4d839f7a893b89d83f47~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+        </section>
+
+        <section data-transition="convex">
+          <section>
+            <h5 style="font-family: 'STLiti', 华文隶书">七、窗口化</h5>
+          </section>
+          <section data-transition="zoom">
+            <div style="font-size: 18px">
+              <div>原理：只加载当前窗口能显示的DOM元素。</div>
+              图中使用插件：<a
+                href="https://github.com/bvaughn/react-window"
+                target="_blank"
+                >react-window</a
+              >
+            </div>
+            <img
+              src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1a459cc811844b7793aff6c9878d19ad~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+        </section>
+
+        <section data-transition="convex">
+          <section>
+            <h5 style="font-family: 'STLiti', 华文隶书">八、缓存</h5>
+          </section>
+          <section
+            data-auto-animate
+            data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+          >
+            <h2>http缓存</h2>
+            <p>
+              利用好浏览器策略以及Http提供的相关参数，可以有效地减少带宽的浪费以及页面加载的时间
+            </p>
+            <div class="r-hstack justify-center" style="font-size: 12px">
+              <div
+                data-id="box1"
+                style="
+                  background: #999;
+                  width: 50px;
+                  height: 50px;
+                  margin: 10px;
+                  border-radius: 5px;
+                  line-height: 50px;
+                "
+              >
+                1
+              </div>
+              <div
+                data-id="box2"
+                style="
+                  background: #999;
+                  width: 50px;
+                  height: 50px;
+                  margin: 10px;
+                  border-radius: 5px;
+                  line-height: 50px;
+                "
+              >
+                2
+              </div>
+              <div
+                data-id="box3"
+                style="
+                  background: #999;
+                  width: 50px;
+                  height: 50px;
+                  margin: 10px;
+                  border-radius: 5px;
+                  line-height: 50px;
+                "
+              >
+                3
+              </div>
+              <div
+                data-id="box4"
+                style="
+                  background: #999;
+                  width: 50px;
+                  height: 50px;
+                  margin: 10px;
+                  border-radius: 5px;
+                  line-height: 50px;
+                "
+              >
+                4
+              </div>
+            </div>
+          </section>
+          <section
+            data-auto-animate
+            data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+          >
+            <div class="r-hstack justify-center">
+              <div
+                data-id="box1"
+                data-auto-animate-delay="0"
+                style="
+                  background: #999;
+                  width: 800px;
+                  height: 250px;
+                  margin: 10px;
+                "
+              >
+                keep-alive
+                <pre
+                  data-id="code-animation"
+                  style="font-size: 12px"
+                ><code class="hljs" data-trim data-line-numbers>
+                  # 0 为关闭
+                  # keepalive_timeout 0;
+                  # 65s无连接 关闭
+                  keepalive_timeout 65;
+                  # 连接数，达到100断开
+                  keepalive_requests 100
+                </code></pre>
+              </div>
+              <div
+                data-id="box2"
+                data-auto-animate-delay="0.1"
+                style="
+                  background: #999;
+                  width: 800px;
+                  height: 250px;
+                  margin: 10px;
+                "
+              >
+                Cache-Control / Expires / Max-Age
+              </div>
+              <div
+                data-id="box3"
+                data-auto-animate-delay="0.2"
+                style="
+                  background: #999;
+                  width: 800px;
+                  height: 250px;
+                  margin: 10px;
+                "
+              >
+                Last-Modified / If-Modified-Since
+              </div>
+              <div
+                data-id="box4"
+                data-auto-animate-delay="0.3"
+                style="
+                  background: #999;
+                  width: 800px;
+                  height: 250px;
+                  margin: 10px;
+                "
+              >
+                Etag / If-None-Match
+              </div>
+            </div>
+            <h2 style="margin-top: 20px">http缓存</h2>
+          </section>
+          <section id="fragments">
+            <h2>Service Worker</h2>
+            <div style="font-size: 18px">
+              借助webpack插件WorkboxWebpackPlugin和ManifestPlugin,加载serviceWorker.js,通过serviceWorker.register()注册
+            </div>
+            <pre
+              data-id="code-animation"
+            ><code class="hljs" data-trim data-line-numbers="1-10|12-25">
+            new WorkboxWebpackPlugin.GenerateSW({
+              clientsClaim: true,
+              exclude: [/\.map$/, /asset-manifest\.json$/],
+              importWorkboxFrom: 'cdn',
+              navigateFallback: paths.publicUrlOrPath + 'index.html',
+              navigateFallbackBlacklist: [
+                  new RegExp('^/_'),
+                  new RegExp('/[^/?]+\\.[^/]+$'),
+              ],
+            }),
+            
+            new ManifestPlugin({
+                fileName: 'asset-manifest.json',
+                publicPath: paths.publicUrlOrPath,
+                generate: (seed, files, entrypoints) => {
+                    const manifestFiles = files.reduce(
+                      (manifest, file) => {
+                        manifest[file.name] = file.path;
+                        return manifest;
+                    }, seed);
+                    const entrypointFiles = entrypoints.app.filter(
+                        fileName => !fileName.endsWith('.map')
+                    );
+            
+                    return {
+                        files: manifestFiles,
+                        entrypoints: entrypointFiles,
+                    };
+                },
+            }),
+            </code></pre>
+          </section>
+        </section>
+
+        <section data-transition="convex">
+          <section>
+            <h5 style="font-family: 'STLiti', 华文隶书">九、预/懒加载</h5>
+          </section>
+          <section>
+            <div>正常加载</div>
+            <img
+              src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6e3226bc21f14a41ac195618456bdde9~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+          <section>
+            <div>给对应资源添加preload</div>
+            <pre
+              data-id="code-animation"
+              style="font-size: 18px"
+            ><code class="hljs" data-trim data-line-numbers>
+                <`link rel="preload" href="xxx" as="font" crossorigin="anonymous"/>
+              </code></pre>
+            <img
+              src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9790c73b17ef43a9acb1701215aca9d4~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+          <section>
+            <div>给对应资源添加prefetch</div>
+            <pre
+              data-id="code-animation"
+              style="font-size: 18px"
+            ><code class="hljs" data-trim data-line-numbers>
+                <`link rel="prefetch" href="xxx" as="font" crossorigin="anonymous"/>
+              </code></pre>
+            <img
+              src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/04a0fe68e9634c20b963d1d2817126ad~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+          <section>
+            <div style="font-size: 28px">
+              两种图片:机械图片 and 渐进式图片（类似高斯模糊）
+            </div>
+            <img
+              src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4ed9e510588748d7b46d58d4ad13b4fe~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+            <img
+              src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/070b324836b44beb80453f4bc5cccc0b~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+          <section>
+            <div>响应式图片</div>
+            <pre
+              data-id="code-animation"
+              style="font-size: 16px"
+            ><code class="hljs" data-trim data-line-numbers>
+              <`img src="index.jpg" sizes="100vw" srcset="./img/dog.jpg 800w, ./img/index.jpg 1200w"/>
+            </code></pre>
+            <img
+              src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7427e9243791461b8ffa49f47981cfba~tplv-k3u1fbpfcp-watermark.image"
+              alt=""
+            />
+          </section>
+        </section>
+
+        <section data-transition="convex">
+          <section>
+            <h5 style="font-family: 'STLiti', 华文隶书">十、体验优化</h5>
+          </section>
+          <section
+          >
+          <h5>白屏加载Loading</h5>
+          <img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/41557f3a361c4cf899a4eab3bde79154~tplv-k3u1fbpfcp-watermark.image" alt="">
+        </section>
+        </section>
+
+        <!-- <section>
+					<section id="fragments">
+						<h2>Fragments</h2>
+						<p>Hit the next arrow...</p>
+						<p class="fragment">... to step through ...</p>
+						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+
+						<aside class="notes">
+							This slide has fragments which are also stepped through in the notes window.
+						</aside>
+					</section>
+					<section>
+						<h2>Fragment Styles</h2>
+						<p>There's different types of fragments, like:</p>
+						<p class="fragment grow">grow</p>
+						<p class="fragment shrink">shrink</p>
+						<p class="fragment fade-out">fade-out</p>
+						<p>
+							<span style="display: inline-block;" class="fragment fade-right">fade-right, </span>
+							<span style="display: inline-block;" class="fragment fade-up">up, </span>
+							<span style="display: inline-block;" class="fragment fade-down">down, </span>
+							<span style="display: inline-block;" class="fragment fade-left">left</span>
+						</p>
+						<p class="fragment fade-in-then-out">fade-in-then-out</p>
+						<p class="fragment fade-in-then-semi-out">fade-in-then-semi-out</p>
+						<p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
+					</section>
+				</section> -->
+
+        <!-- <section id="transitions">
+					<h2>Transition Styles</h2>
+					<p>
+						You can select from different transitions, like: <br>
+						<a href="?transition=none#/transitions">None</a> -
+						<a href="?transition=fade#/transitions">Fade</a> -
+						<a href="?transition=slide#/transitions">Slide</a> -
+						<a href="?transition=convex#/transitions">Convex</a> -
+						<a href="?transition=concave#/transitions">Concave</a> -
+						<a href="?transition=zoom#/transitions">Zoom</a>
+					</p>
+				</section> -->
+
+        <!-- <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+					<h2>Background Transitions</h2>
+					<p>
+						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
+					</p>
+					<pre><code class="hljs javascript">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
+				</section> -->
+
+        <!-- <section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
+					<h2>Background Transitions</h2>
+					<p>
+						You can override background transitions per-slide.
+					</p>
+					<pre><code class="hljs html" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
+				</section> -->
+
+        <!-- <section data-background-iframe="https://hakim.se" data-background-interactive>
+					<div style="position: absolute; width: 40%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+						<h2>Iframe Backgrounds</h2>
+						<p>Since reveal.js runs on the web, you can easily embed other web content. Try interacting with the page in the background.</p>
+					</div>
+				</section> -->
+
+        <!-- <section>
+					<h2>Global State</h2>
+					<p>
+						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
+						will be added as a class to the document element when the slide is open. This lets you
+						apply broader style changes, like switching the page background.
+					</p>
+				</section> -->
+
+        <section style="text-align: left" data-transition="zoom">
+          <h1>THE END</h1>
+          <ul>
+            <li>
+              <a
+                href="https://juejin.cn/user/3386151545609837/posts"
+                target="_blank"
+                >掘金主页: https://juejin.cn/user/3386151545609837</a
+              >
+            </li>
+            <li>
+              <a href="https://alexwjj.github.io/" target="_blank"
+                >个人博客: https://alexwjj.github.io</a
+              >
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/search/search.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // Also available as an ES module, see:
+      // https://revealjs.com/initialization/
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        hash: true,
+        // 循环演示
+        // loop: true,
+        mouseWheel: true,
+        // 切换过渡效果
+        // none-无/fade-渐变/slide-飞入/convex-凸面/concave-凹面/zoom-缩放
+        transition: "slide", // none/fade/slide/convex/concave/zoom
+        // 切换过渡速度
+        // default-中速/fast-快速/slow-慢速
+        transitionSpeed: "default", // default/fast/slow
+        // 预加载幻灯片数
+        viewDistance: 3,
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealZoom,
+          RevealNotes,
+          RevealSearch,
+          RevealMarkdown,
+          RevealHighlight,
+        ],
+      });
+      function removeLoading () {
+        const $loadding = document.getElementById('loadding');
+        if (!$loadding) {
+          return;
+        }
+        $loadding.style.display = 'none';
+        $loadding.parentNode.removeChild($loadding);
+      }
+      
+      window.addEventListener('load', removeLoading);
+    </script>
+  </body>
+</html>
