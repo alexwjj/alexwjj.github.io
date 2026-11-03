@@ -1,5 +1,6 @@
 // head
 module.exports = [
+  ["script", { type: "module", async: "", src: "https://alexwjj-hub.vercel.app/sdk/hub.js?project=alexwjj-github-io" }],
   [
     "link",
     {
