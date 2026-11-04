@@ -1,6 +1,6 @@
 // head
 module.exports = [
-  ["script", { type: "module", async: "", src: "https://alexwjj-hub.vercel.app/sdk/hub.js?project=alexwjj-github-io" }],
+  ["script", {}, "(()=>{const h=location.hostname;const o=h==='weightbook.icu'||h.endsWith('.weightbook.icu')?'https://alexwjj-hub.weightbook.icu':'https://alexwjj-hub.vercel.app';const s=document.createElement('script');s.type='module';s.async=true;s.src=o+'/sdk/hub.js?project=alexwjj-github-io';document.head.appendChild(s)})();"],
   [
     "link",
     {
